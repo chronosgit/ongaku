@@ -1,1 +1,1 @@
-<template><p>App</p></template>
+<template><div id="app">App</div></template>
