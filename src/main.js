@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import { createI18n } from 'vue-i18n';
 import App from './App.vue';
+import router from '@router/router';
 import './style.css';
 
 const app = createApp(App);
@@ -14,4 +15,4 @@ app.config.errorHandler = (err, vm, info) => {
 	);
 };
 
-app.use(i18n).mount('#app');
+app.use(i18n).use(router).mount('#app');
