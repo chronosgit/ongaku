@@ -5,7 +5,7 @@
 			"@/*": ["src/*"],
 			"@assets/*": ["src/assets/*"],
 			"@common/*": ["src/common/*"],
-			"@locales/*": ["src/locales/*"],
+			"@localization/*": ["src/localization/*"],
 			"@modules/*": ["src/modules/*"],
 			"@router/*": ["src/router/*"],
 			"@services/*": ["src/services/*"],
