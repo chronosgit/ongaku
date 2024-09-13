@@ -1,15 +1,23 @@
 <script setup>
-	const toggleLang = () => console.log(1);
+	import useLocalization from '@/common/composables/useLocalization';
+
+	const { t, supportedLocales, onLocaleChange } = useLocalization();
+
+	const onSelectChange = (e) => {
+		onLocaleChange(e.target.value);
+	};
 </script>
 
 <template>
 	<section class="">
 		<h2>Home</h2>
 
-		<p>Current lang: {{ currentLang }}</p>
+		<p>{{ t('message') }}</p>
 
-		<p>...</p>
-
-		<button @click="toggleLang">Toggle lang</button>
+		<select @change="onSelectChange">
+			<option v-for="l in supportedLocales" :name="l">
+				{{ l }}
+			</option>
+		</select>
 	</section>
 </template>
