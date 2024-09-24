@@ -1,12 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { i18n } from '@/main';
+import Home from '@/modules/home/Home.vue';
+import NotFound from '@/modules/not-found/NotFound.vue';
+import SpotifyAuthRedirect from '@/common/components/SpotifyAuthRedirect.vue';
 import isValidUrlBeforeEach from './guards/isValidUrlBeforeEach';
 import trackLocaleBeforeEach from './guards/trackLocaleBeforeEach';
 import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from '@/localization/i18n';
-import Home from '@/modules/home/Home.vue';
-import NotFound from '@/modules/not-found/NotFound.vue';
 
 const routes = [
+	{
+		path: '/spotify/auth', // match the redirect_uri spotify auth path
+		component: SpotifyAuthRedirect,
+	},
 	{
 		path: '/:locale',
 		component: Home,
@@ -15,6 +20,7 @@ const routes = [
 		path: '/:locale/not-found',
 		component: NotFound,
 	},
+
 	// redirect to 404 page with correct locale
 	{
 		path: '/:pathMatch(.*)*',

@@ -6,7 +6,6 @@ const trackLocaleBeforeEach = async (to, _, next) => {
 
 	// load locale messages
 	if (!i18n.global.availableLocales.includes(locale)) {
-		console.log(`Initiating the loading of ${locale}`);
 		await loadLocaleMessages(i18n, locale);
 	}
 
