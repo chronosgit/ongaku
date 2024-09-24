@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const axiosPrivate = axios.create({
 	baseURL: import.meta.env?.VITE_SPOTIFY_API,
+	// params: { market: 'US' }, // Questionable
 	timeout: 2000,
 });
 

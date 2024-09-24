@@ -56,9 +56,16 @@ class AuthService {
 				window.localStorage.setItem('code_verifier', codeVerifier);
 				const codeChallenge = await authService.#getCodeChallenge(codeVerifier);
 
+				const scopes = [
+					'user-read-private',
+					'user-read-email',
+					'user-library-read',
+					'user-library-modify',
+				];
+				const scope = scopes.join(' ');
 				const clientId = import.meta.env?.VITE_SPOTIFY_CLIENT_ID;
 				const redirectUri = import.meta.env?.VITE_SPOTIFY_REDIRECT_URI;
-				const scope = 'user-read-private user-read-email';
+
 				const params = {
 					response_type: 'code',
 					client_id: clientId,
