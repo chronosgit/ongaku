@@ -32,15 +32,11 @@ class AuthService {
 					}),
 				};
 
-				console.log(payload);
-
 				const body = await fetch(
 					'https://accounts.spotify.com/api/token',
 					payload
 				);
 				const response = await body.json();
-
-				console.log(response);
 
 				localStorage.setItem('access_token', response.access_token);
 				localStorage.setItem('refresh_token', response.refresh_token);
@@ -112,35 +108,41 @@ class AuthService {
 	}
 
 	static async refreshTokens() {
-		// refresh token that has been previously stored
-		const clientId = import.meta.env?.VITE_SPOTIFY_CLIENT_ID;
-		const refreshToken = localStorage.getItem('refresh_token');
-		const url = 'https://accounts.spotify.com/api/token';
+		return new Promise(async (resolve, reject) => {
+			try {
+				// refresh token that has been previously stored
+				const clientId = import.meta.env?.VITE_SPOTIFY_CLIENT_ID;
+				const refreshToken = localStorage.getItem('refresh_token');
+				const url = 'https://accounts.spotify.com/api/token';
 
-		const payload = {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded',
-			},
-			body: new URLSearchParams({
-				grant_type: 'refresh_token',
-				refresh_token: refreshToken,
-				client_id: clientId,
-			}),
-		};
+				const payload = {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded',
+					},
+					body: new URLSearchParams({
+						grant_type: 'refresh_token',
+						refresh_token: refreshToken,
+						client_id: clientId,
+					}),
+				};
 
-		console.log(payload);
+				const body = await fetch(url, payload);
+				const response = await body.json();
 
-		const body = await fetch(url, payload);
-		const response = await body.json();
+				localStorage.setItem('access_token', response.access_token);
+				if (response.refreshToken) {
+					localStorage.setItem('refresh_token', response.refresh_token);
+				}
 
-		console.log(response);
-
-		localStorage.setItem('access_token', response.access_token);
-
-		if (response.refreshToken) {
-			localStorage.setItem('refresh_token', response.refresh_token);
-		}
+				resolve({
+					access_token: response.access_token,
+					refresh_token: response.refresh_token,
+				});
+			} catch (err) {
+				reject(err);
+			}
+		});
 	}
 }
 
