@@ -13,6 +13,7 @@ export default defineConfig({
 			'@http': path.resolve(__dirname, './src/http'),
 			'@localization': path.resolve(__dirname, './src/localization'),
 			'@modules': path.resolve(__dirname, './src/modules'),
+			'@pages': path.resolve(__dirname, './src/pages'),
 			'@router': path.resolve(__dirname, './src/router'),
 			'@services': path.resolve(__dirname, './src/services'),
 			'@store': path.resolve(__dirname, './src/store'),

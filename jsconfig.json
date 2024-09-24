@@ -8,6 +8,7 @@
 			"@http/*": ["src/http/*"],
 			"@localization/*": ["src/localization/*"],
 			"@modules/*": ["src/modules/*"],
+			"@pages/*": ["src/pages/*"],
 			"@router/*": ["src/router/*"],
 			"@services/*": ["src/services/*"],
 			"@store/*": ["src/store/*"]
