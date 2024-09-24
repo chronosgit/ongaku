@@ -10,7 +10,7 @@ export default defineConfig({
 			'@': path.resolve(__dirname, './src'),
 			'@assets': path.resolve(__dirname, './src/assets'),
 			'@common': path.resolve(__dirname, './src/common'),
-			'@locales': path.resolve(__dirname, './src/locales'),
+			'@localization': path.resolve(__dirname, './src/localization'),
 			'@modules': path.resolve(__dirname, './src/modules'),
 			'@router': path.resolve(__dirname, './src/router'),
 			'@services': path.resolve(__dirname, './src/services'),
