@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { i18n } from '@/main';
-import Home from '@/modules/home/Home.vue';
-import NotFound from '@/modules/not-found/NotFound.vue';
-import SpotifyAuthRedirect from '@/common/components/SpotifyAuthRedirect.vue';
+import SpotifyAuthRedirect from '@/pages/spotify-auth-redirect/SpotifyAuthRedirect.vue';
+import Home from '@/pages/home/Home.vue';
+import NotFound from '@/pages/not-found/NotFound.vue';
 import isValidUrlBeforeEach from './guards/isValidUrlBeforeEach';
 import trackLocaleBeforeEach from './guards/trackLocaleBeforeEach';
 import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from '@/localization/i18n';
