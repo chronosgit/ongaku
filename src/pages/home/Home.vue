@@ -23,10 +23,27 @@
 
 <template>
 	<section class="home">
-		<h2>Home</h2>
+		<h2 class="text-blue-400">Home</h2>
 
-		<button @click="onAuthBtnClick">Authorize</button>
-		<button @click="onRefreshTokenBtnClick">Refresh tokens</button>
-		<button @click="onTestBtnClick">Test</button>
+		<div class="space-x-4">
+			<button
+				class="px-2 border-2 rounded-full border-gray-300 transition-colors hover:bg-black hover:text-white hover:border-black"
+				@click="onAuthBtnClick"
+			>
+				Authorize
+			</button>
+			<button
+				class="px-2 border-2 rounded-full border-gray-300 transition-colors hover:bg-black hover:text-white hover:border-black"
+				@click="onRefreshTokenBtnClick"
+			>
+				Refresh tokens
+			</button>
+			<button
+				class="px-2 border-2 rounded-full border-gray-300 transition-colors hover:bg-black hover:text-white hover:border-black"
+				@click="onTestBtnClick"
+			>
+				Test
+			</button>
+		</div>
 	</section>
 </template>
