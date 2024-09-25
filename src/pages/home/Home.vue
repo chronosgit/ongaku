@@ -1,5 +1,5 @@
 <script setup>
-	import AlbumService from '@/services/AlbumService';
+	import ArtistsService from '@/services/ArtistsService';
 	import AuthService from '@/services/AuthService';
 
 	const onAuthBtnClick = () => {
@@ -15,7 +15,7 @@
 	};
 
 	const onTestBtnClick = () => {
-		AlbumService.getNewAlbumReleases()
+		ArtistsService.getArtistRelatedArtists('0TnOYISbd1XYRBk9myaseg')
 			.then((res) => console.log(res))
 			.catch((err) => console.error(err));
 	};
