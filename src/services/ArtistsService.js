@@ -2,7 +2,6 @@ import axiosPrivate from '@/http/axiosPrivate';
 import axiosPublic from '@/http/axiosPublic';
 
 class ArtistsService {
-	// private
 	// artistId - string (REQUIRED)
 	static async getArtist(artistId) {
 		try {
@@ -14,7 +13,6 @@ class ArtistsService {
 		}
 	}
 
-	// private
 	// artistsIds - string (REQUIRED, comma-separated ids)
 	static async getSeveralArtists(artistsIds) {
 		try {
@@ -28,7 +26,6 @@ class ArtistsService {
 		}
 	}
 
-	// private
 	// artistId - string (REQUIRED)
 	// includeGroups - string
 	// ~ (comma-separated list of keywords that will be used to filter the response)
@@ -50,7 +47,6 @@ class ArtistsService {
 		}
 	}
 
-	// private
 	// artistId - string (REQUIRED)
 	static async getArtistTopTracks(artistId) {
 		try {
@@ -64,7 +60,6 @@ class ArtistsService {
 		}
 	}
 
-	// private
 	// artistId - string (REQUIRED)
 	static async getArtistRelatedArtists(artistId) {
 		try {

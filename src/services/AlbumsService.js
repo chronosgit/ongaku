@@ -1,7 +1,6 @@
 import axiosPrivate from '@/http/axiosPrivate';
 
 class AlbumsService {
-	// private
 	// albumId - string (REQUIRED)
 	static async getAlbum(albumId) {
 		try {
@@ -15,7 +14,6 @@ class AlbumsService {
 		}
 	}
 
-	// private
 	// albumsIds - string (REQUIRED, comma-separated ids)
 	static async getSeveralAlbums(albumsIds) {
 		try {
@@ -31,7 +29,6 @@ class AlbumsService {
 		}
 	}
 
-	// private
 	// albumId - string (REQUIRED)
 	// limit - integer (def: 20, min: 1, max: 50)
 	// offset - integer (def: 0)
@@ -49,7 +46,6 @@ class AlbumsService {
 		}
 	}
 
-	// private
 	// limit - integer (def: 20, min: 1, max: 50)
 	// offset - integer (def: 0, indexes start from zero)
 	static async getMySavedAlbums(limit, offset) {
@@ -62,7 +58,6 @@ class AlbumsService {
 		}
 	}
 
-	// private
 	// albumsIds - array[string] (REQUIRED)
 	static async saveAlbumsForMe(albumsIds) {
 		try {
@@ -76,7 +71,6 @@ class AlbumsService {
 		}
 	}
 
-	// private
 	// albumsIds - array[string] (REQUIRED)
 	static async removeMySavedAlbums(albumsIds) {
 		try {
@@ -92,7 +86,6 @@ class AlbumsService {
 		}
 	}
 
-	// private
 	// albumsIds - string (REQUIRED, comma-separated ids)
 	static async checkIfMyAlbums(albumsIds) {
 		if (!albumsIds) throw Error('Albums IDs must be valid');
@@ -108,7 +101,6 @@ class AlbumsService {
 		}
 	}
 
-	// private
 	// limit - integer (def: 20, min: 1, max: 50)
 	// offset - integer (def: 0, indexes start from zero)
 	static async getNewAlbumReleases(limit, offset) {
