@@ -1,5 +1,4 @@
 import axiosPrivate from '@/http/axiosPrivate';
-import axiosPublic from '@/http/axiosPublic';
 
 class ArtistsService {
 	// artistId - string (REQUIRED)
