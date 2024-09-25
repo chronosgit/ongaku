@@ -17,4 +17,4 @@ app.config.errorHandler = (err, vm, info) => {
 const possibleInitLocale = window.location.pathname.split('/')[1] || 'en';
 export const i18n = setupI18n(possibleInitLocale);
 
-app.use(router).use(i18n).mount('#app');
+app.use(i18n).use(router).mount('#app');
