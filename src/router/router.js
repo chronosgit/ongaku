@@ -5,6 +5,7 @@ import Home from '@/pages/home/Home.vue';
 import NotFound from '@/pages/not-found/NotFound.vue';
 import isValidUrlBeforeEach from './guards/isValidUrlBeforeEach';
 import trackLocaleBeforeEach from './guards/trackLocaleBeforeEach';
+import pageTitleBeforeEach from './guards/pageTitleBeforeEach';
 import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from '@/localization/i18n';
 
 const routes = [
@@ -19,6 +20,7 @@ const routes = [
 	{
 		path: '/:locale/not-found',
 		component: NotFound,
+		meta: { title: 'not-found.page-title' },
 	},
 
 	// redirect to 404 page with correct locale
@@ -46,5 +48,8 @@ router.beforeEach(isValidUrlBeforeEach);
 
 // lazy loading for locales
 router.beforeEach(trackLocaleBeforeEach);
+
+// dynamic page title
+router.beforeEach(pageTitleBeforeEach);
 
 export default router;
