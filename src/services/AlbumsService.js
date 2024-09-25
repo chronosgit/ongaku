@@ -2,7 +2,7 @@ import axiosPrivate from '@/http/axiosPrivate';
 
 class AlbumsService {
 	// private
-	// albumId - string
+	// albumId - string (REQUIRED)
 	static async getAlbum(albumId) {
 		try {
 			if (!albumId) throw Error('Album ID must be valid');
@@ -16,7 +16,7 @@ class AlbumsService {
 	}
 
 	// private
-	// albumsIds - string (comma-separated ids)
+	// albumsIds - string (REQUIRED, comma-separated ids)
 	static async getSeveralAlbums(albumsIds) {
 		try {
 			if (!albumsIds) throw Error('Albums IDs must be valid');
@@ -32,7 +32,7 @@ class AlbumsService {
 	}
 
 	// private
-	// albumId - string
+	// albumId - string (REQUIRED)
 	// limit - integer (def: 20, min: 1, max: 50)
 	// offset - integer (def: 0)
 	static async getAlbumTracks(albumId, limit, offset) {
@@ -63,7 +63,7 @@ class AlbumsService {
 	}
 
 	// private
-	// albumsIds - array[string]
+	// albumsIds - array[string] (REQUIRED)
 	static async saveAlbumsForMe(albumsIds) {
 		try {
 			if (!albumsIds) throw Error('Albums IDs must be valid');
@@ -77,7 +77,7 @@ class AlbumsService {
 	}
 
 	// private
-	// albumsIds - array[string]
+	// albumsIds - array[string] (REQUIRED)
 	static async removeMySavedAlbums(albumsIds) {
 		try {
 			if (!albumsIds) throw Error('Albums IDs must be valid');
@@ -93,7 +93,7 @@ class AlbumsService {
 	}
 
 	// private
-	// albumsIds - string (comma-separated ids)
+	// albumsIds - string (REQUIRED, comma-separated ids)
 	static async checkIfMyAlbums(albumsIds) {
 		if (!albumsIds) throw Error('Albums IDs must be valid');
 
