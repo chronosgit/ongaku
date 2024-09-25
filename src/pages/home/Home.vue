@@ -1,6 +1,6 @@
 <script setup>
-	import ArtistsService from '@/services/ArtistsService';
 	import AuthService from '@/services/AuthService';
+	import CategoriesService from '@/services/CategoriesService';
 
 	const onAuthBtnClick = () => {
 		AuthService.requestUserAuthorization()
@@ -15,7 +15,7 @@
 	};
 
 	const onTestBtnClick = () => {
-		ArtistsService.getArtistRelatedArtists('0TnOYISbd1XYRBk9myaseg')
+		CategoriesService.getSingleBrowseCategory('dinner')
 			.then((res) => console.log(res))
 			.catch((err) => console.error(err));
 	};
