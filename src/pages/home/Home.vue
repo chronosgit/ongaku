@@ -1,6 +1,6 @@
 <script setup>
-	import AlbumService from '@/services/AlbumService';
 	import AuthService from '@/services/AuthService';
+	import CategoriesService from '@/services/CategoriesService';
 
 	const onAuthBtnClick = () => {
 		AuthService.requestUserAuthorization()
@@ -15,7 +15,7 @@
 	};
 
 	const onTestBtnClick = () => {
-		AlbumService.getNewAlbumReleases()
+		CategoriesService.getSingleBrowseCategory('dinner')
 			.then((res) => console.log(res))
 			.catch((err) => console.error(err));
 	};
