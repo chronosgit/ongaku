@@ -6,7 +6,14 @@ export default {
 		'./src/pages/**/*.{js,vue}',
 	],
 	theme: {
-		extend: {},
+		extend: {
+			fontFamily: {
+				ru: ['Helvetica', 'Arial', 'sans-serif'],
+			},
+			colors: {
+				'spotify-black': '#121212',
+			},
+		},
 	},
 	plugins: [],
 };
