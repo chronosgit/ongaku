@@ -1,3 +1,5 @@
 {
-	"message": "Hello World!"
+	"not-found": {
+		"page-title": "Page is not available"
+	}
 }

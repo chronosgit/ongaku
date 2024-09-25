@@ -1,4 +1,4 @@
-import { nextTick, ref } from 'vue';
+import { nextTick } from 'vue';
 import { createI18n } from 'vue-i18n';
 
 const SUPPORTED_LOCALES = ['en', 'ru'];
