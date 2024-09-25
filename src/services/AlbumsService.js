@@ -51,7 +51,7 @@ class AlbumsService {
 
 	// private
 	// limit - integer (def: 20, min: 1, max: 50)
-	// offset - integer (def: 0). Indexes start from 0
+	// offset - integer (def: 0, indexes start from zero)
 	static async getMySavedAlbums(limit, offset) {
 		try {
 			const res = axiosPrivate.get('/me/albums', { params: { limit, offset } });
@@ -110,7 +110,7 @@ class AlbumsService {
 
 	// private
 	// limit - integer (def: 20, min: 1, max: 50)
-	// offset - integer (def: 0). Indexes start from 0
+	// offset - integer (def: 0, indexes start from zero)
 	static async getNewAlbumReleases(limit, offset) {
 		try {
 			const res = axiosPrivate.get('/browse/new-releases', {
