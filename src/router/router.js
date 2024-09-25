@@ -20,7 +20,7 @@ const routes = [
 	{
 		path: '/:locale/not-found',
 		component: NotFound,
-		meta: { title: 'not-found.page-title' },
+		meta: { title: 'not-found.meta-title' },
 	},
 
 	// redirect to 404 page with correct locale
