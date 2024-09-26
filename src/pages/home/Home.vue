@@ -1,6 +1,7 @@
 <script setup>
 	import AuthService from '@/services/AuthService';
 	import GenresService from '@/services/GenresService';
+	import MarketsService from '@/services/MarketsService';
 
 	const onAuthBtnClick = () => {
 		AuthService.requestUserAuthorization()
@@ -15,7 +16,7 @@
 	};
 
 	const onTestBtnClick = () => {
-		GenresService.getAvailableGenresSeeds()
+		MarketsService.getAvailableMarkets()
 			.then((res) => console.log(res))
 			.catch((err) => console.error(err));
 	};
