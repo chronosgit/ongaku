@@ -1,6 +1,6 @@
 <script setup>
 	import AuthService from '@/services/AuthService';
-	import CategoriesService from '@/services/CategoriesService';
+	import GenresService from '@/services/GenresService';
 
 	const onAuthBtnClick = () => {
 		AuthService.requestUserAuthorization()
@@ -15,7 +15,7 @@
 	};
 
 	const onTestBtnClick = () => {
-		CategoriesService.getSingleBrowseCategory('dinner')
+		GenresService.getAvailableGenresSeeds()
 			.then((res) => console.log(res))
 			.catch((err) => console.error(err));
 	};
