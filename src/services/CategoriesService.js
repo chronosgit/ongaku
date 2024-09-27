@@ -1,6 +1,7 @@
 import axiosPrivate from '@/http/axiosPrivate';
 
 class CategoriesService {
+	// https://developer.spotify.com/documentation/web-api/reference/get-categories
 	// private
 	// locale - string (language)
 	// limit - integer (def: 20, min: 1, max: 50)
@@ -17,6 +18,7 @@ class CategoriesService {
 		}
 	}
 
+	// https://developer.spotify.com/documentation/web-api/reference/get-a-category
 	// categoryId - string (REQUIRED, eg. party)
 	// locale - string (language)
 	static async getSingleBrowseCategory(categoryId, locale) {

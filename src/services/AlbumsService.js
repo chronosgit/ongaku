@@ -1,6 +1,7 @@
 import axiosPrivate from '@/http/axiosPrivate';
 
 class AlbumsService {
+	// https://developer.spotify.com/documentation/web-api/reference/get-an-album
 	// albumId - string (REQUIRED)
 	static async getAlbum(albumId) {
 		try {
@@ -14,6 +15,7 @@ class AlbumsService {
 		}
 	}
 
+	// https://developer.spotify.com/documentation/web-api/reference/get-multiple-albums
 	// albumsIds - string (REQUIRED, comma-separated ids)
 	static async getSeveralAlbums(albumsIds) {
 		try {
@@ -29,6 +31,7 @@ class AlbumsService {
 		}
 	}
 
+	// https://developer.spotify.com/documentation/web-api/reference/get-an-albums-tracks
 	// albumId - string (REQUIRED)
 	// limit - integer (def: 20, min: 1, max: 50)
 	// offset - integer (def: 0)
@@ -46,6 +49,7 @@ class AlbumsService {
 		}
 	}
 
+	// https://developer.spotify.com/documentation/web-api/reference/get-users-saved-albums
 	// limit - integer (def: 20, min: 1, max: 50)
 	// offset - integer (def: 0, indexes start from zero)
 	static async getMySavedAlbums(limit, offset) {
@@ -58,6 +62,7 @@ class AlbumsService {
 		}
 	}
 
+	// https://developer.spotify.com/documentation/web-api/reference/save-albums-user
 	// albumsIds - array[string] (REQUIRED)
 	static async saveAlbumsForMe(albumsIds) {
 		try {
@@ -71,6 +76,7 @@ class AlbumsService {
 		}
 	}
 
+	// https://developer.spotify.com/documentation/web-api/reference/remove-albums-user
 	// albumsIds - array[string] (REQUIRED)
 	static async removeMySavedAlbums(albumsIds) {
 		try {
@@ -86,6 +92,7 @@ class AlbumsService {
 		}
 	}
 
+	// https://developer.spotify.com/documentation/web-api/reference/check-users-saved-albums
 	// albumsIds - string (REQUIRED, comma-separated ids)
 	static async checkIfMyAlbums(albumsIds) {
 		if (!albumsIds) throw Error('Albums IDs must be valid');
@@ -101,6 +108,7 @@ class AlbumsService {
 		}
 	}
 
+	// https://developer.spotify.com/documentation/web-api/reference/get-new-releases
 	// limit - integer (def: 20, min: 1, max: 50)
 	// offset - integer (def: 0, indexes start from zero)
 	static async getNewAlbumReleases(limit, offset) {

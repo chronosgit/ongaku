@@ -1,6 +1,7 @@
 import axiosPrivate from '@/http/axiosPrivate';
 
 class ArtistsService {
+	// https://developer.spotify.com/documentation/web-api/reference/get-an-artist
 	// artistId - string (REQUIRED)
 	static async getArtist(artistId) {
 		try {
@@ -12,6 +13,7 @@ class ArtistsService {
 		}
 	}
 
+	// https://developer.spotify.com/documentation/web-api/reference/get-multiple-artists
 	// artistsIds - string (REQUIRED, comma-separated ids)
 	static async getSeveralArtists(artistsIds) {
 		try {
@@ -25,11 +27,9 @@ class ArtistsService {
 		}
 	}
 
+	// https://developer.spotify.com/documentation/web-api/reference/get-an-artists-albums
 	// artistId - string (REQUIRED)
 	// includeGroups - string
-	// ~ (comma-separated list of keywords that will be used to filter the response)
-	// ~ (if not supplied, all album types will be returned)
-	// ~ (valid values: album, single, appears_on, compilation)
 	// limit - integer (def: 20, min: 1, max: 50)
 	// offset - integer (def: 0, indexes start from zero)
 	static async getArtistAlbums(artistId, includeGroups, limit, offset) {
@@ -46,6 +46,7 @@ class ArtistsService {
 		}
 	}
 
+	// https://developer.spotify.com/documentation/web-api/reference/get-an-artists-top-tracks
 	// artistId - string (REQUIRED)
 	static async getArtistTopTracks(artistId) {
 		try {
@@ -59,6 +60,7 @@ class ArtistsService {
 		}
 	}
 
+	// https://developer.spotify.com/documentation/web-api/reference/get-an-artists-related-artists
 	// artistId - string (REQUIRED)
 	static async getArtistRelatedArtists(artistId) {
 		try {
