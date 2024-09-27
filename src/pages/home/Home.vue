@@ -1,6 +1,5 @@
 <script setup>
 	import AuthService from '@/services/AuthService';
-	import GenresService from '@/services/GenresService';
 	import MarketsService from '@/services/MarketsService';
 
 	const onAuthBtnClick = () => {
