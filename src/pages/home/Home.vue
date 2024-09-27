@@ -1,6 +1,6 @@
 <script setup>
 	import AuthService from '@/services/AuthService';
-	import MarketsService from '@/services/MarketsService';
+	import SearchService from '@/services/SearchService';
 
 	const onAuthBtnClick = () => {
 		AuthService.requestUserAuthorization()
@@ -15,7 +15,10 @@
 	};
 
 	const onTestBtnClick = () => {
-		MarketsService.getAvailableMarkets()
+		SearchService.searchForItem(
+			'remaster%20track:Doxy%20artist:Miles%20Davis',
+			'album'
+		)
 			.then((res) => console.log(res))
 			.catch((err) => console.error(err));
 	};

@@ -1,4 +1,4 @@
-import axiosPublic from '@/http/axiosPublic';
+import axiosPrivate from '@/http/axiosPrivate';
 
 class SearchService {
 	// https://developer.spotify.com/documentation/web-api/reference/search.
@@ -15,7 +15,31 @@ class SearchService {
 		includeExternal
 	) {
 		try {
-			const res = axiosPublic.get('/search');
+			if (!searchQuery) throw Error('Search query must be valid');
+
+			const allowedTypes = [
+				'album',
+				'artist',
+				'playlist',
+				'track',
+				'show',
+				'episode',
+				'audiobook',
+			];
+
+			if (!allowedTypes.includes(type)) {
+				throw Error('Type must be valid');
+			}
+
+			const res = axiosPrivate.get('/search', {
+				params: {
+					q: searchQuery,
+					type,
+					limit,
+					offset,
+					include_external: includeExternal,
+				},
+			});
 
 			return res;
 		} catch (err) {
