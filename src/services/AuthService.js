@@ -62,6 +62,8 @@ class AuthService {
 					'user-read-email',
 					'user-library-read',
 					'user-library-modify',
+					'playlist-modify-public',
+					'playlist-modify-private',
 				];
 				const scope = scopes.join(' ');
 				const clientId = import.meta.env?.VITE_SPOTIFY_CLIENT_ID;
