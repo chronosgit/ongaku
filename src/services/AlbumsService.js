@@ -68,7 +68,9 @@ class AlbumsService {
 		try {
 			if (!albumsIds) throw Error('Albums IDs must be valid');
 
-			const res = axiosPrivate.put('/me/albums', { ids: albumsIds });
+			const payload = { ids: albumsIds };
+
+			const res = axiosPrivate.put('/me/albums', payload);
 
 			return res;
 		} catch (err) {

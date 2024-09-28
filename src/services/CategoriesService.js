@@ -1,8 +1,8 @@
 import axiosPrivate from '@/http/axiosPrivate';
 
 class CategoriesService {
+	// TODO: locale might not work
 	// https://developer.spotify.com/documentation/web-api/reference/get-categories
-	// private
 	// locale - string (language)
 	// limit - integer (def: 20, min: 1, max: 50)
 	// offset - integer (def: 0, indexes start from zero)

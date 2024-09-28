@@ -1,6 +1,6 @@
 <script setup>
 	import AuthService from '@/services/AuthService';
-	import SearchService from '@/services/SearchService';
+	import PlaylistsService from '@/services/UnF_PlaylistsService';
 
 	const onAuthBtnClick = () => {
 		AuthService.requestUserAuthorization()
@@ -15,9 +15,9 @@
 	};
 
 	const onTestBtnClick = () => {
-		SearchService.searchForItem(
-			'remaster%20track:Doxy%20artist:Miles%20Davis',
-			'album'
+		PlaylistsService.getPlaylistCoverImage(
+			'3ZmhKwo2M7Piy7L88mgyWf',
+			'/9j/2wCEABoZGSccJz4lJT5CLy8vQkc9Ozs9R0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0cBHCcnMyYzPSYmPUc9Mj1HR0dEREdHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR//dAAQAAf/uAA5BZG9iZQBkwAAAAAH/wAARCAABAAEDACIAAREBAhEB/8QASwABAQAAAAAAAAAAAAAAAAAAAAYBAQAAAAAAAAAAAAAAAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAARAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwAAARECEQA/AJgAH//Z'
 		)
 			.then((res) => console.log(res))
 			.catch((err) => console.error(err));
