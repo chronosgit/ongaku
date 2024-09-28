@@ -64,6 +64,7 @@ class AuthService {
 					'user-library-modify',
 					'playlist-modify-public',
 					'playlist-modify-private',
+					'ugc-image-upload',
 				];
 				const scope = scopes.join(' ');
 				const clientId = import.meta.env?.VITE_SPOTIFY_CLIENT_ID;
