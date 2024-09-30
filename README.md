@@ -37,4 +37,4 @@ I did my best to leverage the organizational benefits that both bring, which con
 
 Additionally, the auto-import feature for the `components` folder has been disabled for better clarity.
 
-P.S. The architecture may change."
+P.S. The architecture may change.
