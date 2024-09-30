@@ -5,6 +5,10 @@ export default defineNuxtConfig({
 	compatibilityDate: '2024-04-03',
 	devtools: { enabled: true },
 
+	modules: [
+		'@nuxtjs/tailwindcss', // Ensure the module is listed here
+	],
+
 	components: false,
 	alias: {
 		'@components': resolve(__dirname, 'components'),
@@ -26,9 +30,6 @@ export default defineNuxtConfig({
 		},
 	},
 
-	modules: [
-		'@nuxtjs/tailwindcss', // Ensure the module is listed here
-	],
 	css: ['~/assets/css/tailwind.css'],
 	postcss: {
 		plugins: {
