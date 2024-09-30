@@ -1,19 +1,15 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
 	content: [
-		'./src/common/**/*.{js,vue}',
-		'./src/modules/**/*.{js,vue}',
-		'./src/pages/**/*.{js,vue}',
+		'./components/**/*.{js,vue,ts}',
+		'./layouts/**/*.vue',
+		'./pages/**/*.vue',
+		'./plugins/**/*.{js,ts}',
+		'./app.vue',
+		'./error.vue',
 	],
 	theme: {
-		extend: {
-			fontFamily: {
-				ru: ['Helvetica', 'Arial', 'sans-serif'],
-			},
-			colors: {
-				'spotify-black': '#121212',
-			},
-		},
+		extend: {},
 	},
 	plugins: [],
 };
