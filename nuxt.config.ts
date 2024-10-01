@@ -1,33 +1,11 @@
-import { defineNuxtConfig } from 'nuxt/config';
-import { resolve } from 'path';
-
+// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 	compatibilityDate: '2024-04-03',
 	devtools: { enabled: true },
-
-	modules: [
-		'@nuxtjs/tailwindcss', // Ensure the module is listed here
-	],
-
 	components: false,
-	alias: {
-		'@components': resolve(__dirname, 'components'),
-		'@store': resolve(__dirname, 'store'),
-	},
 
-	app: {
-		head: {
-			title: 'Ongaku - Web Player: Music for everyone',
-			charset: 'utf-8',
-			viewport: 'width=device-width, initial-scale=1',
-			meta: [
-				{
-					name: 'description',
-					content:
-						'Ongaku is a digital music service that gives you access to millions of songs.',
-				},
-			],
-		},
+	alias: {
+		components: './components',
 	},
 
 	css: ['~/assets/css/tailwind.css'],
@@ -36,5 +14,11 @@ export default defineNuxtConfig({
 			tailwindcss: {},
 			autoprefixer: {},
 		},
+	},
+
+	modules: ['@nuxtjs/i18n'],
+
+	i18n: {
+		vueI18n: './i18n.config.ts', // if you are using custom path, default
 	},
 });

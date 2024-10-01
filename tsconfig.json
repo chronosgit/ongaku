@@ -1,11 +1,4 @@
 {
-	"extends": "./.nuxt/tsconfig.json",
-	"compilerOptions": {
-		"baseUrl": ".", // Set the base URL for module resolution
-		"paths": {
-			"@components/*": ["components/*"],
-			"@store/*": ["store/*"]
-		}
-	},
-	"exclude": ["node_modules", ".nuxt"]
+  // https://nuxt.com/docs/guide/concepts/typescript
+  "extends": "./.nuxt/tsconfig.json"
 }

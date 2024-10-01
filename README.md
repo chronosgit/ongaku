@@ -9,32 +9,6 @@
 
 ## Architecture
 
-The application architecture is a weird, opinionated mix of default Nuxt3 and FSD (Feature Sliced Design) architectures.
+The folder structure is my opinionated mix of classic Nuxt3 structure and atomic design principles. `pages` folder is left for file-based routing, while the root-level `components` folder contains `atoms`, `molecules`, and `organisms` folders.
 
-For reference: Nuxt3 directory structures and the FSD.
-
-I did my best to leverage the organizational benefits that both bring, which consequently resulted in the following architecture:
-
-- .nuxt
-- assets
-- components
-  - app
-  - processes
-  - widgets
-  - features
-  - entities
-  - shared
-- composables
-- content
-- layouts
-- middleware
-- pages
-- plugins
-- public
-- server
-- store
-- utils
-
-Additionally, the auto-import feature for the `components` folder has been disabled for better clarity.
-
-P.S. The architecture may change.
+For further reference: [atomic design methodology docs](https://atomicdesign.bradfrost.com/chapter-2/) and [Nuxt3 folder structure](https://nuxt.com/docs/guide/directory-structure/nuxt).
