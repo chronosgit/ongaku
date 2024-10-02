@@ -6,6 +6,8 @@ export default defineNuxtConfig({
 	components: false,
 	alias: {
 		components: './components',
+		layouts: './layouts',
+		services: './services',
 		store: './store',
 	},
 
