@@ -1,12 +1,8 @@
-import base64encode from '@/common/utils/base64encode';
-import generateRandomString from '@/common/utils/generateRandomString';
-import sha256 from '@/common/utils/sha256';
-
 // https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow
 class AuthService {
 	async #getCodeChallenge(codeVerifier) {
 		const hashed = await sha256(codeVerifier);
-		const codeChallenge = base64encode(hashed);
+		const codeChallenge = base64Encode(hashed);
 
 		return codeChallenge;
 	}
