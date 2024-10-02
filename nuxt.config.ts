@@ -9,6 +9,8 @@ export default defineNuxtConfig({
 		store: './store',
 	},
 
+	modules: ['@nuxtjs/i18n', '@nuxt/content'],
+
 	css: ['~/assets/css/tailwind.css'],
 	postcss: {
 		plugins: {
@@ -16,8 +18,6 @@ export default defineNuxtConfig({
 			autoprefixer: {},
 		},
 	},
-
-	modules: ['@nuxtjs/i18n'],
 
 	i18n: {
 		vueI18n: './i18n.config.ts',
