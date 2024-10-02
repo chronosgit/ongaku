@@ -1,18 +1,12 @@
-import axiosPrivate from '@/http/axiosPrivate';
-
 class AlbumsService {
 	// https://developer.spotify.com/documentation/web-api/reference/get-an-album
 	// albumId - string (REQUIRED)
-	static async getAlbum(albumId) {
-		try {
-			if (!albumId) throw Error('Album ID must be valid');
+	static getAlbum(albumId) {
+		const { spotifyApi } = useRuntimeConfig();
 
-			const res = await axiosPrivate.get(`/albums/${albumId}`);
+		if (spotifyApi == null) throw Error('Spotify API not found');
 
-			return res;
-		} catch (err) {
-			throw err;
-		}
+		return $fetch(`${spotifyApi}/albums/${albumId}`, { method: 'GET' });
 	}
 
 	// https://developer.spotify.com/documentation/web-api/reference/get-multiple-albums
