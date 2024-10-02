@@ -1,4 +1,6 @@
 <script setup>
+	import AlbumsService from '~/services/M_AlbumsService';
+
 	definePageMeta({
 		title: 'home.meta.title',
 	});
