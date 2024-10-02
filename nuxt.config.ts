@@ -9,6 +9,12 @@ export default defineNuxtConfig({
 		store: './store',
 	},
 
+	runtimeConfig: {
+		spotifyApi: process.env.SPOTIFY_API,
+		spotifyRedirectUri: process.env.SPOTIFY_REDIRECT_URI,
+		spotifyClientId: process.env.SPOTIFY_CLIENT_ID,
+	},
+
 	modules: ['@nuxtjs/i18n', '@nuxt/content'],
 
 	css: ['~/assets/css/tailwind.css'],
