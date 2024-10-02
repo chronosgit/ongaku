@@ -10,9 +10,12 @@ export default defineNuxtConfig({
 	},
 
 	runtimeConfig: {
-		spotifyApi: process.env.SPOTIFY_API,
-		spotifyRedirectUri: process.env.SPOTIFY_REDIRECT_URI,
-		spotifyClientId: process.env.SPOTIFY_CLIENT_ID,
+		spotifyAuthClientId: process.env.SPOTIFY_AUTH_CLIENT_ID,
+
+		public: {
+			spotifyApiBaseUrl: process.env.SPOTIFY_API_BASE_URL,
+			spotifyAuthRedirectUri: process.env.SPOTIFY_AUTH_REDIRECT_URI,
+		},
 	},
 
 	modules: ['@nuxtjs/i18n', '@nuxt/content'],
