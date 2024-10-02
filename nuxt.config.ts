@@ -9,6 +9,15 @@ export default defineNuxtConfig({
 		store: './store',
 	},
 
+	runtimeConfig: {
+		spotifyAuthClientId: process.env.SPOTIFY_AUTH_CLIENT_ID,
+
+		public: {
+			spotifyApiBaseUrl: process.env.SPOTIFY_API_BASE_URL,
+			spotifyAuthRedirectUri: process.env.SPOTIFY_AUTH_REDIRECT_URI,
+		},
+	},
+
 	modules: ['@nuxtjs/i18n', '@nuxt/content'],
 
 	css: ['~/assets/css/tailwind.css'],
