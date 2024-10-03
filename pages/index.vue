@@ -11,7 +11,7 @@
 
 	<button
 		class="px-4 py-2 border-[1px] rounded-lg"
-		@click="AuthService.requestOAuth()"
+		@click="AuthService.initOAuth()"
 	>
 		Request OAuth URI
 	</button>
