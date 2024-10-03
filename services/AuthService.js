@@ -11,7 +11,7 @@ class AuthService {
 			public: { spotifyAuthClientId, spotifyAuthRedirectUri },
 		} = useRuntimeConfig();
 		const scope = as.#getAuthScope();
-		const codeChallenge = await as.#getCodeChallenge();
+		const { codeChallenge, codeVerifier } = await as.#doPkce();
 
 		const params = {
 			response_type: 'code',
@@ -22,17 +22,17 @@ class AuthService {
 			redirect_uri: spotifyAuthRedirectUri,
 		};
 
-		window.localStorage.setItem('code_verifier', codeVerifier);
-
 		const authUrl = new URL('https://accounts.spotify.com/authorize');
 		authUrl.search = new URLSearchParams(params).toString();
-
 		const authWindow = window.open(
 			authUrl.toString(),
 			'_blank',
 			`width=400,height=400`
 		);
 
+		window.localStorage.setItem('code_verifier', codeVerifier);
+
+		// Waiting for message from opened new window
 		window.addEventListener('message', (event) => {
 			if (event.origin !== window.location.origin) return;
 
@@ -43,6 +43,7 @@ class AuthService {
 			as.#requestAccessToken(code);
 		});
 
+		// Time-to-time window check
 		const popupCheckInterval = setInterval(() => {
 			if (authWindow.closed) {
 				clearInterval(popupCheckInterval);
@@ -73,20 +74,26 @@ class AuthService {
 			}),
 		};
 
-		const body = await fetch('https://accounts.spotify.com/api/token', payload);
-		const response = await body.json();
+		// Get tokens from Spotify
+		const res = await $fetch('https://accounts.spotify.com/api/token', payload);
 
-		console.log(response);
-
-		// TODO: sent to server -> server returns secure cookies
+		// Send tokens to server to receive HttpOnly cookies
+		await $fetch('/api/auth/tokens', {
+			method: 'POST',
+			body: {
+				accessToken: res.access_token,
+				refreshToken: res.refresh_token,
+				accessTokenExpiresIn: res.expires_in,
+			},
+		});
 	}
 
-	async #getCodeChallenge() {
+	async #doPkce() {
 		const codeVerifier = generateRandomString(64);
 		const hashed = await sha256(codeVerifier);
 		const codeChallenge = base64Encode(hashed);
 
-		return codeChallenge;
+		return { codeChallenge, codeVerifier };
 	}
 
 	#getAuthScope() {
