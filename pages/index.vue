@@ -15,4 +15,6 @@
 	>
 		Request OAuth URI
 	</button>
+
+	<button>Execute server-side</button>
 </template>
