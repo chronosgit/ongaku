@@ -12,11 +12,10 @@ export default defineNuxtConfig({
 	},
 
 	runtimeConfig: {
-		spotifyAuthClientId: process.env.SPOTIFY_AUTH_CLIENT_ID,
-
 		public: {
-			spotifyApiBaseUrl: process.env.SPOTIFY_API_BASE_URL,
-			spotifyAuthRedirectUri: process.env.SPOTIFY_AUTH_REDIRECT_URI,
+			spotifyAuthClientId: import.meta.env?.SPOTIFY_AUTH_CLIENT_ID,
+			spotifyApiBaseUrl: import.meta.env?.SPOTIFY_API_BASE_URL,
+			spotifyAuthRedirectUri: import.meta.env?.SPOTIFY_AUTH_REDIRECT_URI,
 		},
 	},
 
