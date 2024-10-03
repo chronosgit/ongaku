@@ -1,16 +1,18 @@
 <script setup>
+	import AuthService from '~/services/AuthService';
+
 	definePageMeta({
 		title: 'home.meta.title',
 	});
-
-	const { data, error, execute } = useLazyFetch('/api/healthcheck');
-
-	watch(data, () => console.log(data.value));
-	watch(error, () => console.error(error));
 </script>
 
 <template>
-	<div class="">Home</div>
+	<div class="mb-3">Home</div>
 
-	<button @click="execute()">Execute</button>
+	<button
+		class="px-4 py-2 border-[1px] rounded-lg"
+		@click="AuthService.requestOAuth()"
+	>
+		Request OAuth URI
+	</button>
 </template>
