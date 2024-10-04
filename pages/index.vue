@@ -7,7 +7,7 @@
 
 	const { data, error, execute } = useLazyAsyncData(
 		'fetch',
-		() => $fetch('/api/browse/new-releases'),
+		() => $fetch('/api/recommendations/available-genre-seeds'),
 		{ immediate: false }
 	);
 
