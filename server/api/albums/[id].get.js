@@ -8,17 +8,12 @@ export default defineEventHandler(async (e) => {
 		return {
 			success: true,
 			successCode: 200,
-			statusMessage: '',
+			statusMessage: 'Albums received',
 			data: res,
 		};
 	} catch (err) {
 		console.error(err);
 
-		throw createError({
-			success: false,
-			statusCode: 500,
-			statusMessage: 'Something went wrong',
-			data: {},
-		});
+		throw createError(getErrorOptions(err));
 	}
 });
