@@ -1,22 +1,4 @@
 class AlbumsService {
-	// https://developer.spotify.com/documentation/web-api/reference/get-an-albums-tracks
-	// albumId - string (REQUIRED)
-	// limit - integer (def: 20, min: 1, max: 50)
-	// offset - integer (def: 0)
-	static async getAlbumTracks(albumId, limit, offset) {
-		try {
-			if (!albumId) throw Error('Album ID must be valid');
-
-			const res = await axiosPrivate.get(`/albums/${albumId}/tracks`, {
-				params: { limit, offset },
-			});
-
-			return res;
-		} catch (err) {
-			throw err;
-		}
-	}
-
 	// https://developer.spotify.com/documentation/web-api/reference/get-users-saved-albums
 	// limit - integer (def: 20, min: 1, max: 50)
 	// offset - integer (def: 0, indexes start from zero)
