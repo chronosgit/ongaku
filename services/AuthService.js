@@ -45,7 +45,7 @@ class AuthService {
 
 		// Time-to-time window check
 		const popupCheckInterval = setInterval(() => {
-			if (authWindow.closed) {
+			if (authWindow?.closed) {
 				clearInterval(popupCheckInterval);
 
 				console.log('Authorization window was closed');
@@ -54,38 +54,17 @@ class AuthService {
 	}
 
 	async #requestAccessToken(code) {
-		const {
-			public: { spotifyAuthClientId, spotifyAuthRedirectUri },
-		} = useRuntimeConfig();
+		try {
+			const codeVerifier = localStorage.getItem('code_verifier');
 
-		const codeVerifier = localStorage.getItem('code_verifier');
-
-		const payload = {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded',
-			},
-			body: new URLSearchParams({
-				client_id: spotifyAuthClientId,
-				grant_type: 'authorization_code',
-				code,
-				redirect_uri: spotifyAuthRedirectUri,
-				code_verifier: codeVerifier,
-			}),
-		};
-
-		// Get tokens from Spotify
-		const res = await $fetch('https://accounts.spotify.com/api/token', payload);
-
-		// Send tokens to server to receive HttpOnly cookies
-		await $fetch('/api/auth/tokens', {
-			method: 'POST',
-			body: {
-				accessToken: res.access_token,
-				refreshToken: res.refresh_token,
-				accessTokenExpiresIn: res.expires_in,
-			},
-		});
+			// Let the server get tokens and send them back as secure cookies
+			return await $fetch('/api/auth/tokens', {
+				method: 'POST',
+				body: { code, codeVerifier },
+			});
+		} catch (err) {
+			console.error(err);
+		}
 	}
 
 	async #doPkce() {
@@ -107,30 +86,8 @@ class AuthService {
 		return scopes.join(' ');
 	}
 
-	// static async refreshTokens() {
-	// 	// refresh token that has been previously stored
-	// 	const clientId = import.meta.env?.VITE_SPOTIFY_CLIENT_ID;
-	// 	const refreshToken = localStorage.getItem('refresh_token');
-	// 	const url = 'https://accounts.spotify.com/api/token';
-	// 	const payload = {
-	// 		method: 'POST',
-	// 		headers: {
-	// 			'Content-Type': 'application/x-www-form-urlencoded',
-	// 		},
-	// 		body: new URLSearchParams({
-	// 			grant_type: 'refresh_token',
-	// 			refresh_token: refreshToken,
-	// 			client_id: clientId,
-	// 		}),
-	// 	};
-	// 	console.log(payload);
-	// 	const body = await fetch(url, payload);
-	// 	const response = await body.json();
-	// 	console.log(response);
-	// 	localStorage.setItem('access_token', response.access_token);
-	// 	if (response.refreshToken) {
-	// 		localStorage.setItem('refresh_token', response.refresh_token);
-	// 	}
-	// }
+	static async refreshTokens() {
+		$fetch('/api/auth/refresh', { method: 'POST' });
+	}
 }
 export default AuthService;
