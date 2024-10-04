@@ -8,8 +8,8 @@
 	const { data, error, execute } = useLazyAsyncData(
 		'fetch',
 		() =>
-			$fetch('/api/browse/categories', {
-				params: { limit: 5, offset: 2, locale: 'ru_RU' },
+			$fetch('/api/browse/categories/dinner', {
+				params: { locale: 'ru_RU' },
 			}),
 		{ immediate: false }
 	);
