@@ -1,25 +1,15 @@
-export default defineEventHandler((e) => {
+export default defineEventHandler(async (e) => {
 	try {
-		const a = useNuxtApp();
 		const albumId = getRouterParam(e, 'id');
+		const $spotify = e.context.spotify;
 
-		console.log(a);
-		return {
-			success: true,
-			successCode: 200,
-			sucessMessage: '',
-			data: {},
-		};
-
-		const res = $spotifyApi(`/albums/${albumId}`).catch((e) => {
-			throw e;
-		});
+		const res = await $spotify(`/albums/${albumId}`);
 
 		return {
 			success: true,
 			successCode: 200,
-			sucessMessage: '',
-			data: {},
+			statusMessage: '',
+			data: res,
 		};
 	} catch (err) {
 		console.error(err);
