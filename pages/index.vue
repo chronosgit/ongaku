@@ -12,8 +12,8 @@
 		}
 	);
 
-	watch(data, () => console.log(data));
-	watch(error, () => console.error(error));
+	watch(data, () => console.log(data?.value));
+	watch(error, () => console.error(error?.value));
 </script>
 
 <template>
