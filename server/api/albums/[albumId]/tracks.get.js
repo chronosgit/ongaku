@@ -2,7 +2,7 @@
 export default defineEventHandler(async (e) => {
 	try {
 		const $spotify = e.context.spotify;
-		const albumId = getRouterParam(e, 'id');
+		const albumId = getRouterParam(e, 'albumId');
 
 		const res = await $spotify(`/albums/${albumId}`);
 
