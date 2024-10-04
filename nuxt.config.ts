@@ -3,6 +3,8 @@ export default defineNuxtConfig({
 	compatibilityDate: '2024-04-03',
 	devtools: { enabled: true },
 
+	routeRules: { '/auth/redirect': { ssr: false } },
+
 	components: false,
 	alias: {
 		components: './components',

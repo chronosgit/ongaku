@@ -1,4 +1,6 @@
 <script setup>
+	defineI18nRoute(false);
+
 	onMounted(() => {
 		const urlParams = new URLSearchParams(window.location.search);
 		const code = urlParams.get('code');
