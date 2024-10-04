@@ -23,10 +23,6 @@ export default defineNuxtConfig({
 
 	modules: ['@nuxtjs/i18n', '@nuxt/content'],
 
-	nitro: {
-		plugins: ['./server/plugins'],
-	},
-
 	css: ['~/assets/css/tailwind.css'],
 	postcss: {
 		plugins: {
