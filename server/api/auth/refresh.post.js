@@ -41,12 +41,7 @@ export default defineEventHandler(async (e) => {
 			});
 		}
 
-		return {
-			success: true,
-			statusCode: 200,
-			statusMessage: 'Token were refreshed',
-			data: {},
-		};
+		return getSuccessResponse(200, 'Token were refreshed');
 	} catch (err) {
 		console.error(err);
 

@@ -6,12 +6,7 @@ export default defineEventHandler(async (e) => {
 
 		const res = await $spotify('/albums', { params: { ids: albumsIds } });
 
-		return {
-			success: true,
-			statusCode: 200,
-			statusMessages: 'Albums received',
-			data: res,
-		};
+		return getSuccessResponse(200, 'Albums received', res);
 	} catch (err) {
 		console.error(err);
 
