@@ -48,20 +48,8 @@ export default defineEventHandler(async (e) => {
 			data: {},
 		};
 	} catch (err) {
-		if (err.statusCode === 400) {
-			throw createError({
-				success: false,
-				statusCode: 400,
-				statusMessage: 'Bad request',
-				data: {},
-			});
-		}
+		console.error(err);
 
-		throw createError({
-			success: false,
-			statusCode: 500,
-			statusMessage: 'Something went wrong',
-			data: {},
-		});
+		throw createError(getErrorOptions(err));
 	}
 });

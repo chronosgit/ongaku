@@ -59,11 +59,6 @@ export default defineEventHandler(async (e) => {
 	} catch (err) {
 		console.error(err);
 
-		throw createError({
-			success: false,
-			statusCode: 500,
-			statusMessage: 'Something went wrong',
-			data: {},
-		});
+		throw createError(getErrorOptions(err));
 	}
 });
