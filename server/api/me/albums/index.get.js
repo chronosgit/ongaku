@@ -7,7 +7,7 @@ export default defineEventHandler(async (e) => {
 			params: { limit, offset },
 		});
 
-		return getSuccessResponse(200, 'My saved albums received', res);
+		return getSuccessResponse(200, 'Albums received', res);
 	} catch (err) {
 		console.error(err);
 
