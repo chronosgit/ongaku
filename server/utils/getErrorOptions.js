@@ -1,6 +1,7 @@
+// Maybe make a message parameter too? For better UX and DX
 export default function (handledError) {
 	const code = handledError?.statusCode;
-	const msg = handledError?.message;
+	const msg = handledError?.message || handledError?.statusMessage;
 
 	switch (code) {
 		case 400:
