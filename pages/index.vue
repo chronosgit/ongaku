@@ -5,11 +5,10 @@
 		title: 'home.meta.title',
 	});
 
-	const { data, error, execute } = useAsyncData(
-		'albums/4aawyAB9vmqN3uQ7FjRGTy',
-		() => {
-			return $fetch(`/api/albums/4aawyAB9vmqN3uQ7FjRGTy`);
-		}
+	const { data, error, execute } = useLazyAsyncData(
+		'/api/albums/4aawyAB9vmqN3uQ7FjRGTy',
+		() => $fetch('/api/albums/4aawyAB9vmqN3uQ7FjRGTy'),
+		{ immediate: false }
 	);
 
 	watch(data, () => console.log(data?.value));
