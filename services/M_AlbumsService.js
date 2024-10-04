@@ -2,11 +2,11 @@ class AlbumsService {
 	// https://developer.spotify.com/documentation/web-api/reference/get-an-album
 	// albumId - string (REQUIRED)
 	static getAlbum(albumId) {
-		const { spotifyApi } = useRuntimeConfig();
+		const {
+			public: { spotifyApiBaseUrl },
+		} = useRuntimeConfig();
 
-		if (spotifyApi == null) throw Error('Spotify API not found');
-
-		return $fetch(`${spotifyApi}/albums/${albumId}`, { method: 'GET' });
+		// return $fetch(`${spotifyApiBaseUrl}/albums/${albumId}`, { method: 'GET' });
 	}
 
 	// https://developer.spotify.com/documentation/web-api/reference/get-multiple-albums

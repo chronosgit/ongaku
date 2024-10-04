@@ -4,6 +4,16 @@
 	definePageMeta({
 		title: 'home.meta.title',
 	});
+
+	const { data, error, execute } = useAsyncData(
+		'albums/4aawyAB9vmqN3uQ7FjRGTy',
+		() => {
+			return $fetch(`/api/albums/4aawyAB9vmqN3uQ7FjRGTy`);
+		}
+	);
+
+	watch(data, () => console.log(data));
+	watch(error, () => console.error(error));
 </script>
 
 <template>
@@ -22,6 +32,10 @@
 			@click="AuthService.refreshTokens()"
 		>
 			Refresh tokens
+		</button>
+
+		<button class="p-2 border-[1px] rounded-lg" @click="execute()">
+			Use service
 		</button>
 	</div>
 </template>
