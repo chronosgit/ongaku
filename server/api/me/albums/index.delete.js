@@ -1,3 +1,4 @@
+// https://developer.spotify.com/documentation/web-api/reference/remove-albums-user
 export default defineEventHandler(async (e) => {
 	try {
 		const $spotify = e.context.spotify;
