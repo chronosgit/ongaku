@@ -1,10 +1,10 @@
 export default defineEventHandler(async (e) => {
 	try {
 		const $spotify = e.context.spotify;
-		const { limit, offset, market } = getQuery(e);
+		const { limit, offset } = getQuery(e);
 
 		const res = await $spotify('/me/albums', {
-			params: { limit, offset, market },
+			params: { limit, offset },
 		});
 
 		return getSuccessResponse(200, 'My saved albums received', res);
