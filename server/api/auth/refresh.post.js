@@ -1,9 +1,9 @@
 export default defineEventHandler(async (e) => {
 	try {
-		const { code, codeVerifier } = await readBody(e);
+		const refreshToken = getCookie(e, 'refresh_token');
 
 		const {
-			public: { spotifyAuthClientId, spotifyAuthRedirectUri },
+			public: { spotifyAuthClientId },
 		} = useRuntimeConfig();
 
 		const payload = {
@@ -12,11 +12,9 @@ export default defineEventHandler(async (e) => {
 				'Content-Type': 'application/x-www-form-urlencoded',
 			},
 			body: new URLSearchParams({
+				grant_type: 'refresh_token',
+				refresh_token: refreshToken,
 				client_id: spotifyAuthClientId,
-				grant_type: 'authorization_code',
-				code,
-				redirect_uri: spotifyAuthRedirectUri,
-				code_verifier: codeVerifier,
 			}),
 		};
 
@@ -24,15 +22,6 @@ export default defineEventHandler(async (e) => {
 			'https://accounts.spotify.com/api/token',
 			payload
 		);
-
-		if (!access_token || !refresh_token) {
-			throw createError({
-				success: false,
-				statusCode: 404,
-				statusMessage: 'Tokens were not found',
-				data: {},
-			});
-		}
 
 		setCookie(e, 'access_token', access_token, {
 			httpOnly: true,
@@ -42,22 +31,31 @@ export default defineEventHandler(async (e) => {
 			path: '/',
 		});
 
-		setCookie(e, 'refresh_token', refresh_token, {
-			httpOnly: true,
-			secure: process.env.NODE_ENV === 'production',
-			sameSite: 'strict',
-			maxAge: 60 * 60 * 24 * 30, // 30 days
-			path: '/',
-		});
+		if (refresh_token) {
+			setCookie(e, 'refresh_token', refresh_token, {
+				httpOnly: true,
+				secure: process.env.NODE_ENV === 'production',
+				sameSite: 'strict',
+				maxAge: 60 * 60 * 24 * 30, // 30 days
+				path: '/',
+			});
+		}
 
 		return {
 			success: true,
 			statusCode: 200,
-			statusMessage: 'Tokens received',
+			statusMessage: 'Token were refreshed',
 			data: {},
 		};
 	} catch (err) {
-		console.error(err);
+		if (err.statusCode === 400) {
+			throw createError({
+				success: false,
+				statusCode: 400,
+				statusMessage: 'Bad request',
+				data: {},
+			});
+		}
 
 		throw createError({
 			success: false,
