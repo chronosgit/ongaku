@@ -9,7 +9,7 @@
 		'fetch',
 		() =>
 			$fetch('/api/me/albums', {
-				method: 'PUT',
+				method: 'DELETE',
 				body: {
 					albumsIds: ['41GuZcammIkupMPKH2OJ6I'],
 				},
