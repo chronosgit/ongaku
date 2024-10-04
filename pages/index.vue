@@ -7,7 +7,13 @@
 
 	const { data, error, execute } = useLazyAsyncData(
 		'fetch',
-		() => $fetch('/api/markets'),
+		() =>
+			$fetch('/api/search', {
+				params: {
+					q: 'remaster%20track:Doxy%20artist:Miles%20Davis',
+					type: 'album',
+				},
+			}),
 		{ immediate: false }
 	);
 
