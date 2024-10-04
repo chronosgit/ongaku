@@ -7,7 +7,13 @@
 
 	const { data, error, execute } = useLazyAsyncData(
 		'fetch',
-		() => $fetch('/api/me/albums'),
+		() =>
+			$fetch('/api/me/albums', {
+				method: 'PUT',
+				body: {
+					albumsIds: ['41GuZcammIkupMPKH2OJ6I'],
+				},
+			}),
 		{ immediate: false }
 	);
 
