@@ -50,12 +50,7 @@ export default defineEventHandler(async (e) => {
 			path: '/',
 		});
 
-		return {
-			success: true,
-			statusCode: 200,
-			statusMessage: 'Tokens received',
-			data: {},
-		};
+		return getSuccessResponse(200, 'Tokens received');
 	} catch (err) {
 		console.error(err);
 

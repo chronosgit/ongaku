@@ -6,8 +6,8 @@
 	});
 
 	const { data, error, execute } = useLazyAsyncData(
-		'/api/albums/4aawyAB9vmqN3uQ7FjRGTy',
-		() => $fetch('/api/albums/4aawyAB9vmqN3uQ7FjRGTy'),
+		'fetch',
+		() => $fetch('/api/browse/new-releases'),
 		{ immediate: false }
 	);
 
