@@ -1,30 +1,4 @@
 class AlbumsService {
-	// https://developer.spotify.com/documentation/web-api/reference/get-an-album
-	// albumId - string (REQUIRED)
-	static getAlbum(albumId) {
-		const {
-			public: { spotifyApiBaseUrl },
-		} = useRuntimeConfig();
-
-		// return $fetch(`${spotifyApiBaseUrl}/albums/${albumId}`, { method: 'GET' });
-	}
-
-	// https://developer.spotify.com/documentation/web-api/reference/get-multiple-albums
-	// albumsIds - string (REQUIRED, comma-separated ids)
-	static async getSeveralAlbums(albumsIds) {
-		try {
-			if (!albumsIds) throw Error('Albums IDs must be valid');
-
-			const res = await axiosPrivate.get('albums', {
-				params: { ids: albumsIds },
-			});
-
-			return res;
-		} catch (err) {
-			throw err;
-		}
-	}
-
 	// https://developer.spotify.com/documentation/web-api/reference/get-an-albums-tracks
 	// albumId - string (REQUIRED)
 	// limit - integer (def: 20, min: 1, max: 50)
