@@ -1,5 +1,6 @@
 export default function (handledError) {
 	const code = handledError?.statusCode;
+	const msg = handledError?.message;
 
 	switch (code) {
 		case 400:
@@ -33,8 +34,8 @@ export default function (handledError) {
 		default:
 			return {
 				success: false,
-				statusCode: 500,
-				statusMessage: 'Internal server error',
+				statusCode: code || 500,
+				statusMessage: msg || 'Internal server error',
 				data: {},
 			};
 	}
