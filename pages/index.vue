@@ -6,8 +6,14 @@
 	});
 
 	const { data, error, execute } = useLazyAsyncData(
-		'/api/albums/4aawyAB9vmqN3uQ7FjRGTy',
-		() => $fetch('/api/albums/4aawyAB9vmqN3uQ7FjRGTy'),
+		'fetch',
+		() =>
+			$fetch('/api/albums', {
+				params: {
+					albumsIds:
+						'382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc',
+				},
+			}),
 		{ immediate: false }
 	);
 
