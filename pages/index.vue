@@ -7,7 +7,7 @@
 
 	const { data, error, execute } = useLazyAsyncData(
 		'fetch',
-		() => $fetch('/api/browse/categories/dinner/playlists'),
+		() => $fetch('/api/playlists/3cEYpjA9oz9GiPac4AsH4n/images'),
 		{ immediate: false }
 	);
 
