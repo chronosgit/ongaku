@@ -7,7 +7,11 @@
 
 	const { data, error, execute } = useLazyAsyncData(
 		'fetch',
-		() => $fetch('/api/users/317adpnoxtrdgo45hirq7dztto3q'),
+		() =>
+			$fetch('/api/playlists/3cEYpjA9oz9GiPac4AsH4n/followers', {
+				method: 'PUT',
+				body: { public: false },
+			}),
 		{ immediate: false }
 	);
 
