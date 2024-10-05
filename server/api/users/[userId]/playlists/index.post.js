@@ -10,8 +10,8 @@ export default defineEventHandler(async (e) => {
 			description,
 		} = await readBody(e);
 
-		const res = $spotify(`/users/${userId}/playlists`, {
-			mathod: 'POST',
+		const res = await $spotify(`/users/${userId}/playlists`, {
+			method: 'POST',
 			body: { name, public: status, collaborative, description },
 		});
 

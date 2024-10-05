@@ -12,8 +12,8 @@
 				method: 'POST',
 				body: {
 					name: 'DevPlaylist',
-					public: true,
-					collaborative: true,
+					public: false,
+					collaborative: false,
 					description: 'Descr be L',
 				},
 			}),
