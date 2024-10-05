@@ -9,7 +9,11 @@
 		'fetch',
 		() =>
 			$fetch('/api/me/following', {
-				params: { artistType: 'artist' },
+				method: 'PUT',
+				body: {
+					artistType: 'artist',
+					artistsIds: ['64tJ2EAv1R6UaZqc4iOCyj'],
+				},
 			}),
 		{ immediate: false }
 	);
