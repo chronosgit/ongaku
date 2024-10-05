@@ -7,14 +7,7 @@
 
 	const { data, error, execute } = useLazyAsyncData(
 		'fetch',
-		() =>
-			$fetch('/api/recommendations', {
-				params: {
-					seedArtists: '3m8qh3adp23dCoZBHZt5IH',
-					seedGenres: 'classical',
-					seedTracks: '7CyaTBIaMBr4CCzlj47wNG',
-				},
-			}),
+		() => $fetch('/api/me/player'),
 		{ immediate: false }
 	);
 
