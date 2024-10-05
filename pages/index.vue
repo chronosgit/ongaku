@@ -7,11 +7,7 @@
 
 	const { data, error, execute } = useLazyAsyncData(
 		'fetch',
-		() =>
-			$fetch('/api/playlists/3ZmhKwo2M7Piy7L88mgyWf/tracks', {
-				method: 'DELETE',
-				body: { tracks: [{ uri: 'spotify:track:23luOrEVHMfoX0AhfbQuS6' }] },
-			}),
+		() => $fetch('/api/me/playlists', { params: { limit: 1 } }),
 		{ immediate: false }
 	);
 
