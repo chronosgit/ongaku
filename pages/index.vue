@@ -8,14 +8,8 @@
 	const { data, error, execute } = useLazyAsyncData(
 		'fetch',
 		() =>
-			$fetch('/api/playlists/3ZmhKwo2M7Piy7L88mgyWf', {
-				method: 'PUT',
-				body: {
-					name: 'TemporaryDevName',
-					public: true,
-					// collaborative: true,
-					description: 'Descr be like',
-				},
+			$fetch('/api/playlists/5mDqrrSnZvaBbNhCOO8kfK/tracks', {
+				params: { fields: 'items' },
 			}),
 		{ immediate: false }
 	);
