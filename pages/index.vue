@@ -9,7 +9,7 @@
 		'fetch',
 		() =>
 			$fetch('/api/me/shows', {
-				method: 'PUT',
+				method: 'DELETE',
 				body: { showsIds: '5CfCWKI5pZ28U0uOzXkDHe' },
 			}),
 		{ immediate: false }
