@@ -7,7 +7,7 @@
 
 	const { data, error, execute } = useLazyAsyncData(
 		'fetch',
-		() => $fetch('/api/audio-features/11dFghVXANMlKmJXsNCbNl'),
+		() => $fetch('/api/audio-analysis/11dFghVXANMlKmJXsNCbNl'),
 		{ immediate: false }
 	);
 
