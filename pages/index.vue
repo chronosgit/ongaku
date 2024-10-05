@@ -7,7 +7,10 @@
 
 	const { data, error, execute } = useLazyAsyncData(
 		'fetch',
-		() => $fetch('/api/me/playlists', { params: { limit: 1 } }),
+		() =>
+			$fetch('/api/users/317adpnoxtrdgo45hirq7dztto3q/playlists', {
+				params: { limit: 1 },
+			}),
 		{ immediate: false }
 	);
 
