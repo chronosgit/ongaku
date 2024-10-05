@@ -9,7 +9,14 @@
 		'fetch',
 		() =>
 			$fetch('/api/me/tracks', {
-				params: {},
+				method: 'PUT',
+				body: {
+					tracksIds: [
+						'7ouMYWpwJ422jRcDASZB7P',
+						'4VqPOruhp5EdPBeR92t6lQ',
+						'2takcwOaAZWiXQijPHIx7B',
+					],
+				},
 			}),
 		{ immediate: false }
 	);
