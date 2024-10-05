@@ -7,9 +7,18 @@
 
 	const { data, error, execute } = useLazyAsyncData(
 		'fetch',
-		() => $fetch('/api/playlists/0ooIthxtFE0uTHD0PPvrFo/followers/contains'),
+		() =>
+			$fetch('/api/me/player', {
+				method: 'PUT',
+				body: {
+					deviceId: ['b4f737b9427c9a9a6c21195dd09fa445d52b4430'],
+					play: true,
+				},
+			}),
 		{ immediate: false }
 	);
+
+	// "b4f737b9427c9a9a6c21195dd09fa445d52b4430"
 
 	watch(data, () => console.log(data?.value));
 	watch(error, () => console.error(error?.value));
