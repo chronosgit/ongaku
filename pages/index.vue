@@ -8,9 +8,9 @@
 	const { data, error, execute } = useLazyAsyncData(
 		'fetch',
 		() =>
-			$fetch('/api/playlists/5mDqrrSnZvaBbNhCOO8kfK/tracks', {
-				method: 'PUT',
-				body: { rangeStart: 0, rangeLength: 2, insertBefore: 5 },
+			$fetch('/api/playlists/3ZmhKwo2M7Piy7L88mgyWf/tracks', {
+				method: 'POST',
+				body: { position: 0, uris: ['spotify:track:23luOrEVHMfoX0AhfbQuS6'] },
 			}),
 		{ immediate: false }
 	);
