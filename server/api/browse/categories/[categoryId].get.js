@@ -5,8 +5,6 @@ export default defineEventHandler(async (e) => {
 		const categoryId = getRouterParam(e, 'categoryId');
 		const { locale } = getQuery(e);
 
-		console.log(categoryId);
-
 		const res = await $spotify(`/browse/categories/${categoryId}`, {
 			params: { locale },
 		});
