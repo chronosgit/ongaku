@@ -7,14 +7,7 @@
 
 	const { data, error, execute } = useLazyAsyncData(
 		'fetch',
-		() =>
-			$fetch('/api/me/player', {
-				method: 'PUT',
-				body: {
-					deviceId: ['b4f737b9427c9a9a6c21195dd09fa445d52b4430'],
-					play: true,
-				},
-			}),
+		() => $fetch('/api/me/player/play', { method: 'PUT' }),
 		{ immediate: false }
 	);
 
