@@ -81,6 +81,8 @@ class AuthService {
 			'user-read-email',
 			'user-library-read',
 			'user-library-modify',
+			'playlist-modify-public',
+			'playlist-modify-private',
 		];
 
 		return scopes.join(' ');
