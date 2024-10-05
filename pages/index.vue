@@ -7,7 +7,7 @@
 
 	const { data, error, execute } = useLazyAsyncData(
 		'fetch',
-		() => $fetch('/api/me/player/currently-playing'),
+		() => $fetch('/api/me/player/play', { method: 'PUT' }),
 		{ immediate: false }
 	);
 
