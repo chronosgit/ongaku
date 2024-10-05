@@ -8,11 +8,8 @@
 	const { data, error, execute } = useLazyAsyncData(
 		'fetch',
 		() =>
-			$fetch('/api/artists/', {
-				params: {
-					artistsIds:
-						'2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6',
-				},
+			$fetch('/api/artists/0TnOYISbd1XYRBk9myaseg/albums', {
+				params: { limit: 1 },
 			}),
 		{ immediate: false }
 	);
