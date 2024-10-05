@@ -8,7 +8,7 @@ export default defineEventHandler(async (e) => {
 			params: { additional_types: additionalTypes },
 		});
 
-		return getSuccessResponse(200, 'Devices received', res);
+		return getSuccessResponse(200, 'Currently playing received', res);
 	} catch (err) {
 		console.error(err);
 
