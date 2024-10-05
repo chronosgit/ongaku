@@ -87,6 +87,7 @@ class AuthService {
 			'user-top-read',
 			'user-follow-read',
 			'user-follow-modify',
+			'user-read-playback-state',
 		];
 
 		return scopes.join(' ');
