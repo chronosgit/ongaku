@@ -8,9 +8,8 @@
 	const { data, error, execute } = useLazyAsyncData(
 		'fetch',
 		() =>
-			$fetch('/api/playlists/3cEYpjA9oz9GiPac4AsH4n/followers', {
-				method: 'DELETE',
-				body: { public: false },
+			$fetch('/api/me/following', {
+				params: { artistType: 'artist' },
 			}),
 		{ immediate: false }
 	);
