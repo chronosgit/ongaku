@@ -9,8 +9,8 @@
 		'fetch',
 		() =>
 			$fetch('/api/playlists/3ZmhKwo2M7Piy7L88mgyWf/tracks', {
-				method: 'POST',
-				body: { position: 0, uris: ['spotify:track:23luOrEVHMfoX0AhfbQuS6'] },
+				method: 'DELETE',
+				body: { tracks: [{ uri: 'spotify:track:23luOrEVHMfoX0AhfbQuS6' }] },
 			}),
 		{ immediate: false }
 	);
