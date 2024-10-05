@@ -9,7 +9,7 @@
 		'fetch',
 		() =>
 			$fetch('/api/playlists/3cEYpjA9oz9GiPac4AsH4n/followers', {
-				method: 'PUT',
+				method: 'DELETE',
 				body: { public: false },
 			}),
 		{ immediate: false }
