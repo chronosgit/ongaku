@@ -7,8 +7,7 @@
 
 	const { data, error, execute } = useLazyAsyncData(
 		'fetch',
-		() =>
-			$fetch('/api/shows', { params: { showsIds: '6oQEANyBIqf0sJpCJFocgy' } }),
+		() => $fetch('/api/me/shows'),
 		{ immediate: false }
 	);
 
