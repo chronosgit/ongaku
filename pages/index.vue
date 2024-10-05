@@ -8,9 +8,8 @@
 	const { data, error, execute } = useLazyAsyncData(
 		'fetch',
 		() =>
-			$fetch('/api/me/tracks', {
-				method: 'DELETE',
-				body: {
+			$fetch('/api/me/tracks/contains', {
+				params: {
 					tracksIds: [
 						'7ouMYWpwJ422jRcDASZB7P',
 						'4VqPOruhp5EdPBeR92t6lQ',
