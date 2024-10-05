@@ -9,7 +9,7 @@
 		'fetch',
 		() =>
 			$fetch('/api/me/tracks', {
-				method: 'PUT',
+				method: 'DELETE',
 				body: {
 					tracksIds: [
 						'7ouMYWpwJ422jRcDASZB7P',
