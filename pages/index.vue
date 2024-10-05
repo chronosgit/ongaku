@@ -7,8 +7,7 @@
 
 	const { data, error, execute } = useLazyAsyncData(
 		'fetch',
-		() =>
-			$fetch('/api/browse/featured-playlists', { params: { locale: 'ru_RU' } }),
+		() => $fetch('/api/browse/categories/dinner/playlists'),
 		{ immediate: false }
 	);
 
