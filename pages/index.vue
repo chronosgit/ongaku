@@ -7,7 +7,8 @@
 
 	const { data, error, execute } = useLazyAsyncData(
 		'fetch',
-		() => $fetch('/api/me'),
+		() =>
+			$fetch('/api/me/top/artists', { params: { timeRange: 'short_term' } }),
 		{ immediate: false }
 	);
 
