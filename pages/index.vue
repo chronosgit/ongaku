@@ -8,8 +8,8 @@
 	const { data, error, execute } = useLazyAsyncData(
 		'fetch',
 		() =>
-			$fetch('/api/me/shows', {
-				method: 'DELETE',
+			$fetch('/api/me/shows/', {
+				method: 'PUT',
 				body: { showsIds: '5CfCWKI5pZ28U0uOzXkDHe' },
 			}),
 		{ immediate: false }
