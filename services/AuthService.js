@@ -86,6 +86,7 @@ class AuthService {
 			'ugc-image-upload',
 			'user-top-read',
 			'user-follow-read',
+			'user-follow-modify',
 		];
 
 		return scopes.join(' ');
