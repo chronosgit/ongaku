@@ -9,7 +9,8 @@
 		'fetch',
 		() =>
 			$fetch('/api/playlists/5mDqrrSnZvaBbNhCOO8kfK/tracks', {
-				params: { fields: 'items' },
+				method: 'PUT',
+				body: { rangeStart: 0, rangeLength: 2, insertBefore: 5 },
 			}),
 		{ immediate: false }
 	);
