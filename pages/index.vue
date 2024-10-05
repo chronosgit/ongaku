@@ -8,13 +8,10 @@
 	const { data, error, execute } = useLazyAsyncData(
 		'fetch',
 		() =>
-			$fetch('/api/me/tracks/contains', {
+			$fetch('/api/audio-features', {
 				params: {
-					tracksIds: [
-						'7ouMYWpwJ422jRcDASZB7P',
-						'4VqPOruhp5EdPBeR92t6lQ',
-						'2takcwOaAZWiXQijPHIx7B',
-					],
+					tracksIds:
+						'7ouMYWpwJ422jRcDASZB7P,4VqPOruhp5EdPBeR92t6lQ,2takcwOaAZWiXQijPHIx7B',
 				},
 			}),
 		{ immediate: false }
