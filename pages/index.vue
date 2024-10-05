@@ -7,10 +7,7 @@
 
 	const { data, error, execute } = useLazyAsyncData(
 		'fetch',
-		() =>
-			$fetch('/api/artists/0TnOYISbd1XYRBk9myaseg/albums', {
-				params: { limit: 1 },
-			}),
+		() => $fetch('/api/artists/0TnOYISbd1XYRBk9myaseg/top-tracks'),
 		{ immediate: false }
 	);
 
