@@ -9,7 +9,13 @@
 		'fetch',
 		() =>
 			$fetch('/api/playlists/3ZmhKwo2M7Piy7L88mgyWf', {
-				params: { fields: 'description,name,uri' },
+				method: 'PUT',
+				body: {
+					name: 'TemporaryDevName',
+					public: true,
+					// collaborative: true,
+					description: 'Descr be like',
+				},
 			}),
 		{ immediate: false }
 	);
