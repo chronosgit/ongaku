@@ -7,7 +7,7 @@
 
 	const { data, error, execute } = useLazyAsyncData(
 		'fetch',
-		() => $fetch('/api/playlists/0ooIthxtFE0uTHD0PPvrFo/followers/contains'),
+		() => $fetch('/api/tracks/11dFghVXANMlKmJXsNCbNl'),
 		{ immediate: false }
 	);
 
