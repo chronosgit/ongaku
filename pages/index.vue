@@ -7,7 +7,7 @@
 
 	const { data, error, execute } = useLazyAsyncData(
 		'fetch',
-		() => $fetch('/api/me/player/devices'),
+		() => $fetch('/api/me/player/currently-playing'),
 		{ immediate: false }
 	);
 
