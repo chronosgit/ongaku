@@ -7,7 +7,10 @@
 
 	const { data, error, execute } = useLazyAsyncData(
 		'fetch',
-		() => $fetch('/api/artists/0TnOYISbd1XYRBk9myaseg/related-artists'),
+		() =>
+			$fetch('/api/playlists/3ZmhKwo2M7Piy7L88mgyWf', {
+				params: { fields: 'description,name,uri' },
+			}),
 		{ immediate: false }
 	);
 
