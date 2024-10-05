@@ -22,7 +22,7 @@ export default defineEventHandler(async (e) => {
 		}
 
 		const res = await $spotify('/search', {
-			params: { q, type, limit, offset, includeExternal },
+			params: { q, type, limit, offset, include_external: includeExternal },
 		});
 
 		return getSuccessResponse(200, 'Search results received', res);
