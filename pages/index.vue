@@ -9,7 +9,7 @@
 		'fetch',
 		() =>
 			$fetch('/api/me/following', {
-				method: 'PUT',
+				method: 'DELETE',
 				body: {
 					artistType: 'artist',
 					artistsIds: ['64tJ2EAv1R6UaZqc4iOCyj'],
