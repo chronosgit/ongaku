@@ -1,3 +1,3 @@
-class PlayerService {}
+class PlayerServer {}
 
-export default PlayerService;
+export default PlayerServer;

@@ -83,6 +83,10 @@ class AuthService {
 			'user-library-modify',
 			'playlist-modify-public',
 			'playlist-modify-private',
+			'ugc-image-upload',
+			'user-top-read',
+			'user-follow-read',
+			'user-follow-modify',
 		];
 
 		return scopes.join(' ');

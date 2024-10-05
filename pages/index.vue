@@ -7,16 +7,7 @@
 
 	const { data, error, execute } = useLazyAsyncData(
 		'fetch',
-		() =>
-			$fetch('/api/users/317adpnoxtrdgo45hirq7dztto3q/playlists', {
-				method: 'POST',
-				body: {
-					name: 'DevPlaylist',
-					public: true,
-					collaborative: true,
-					description: 'Descr be L',
-				},
-			}),
+		() => $fetch('/api/playlists/0ooIthxtFE0uTHD0PPvrFo/followers/contains'),
 		{ immediate: false }
 	);
 
