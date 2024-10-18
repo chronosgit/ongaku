@@ -1,4 +1,6 @@
 <script setup>
+	import MyHeader from '~/components/organisms/MyHeader.vue';
+
 	const route = useRoute();
 	const { t, te } = useI18n();
 
@@ -40,6 +42,8 @@
 			</Head>
 
 			<Body>
+				<MyHeader />
+
 				<slot />
 			</Body>
 		</Html>
