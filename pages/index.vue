@@ -1,9 +1,10 @@
 <script setup lang="ts">
 	definePageMeta({
 		title: '/.meta.title',
+		layout: 'with-header',
 	});
 </script>
 
 <template>
-	<div class="mb-3">Home</div>
+	<div class="">Home</div>
 </template>
