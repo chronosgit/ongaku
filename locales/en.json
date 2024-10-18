@@ -25,7 +25,8 @@
 			"buttons": {
 				"register": "Sign up",
 				"login": "Login",
-				"translate": "Translate"
+				"translate": "Translate",
+				"theme": "Toggle theme"
 			}
 		}
 	}
