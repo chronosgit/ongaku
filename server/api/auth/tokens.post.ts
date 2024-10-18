@@ -1,3 +1,20 @@
+import ErrorNames from '~/server/enums/ErrorNames';
+import HttpMethods from '~/server/enums/HttpMethods';
+
+interface IRequestPayload {
+	method: HttpMethods.POST;
+	headers: {
+		'Content-Type': 'application/x-www-form-urlencoded';
+	};
+	body: URLSearchParams;
+}
+
+interface IResponse {
+	access_token: string;
+	refresh_token: string;
+	expires_in: number;
+}
+
 export default defineEventHandler(async (e) => {
 	try {
 		const { code, codeVerifier } = await readBody(e);
@@ -6,8 +23,8 @@ export default defineEventHandler(async (e) => {
 			public: { spotifyAuthClientId, spotifyAuthRedirectUri },
 		} = useRuntimeConfig();
 
-		const payload = {
-			method: 'POST',
+		const payload: IRequestPayload = {
+			method: HttpMethods.POST,
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded',
 			},
@@ -20,16 +37,16 @@ export default defineEventHandler(async (e) => {
 			}),
 		};
 
-		const { access_token, refresh_token, expires_in } = await $fetch(
+		const { access_token, refresh_token, expires_in } = await $fetch<IResponse>(
 			'https://accounts.spotify.com/api/token',
-			payload
+			payload as unknown as {}
 		);
 
 		if (!access_token || !refresh_token) {
 			throw createError({
-				success: false,
+				name: ErrorNames.TOKEN,
 				statusCode: 404,
-				statusMessage: 'Tokens were not found',
+				statusMessage: 'Tokens were not received',
 				data: {},
 			});
 		}
@@ -52,8 +69,6 @@ export default defineEventHandler(async (e) => {
 
 		return getSuccessResponse(200, 'Tokens received');
 	} catch (err) {
-		console.error(err);
-
-		throw createError(getErrorOptions(err));
+		handleErrorResponse(err);
 	}
 });
