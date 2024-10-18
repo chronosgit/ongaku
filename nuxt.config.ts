@@ -21,7 +21,7 @@ export default defineNuxtConfig({
 		},
 	},
 
-	modules: ['@nuxtjs/i18n', '@nuxt/image', '@nuxt/icon'],
+	modules: ['@nuxtjs/i18n', '@nuxt/image', '@nuxt/icon', '@pinia/nuxt'],
 
 	css: ['~/assets/css/tailwind.css'],
 	postcss: {
