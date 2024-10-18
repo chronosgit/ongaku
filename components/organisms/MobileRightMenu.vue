@@ -41,26 +41,28 @@
 			<div class="flex flex-col gap-4 px-4 py-4">
 				<!-- Registration option -->
 				<div
-					class="flex items-center gap-2 text-gray-400 transition-all hover:scale-105 hover:text-black dark:hover:text-white"
+					class="flex cursor-pointer items-center gap-2 text-gray-400 transition-all hover:scale-105 hover:text-black dark:hover:text-white"
+					@click="console.log('Sign up')"
 				>
 					<ClientOnly>
 						<IconUserPlus class="scale-125" />
 					</ClientOnly>
 
-					<button class="font-bold" @click="console.log('Sign up')">
+					<button class="font-bold">
 						{{ $t('modules.mobile-right-menu.buttons.register') }}
 					</button>
 				</div>
 
 				<!-- Login option -->
 				<div
-					class="flex items-center gap-2 text-gray-400 transition-all hover:scale-105 hover:text-black dark:hover:text-white"
+					class="flex cursor-pointer items-center gap-2 text-gray-400 transition-all hover:scale-105 hover:text-black dark:hover:text-white"
+					@click="console.log('Login')"
 				>
 					<ClientOnly>
 						<IconDoorOpen class="scale-125" />
 					</ClientOnly>
 
-					<button class="font-bold" @click="console.log('Login')">
+					<button class="font-bold">
 						{{ $t('modules.mobile-right-menu.buttons.login') }}
 					</button>
 				</div>
@@ -126,14 +128,15 @@
 
 			<!-- Color mode option -->
 			<div
-				class="flex items-center gap-2 text-gray-400 transition-all hover:scale-105 hover:text-black dark:hover:text-white"
+				class="flex cursor-pointer items-center gap-2 text-gray-400 transition-all hover:scale-105 hover:text-black dark:hover:text-white"
+				@click="colorModeStore.toggleMode()"
 			>
 				<ClientOnly>
 					<IconMoon v-show="colorModeStore.isDarkMode" class="scale-125" />
 					<IconSun v-show="!colorModeStore.isDarkMode" class="scale-125" />
 				</ClientOnly>
 
-				<button class="font-bold" @click="colorModeStore.toggleMode()">
+				<button class="font-bold">
 					{{ $t('modules.mobile-right-menu.buttons.theme') }}
 				</button>
 			</div>
