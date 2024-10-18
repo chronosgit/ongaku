@@ -2,7 +2,9 @@
 	import IconHouse from '../atoms/IconHouse.vue';
 	import OngakuLogo from '../atoms/OngakuLogo.vue';
 
-	const onHouseClick = async () => await navigateTo('/');
+	const { locale } = useI18n();
+
+	const onHouseClick = async () => await navigateTo(`/${locale.value}`);
 </script>
 
 <template>
