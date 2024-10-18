@@ -12,6 +12,7 @@ export default defineNuxtConfig({
 		store: './store',
 	},
 
+	plugins: ['~/plugins/dark-mode.client.ts'],
 	runtimeConfig: {
 		public: {
 			spotifyAuthClientId: import.meta.env?.SPOTIFY_AUTH_CLIENT_ID,
