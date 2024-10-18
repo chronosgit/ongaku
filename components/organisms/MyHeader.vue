@@ -1,9 +1,9 @@
 <script setup lang="ts">
-	import IconBurgerMenu from '~/components/atoms/IconBurgerMenu.vue';
-	import IconHouse from '~/components/atoms/IconHouse.vue';
-	import IconMagnifier from '~/components/atoms/IconMagnifier.vue';
+	import MobileRightMenu from '~/components/organisms/MobileRightMenu.vue';
+	import IconBurgerMenu from '~/components/atoms/icons/IconBurgerMenu.vue';
+	import IconHouse from '~/components/atoms/icons/IconHouse.vue';
+	import IconMagnifier from '~/components/atoms/icons/IconMagnifier.vue';
 	import OngakuLogo from '~/components/atoms/OngakuLogo.vue';
-	import MobileToggleableRightMenu from '~/components/organisms/MobileToggleableRightMenu.vue';
 
 	const { locale } = useI18n();
 
@@ -19,6 +19,7 @@
 
 <template>
 	<header class="flex items-center justify-between px-2 py-1 dark:bg-black">
+		<!-- Left side -->
 		<div class="flex items-center gap-6">
 			<OngakuLogo sizes="48" class="grayscale dark:grayscale-0" />
 
@@ -40,6 +41,7 @@
 			</div>
 		</div>
 
+		<!-- Right side -->
 		<div
 			class="flex cursor-pointer items-center justify-center rounded-full bg-[#2f2f2f] p-3 transition-transform hover:scale-105"
 			@click="open()"
@@ -47,8 +49,9 @@
 			<IconBurgerMenu class="scale-150 text-white dark:text-[#b3b3b3]" />
 		</div>
 
+		<!-- Mobile toggleable right-side menu -->
 		<Teleport to="body">
-			<MobileToggleableRightMenu
+			<MobileRightMenu
 				ref="mobile-toggleable-right-menu-ref"
 				:is-open="isActive"
 			/>
