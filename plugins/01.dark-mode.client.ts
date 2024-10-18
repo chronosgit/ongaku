@@ -1,37 +1,46 @@
+// ~/plugins/theme.client.ts
+
+import { defineNuxtPlugin } from '#app';
+
 export default defineNuxtPlugin((nuxt) => {
+	const themeCookie = useCookie('theme', { path: '/', sameSite: 'strict' });
+
 	const setLightMode = () => {
-		localStorage.theme = 'light';
+		themeCookie.value = 'light';
 
 		document.documentElement.classList.remove('dark');
 	};
 
 	const setDarkMode = () => {
-		localStorage.theme = 'dark';
+		themeCookie.value = 'dark';
 
 		document.documentElement.classList.add('dark');
 	};
 
 	const toggleMode = () => {
-		document.documentElement.classList.toggle('dark');
+		const currentTheme = themeCookie.value;
+
+		if (!currentTheme) {
+			setDarkMode();
+			return;
+		}
+
+		if (currentTheme === 'dark') {
+			setLightMode();
+		} else {
+			setDarkMode();
+		}
 	};
 
 	const respectOSPreference = () => {
-		localStorage.removeItem('theme');
-
-		document.documentElement.classList.toggle(
-			'dark',
-			window.matchMedia('(prefers-color-scheme: dark)').matches
-		);
+		if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			setDarkMode();
+		} else {
+			setLightMode();
+		}
 	};
 
-	nuxt.hooks.hook('app:created', () => {
-		document.documentElement.classList.toggle(
-			'dark',
-			localStorage.theme === 'dark' ||
-				(!('theme' in localStorage) &&
-					window.matchMedia('(prefers-color-scheme: dark)').matches)
-		);
-	});
+	nuxt.hooks.hook('app:beforeMount', () => respectOSPreference());
 
 	return {
 		provide: {
