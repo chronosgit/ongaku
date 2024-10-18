@@ -15,5 +15,13 @@
 		"buttons": {
 			"main": "Главная"
 		}
+	},
+	"modules": {
+		"header": {
+			"buttons": {
+				"register": "Зарегистрироваться",
+				"login": "Войти"
+			}
+		}
 	}
 }
