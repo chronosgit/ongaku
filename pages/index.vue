@@ -6,5 +6,5 @@
 </script>
 
 <template>
-	<div class="">Home</div>
+	<div class="min-h-screen dark:bg-black">Home</div>
 </template>
