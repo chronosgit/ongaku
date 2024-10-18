@@ -42,8 +42,6 @@
 			</Head>
 
 			<Body>
-				<MyHeader />
-
 				<slot />
 			</Body>
 		</Html>
