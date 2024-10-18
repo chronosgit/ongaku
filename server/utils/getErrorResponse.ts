@@ -1,9 +1,6 @@
 // Maybe make a message parameter too? For better UX and DX
-export default function (handledError) {
-	const code = handledError?.statusCode;
-	const msg = handledError?.message || handledError?.statusMessage;
-
-	switch (code) {
+export default function (errorCode: number) {
+	switch (errorCode) {
 		case 400:
 			return {
 				success: false,
@@ -35,8 +32,8 @@ export default function (handledError) {
 		default:
 			return {
 				success: false,
-				statusCode: code || 500,
-				statusMessage: msg || 'Internal server error',
+				statusCode: 500,
+				statusMessage: 'Internal server error',
 				data: {},
 			};
 	}
