@@ -19,6 +19,15 @@ export default defineEventHandler(async (e) => {
 	try {
 		const { code, codeVerifier } = await readBody(e);
 
+		if (!code || !codeVerifier) {
+			throw createError({
+				name: ErrorNames.BODY,
+				statusCode: 400,
+				statusMessage: 'Bad request',
+				message: 'Code or code verifier were invalid',
+			});
+		}
+
 		const {
 			public: { spotifyAuthClientId, spotifyAuthRedirectUri },
 		} = useRuntimeConfig();

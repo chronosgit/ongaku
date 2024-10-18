@@ -1,13 +1,39 @@
+import ErrorNames from '~/server/enums/ErrorNames';
+import HttpMethods from '~/server/enums/HttpMethods';
+
+interface IRequestPayload {
+	method: HttpMethods.POST;
+	headers: {
+		'Content-Type': 'application/x-www-form-urlencoded';
+	};
+	body: URLSearchParams;
+}
+
+interface IResponse {
+	access_token: string;
+	refresh_token: string;
+	expires_in: number;
+}
+
 export default defineEventHandler(async (e) => {
 	try {
 		const refreshToken = getCookie(e, 'refresh_token');
+
+		if (!refreshToken) {
+			throw createError({
+				name: ErrorNames.TOKEN,
+				statusCode: 400,
+				statusMessage: 'Bad request',
+				message: 'Refresh token was not sent',
+			});
+		}
 
 		const {
 			public: { spotifyAuthClientId },
 		} = useRuntimeConfig();
 
-		const payload = {
-			method: 'POST',
+		const payload: IRequestPayload = {
+			method: HttpMethods.POST,
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded',
 			},
@@ -18,9 +44,9 @@ export default defineEventHandler(async (e) => {
 			}),
 		};
 
-		const { access_token, refresh_token, expires_in } = await $fetch(
+		const { access_token, refresh_token, expires_in } = await $fetch<IResponse>(
 			'https://accounts.spotify.com/api/token',
-			payload
+			payload as unknown as {}
 		);
 
 		setCookie(e, 'access_token', access_token, {
@@ -43,8 +69,6 @@ export default defineEventHandler(async (e) => {
 
 		return getSuccessResponse(200, 'Token were refreshed');
 	} catch (err) {
-		console.error(err);
-
-		throw createError(getErrorOptions(err));
+		handleErrorResponse(err);
 	}
 });
