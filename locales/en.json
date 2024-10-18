@@ -1,7 +1,19 @@
 {
-	"home": {
+	"/": {
 		"meta": {
 			"title": "Ongaku - Web Player: Music for everyone"
+		}
+	},
+	"/not-found": {
+		"meta": {
+			"title": "Page not found"
+		},
+		"feedback": {
+			"title": "Page not found",
+			"message": "We didn't find the correct page"
+		},
+		"buttons": {
+			"main": "Main"
 		}
 	}
 }
