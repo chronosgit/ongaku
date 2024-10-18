@@ -4,17 +4,24 @@
 	import IconDoorOpen from '~/components/atoms/icons/IconDoorOpen.vue';
 	import IconLocalization from '~/components/atoms/icons/IconLocalization.vue';
 	import IconSun from '~/components/atoms/icons/IconSun.vue';
+	import IconMoon from '~/components/atoms/icons/IconMoon.vue';
 	import { useColorModeStore } from '~/store/useColorModeStore';
-	import IconMoon from '../atoms/icons/IconMoon.vue';
+	import Dropdown from '../molecules/Dropdown.vue';
+	import IconArrowUp from '../atoms/icons/IconArrowUp.vue';
+	import IconArrowDown from '../atoms/icons/IconArrowDown.vue';
 
 	const props = defineProps<{ isOpen: boolean }>();
 
+	const { setLocale } = useI18n();
 	const colorModeStore = useColorModeStore();
+
+	const { isActive: isLocaleDropdown, toggle: toggleLocaleDropdown } =
+		useClickawayClient('localization-ref');
 </script>
 
 <template>
 	<div
-		class="fixed right-0 top-0 z-10 h-screen bg-gradient-to-b from-gray-200 to-blue-100 py-2 transition-transform dark:bg-[#121212] dark:bg-none dark:text-white"
+		class="fixed right-0 top-0 z-10 h-screen min-w-56 bg-gradient-to-b from-gray-200 to-blue-100 py-2 transition-transform dark:bg-[#121212] dark:bg-none dark:text-white"
 		:class="{ 'translate-x-0': props.isOpen, 'translate-x-72': !props.isOpen }"
 	>
 		<!-- Authenticated -->
@@ -71,19 +78,53 @@
 
 		<div class="flex flex-col gap-4 px-4 py-4">
 			<!-- Localization option -->
-			<div
-				class="flex items-center gap-2 text-gray-400 transition-all hover:scale-105 hover:text-black dark:hover:text-white"
-			>
-				<ClientOnly>
-					<IconLocalization class="scale-150" />
-				</ClientOnly>
+			<div ref="localization-ref" class="relative">
+				<div
+					class="flex cursor-pointer items-center justify-between gap-1 text-gray-400 transition-all hover:scale-105 hover:text-black dark:hover:text-white"
+					@click.stop="toggleLocaleDropdown()"
+				>
+					<div class="flex items-center gap-2">
+						<ClientOnly>
+							<IconLocalization class="scale-150" />
+						</ClientOnly>
 
-				<button class="font-bold" @click="console.log('Language')">
-					{{ $t('modules.mobile-right-menu.buttons.translate') }}
-				</button>
+						<button class="font-bold">
+							{{ $t('modules.mobile-right-menu.buttons.translate') }}
+						</button>
+					</div>
+
+					<IconArrowUp v-show="isLocaleDropdown" class="scale-125" />
+					<IconArrowDown v-show="!isLocaleDropdown" class="scale-125" />
+				</div>
+
+				<!-- Locales dropdown -->
+				<Dropdown
+					:is-open="isLocaleDropdown"
+					class="bottom-0 left-0 right-0 z-20 translate-y-24 rounded-lg border-[1px] border-[#999999] bg-[#e1e8f2] p-2 transition-transform hover:scale-100 hover:text-black dark:bg-[#121212] dark:hover:text-white"
+					:class="{
+						'scale-y-100': isLocaleDropdown,
+						'scale-y-0': !isLocaleDropdown,
+					}"
+				>
+					<div class="s flex flex-col gap-2">
+						<button
+							class="rounded-lg p-1 transition-colors hover:bg-gray-300 dark:hover:bg-gray-800"
+							@click="setLocale('en')"
+						>
+							English
+						</button>
+
+						<button
+							class="rounded-lg p-1 transition-colors hover:bg-gray-300 dark:hover:bg-gray-800"
+							@click="setLocale('ru')"
+						>
+							Русский
+						</button>
+					</div>
+				</Dropdown>
 			</div>
 
-			<!-- Theme option -->
+			<!-- Color mode option -->
 			<div
 				class="flex items-center gap-2 text-gray-400 transition-all hover:scale-105 hover:text-black dark:hover:text-white"
 			>
