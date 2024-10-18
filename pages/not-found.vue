@@ -4,6 +4,8 @@
 	definePageMeta({
 		title: '/not-found.meta.title',
 	});
+
+	const { locale } = useI18n();
 </script>
 
 <template>
@@ -21,7 +23,7 @@
 		</p>
 
 		<NuxtLink
-			to="/"
+			:to="`/${locale}`"
 			class="rounded-full bg-black px-7 py-3 font-bold text-white dark:bg-white dark:text-black"
 		>
 			{{ $t('/not-found.buttons.main') }}
