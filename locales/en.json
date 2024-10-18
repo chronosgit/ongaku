@@ -17,7 +17,11 @@
 		}
 	},
 	"modules": {
-		"header": {
+		"mobile-right-menu": {
+			"dividers": {
+				"auth": "Authentication",
+				"accessibility": "Accessibility"
+			},
 			"buttons": {
 				"register": "Register",
 				"login": "Login"
