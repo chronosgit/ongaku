@@ -1,4 +1,3 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 	compatibilityDate: '2024-04-03',
 	devtools: { enabled: true },
@@ -28,6 +27,16 @@ export default defineNuxtConfig({
 		plugins: {
 			tailwindcss: {},
 			autoprefixer: {},
+		},
+	},
+
+	image: {
+		screens: {
+			sm: 640,
+			md: 768,
+			lg: 1024,
+			xl: 1280,
+			'2xl': 1536,
 		},
 	},
 
