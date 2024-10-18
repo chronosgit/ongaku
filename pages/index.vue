@@ -1,6 +1,6 @@
 <script setup>
 	definePageMeta({
-		title: 'home.meta.title',
+		title: '/.meta.title',
 	});
 </script>
 
