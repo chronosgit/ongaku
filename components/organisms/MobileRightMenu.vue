@@ -95,8 +95,10 @@
 						</button>
 					</div>
 
-					<IconArrowUp v-show="isLocaleDropdown" class="scale-125" />
-					<IconArrowDown v-show="!isLocaleDropdown" class="scale-125" />
+					<ClientOnly>
+						<IconArrowUp v-show="isLocaleDropdown" class="scale-125" />
+						<IconArrowDown v-show="!isLocaleDropdown" class="scale-125" />
+					</ClientOnly>
 				</div>
 
 				<!-- Locales dropdown -->
