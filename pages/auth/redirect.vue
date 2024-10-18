@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 	defineI18nRoute(false);
 
 	onMounted(() => {
