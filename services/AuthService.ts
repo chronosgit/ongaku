@@ -53,7 +53,7 @@ class AuthService {
 		}, 2000);
 	}
 
-	async #requestAccessToken(code) {
+	async #requestAccessToken(code: string) {
 		try {
 			const codeVerifier = localStorage.getItem('code_verifier');
 
