@@ -1,3 +1,7 @@
+<script setup lang="ts">
+	useColorModeClient();
+</script>
+
 <template>
 	<div>
 		<NuxtLayout>
