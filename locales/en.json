@@ -24,7 +24,8 @@
 			},
 			"buttons": {
 				"register": "Sign up",
-				"login": "Login"
+				"login": "Login",
+				"translate": "Translate"
 			}
 		}
 	}
