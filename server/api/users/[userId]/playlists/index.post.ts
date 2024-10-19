@@ -17,8 +17,6 @@ export default defineEventHandler(async (e) => {
 
 		return getSuccessResponse(201, 'Playlist created', res);
 	} catch (err) {
-		console.error(err);
-
-		throw createError(getErrorOptions(err));
+		handleErrorResponse(err);
 	}
 });
