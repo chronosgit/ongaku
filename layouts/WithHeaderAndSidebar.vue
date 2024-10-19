@@ -8,8 +8,10 @@
 	<Default>
 		<MyHeader />
 
-		<slot></slot>
+		<div class="">
+			<LibrarySidebar />
 
-		<LibrarySidebar />
+			<slot></slot>
+		</div>
 	</Default>
 </template>

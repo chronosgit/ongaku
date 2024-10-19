@@ -1,4 +1,5 @@
 export const useLayoutStore = defineStore('useLayoutStore', () => {
+	const isLeftSideVisible = ref(false);
 	const isLeftSideOpen = ref(false);
 	const isRightSideOpen = ref(false);
 
@@ -6,7 +7,8 @@ export const useLayoutStore = defineStore('useLayoutStore', () => {
 
 	const openLeftSide = () => (isLeftSideOpen.value = true);
 	const closeLeftSide = () => (isLeftSideOpen.value = false);
-	const toggleLeftSide = () => (isLeftSideOpen.value = !isLeftSideOpen.value);
+	const toggleLeftSideVisibility = () =>
+		(isLeftSideOpen.value = !isLeftSideOpen.value);
 
 	const extendLeftSide = () => (isLeftSidebarExtended.value = true);
 	const shrinkLeftSide = () => (isLeftSidebarExtended.value = false);
@@ -17,12 +19,13 @@ export const useLayoutStore = defineStore('useLayoutStore', () => {
 		(isRightSideOpen.value = !isRightSideOpen.value);
 
 	return {
+		isLeftSideVisible,
 		isLeftSideOpen,
 		isRightSideOpen,
 		isLeftSidebarExtended,
+		toggleLeftSideVisibility,
 		openLeftSide,
 		closeLeftSide,
-		toggleLeftSide,
 		openRightSide,
 		closeRightSide,
 		toggleRightSide,

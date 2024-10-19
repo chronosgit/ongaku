@@ -25,7 +25,7 @@
 		<div class="flex items-center gap-3">
 			<IconRoundWrapper
 				class="group cursor-pointer"
-				@click="layoutStore.toggleLeftSide()"
+				@click="layoutStore.toggleLeftSideVisibility()"
 			>
 				<IconLibrary
 					sizes="40"
@@ -59,13 +59,12 @@
 		</IconRoundWrapper>
 
 		<!-- Mobile toggleable right-side menu -->
-		<Teleport to="body">
-			<MobileRightMenu
-				:is-open="isActive"
-				ref="mobile-toggleable-right-menu-ref"
-				class="md:hidden"
-			/>
-		</Teleport>
+
+		<MobileRightMenu
+			:is-open="isActive"
+			ref="mobile-toggleable-right-menu-ref"
+			class="md:hidden"
+		/>
 
 		<!-- Right side -->
 		<!-- Desktop -->
