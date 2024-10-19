@@ -32,7 +32,7 @@
 	"modules": {
 		"header": {
 			"buttons": {
-				"auth": "Authenticate"
+				"auth": "Аутентификация"
 			}
 		},
 		"mobile-right-menu": {
