@@ -1,7 +1,3 @@
-// ~/plugins/theme.client.ts
-
-import { defineNuxtPlugin } from '#app';
-
 export default defineNuxtPlugin((nuxt) => {
 	const themeCookie = useCookie('theme', { path: '/', sameSite: 'strict' });
 
