@@ -13,8 +13,6 @@ export default defineEventHandler(async (e) => {
 
 		return getSuccessResponse(204, 'Playlist items deleted', res);
 	} catch (err) {
-		console.error(err);
-
-		throw createError(getErrorOptions(err));
+		handleErrorResponse(err);
 	}
 });

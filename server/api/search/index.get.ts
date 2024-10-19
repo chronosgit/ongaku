@@ -14,7 +14,7 @@ export default defineEventHandler(async (e) => {
 			'audiobook',
 		];
 
-		if (!allowedTypes.includes(type)) {
+		if (!allowedTypes.includes(type as string)) {
 			throw createError({
 				statusCode: 400,
 				statusMessage: 'Invalid type',
@@ -27,8 +27,6 @@ export default defineEventHandler(async (e) => {
 
 		return getSuccessResponse(200, 'Search results received', res);
 	} catch (err) {
-		console.error(err);
-
-		throw createError(getErrorOptions(err));
+		handleErrorResponse(err);
 	}
 });
