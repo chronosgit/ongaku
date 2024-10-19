@@ -1,5 +1,5 @@
 <template>
-	<div class="absolute" ">
+	<div class="absolute">
 		<!-- Content inside the dropdown -->
 		<slot></slot>
 	</div>
