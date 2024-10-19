@@ -1,5 +1,6 @@
 <script setup lang="ts">
 	import MobileRightMenu from '~/components/organisms/MobileRightMenu.vue';
+	import MyHeaderRightSide from '~/components/molecules/MyHeaderRightSide.vue';
 	import IconBurgerMenu from '~/components/atoms/icons/IconBurgerMenu.vue';
 	import IconHouse from '~/components/atoms/icons/IconHouse.vue';
 	import IconMagnifier from '~/components/atoms/icons/IconMagnifier.vue';
@@ -23,27 +24,27 @@
 		<div class="flex items-center gap-6">
 			<OngakuLogo sizes="48" class="grayscale dark:grayscale-0" />
 
-			<div class="flex items-center gap-2">
-				<div
-					class="flex cursor-pointer items-center justify-center rounded-full bg-[#2f2f2f] p-3 transition-transform hover:scale-105"
-					@click="onHouseClick()"
-				>
-					<IconHouse class="scale-150 text-white dark:text-[#b3b3b3]" />
-				</div>
-
-				<!-- TODO: super-responsive searchbar with logic -->
-				<div
-					class="flex cursor-pointer items-center justify-center rounded-full bg-[#2f2f2f] p-3 transition-transform hover:scale-105"
-					@click="console.log('Big dreams')"
-				>
-					<IconMagnifier class="scale-150 text-white dark:text-[#b3b3b3]" />
-				</div>
+			<div
+				class="flex cursor-pointer items-center justify-center rounded-full bg-[#2f2f2f] p-3 transition-transform hover:scale-105"
+				@click="onHouseClick()"
+			>
+				<IconHouse class="scale-150 text-white dark:text-[#b3b3b3]" />
 			</div>
 		</div>
 
-		<!-- Right side -->
+		<!-- Middle side -->
+		<!-- TODO: super-responsive searchbar with logic -->
 		<div
 			class="flex cursor-pointer items-center justify-center rounded-full bg-[#2f2f2f] p-3 transition-transform hover:scale-105"
+			@click="console.log('Big dreams')"
+		>
+			<IconMagnifier class="scale-150 text-white dark:text-[#b3b3b3]" />
+		</div>
+
+		<!-- Right side -->
+		<!-- Mobile -->
+		<div
+			class="flex cursor-pointer items-center justify-center rounded-full bg-[#2f2f2f] p-3 transition-transform hover:scale-105 md:hidden"
 			@click="open()"
 		>
 			<IconBurgerMenu class="scale-150 text-white dark:text-[#b3b3b3]" />
@@ -52,9 +53,13 @@
 		<!-- Mobile toggleable right-side menu -->
 		<Teleport to="body">
 			<MobileRightMenu
-				ref="mobile-toggleable-right-menu-ref"
 				:is-open="isActive"
+				ref="mobile-toggleable-right-menu-ref"
 			/>
 		</Teleport>
+
+		<!-- Right side -->
+		<!-- Desktop -->
+		<MyHeaderRightSide class="hidden md:block" />
 	</header>
 </template>
