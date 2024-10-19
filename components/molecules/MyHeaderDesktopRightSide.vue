@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import MyHeaderLocalization from '~/components/molecules/MyHeaderLocalization.vue';
+	import MyHeaderDesktopLocalization from '~/components/molecules/MyHeaderDesktopLocalization.vue';
 	import { useCurrentUserStore } from '~/store/useCurrentUserStore';
 	import ColorModeToggle from '~/components/molecules/ColorModeToggle.vue';
 
@@ -13,7 +13,7 @@
 		<ColorModeToggle :is-dark="true" />
 
 		<div class="translate-y-0.5">
-			<MyHeaderLocalization />
+			<MyHeaderDesktopLocalization />
 		</div>
 
 		<template v-if="isAuthenticated">

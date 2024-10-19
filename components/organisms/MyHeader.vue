@@ -1,10 +1,9 @@
 <script setup lang="ts">
 	import MobileRightMenu from '~/components/organisms/MobileRightMenu.vue';
-	import MyHeaderRightSide from '~/components/molecules/MyHeaderRightSide.vue';
+	import MyHeaderDesktopRightSide from '~/components/molecules/MyHeaderDesktopRightSide.vue';
 	import IconBurgerMenu from '~/components/atoms/icons/IconBurgerMenu.vue';
 	import IconHouse from '~/components/atoms/icons/IconHouse.vue';
 	import IconMagnifier from '~/components/atoms/icons/IconMagnifier.vue';
-	import OngakuLogo from '~/components/atoms/OngakuLogo.vue';
 	import IconLibrary from '../atoms/icons/IconLibrary.vue';
 	import IconRoundWrapper from '../atoms/IconRoundWrapper.vue';
 
@@ -67,6 +66,6 @@
 
 		<!-- Right side -->
 		<!-- Desktop -->
-		<MyHeaderRightSide class="hidden md:flex" />
+		<MyHeaderDesktopRightSide class="hidden md:flex" />
 	</header>
 </template>
