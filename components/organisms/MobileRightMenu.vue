@@ -32,7 +32,7 @@
 	>
 		<!-- User is authenticated -->
 		<!-- Profile section -->
-		<template v-if="!isAuthenticated">
+		<template v-if="isAuthenticated">
 			<FlexTextSectionDivider
 				text-class="text-gray-500"
 				line-class="border-gray-500"
