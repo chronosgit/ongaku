@@ -12,11 +12,13 @@
 
 	const props = defineProps<{ isOpen: boolean }>();
 
-	const { setLocale } = useI18n();
+	const { locale, setLocale } = useI18n();
 	const colorModeStore = useColorModeStore();
 
 	const { isActive: isLocaleDropdown, toggle: toggleLocaleDropdown } =
 		useClickawayClient('localization-ref');
+
+	const onAuthClick = async () => await navigateTo(`/${locale.value}/auth`);
 </script>
 
 <template>
@@ -39,16 +41,16 @@
 			</TextSectionDivider>
 
 			<div class="flex flex-col gap-4 px-4 py-4">
-				<!-- Login option -->
+				<!-- Auth option -->
 				<div
 					class="flex cursor-pointer items-center gap-2 text-gray-400 transition-all hover:scale-105 hover:text-black dark:hover:text-white"
-					@click="console.log('Login')"
+					@click="onAuthClick"
 				>
 					<ClientOnly>
 						<IconDoorOpen class="scale-125" />
 					</ClientOnly>
 
-					<button class="font-bold">
+					<button to="/auth" class="font-bold">
 						{{ $t('modules.mobile-right-menu.buttons.auth') }}
 					</button>
 				</div>
