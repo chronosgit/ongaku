@@ -7,9 +7,12 @@
 	import IconLibrary from '~/components/atoms/icons/IconLibrary.vue';
 	import IconRoundWrapper from '~/components/atoms/IconRoundWrapper.vue';
 	import { useLayoutStore } from '~/store/useLayoutStore';
+	import { useCurrentUserStore } from '~/store/useCurrentUserStore';
+	import OngakuLogo from '../atoms/OngakuLogo.vue';
 
 	const { locale } = useI18n();
 
+	const curUserStore = useCurrentUserStore();
 	const layoutStore = useLayoutStore();
 
 	const { isActive, activate: open } = useClickawayClient(
@@ -22,7 +25,7 @@
 <template>
 	<header class="flex items-center justify-between px-2 py-3 dark:bg-black">
 		<!-- Left side -->
-		<div class="flex items-center gap-3">
+		<div v-if="curUserStore.isAuthenticated" class="flex items-center gap-3">
 			<IconRoundWrapper
 				class="group cursor-pointer"
 				@click="layoutStore.toggleLeftSideVisibility()"
@@ -34,6 +37,10 @@
 			</IconRoundWrapper>
 		</div>
 
+		<div v-else class="">
+			<OngakuLogo class="w-12 grayscale" />
+		</div>
+
 		<!-- Middle side -->
 		<div class="flex items-center gap-3">
 			<IconRoundWrapper class="group cursor-pointer" @click="onHouseClick()">
@@ -43,7 +50,10 @@
 			</IconRoundWrapper>
 
 			<!-- TODO: super-responsive searchbar with logic -->
-			<IconRoundWrapper class="group cursor-pointer">
+			<IconRoundWrapper
+				v-if="curUserStore.isAuthenticated"
+				class="group cursor-pointer"
+			>
 				<IconMagnifier
 					class="scale-150 text-[#b3b3b3] transition-colors group-hover:text-white"
 				/>
