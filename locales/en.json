@@ -16,6 +16,17 @@
 			"main": "Main"
 		}
 	},
+	"/auth": {
+		"meta": {
+			"title": "Authenticate - Ongaku"
+		},
+		"form": {
+			"title": "Authenticate and dive into music"
+		},
+		"buttons": {
+			"auth": "Authenticate via Spotify"
+		}
+	},
 	"modules": {
 		"mobile-right-menu": {
 			"dividers": {
