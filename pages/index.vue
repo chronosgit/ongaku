@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	definePageMeta({
 		title: '/.meta.title',
-		layout: 'with-header',
+		layout: 'with-header-and-sidebar',
 	});
 </script>
 
