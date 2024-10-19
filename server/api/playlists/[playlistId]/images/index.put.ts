@@ -12,8 +12,6 @@ export default defineEventHandler(async (e) => {
 
 		return getSuccessResponse(200, 'Image updated', res);
 	} catch (err) {
-		console.error(err);
-
-		throw createError(getErrorOptions(err));
+		handleErrorResponse(err);
 	}
 });

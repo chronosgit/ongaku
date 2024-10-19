@@ -107,7 +107,6 @@ export default defineEventHandler(async (e) => {
 
 		return getSuccessResponse(200, 'Recommendations received', res);
 	} catch (err) {
-		console.error(err);
-		throw createError(getErrorOptions(err));
+		handleErrorResponse(err);
 	}
 });
