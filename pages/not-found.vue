@@ -5,7 +5,7 @@
 		title: '/not-found.meta.title',
 	});
 
-	const { locale } = useI18n();
+	const localePath = useLocalePath();
 </script>
 
 <template>
@@ -23,7 +23,7 @@
 		</p>
 
 		<NuxtLink
-			:to="`/${locale}`"
+			:to="localePath('/')"
 			class="rounded-full bg-black px-7 py-3 font-bold text-white dark:bg-white dark:text-black"
 		>
 			{{ $t('/not-found.buttons.main') }}
