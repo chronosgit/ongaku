@@ -55,6 +55,7 @@
 			<MobileRightMenu
 				:is-open="isActive"
 				ref="mobile-toggleable-right-menu-ref"
+				class="md:hidden"
 			/>
 		</Teleport>
 
