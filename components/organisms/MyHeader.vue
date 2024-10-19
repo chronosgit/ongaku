@@ -60,6 +60,6 @@
 
 		<!-- Right side -->
 		<!-- Desktop -->
-		<MyHeaderRightSide class="hidden md:block" />
+		<MyHeaderRightSide class="hidden md:flex" />
 	</header>
 </template>

@@ -6,5 +6,7 @@
 </script>
 
 <template>
-	<div class="min-h-screen dark:bg-black">Home</div>
+	<ClientOnly>
+		<div class="min-h-screen dark:bg-black dark:text-white">Home</div>
+	</ClientOnly>
 </template>
