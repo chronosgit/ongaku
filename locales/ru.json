@@ -1,7 +1,52 @@
 {
-	"home": {
+	"/": {
 		"meta": {
 			"title": "Онгаку - Веб-плеер: Музыка для всех"
+		}
+	},
+	"/not-found": {
+		"meta": {
+			"title": "Страница не найдена"
+		},
+		"feedback": {
+			"title": "Страница не найдена",
+			"message": "Мы не нашли нужную страницу."
+		},
+		"buttons": {
+			"main": "Главная"
+		}
+	},
+	"/auth": {
+		"meta": {
+			"title": "Аутентификация - Онгаку"
+		},
+		"form": {
+			"title": "Аутентифицируетесь и погрузитесь в музыку",
+			"or": "или"
+		},
+		"buttons": {
+			"auth": "Аутентифицируетесь через Spotify",
+			"home": "Домой"
+		}
+	},
+	"modules": {
+		"header": {
+			"buttons": {
+				"auth": "Authenticate"
+			}
+		},
+		"mobile-right-menu": {
+			"dividers": {
+				"profile": "Профиль",
+				"auth": "Аутентификация",
+				"accessibility": "Доступность"
+			},
+			"buttons": {
+				"profile": "Посетить профиль",
+				"auth": "Войти",
+				"translate": "Перевести",
+				"theme": "Поменять тему"
+			}
 		}
 	}
 }

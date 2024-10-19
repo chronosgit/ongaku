@@ -1,3 +1,5 @@
+import { useCurrentUserStore } from '~/store/useCurrentUserStore';
+
 class AuthService {
 	static async initOAuth() {
 		if (!import.meta.client) {
@@ -33,14 +35,20 @@ class AuthService {
 		window.localStorage.setItem('code_verifier', codeVerifier);
 
 		// Waiting for message from opened new window
-		window.addEventListener('message', (event) => {
+		window.addEventListener('message', async (event) => {
 			if (event.origin !== window.location.origin) return;
 
 			const { code } = event.data;
 
 			if (!code) return;
 
-			as.#requestAccessToken(code);
+			await as.#requestAccessToken(code);
+
+			const { authenticateState } = useCurrentUserStore();
+			authenticateState();
+
+			const localePath = useLocalePath();
+			navigateTo(localePath('/'));
 		});
 
 		// Time-to-time window check
@@ -53,7 +61,7 @@ class AuthService {
 		}, 2000);
 	}
 
-	async #requestAccessToken(code) {
+	async #requestAccessToken(code: string) {
 		try {
 			const codeVerifier = localStorage.getItem('code_verifier');
 

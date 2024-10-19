@@ -8,8 +8,13 @@ module.exports = {
 		'./app.vue',
 		'./error.vue',
 	],
+	darkMode: 'selector',
 	theme: {
-		extend: {},
+		extend: {
+			fontFamily: {
+				poppins: ['Poppins', 'sans-serif'],
+			},
+		},
 	},
 	plugins: [],
 };

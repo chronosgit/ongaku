@@ -1,3 +1,7 @@
+<script setup lang="ts">
+	useColorModeHotKeyClient();
+</script>
+
 <template>
 	<div>
 		<NuxtLayout>

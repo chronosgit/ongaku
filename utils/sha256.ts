@@ -1,4 +1,4 @@
-export default function (plain) {
+export default function (plain: string) {
 	const encoder = new TextEncoder();
 
 	const data = encoder.encode(plain);

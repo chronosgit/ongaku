@@ -1,4 +1,3 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 	compatibilityDate: '2024-04-03',
 	devtools: { enabled: true },
@@ -13,6 +12,7 @@ export default defineNuxtConfig({
 		store: './store',
 	},
 
+	plugins: ['~/plugins/01.dark-mode.client.ts'],
 	runtimeConfig: {
 		public: {
 			spotifyAuthClientId: import.meta.env?.SPOTIFY_AUTH_CLIENT_ID,
@@ -21,13 +21,35 @@ export default defineNuxtConfig({
 		},
 	},
 
-	modules: ['@nuxtjs/i18n', '@nuxt/content'],
+	modules: [
+		'@nuxtjs/i18n',
+		'@nuxt/image',
+		'@nuxt/icon',
+		'@pinia/nuxt',
+		'@nuxt/fonts',
+	],
+
+	fonts: {
+		families: [{ name: 'Poppins', provider: 'google' }],
+		display: 'swap',
+	},
 
 	css: ['~/assets/css/tailwind.css'],
 	postcss: {
 		plugins: {
 			tailwindcss: {},
 			autoprefixer: {},
+		},
+	},
+
+	image: {
+		dir: 'assets/images',
+		screens: {
+			'sm': 640,
+			'md': 768,
+			'lg': 1024,
+			'xl': 1280,
+			'2xl': 1536,
 		},
 	},
 

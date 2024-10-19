@@ -1,7 +1,52 @@
 {
-	"home": {
+	"/": {
 		"meta": {
 			"title": "Ongaku - Web Player: Music for everyone"
+		}
+	},
+	"/not-found": {
+		"meta": {
+			"title": "Page not found"
+		},
+		"feedback": {
+			"title": "Page not found",
+			"message": "We didn't find the correct page."
+		},
+		"buttons": {
+			"main": "Main"
+		}
+	},
+	"/auth": {
+		"meta": {
+			"title": "Authenticate - Ongaku"
+		},
+		"form": {
+			"title": "Authenticate and dive into music",
+			"or": "or"
+		},
+		"buttons": {
+			"auth": "Authenticate via Spotify",
+			"home": "Go home"
+		}
+	},
+	"modules": {
+		"header": {
+			"buttons": {
+				"auth": "Authenticate"
+			}
+		},
+		"mobile-right-menu": {
+			"dividers": {
+				"profile": "Profile",
+				"auth": "Authentication",
+				"accessibility": "Accessibility"
+			},
+			"buttons": {
+				"profile": "Visit profile",
+				"auth": "Authenticate",
+				"translate": "Translate",
+				"theme": "Toggle theme"
+			}
 		}
 	}
 }
