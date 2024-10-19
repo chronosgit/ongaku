@@ -23,22 +23,24 @@
 		<!-- Left side -->
 		<div class="flex items-center gap-6">
 			<OngakuLogo sizes="48" class="grayscale dark:grayscale-0" />
+		</div>
 
+		<!-- Middle side -->
+		<div class="flex items-center gap-3">
 			<div
 				class="flex cursor-pointer items-center justify-center rounded-full bg-[#2f2f2f] p-3 transition-transform hover:scale-105"
 				@click="onHouseClick()"
 			>
 				<IconHouse class="scale-150 text-white dark:text-[#b3b3b3]" />
 			</div>
-		</div>
 
-		<!-- Middle side -->
-		<!-- TODO: super-responsive searchbar with logic -->
-		<div
-			class="flex cursor-pointer items-center justify-center rounded-full bg-[#2f2f2f] p-3 transition-transform hover:scale-105"
-			@click="console.log('Big dreams')"
-		>
-			<IconMagnifier class="scale-150 text-white dark:text-[#b3b3b3]" />
+			<!-- TODO: super-responsive searchbar with logic -->
+			<div
+				class="flex cursor-pointer items-center justify-center rounded-full bg-[#2f2f2f] p-3 transition-transform hover:scale-105"
+				@click="console.log('Big dreams')"
+			>
+				<IconMagnifier class="scale-150 text-white dark:text-[#b3b3b3]" />
+			</div>
 		</div>
 
 		<!-- Right side -->
