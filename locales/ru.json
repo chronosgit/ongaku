@@ -30,6 +30,11 @@
 		}
 	},
 	"modules": {
+		"header": {
+			"buttons": {
+				"auth": "Authenticate"
+			}
+		},
 		"mobile-right-menu": {
 			"dividers": {
 				"auth": "Аутентификация",
