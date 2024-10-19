@@ -12,7 +12,9 @@
 	<div class="flex items-center gap-6">
 		<ColorModeToggle :is-dark="true" />
 
-		<MyHeaderLocalization />
+		<div class="translate-y-0.5">
+			<MyHeaderLocalization />
+		</div>
 
 		<template v-if="isAuthenticated">
 			<div
