@@ -1,0 +1,28 @@
+<script setup lang="ts">
+	import IconMoon from '~/components/atoms/icons/IconMoon.vue';
+	import IconSun from '~/components/atoms/icons/IconSun.vue';
+	import { useColorModeStore } from '~/store/useColorModeStore';
+
+	const colorModeStore = useColorModeStore();
+
+	const renderedComponent = computed(() =>
+		colorModeStore.isDarkMode ? IconMoon : IconSun
+	);
+</script>
+
+<template>
+	<div
+		class="w-12 cursor-pointer rounded-full border-[1px] bg-[#eff0f3] py-0.5 transition-colors hover:border-red-300 dark:border-[#717272] dark:bg-[#2b2b2b]"
+		@click="colorModeStore.toggleMode"
+	>
+		<div
+			class="flex max-h-5 max-w-5 items-center justify-center rounded-full bg-white p-1 text-black transition-transform dark:bg-black dark:text-white"
+			:class="{
+				'translate-x-1': colorModeStore.isDarkMode,
+				'translate-x-6': !colorModeStore.isDarkMode,
+			}"
+		>
+			<component :is="renderedComponent"></component>
+		</div>
+	</div>
+</template>

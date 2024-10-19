@@ -1,6 +1,7 @@
 <script setup lang="ts">
 	import MyHeaderLocalization from '~/components/molecules/MyHeaderLocalization.vue';
 	import { useCurrentUserStore } from '~/store/useCurrentUserStore';
+	import ColorModeToggle from '~/components/molecules/ColorModeToggle.vue';
 
 	const localePath = useLocalePath();
 
@@ -9,6 +10,8 @@
 
 <template>
 	<div class="flex items-center gap-6">
+		<ColorModeToggle :is-dark="true" />
+
 		<MyHeaderLocalization />
 
 		<template v-if="isAuthenticated">
