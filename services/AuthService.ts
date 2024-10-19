@@ -40,9 +40,10 @@ class AuthService {
 
 			if (!code) return;
 
-			const res = await as.#requestAccessToken(code);
+			await as.#requestAccessToken(code);
 
-			await navigateTo('/not-found');
+			const localePath = useLocalePath();
+			navigateTo(localePath('/'));
 		});
 
 		// Time-to-time window check
