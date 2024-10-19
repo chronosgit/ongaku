@@ -19,7 +19,7 @@
 
 		<!-- Locales dropdown -->
 		<Dropdown
-			class="bottom-0 left-1/2 right-0 z-20 min-w-24 -translate-x-1/2 translate-y-24 rounded-lg border-[1px] border-[#747373] bg-[#e1e8f2] bg-white p-2 transition-transform hover:scale-100 dark:bg-[#121212] dark:hover:text-white"
+			class="bottom-0 left-1/2 right-0 z-20 min-w-24 -translate-x-1/2 translate-y-24 rounded-lg border-[1px] border-[#747373] bg-white p-2 transition-transform hover:scale-100 dark:bg-[#121212] dark:hover:text-white"
 			:class="{
 				'scale-y-100': isLocaleDropdown,
 				'scale-y-0': !isLocaleDropdown,
