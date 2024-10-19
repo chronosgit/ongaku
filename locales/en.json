@@ -23,8 +23,7 @@
 				"accessibility": "Accessibility"
 			},
 			"buttons": {
-				"register": "Sign up",
-				"login": "Login",
+				"auth": "Authenticate",
 				"translate": "Translate",
 				"theme": "Toggle theme"
 			}
