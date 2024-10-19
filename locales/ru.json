@@ -47,6 +47,12 @@
 				"translate": "Перевести",
 				"theme": "Поменять тему"
 			}
+		},
+		"unauthentication-guard": {
+			"oops": "Упс!",
+			"feedback-p1": "Вы должны ",
+			"feedback-p2": "аутентефицироваться ",
+			"feedback-p3": "чтобы продолжить"
 		}
 	}
 }
