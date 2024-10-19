@@ -20,7 +20,7 @@
 </script>
 
 <template>
-	<header class="flex items-center justify-between px-2 py-1 dark:bg-black">
+	<header class="flex items-center justify-between px-2 py-3 dark:bg-black">
 		<!-- Left side -->
 		<div class="flex items-center gap-3">
 			<IconRoundWrapper
@@ -58,13 +58,13 @@
 			/>
 		</IconRoundWrapper>
 
-		<!-- Mobile toggleable right-side menu -->
-
-		<MobileRightMenu
-			:is-open="isActive"
-			ref="mobile-toggleable-right-menu-ref"
-			class="md:hidden"
-		/>
+		<Teleport to="body">
+			<MobileRightMenu
+				:is-open="isActive"
+				ref="mobile-toggleable-right-menu-ref"
+				class="md:hidden"
+			/>
+		</Teleport>
 
 		<!-- Right side -->
 		<!-- Desktop -->

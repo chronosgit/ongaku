@@ -6,12 +6,14 @@
 
 <template>
 	<Default>
-		<MyHeader />
+		<div class="max-h-screen overflow-hidden">
+			<MyHeader />
 
-		<div class="">
-			<LibrarySidebar />
+			<div class="relative h-screen">
+				<LibrarySidebar />
 
-			<slot></slot>
+				<slot></slot>
+			</div>
 		</div>
 	</Default>
 </template>

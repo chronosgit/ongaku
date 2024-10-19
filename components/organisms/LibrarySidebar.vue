@@ -1,17 +1,18 @@
 <script setup lang="ts">
 	import { useLayoutStore } from '~/store/useLayoutStore';
 
-	const { isLeftSideVisible } = useLayoutStore();
+	const layoutStore = useLayoutStore();
 </script>
 
 <template>
 	<aside
-		class="fixed bottom-0 left-0 top-0 bg-red-400"
+		ref="library-sidebar-red"
+		class="absolute bg-red-400 transition-transform"
 		:class="{
-			'translate-x-0': isLeftSideVisible,
-			'-translate-x-full': !isLeftSideVisible,
+			'translate-x-0': layoutStore.isLeftSideVisible,
+			'-translate-x-full': !layoutStore.isLeftSideVisible,
 		}"
 	>
-		Sidebar
+		Sidebarfsafsasfsfafs
 	</aside>
 </template>
