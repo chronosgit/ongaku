@@ -1,3 +1,5 @@
+import ErrorNames from '~/server/enums/ErrorNames';
+
 // https://developer.spotify.com/documentation/web-api/reference/search
 export default defineEventHandler(async (e) => {
 	try {
@@ -16,8 +18,10 @@ export default defineEventHandler(async (e) => {
 
 		if (!allowedTypes.includes(type as string)) {
 			throw createError({
+				name: ErrorNames.PARAM,
 				statusCode: 400,
 				statusMessage: 'Invalid type',
+				message: 'Provided type is invalid',
 			});
 		}
 
