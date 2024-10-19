@@ -158,7 +158,7 @@
 		<!-- Footer -->
 		<NuxtLink
 			to="https://github.com/chronosgit/ongaku"
-			class="absolute bottom-0 left-1/2 mb-1 -translate-x-1/2 text-xs text-gray-400 transition-colors hover:text-white"
+			class="absolute bottom-0 left-1/2 mb-1 -translate-x-1/2 text-xs text-gray-400 transition-colors hover:text-gray-600 dark:hover:text-white"
 		>
 			@chronosgit
 		</NuxtLink>
