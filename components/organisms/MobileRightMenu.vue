@@ -1,14 +1,13 @@
 <script setup lang="ts">
-	import TextSectionDivider from '~/components/atoms/TextSectionDivider.vue';
-
 	import IconDoorOpen from '~/components/atoms/icons/IconDoorOpen.vue';
 	import IconLocalization from '~/components/atoms/icons/IconLocalization.vue';
 	import IconSun from '~/components/atoms/icons/IconSun.vue';
 	import IconMoon from '~/components/atoms/icons/IconMoon.vue';
+	import Dropdown from '~/components/molecules/Dropdown.vue';
+	import IconArrowUp from '~/components/atoms/icons/IconArrowUp.vue';
+	import IconArrowDown from '~/components/atoms/icons/IconArrowDown.vue';
+	import FlexTextSectionDivider from '~/components/atoms/FlexTextSectionDivider.vue';
 	import { useColorModeStore } from '~/store/useColorModeStore';
-	import Dropdown from '../molecules/Dropdown.vue';
-	import IconArrowUp from '../atoms/icons/IconArrowUp.vue';
-	import IconArrowDown from '../atoms/icons/IconArrowDown.vue';
 
 	const props = defineProps<{ isOpen: boolean }>();
 
@@ -32,13 +31,13 @@
 		<!-- User is unauthenticated -->
 		<!-- Authentication section -->
 		<template v-else>
-			<TextSectionDivider
+			<FlexTextSectionDivider
 				text-class="text-gray-500"
 				line-class="border-gray-500"
 				class="px-2"
 			>
 				{{ $t('modules.mobile-right-menu.dividers.auth') }}
-			</TextSectionDivider>
+			</FlexTextSectionDivider>
 
 			<div class="flex flex-col gap-4 px-4 py-4">
 				<!-- Auth option -->
@@ -58,13 +57,13 @@
 		</template>
 
 		<!-- Accessibility section -->
-		<TextSectionDivider
+		<FlexTextSectionDivider
 			text-class="text-gray-500"
 			line-class="border-gray-500"
 			class="px-2"
 		>
 			{{ $t('modules.mobile-right-menu.dividers.accessibility') }}
-		</TextSectionDivider>
+		</FlexTextSectionDivider>
 
 		<div class="flex flex-col gap-4 px-4 py-4">
 			<!-- Localization option -->
