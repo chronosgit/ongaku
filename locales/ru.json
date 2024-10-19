@@ -37,10 +37,12 @@
 		},
 		"mobile-right-menu": {
 			"dividers": {
+				"profile": "Профиль",
 				"auth": "Аутентификация",
 				"accessibility": "Доступность"
 			},
 			"buttons": {
+				"profile": "Посетить профиль",
 				"auth": "Войти",
 				"translate": "Перевести",
 				"theme": "Поменять тему"

@@ -37,10 +37,12 @@
 		},
 		"mobile-right-menu": {
 			"dividers": {
+				"profile": "Profile",
 				"auth": "Authentication",
 				"accessibility": "Accessibility"
 			},
 			"buttons": {
+				"profile": "Visit profile",
 				"auth": "Authenticate",
 				"translate": "Translate",
 				"theme": "Toggle theme"
