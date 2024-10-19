@@ -21,7 +21,18 @@ export default defineNuxtConfig({
 		},
 	},
 
-	modules: ['@nuxtjs/i18n', '@nuxt/image', '@nuxt/icon', '@pinia/nuxt'],
+	modules: [
+		'@nuxtjs/i18n',
+		'@nuxt/image',
+		'@nuxt/icon',
+		'@pinia/nuxt',
+		'@nuxt/fonts',
+	],
+
+	fonts: {
+		families: [{ name: 'Poppins', provider: 'google' }],
+		display: 'swap',
+	},
 
 	css: ['~/assets/css/tailwind.css'],
 	postcss: {
