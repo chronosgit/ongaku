@@ -33,14 +33,16 @@ class AuthService {
 		window.localStorage.setItem('code_verifier', codeVerifier);
 
 		// Waiting for message from opened new window
-		window.addEventListener('message', (event) => {
+		window.addEventListener('message', async (event) => {
 			if (event.origin !== window.location.origin) return;
 
 			const { code } = event.data;
 
 			if (!code) return;
 
-			as.#requestAccessToken(code);
+			const res = await as.#requestAccessToken(code);
+
+			await navigateTo('/not-found');
 		});
 
 		// Time-to-time window check
