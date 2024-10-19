@@ -21,10 +21,12 @@
 			"title": "Authenticate - Ongaku"
 		},
 		"form": {
-			"title": "Authenticate and dive into music"
+			"title": "Authenticate and dive into music",
+			"or": "or"
 		},
 		"buttons": {
-			"auth": "Authenticate via Spotify"
+			"auth": "Authenticate via Spotify",
+			"home": "Go home"
 		}
 	},
 	"modules": {
