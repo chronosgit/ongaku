@@ -1,3 +1,5 @@
+import useCurrentUserStore from '~/store/useCurrentUserStore';
+
 class AuthService {
 	static async initOAuth() {
 		if (!import.meta.client) {
@@ -41,6 +43,9 @@ class AuthService {
 			if (!code) return;
 
 			await as.#requestAccessToken(code);
+
+			const { authenticateState } = useCurrentUserStore();
+			authenticateState();
 
 			const localePath = useLocalePath();
 			navigateTo(localePath('/'));
