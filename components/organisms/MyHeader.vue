@@ -55,11 +55,12 @@
 			<MobileRightMenu
 				:is-open="isActive"
 				ref="mobile-toggleable-right-menu-ref"
+				class="md:hidden"
 			/>
 		</Teleport>
 
 		<!-- Right side -->
 		<!-- Desktop -->
-		<MyHeaderRightSide class="hidden md:block" />
+		<MyHeaderRightSide class="hidden md:flex" />
 	</header>
 </template>
