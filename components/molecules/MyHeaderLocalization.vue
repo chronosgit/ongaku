@@ -11,12 +11,10 @@
 <template>
 	<div ref="localization-ref" class="relative max-w-6">
 		<div
-			class="max-w-6 translate-y-1 cursor-pointer text-gray-400 transition-all hover:scale-105 hover:text-black dark:hover:text-white"
+			class="max-w-6 cursor-pointer transition-all hover:scale-105 hover:text-black dark:text-white dark:hover:text-white"
 			@click.stop="toggleLocaleDropdown()"
 		>
-			<ClientOnly>
-				<IconLocalization class="scale-150" />
-			</ClientOnly>
+			<IconLocalization class="scale-150" />
 		</div>
 
 		<!-- Locales dropdown -->
