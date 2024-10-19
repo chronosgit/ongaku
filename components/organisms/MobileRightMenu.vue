@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import TextSectionDivider from '~/components/atoms/TextSectionDivider.vue';
-	import IconUserPlus from '~/components/atoms/icons/IconUserPlus.vue';
+
 	import IconDoorOpen from '~/components/atoms/icons/IconDoorOpen.vue';
 	import IconLocalization from '~/components/atoms/icons/IconLocalization.vue';
 	import IconSun from '~/components/atoms/icons/IconSun.vue';
@@ -39,20 +39,6 @@
 			</TextSectionDivider>
 
 			<div class="flex flex-col gap-4 px-4 py-4">
-				<!-- Registration option -->
-				<div
-					class="flex cursor-pointer items-center gap-2 text-gray-400 transition-all hover:scale-105 hover:text-black dark:hover:text-white"
-					@click="console.log('Sign up')"
-				>
-					<ClientOnly>
-						<IconUserPlus class="scale-125" />
-					</ClientOnly>
-
-					<button class="font-bold">
-						{{ $t('modules.mobile-right-menu.buttons.register') }}
-					</button>
-				</div>
-
 				<!-- Login option -->
 				<div
 					class="flex cursor-pointer items-center gap-2 text-gray-400 transition-all hover:scale-105 hover:text-black dark:hover:text-white"
@@ -63,7 +49,7 @@
 					</ClientOnly>
 
 					<button class="font-bold">
-						{{ $t('modules.mobile-right-menu.buttons.login') }}
+						{{ $t('modules.mobile-right-menu.buttons.auth') }}
 					</button>
 				</div>
 			</div>
