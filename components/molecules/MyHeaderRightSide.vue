@@ -23,7 +23,7 @@
 				<div
 					class="flex h-8 w-8 items-center justify-center rounded-full bg-red-400"
 				>
-					K
+					?
 				</div>
 			</div>
 		</template>
