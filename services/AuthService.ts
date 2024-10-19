@@ -1,4 +1,4 @@
-import useCurrentUserStore from '~/store/useCurrentUserStore';
+import { useCurrentUserStore } from '~/store/useCurrentUserStore';
 
 class AuthService {
 	static async initOAuth() {
