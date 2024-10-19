@@ -10,7 +10,7 @@
 
 <template>
 	<main
-		class="flex min-h-screen flex-col items-center justify-center gap-8 bg-white dark:bg-[#121212]"
+		class="flex min-h-screen flex-col items-center justify-center gap-8 bg-white px-8 dark:bg-[#121212]"
 	>
 		<OngakuLogo sizes="70" />
 
