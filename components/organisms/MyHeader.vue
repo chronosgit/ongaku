@@ -49,7 +49,7 @@
 
 		<!-- Right side -->
 		<!-- Mobile -->
-		<IconRoundWrapper class="cursor-pointer" @click="open()">
+		<IconRoundWrapper class="cursor-pointer md:hidden" @click="open()">
 			<IconBurgerMenu
 				class="scale-150 text-[#b3b3b3] transition-colors hover:text-white"
 			/>
