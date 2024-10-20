@@ -17,22 +17,23 @@
 	const localePath = useLocalePath();
 
 	const colorModeStore = useColorModeStore();
-	const { isAuthenticated } = useCurrentUserStore();
+	const useCurUserStore = useCurrentUserStore();
 
 	const { isActive: isLocaleDropdown, toggle: toggleLocaleDropdown } =
 		useClickawayClient('localization-ref');
-
-	const onAuthClick = () => navigateTo(localePath('/auth'));
 </script>
 
 <template>
 	<div
 		class="fixed right-0 top-0 z-10 h-screen min-w-64 bg-gradient-to-b from-gray-200 to-blue-100 py-2 transition-transform dark:bg-[#121212] dark:bg-none dark:text-white"
-		:class="{ 'translate-x-0': props.isOpen, 'translate-x-72': !props.isOpen }"
+		:class="{
+			'translate-x-0': props.isOpen,
+			'translate-x-72': !props.isOpen,
+		}"
 	>
 		<!-- User is authenticated -->
 		<!-- Profile section -->
-		<template v-if="isAuthenticated">
+		<template v-if="useCurUserStore.isAuthenticated">
 			<FlexTextSectionDivider
 				text-class="text-gray-500"
 				line-class="border-gray-500"
@@ -50,7 +51,7 @@
 					</div>
 				</ClientOnly>
 
-				<NuxtLink class="font-bold">
+				<NuxtLink :to="localePath('/users/me')" class="font-bold">
 					{{ $t('modules.mobile-right-menu.buttons.profile') }}
 				</NuxtLink>
 			</div>
@@ -69,15 +70,15 @@
 
 			<div
 				class="flex cursor-pointer items-center gap-2 p-4 text-gray-400 transition-all hover:scale-105 hover:text-black dark:hover:text-white"
-				@click="onAuthClick"
+				@click="navigateTo(localePath('/auth'))"
 			>
 				<ClientOnly>
 					<IconDoorOpen class="scale-125" />
 				</ClientOnly>
 
-				<button to="/auth" class="font-bold">
+				<p class="font-bold">
 					{{ $t('modules.mobile-right-menu.buttons.auth') }}
-				</button>
+				</p>
 			</div>
 		</template>
 

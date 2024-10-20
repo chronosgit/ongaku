@@ -1,56 +1,72 @@
 <script setup lang="ts">
 	import MobileRightMenu from '~/components/organisms/MobileRightMenu.vue';
-	import MyHeaderRightSide from '~/components/molecules/MyHeaderRightSide.vue';
+	import DesktopMyHeaderRightSide from '~/components/molecules/DesktopMyHeaderRightSide.vue';
 	import IconBurgerMenu from '~/components/atoms/icons/IconBurgerMenu.vue';
 	import IconHouse from '~/components/atoms/icons/IconHouse.vue';
 	import IconMagnifier from '~/components/atoms/icons/IconMagnifier.vue';
+	import IconLibrary from '~/components/atoms/icons/IconLibrary.vue';
+	import IconRoundWrapper from '~/components/atoms/IconRoundWrapper.vue';
 	import OngakuLogo from '~/components/atoms/OngakuLogo.vue';
+	import { useLayoutStore } from '~/store/useLayoutStore';
+	import { useCurrentUserStore } from '~/store/useCurrentUserStore';
 
-	const { locale } = useI18n();
+	const localePath = useLocalePath();
 
-	const {
-		isActive,
-		activate: open,
-		disactivate: close,
-		toggle,
-	} = useClickawayClient('mobile-toggleable-right-menu-ref');
+	const curUserStore = useCurrentUserStore();
+	const layoutStore = useLayoutStore();
 
-	const onHouseClick = async () => await navigateTo(`/${locale.value}`);
+	const { isActive, activate: open } = useClickawayClient(
+		'mobile-toggleable-right-menu-ref'
+	);
 </script>
 
 <template>
-	<header class="flex items-center justify-between px-2 py-1 dark:bg-black">
+	<header class="flex items-center justify-between px-2 py-3 dark:bg-black">
 		<!-- Left side -->
-		<div class="flex items-center gap-6">
-			<OngakuLogo sizes="48" class="grayscale dark:grayscale-0" />
-
-			<div
-				class="flex cursor-pointer items-center justify-center rounded-full bg-[#2f2f2f] p-3 transition-transform hover:scale-105"
-				@click="onHouseClick()"
+		<div v-if="curUserStore.isAuthenticated" class="flex items-center gap-3">
+			<IconRoundWrapper
+				class="group cursor-pointer"
+				@click="layoutStore.toggleLeftSideVisibility()"
 			>
-				<IconHouse class="scale-150 text-white dark:text-[#b3b3b3]" />
-			</div>
+				<IconLibrary
+					sizes="40"
+					class="scale-125 text-[#b3b3b3] transition-colors group-hover:text-white"
+				/>
+			</IconRoundWrapper>
 		</div>
 
+		<OngakuLogo v-else class="w-10 grayscale" />
+
 		<!-- Middle side -->
-		<!-- TODO: super-responsive searchbar with logic -->
-		<div
-			class="flex cursor-pointer items-center justify-center rounded-full bg-[#2f2f2f] p-3 transition-transform hover:scale-105"
-			@click="console.log('Big dreams')"
-		>
-			<IconMagnifier class="scale-150 text-white dark:text-[#b3b3b3]" />
+		<div class="flex items-center gap-3">
+			<IconRoundWrapper
+				class="group cursor-pointer"
+				@click="navigateTo(localePath('/'))"
+			>
+				<IconHouse
+					class="scale-150 text-[#b3b3b3] transition-colors group-hover:text-white"
+				/>
+			</IconRoundWrapper>
+
+			<!-- TODO: super-responsive searchbar with logic -->
+			<IconRoundWrapper
+				v-if="curUserStore.isAuthenticated"
+				class="group cursor-pointer"
+			>
+				<IconMagnifier
+					class="scale-150 text-[#b3b3b3] transition-colors group-hover:text-white"
+				/>
+			</IconRoundWrapper>
 		</div>
 
 		<!-- Right side -->
 		<!-- Mobile -->
-		<div
-			class="flex cursor-pointer items-center justify-center rounded-full bg-[#2f2f2f] p-3 transition-transform hover:scale-105 md:hidden"
-			@click="open()"
-		>
-			<IconBurgerMenu class="scale-150 text-white dark:text-[#b3b3b3]" />
-		</div>
+		<IconRoundWrapper class="group cursor-pointer md:hidden" @click="open()">
+			<IconBurgerMenu
+				class="scale-150 text-[#b3b3b3] transition-colors group-hover:text-white"
+			/>
+		</IconRoundWrapper>
 
-		<!-- Mobile toggleable right-side menu -->
 		<Teleport to="body">
 			<MobileRightMenu
 				:is-open="isActive"
@@ -61,6 +77,6 @@
 
 		<!-- Right side -->
 		<!-- Desktop -->
-		<MyHeaderRightSide class="hidden md:flex" />
+		<DesktopMyHeaderRightSide class="hidden md:flex" />
 	</header>
 </template>

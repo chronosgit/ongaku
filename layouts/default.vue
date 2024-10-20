@@ -1,6 +1,4 @@
 <script setup>
-	import MyHeader from '~/components/organisms/MyHeader.vue';
-
 	const route = useRoute();
 	const { t, te } = useI18n();
 
@@ -41,7 +39,7 @@
 				</template>
 			</Head>
 
-			<Body>
+			<Body class="overflow-hidden">
 				<slot />
 			</Body>
 		</Html>

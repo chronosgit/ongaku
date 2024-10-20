@@ -1,12 +1,16 @@
 <script setup lang="ts">
+	import LayoutPartTemplate from '~/components/organisms/LayoutPartTemplate.vue';
+
 	definePageMeta({
 		title: '/.meta.title',
-		layout: 'with-header',
+		layout: 'main',
 	});
+
+	useMyProfile();
 </script>
 
 <template>
-	<ClientOnly>
-		<div class="min-h-screen dark:bg-black dark:text-white">Home</div>
-	</ClientOnly>
+	<LayoutPartTemplate class="h-full">
+		<div class="p-2 dark:text-white">Home</div>
+	</LayoutPartTemplate>
 </template>

@@ -1,9 +1,14 @@
-export default function (templateRefKey: string) {
+export default function (templateRefKey: string, initValue: boolean = false) {
 	const templateRef = useTemplateRef(templateRefKey) as Ref<
 		HTMLElement | ComponentPublicInstance | null
 	>;
 
-	const { value: isActive, activate, disactivate, toggle } = useToggle();
+	const {
+		value: isActive,
+		activate,
+		disactivate,
+		toggle,
+	} = useToggle(initValue);
 
 	const onDocumentClick = (e: MouseEvent) => {
 		const clickedTarget = e.target as Element;

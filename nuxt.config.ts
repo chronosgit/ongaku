@@ -12,7 +12,7 @@ export default defineNuxtConfig({
 		store: './store',
 	},
 
-	plugins: ['~/plugins/01.dark-mode.client.ts'],
+	plugins: ['~/plugins/01.manage-color-mode.client.ts'],
 	runtimeConfig: {
 		public: {
 			spotifyAuthClientId: import.meta.env?.SPOTIFY_AUTH_CLIENT_ID,
@@ -26,6 +26,7 @@ export default defineNuxtConfig({
 		'@nuxt/image',
 		'@nuxt/icon',
 		'@pinia/nuxt',
+		'pinia-plugin-persistedstate/nuxt',
 		'@nuxt/fonts',
 	],
 

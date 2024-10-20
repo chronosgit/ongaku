@@ -44,8 +44,8 @@ class AuthService {
 
 			await as.#requestAccessToken(code);
 
-			const { authenticateState } = useCurrentUserStore();
-			authenticateState();
+			const curUserStore = useCurrentUserStore();
+			await curUserStore.fetchProfile();
 
 			const localePath = useLocalePath();
 			navigateTo(localePath('/'));
