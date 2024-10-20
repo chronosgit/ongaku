@@ -10,7 +10,7 @@
 	import { useLayoutStore } from '~/store/useLayoutStore';
 	import { useCurrentUserStore } from '~/store/useCurrentUserStore';
 
-	const { locale } = useI18n();
+	const localePath = useLocalePath();
 
 	const curUserStore = useCurrentUserStore();
 	const layoutStore = useLayoutStore();
@@ -18,8 +18,6 @@
 	const { isActive, activate: open } = useClickawayClient(
 		'mobile-toggleable-right-menu-ref'
 	);
-
-	const onHouseClick = async () => await navigateTo(`/${locale.value}`);
 </script>
 
 <template>
@@ -41,7 +39,10 @@
 
 		<!-- Middle side -->
 		<div class="flex items-center gap-3">
-			<IconRoundWrapper class="group cursor-pointer" @click="onHouseClick()">
+			<IconRoundWrapper
+				class="group cursor-pointer"
+				@click="navigateTo(localePath('/'))"
+			>
 				<IconHouse
 					class="scale-150 text-[#b3b3b3] transition-colors group-hover:text-white"
 				/>
