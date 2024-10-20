@@ -3,12 +3,36 @@ import type ICurrentUser from '~/interfaces/ICurrentUser';
 export const useCurrentUserStore = defineStore(
 	'currentUserStore',
 	() => {
-		const user = ref<ICurrentUser>();
+		const user = ref<ICurrentUser | null>(null);
 		const isAuthenticated = ref(false);
 
-		const authenticateState = () => (isAuthenticated.value = true);
+		const disauthenticate = () => {
+			isAuthenticated.value = false;
+			user.value = null;
+		};
 
-		const disauthenticateState = () => (isAuthenticated.value = false);
+		const authenticate = async () => {
+			try {
+				const res = await $fetch('/api/me');
+
+				if (!res) {
+					console.warn('No response received from /api/me');
+
+					disauthenticate();
+
+					return;
+				}
+
+				const fetchedUser = res.data as ICurrentUser;
+
+				user.value = fetchedUser;
+				isAuthenticated.value = true;
+			} catch (err) {
+				console.error(err);
+
+				disauthenticate();
+			}
+		};
 
 		const updateUser = (loggedInUser: ICurrentUser) => {
 			console.log(loggedInUser);
@@ -17,8 +41,8 @@ export const useCurrentUserStore = defineStore(
 		return {
 			user,
 			isAuthenticated,
-			authenticateState,
-			disauthenticateState,
+			authenticate,
+			disauthenticate,
 			updateUser,
 		};
 	},
