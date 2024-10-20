@@ -12,10 +12,7 @@ export default defineNuxtConfig({
 		store: './store',
 	},
 
-	plugins: [
-		'~/plugins/01.manage-color-mode.client.ts',
-		'~/plugins/02.check-auth.client.ts',
-	],
+	plugins: ['~/plugins/01.manage-color-mode.client.ts'],
 	runtimeConfig: {
 		public: {
 			spotifyAuthClientId: import.meta.env?.SPOTIFY_AUTH_CLIENT_ID,
