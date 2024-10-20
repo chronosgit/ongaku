@@ -3,6 +3,7 @@
 	import MyHeader from '~/components/organisms/MyHeader.vue';
 	import UnauthenticationGuard from '~/components/organisms/UnauthenticationGuard.vue';
 	import LibrarySidebar from '~/components/organisms/LibrarySidebar.vue';
+	import MusicPlayer from '~/components/organisms/MusicPlayer.vue';
 	import { useCurrentUserStore } from '~/store/useCurrentUserStore';
 
 	const curUserStore = useCurrentUserStore();
@@ -15,11 +16,15 @@
 
 			<template v-if="curUserStore.isAuthenticated">
 				<div class="relative">
-					<div class="absolute h-5/6">
-						<LibrarySidebar class="h-full" />
+					<div class="h-5/6">
+						<div class="absolute">
+							<LibrarySidebar />
+						</div>
+
+						<slot></slot>
 					</div>
 
-					<slot></slot>
+					<MusicPlayer />
 				</div>
 			</template>
 
