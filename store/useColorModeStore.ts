@@ -12,11 +12,15 @@ export const useColorModeStore = defineStore('colorMode', () => {
 		$toggleMode();
 	};
 
-	watch(theme, (newTheme) => {
-		if (!newTheme) return;
+	watch(
+		theme,
+		(newTheme) => {
+			if (!newTheme) return;
 
-		isDarkMode.value = newTheme === 'dark';
-	});
+			isDarkMode.value = newTheme === 'dark';
+		},
+		{ immediate: true }
+	);
 
 	return { theme, isDarkMode, toggleMode };
 });
