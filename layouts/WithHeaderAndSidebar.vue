@@ -14,8 +14,10 @@
 			<MyHeader />
 
 			<template v-if="curUserStore.isAuthenticated">
-				<div class="relative h-screen">
-					<LibrarySidebar />
+				<div class="relative">
+					<div class="absolute h-5/6">
+						<LibrarySidebar class="h-full" />
+					</div>
 
 					<slot></slot>
 				</div>
