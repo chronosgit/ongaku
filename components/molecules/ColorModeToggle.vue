@@ -5,9 +5,7 @@
 
 	const colorModeStore = useColorModeStore();
 
-	const renderedComponent = computed(() =>
-		colorModeStore.isDarkMode ? IconMoon : IconSun
-	);
+	onMounted(() => console.log(colorModeStore.isDarkMode));
 </script>
 
 <template>
@@ -22,7 +20,9 @@
 				'translate-x-6': !colorModeStore.isDarkMode,
 			}"
 		>
-			<component :is="renderedComponent"></component>
+			<IconMoon v-show="colorModeStore.isDarkMode" />
+
+			<IconSun v-show="!colorModeStore.isDarkMode" />
 		</div>
 	</div>
 </template>
