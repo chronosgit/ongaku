@@ -11,7 +11,7 @@ export const useCurrentUserStore = defineStore(
 			user.value = null;
 		};
 
-		const authenticate = async () => {
+		const fetchProfile = async () => {
 			try {
 				const res = await $fetch('/api/me');
 
@@ -23,14 +23,16 @@ export const useCurrentUserStore = defineStore(
 					return;
 				}
 
-				const fetchedUser = res.data as ICurrentUser;
-
-				user.value = fetchedUser;
 				isAuthenticated.value = true;
-			} catch (err) {
-				console.error(err);
 
+				const fetchedUser = res.data as ICurrentUser;
+				user.value = fetchedUser;
+
+				return fetchedUser;
+			} catch (err) {
 				disauthenticate();
+
+				throw err;
 			}
 		};
 
@@ -41,7 +43,7 @@ export const useCurrentUserStore = defineStore(
 		return {
 			user,
 			isAuthenticated,
-			authenticate,
+			fetchProfile,
 			disauthenticate,
 			updateUser,
 		};
