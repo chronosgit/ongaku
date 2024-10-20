@@ -1,5 +1,5 @@
 export default defineNuxtPlugin((nuxt) => {
-	const themeCookie = useCookie('theme', { path: '/', sameSite: 'strict' });
+	const themeCookie = useCookie('theme');
 
 	const setLightMode = () => {
 		themeCookie.value = 'light';
