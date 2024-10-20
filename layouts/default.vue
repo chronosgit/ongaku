@@ -39,7 +39,7 @@
 				</template>
 			</Head>
 
-			<Body>
+			<Body class="overflow-hidden">
 				<slot />
 			</Body>
 		</Html>
