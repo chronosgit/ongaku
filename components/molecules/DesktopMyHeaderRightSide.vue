@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import DesktopMyHeaderLocalization from '~/components/molecules/DesktopMyHeaderLocalization.vue';
-	import { useCurrentUserStore } from '~/store/useCurrentUserStore';
 	import ColorModeToggle from '~/components/molecules/ColorModeToggle.vue';
+	import { useCurrentUserStore } from '~/store/useCurrentUserStore';
 
 	const localePath = useLocalePath();
 
@@ -10,7 +10,7 @@
 
 <template>
 	<div class="flex items-center gap-6">
-		<ColorModeToggle :is-dark="true" />
+		<ColorModeToggle />
 
 		<div class="translate-y-0.5">
 			<DesktopMyHeaderLocalization />
