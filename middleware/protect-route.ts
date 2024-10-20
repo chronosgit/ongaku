@@ -8,6 +8,6 @@ export default defineNuxtRouteMiddleware((to) => {
 	if (isDirectedTo404Page) return;
 
 	if (!curUserStore.isAuthenticated) {
-		return navigateTo(localePath('/not-found'));
+		return navigateTo(localePath('/auth'));
 	}
 });
