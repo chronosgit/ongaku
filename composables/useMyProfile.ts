@@ -1,19 +1,25 @@
 import { useCurrentUserStore } from '~/store/useCurrentUserStore';
 
 export default function () {
+	const localePath = useLocalePath();
 	const curUserStore = useCurrentUserStore();
 
-	useAsyncData('useMyProfile', async () => {
-		try {
-			const res = await curUserStore.authenticate();
+	const { data: profile, execute: fetchMyProfile } = useAsyncData(
+		'useMyProfile',
+		async () => {
+			try {
+				const fetchedProfile = await curUserStore.fetchProfile();
 
-			return res;
-		} catch (err) {
-			console.error(err);
+				profile.value = fetchedProfile!;
 
-			return null;
+				return fetchedProfile;
+			} catch (err) {
+				console.error(err);
+
+				return null;
+			}
 		}
-	});
+	);
 
-	return {};
+	return { profile };
 }
