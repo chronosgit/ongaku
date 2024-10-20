@@ -11,26 +11,28 @@
 
 <template>
 	<Default>
-		<div class="max-h-screen overflow-hidden">
-			<MyHeader />
+		<!-- Authenticated layout -->
+		<template v-if="curUserStore.isAuthenticated">
+			<div class="relative h-screen max-h-screen">
+				<div class="relative h-[90%]">
+					<MyHeader class="h-[8%]" />
 
-			<template v-if="curUserStore.isAuthenticated">
-				<div class="relative">
-					<div class="h-5/6">
-						<div class="absolute">
-							<LibrarySidebar />
-						</div>
+					<LibrarySidebar class="h-[90%]" />
 
+					<div class="h-[92%] p-2 dark:bg-black">
 						<slot></slot>
 					</div>
-
-					<MusicPlayer />
 				</div>
-			</template>
 
-			<template v-else>
-				<UnauthenticationGuard />
-			</template>
-		</div>
+				<MusicPlayer class="h-[10%]" />
+			</div>
+		</template>
+
+		<!-- Unauthenticated layout -->
+		<template v-else>
+			<MyHeader />
+
+			<UnauthenticationGuard />
+		</template>
 	</Default>
 </template>

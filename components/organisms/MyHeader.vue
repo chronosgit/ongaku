@@ -21,9 +21,7 @@
 </script>
 
 <template>
-	<header
-		class="flex h-full max-h-16 items-center justify-between px-2 py-3 dark:bg-black"
-	>
+	<header class="flex items-center justify-between px-2 py-3 dark:bg-black">
 		<!-- Left side -->
 		<div v-if="curUserStore.isAuthenticated" class="flex items-center gap-3">
 			<IconRoundWrapper
