@@ -19,7 +19,7 @@
 
 		<!-- Locales dropdown -->
 		<Dropdown
-			class="bottom-0 left-1/2 right-0 z-20 min-w-24 -translate-x-1/2 translate-y-24 rounded-lg border-[1px] border-[#747373] bg-white p-2 transition-transform hover:scale-100 dark:bg-[#121212] dark:hover:text-white"
+			class="z-90 bottom-0 left-1/2 right-0 min-w-24 -translate-x-1/2 translate-y-24 rounded-lg border-[1px] border-[#747373] bg-white p-2 transition-transform hover:scale-100 dark:bg-[#121212] dark:hover:text-white"
 			:class="{
 				'scale-y-100': isLocaleDropdown,
 				'scale-y-0': !isLocaleDropdown,
@@ -27,14 +27,14 @@
 		>
 			<div class="flex flex-col gap-2">
 				<button
-					class="rounded-lg p-1 transition-colors hover:bg-gray-300 dark:text-white dark:hover:bg-gray-800"
+					class="cursor-pointer rounded-lg p-1 transition-colors hover:bg-gray-300 dark:text-white dark:hover:bg-gray-800"
 					@click="setLocale('en')"
 				>
 					English
 				</button>
 
 				<button
-					class="rounded-lg p-1 transition-colors hover:bg-gray-300 dark:text-white dark:hover:bg-gray-800"
+					class="cursor-pointer rounded-lg p-1 transition-colors hover:bg-gray-300 dark:text-white dark:hover:bg-gray-800"
 					@click="setLocale('ru')"
 				>
 					Русский
