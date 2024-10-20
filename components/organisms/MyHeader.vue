@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import MobileRightMenu from '~/components/organisms/MobileRightMenu.vue';
-	import MyHeaderDesktopRightSide from '~/components/molecules/MyHeaderDesktopRightSide.vue';
+	import DesktopMyHeaderRightSide from '~/components/molecules/DesktopMyHeaderRightSide.vue';
 	import IconBurgerMenu from '~/components/atoms/icons/IconBurgerMenu.vue';
 	import IconHouse from '~/components/atoms/icons/IconHouse.vue';
 	import IconMagnifier from '~/components/atoms/icons/IconMagnifier.vue';
@@ -76,6 +76,6 @@
 
 		<!-- Right side -->
 		<!-- Desktop -->
-		<MyHeaderDesktopRightSide class="hidden md:flex" />
+		<DesktopMyHeaderRightSide class="hidden md:flex" />
 	</header>
 </template>
