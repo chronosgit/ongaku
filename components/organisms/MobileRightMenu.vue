@@ -17,12 +17,10 @@
 	const localePath = useLocalePath();
 
 	const colorModeStore = useColorModeStore();
-	const { isAuthenticated } = useCurrentUserStore();
+	const useCurUserStore = useCurrentUserStore();
 
 	const { isActive: isLocaleDropdown, toggle: toggleLocaleDropdown } =
 		useClickawayClient('localization-ref');
-
-	const onAuthClick = () => navigateTo(localePath('/auth'));
 </script>
 
 <template>
@@ -35,7 +33,7 @@
 	>
 		<!-- User is authenticated -->
 		<!-- Profile section -->
-		<template v-if="isAuthenticated">
+		<template v-if="useCurUserStore.isAuthenticated">
 			<FlexTextSectionDivider
 				text-class="text-gray-500"
 				line-class="border-gray-500"
@@ -53,7 +51,7 @@
 					</div>
 				</ClientOnly>
 
-				<NuxtLink class="font-bold">
+				<NuxtLink :to="localePath('/users/me')" class="font-bold">
 					{{ $t('modules.mobile-right-menu.buttons.profile') }}
 				</NuxtLink>
 			</div>
@@ -72,15 +70,15 @@
 
 			<div
 				class="flex cursor-pointer items-center gap-2 p-4 text-gray-400 transition-all hover:scale-105 hover:text-black dark:hover:text-white"
-				@click="onAuthClick"
+				@click="navigateTo(localePath('/auth'))"
 			>
 				<ClientOnly>
 					<IconDoorOpen class="scale-125" />
 				</ClientOnly>
 
-				<button to="/auth" class="font-bold">
+				<p class="font-bold">
 					{{ $t('modules.mobile-right-menu.buttons.auth') }}
-				</button>
+				</p>
 			</div>
 		</template>
 
