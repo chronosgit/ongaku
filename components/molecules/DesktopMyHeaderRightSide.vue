@@ -31,7 +31,7 @@
 
 		<template v-else>
 			<button
-				class="rounded-full bg-[#2f2f2f] px-3 py-1 text-lg font-bold text-white transition-all hover:scale-105 dark:bg-white dark:text-black"
+				class="rounded-full bg-[#2f2f2f] px-3 py-1 font-bold text-white transition-all hover:scale-105 dark:bg-white dark:text-black"
 				@click="navigateTo(localePath('/auth'))"
 			>
 				{{ $t('modules.header.buttons.auth') }}
