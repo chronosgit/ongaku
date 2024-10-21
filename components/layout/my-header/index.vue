@@ -1,12 +1,15 @@
 <script setup lang="ts">
-	import MobileRightMenu from '~/components/organisms/MobileRightMenu.vue';
-	import DesktopMyHeaderRightSide from '~/components/molecules/DesktopMyHeaderRightSide.vue';
-	import IconBurgerMenu from '~/components/atoms/icons/IconBurgerMenu.vue';
-	import IconHouse from '~/components/atoms/icons/IconHouse.vue';
-	import IconMagnifier from '~/components/atoms/icons/IconMagnifier.vue';
-	import IconLibrary from '~/components/atoms/icons/IconLibrary.vue';
-	import IconRoundWrapper from '~/components/atoms/IconRoundWrapper.vue';
-	import OngakuLogo from '~/components/atoms/OngakuLogo.vue';
+	import MenuMobileRight from '~/components/layout/MenuMobileRight.vue';
+	import WrapperIconRound from '~/components/utils/WrapperIconRound.vue';
+	import LogoOngaku from '~/components/ui/LogoOngaku.vue';
+	import {
+		IconBurgerMenu,
+		IconHouse,
+		IconLibrary,
+		IconMagnifier,
+	} from '~/components/ui/icons';
+	import Tooltip from '~/components/utils/Tooltip.vue';
+	import MyHeaderDesktopRightSide from './DesktopRightSide.vue';
 	import { useLayoutStore } from '~/store/useLayoutStore';
 	import { useCurrentUserStore } from '~/store/useCurrentUserStore';
 
@@ -23,52 +26,51 @@
 <template>
 	<header class="flex items-center justify-between px-2 py-3 dark:bg-black">
 		<!-- Left side -->
-		<div v-if="curUserStore.isAuthenticated" class="flex items-center gap-3">
-			<IconRoundWrapper
-				class="group cursor-pointer"
-				@click="layoutStore.toggleLeftSideVisibility()"
-			>
-				<IconLibrary
-					sizes="40"
-					class="scale-125 text-[#b3b3b3] transition-colors group-hover:text-white"
-				/>
-			</IconRoundWrapper>
-		</div>
+		<WrapperIconRound
+			v-if="curUserStore.isAuthenticated"
+			class="group cursor-pointer"
+			@click="layoutStore.toggleLeftSideVisibility()"
+		>
+			<IconLibrary
+				sizes="40"
+				class="scale-125 text-[#b3b3b3] transition-colors group-hover:text-white"
+			/>
+		</WrapperIconRound>
 
-		<OngakuLogo v-else class="w-10 grayscale" />
+		<LogoOngaku v-else class="w-10 grayscale" />
 
 		<!-- Middle side -->
 		<div class="flex items-center gap-3">
-			<IconRoundWrapper
+			<WrapperIconRound
 				class="group cursor-pointer"
 				@click="navigateTo(localePath('/'))"
 			>
 				<IconHouse
 					class="scale-150 text-[#b3b3b3] transition-colors group-hover:text-white"
 				/>
-			</IconRoundWrapper>
+			</WrapperIconRound>
 
 			<!-- TODO: super-responsive searchbar with logic -->
-			<IconRoundWrapper
+			<WrapperIconRound
 				v-if="curUserStore.isAuthenticated"
 				class="group cursor-pointer"
 			>
 				<IconMagnifier
 					class="scale-150 text-[#b3b3b3] transition-colors group-hover:text-white"
 				/>
-			</IconRoundWrapper>
+			</WrapperIconRound>
 		</div>
 
 		<!-- Right side -->
 		<!-- Mobile -->
-		<IconRoundWrapper class="group cursor-pointer md:hidden" @click="open()">
+		<WrapperIconRound class="group cursor-pointer md:hidden" @click="open()">
 			<IconBurgerMenu
 				class="scale-150 text-[#b3b3b3] transition-colors group-hover:text-white"
 			/>
-		</IconRoundWrapper>
+		</WrapperIconRound>
 
 		<Teleport to="body">
-			<MobileRightMenu
+			<MenuMobileRight
 				:is-open="isActive"
 				ref="mobile-toggleable-right-menu-ref"
 				class="md:hidden"
@@ -77,6 +79,6 @@
 
 		<!-- Right side -->
 		<!-- Desktop -->
-		<DesktopMyHeaderRightSide class="hidden md:flex" />
+		<MyHeaderDesktopRightSide class="hidden md:flex" />
 	</header>
 </template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import LayoutPartTemplate from '~/components/organisms/LayoutPartTemplate.vue';
+	import TemplateLayoutPart from '~/components/utils/TemplateLayoutPart.vue';
 
 	definePageMeta({
 		title: '/.meta.title',
@@ -10,7 +10,7 @@
 </script>
 
 <template>
-	<LayoutPartTemplate class="h-full">
+	<TemplateLayoutPart class="h-full">
 		<div class="p-2 dark:text-white">Home</div>
-	</LayoutPartTemplate>
+	</TemplateLayoutPart>
 </template>

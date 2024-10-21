@@ -5,8 +5,15 @@ export const useLayoutStore = defineStore('useLayoutStore', () => {
 
 	const isLeftSidebarExtended = ref(false);
 
-	const toggleLeftSideVisibility = () =>
-		(isLeftSideVisible.value = !isLeftSideVisible.value);
+	const toggleLeftSideVisibility = () => {
+		if (isLeftSideVisible.value) {
+			isLeftSidebarExtended.value = false;
+			isLeftSideOpen.value = false;
+			isLeftSideVisible.value = false;
+		} else {
+			isLeftSideVisible.value = true;
+		}
+	};
 	const openLeftSide = () => (isLeftSideOpen.value = true);
 	const closeLeftSide = () => (isLeftSideOpen.value = false);
 

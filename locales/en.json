@@ -35,7 +35,7 @@
 				"auth": "Authenticate"
 			}
 		},
-		"mobile-right-menu": {
+		"menu-mobile-right": {
 			"dividers": {
 				"profile": "Profile",
 				"auth": "Authentication",
@@ -53,6 +53,18 @@
 			"feedback-p1": "You have to ",
 			"feedback-p2": "authenticate ",
 			"feedback-p3": "in order to continue"
+		},
+		"sidebar-library": {
+			"closed": {
+				"no-playlists": "No playlists"
+			},
+
+			"opened": {
+				"my-library": "My library"
+			}
 		}
+	},
+	"dictionary": {
+		"playlist": "Playlist"
 	}
 }

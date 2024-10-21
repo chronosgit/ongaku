@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import OngakuLogo from '~/components/atoms/OngakuLogo.vue';
+	import LogoOngaku from '~/components/ui/LogoOngaku.vue';
 
 	definePageMeta({ title: '/auth.meta.title' });
 
@@ -13,7 +13,7 @@
 		class="flex min-h-screen flex-col items-center justify-center px-4 dark:bg-[#121212]"
 	>
 		<div class="max-w-80 space-y-16 md:max-w-lg">
-			<OngakuLogo sizes="50" class="mx-auto my-0 grayscale dark:grayscale-0" />
+			<LogoOngaku sizes="50" class="mx-auto my-0 grayscale dark:grayscale-0" />
 
 			<h1 class="break-words text-center text-5xl font-bold dark:text-white">
 				{{ $t('/auth.form.title') }}

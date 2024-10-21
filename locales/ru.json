@@ -35,7 +35,7 @@
 				"auth": "Аутентификация"
 			}
 		},
-		"mobile-right-menu": {
+		"menu-mobile-right": {
 			"dividers": {
 				"profile": "Профиль",
 				"auth": "Аутентификация",
@@ -53,6 +53,18 @@
 			"feedback-p1": "Вы должны ",
 			"feedback-p2": "аутентефицироваться ",
 			"feedback-p3": "чтобы продолжить"
+		},
+		"sidebar-library": {
+			"closed": {
+				"no-playlists": "Нет плейлистов"
+			},
+
+			"opened": {
+				"my-library": "Моя библиотека"
+			}
 		}
+	},
+	"dictionary": {
+		"playlist": "Плейлист"
 	}
 }
