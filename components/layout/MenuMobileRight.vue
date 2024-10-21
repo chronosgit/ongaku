@@ -41,7 +41,7 @@
 				line-class="border-gray-500"
 				class="px-2"
 			>
-				{{ $t('modules.mobile-right-menu.dividers.profile') }}
+				{{ $t('modules.menu-mobile-right.dividers.profile') }}
 			</FlexTextSectionDivider>
 
 			<div
@@ -54,7 +54,7 @@
 				</ClientOnly>
 
 				<NuxtLink :to="localePath('/users/me')" class="font-bold">
-					{{ $t('modules.mobile-right-menu.buttons.profile') }}
+					{{ $t('modules.menu-mobile-right.buttons.profile') }}
 				</NuxtLink>
 			</div>
 		</template>
@@ -67,7 +67,7 @@
 				line-class="border-gray-500"
 				class="px-2"
 			>
-				{{ $t('modules.mobile-right-menu.dividers.auth') }}
+				{{ $t('modules.menu-mobile-right.dividers.auth') }}
 			</FlexTextSectionDivider>
 
 			<div
@@ -79,7 +79,7 @@
 				</ClientOnly>
 
 				<p class="font-bold">
-					{{ $t('modules.mobile-right-menu.buttons.auth') }}
+					{{ $t('modules.menu-mobile-right.buttons.auth') }}
 				</p>
 			</div>
 		</template>
@@ -90,7 +90,7 @@
 			line-class="border-gray-500"
 			class="px-2"
 		>
-			{{ $t('modules.mobile-right-menu.dividers.accessibility') }}
+			{{ $t('modules.menu-mobile-right.dividers.accessibility') }}
 		</FlexTextSectionDivider>
 
 		<div class="flex flex-col gap-4 px-4 py-4">
@@ -106,7 +106,7 @@
 						</ClientOnly>
 
 						<button class="font-bold">
-							{{ $t('modules.mobile-right-menu.buttons.translate') }}
+							{{ $t('modules.menu-mobile-right.buttons.translate') }}
 						</button>
 					</div>
 
@@ -153,7 +153,7 @@
 				</ClientOnly>
 
 				<button class="font-bold">
-					{{ $t('modules.mobile-right-menu.buttons.theme') }}
+					{{ $t('modules.menu-mobile-right.buttons.theme') }}
 				</button>
 			</div>
 		</div>

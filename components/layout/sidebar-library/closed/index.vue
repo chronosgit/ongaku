@@ -35,7 +35,7 @@
 
 			<!-- No playlists found -->
 			<p v-else class="text-center text-xs text-gray-500">
-				{{ $t('modules.library-sidebar.no-playlists') }}
+				{{ $t('modules.library-sidebar.closed.no-playlists') }}
 			</p>
 		</template>
 	</div>
