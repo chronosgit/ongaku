@@ -71,14 +71,6 @@ Ongaku - is a web music player built on top of _Spotify Web API_ and _Spotify Pl
 
 ![The image didn't load'](assets/docs/architecture.png)
 
-## Folder structure
-
-![The image didn't load'](assets/docs/folders.png)
-
-The folder structure is my opinionated mix of classic Nuxt3 structure and atomic design principles. `pages` folder is left for file-based routing, while the root-level `components` folder contains `atoms`, `molecules`, and `organisms` folders.
-
-For further reference: [atomic design methodology docs](https://atomicdesign.bradfrost.com/chapter-2/) and [Nuxt3 folder structure](https://nuxt.com/docs/guide/directory-structure/nuxt).
-
 ## Manual
 
 1. Pull the project.
