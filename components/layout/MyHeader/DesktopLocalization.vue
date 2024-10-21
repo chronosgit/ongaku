@@ -1,6 +1,6 @@
 <script setup lang="ts">
-	import Dropdown from '~/components/molecules/Dropdown.vue';
-	import IconLocalization from '~/components/atoms/icons/IconLocalization.vue';
+	import Dropdown from '~/components/utils/Dropdown.vue';
+	import { IconLocalization } from '~/components/ui/icons';
 
 	const { setLocale } = useI18n();
 

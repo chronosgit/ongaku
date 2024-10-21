@@ -1,9 +1,9 @@
 <script setup lang="ts">
 	import Default from '~/layouts/default.vue';
-	import MyHeader from '~/components/organisms/MyHeader.vue';
-	import UnauthenticationGuard from '~/components/organisms/UnauthenticationGuard.vue';
-	import LibrarySidebar from '~/components/organisms/LibrarySidebar.vue';
-	import MusicPlayer from '~/components/organisms/MusicPlayer.vue';
+	import MyHeader from '~/components/layout/MyHeader/index.vue';
+	import SidebarLibrary from '~/components/layout/SidebarLibrary.vue';
+	import MusicPlayer from '~/components/layout/MusicPlayer.vue';
+	import UnauthenticationGuard from '~/components/page/UnauthenticationGuard.vue';
 	import { useCurrentUserStore } from '~/store/useCurrentUserStore';
 
 	const curUserStore = useCurrentUserStore();
@@ -17,7 +17,7 @@
 				<div class="relative h-[90%]">
 					<MyHeader class="h-[8%]" />
 
-					<LibrarySidebar class="h-[90%]" />
+					<SidebarLibrary class="h-[90%]" />
 
 					<div class="h-[92%] p-2 dark:bg-black">
 						<slot></slot>

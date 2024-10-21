@@ -1,6 +1,5 @@
 <script setup lang="ts">
-	import IconMoon from '~/components/atoms/icons/IconMoon.vue';
-	import IconSun from '~/components/atoms/icons/IconSun.vue';
+	import { IconMoon, IconSun } from '~/components/ui/icons';
 	import { useColorModeStore } from '~/store/useColorModeStore';
 
 	const colorModeStore = useColorModeStore();

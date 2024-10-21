@@ -1,0 +1,12 @@
+export { default as IconArrowDown } from './ArrowDown.vue';
+export { default as IconArrowUp } from './ArrowUp.vue';
+export { default as IconBurgerMenu } from './BurgerMenu.vue';
+export { default as IconDoorOpen } from './DoorOpen.vue';
+export { default as IconDoubleArrowRight } from './DoubleArrowRight.vue';
+export { default as IconHouse } from './House.vue';
+export { default as IconLibrary } from './Library.vue';
+export { default as IconLocalization } from './Localization.vue';
+export { default as IconMagnifier } from './Magnifier.vue';
+export { default as IconMoon } from './Moon.vue';
+export { default as IconSun } from './Sun.vue';
+export { default as IconUser } from './User.vue';
