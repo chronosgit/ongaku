@@ -57,5 +57,8 @@
 		"library-sidebar": {
 			"no-playlists": "Нет плейлистов"
 		}
+	},
+	"dictionary": {
+		"playlist": "Плейлист"
 	}
 }
