@@ -1,12 +1,13 @@
 <script setup lang="ts">
 	import { IconDoubleArrowRight } from '~/components/ui/icons';
-	import PlaylistsSkeleton from './PlaylistsSkeleton.vue';
-	import Playlists from './Playlists.vue';
+	import Items from './Items.vue';
+	import ItemsSkeleton from './ItemsSkeleton.vue';
 	import { useLayoutStore } from '~/store/useLayoutStore';
-	import type IPlaylist from '~/interfaces/IPlaylist';
+	import type IMyAlbum from '~/interfaces/IMyAlbum';
+	import type ISimplifiedPlaylist from '~/interfaces/ISimplifiedPlaylist';
 
 	const props = defineProps<{
-		playlists: IPlaylist[] | null;
+		items: (IMyAlbum | ISimplifiedPlaylist)[] | null;
 		isLoading: boolean;
 	}>();
 
@@ -25,17 +26,17 @@
 
 		<!-- Loading indicator -->
 		<template v-if="props.isLoading">
-			<PlaylistsSkeleton />
+			<ItemsSkeleton />
 		</template>
 
 		<!-- Already loaded -->
 		<template v-else>
 			<!-- My playlists -->
-			<Playlists v-if="props.playlists" :playlists="props.playlists" />
+			<Items v-if="props.items" :items="props.items" />
 
 			<!-- No playlists found -->
 			<p v-else class="text-center text-xs text-gray-500">
-				{{ $t('modules.library-sidebar.closed.no-playlists') }}
+				{{ $t('modules.sidebar-library.closed.no-playlists') }}
 			</p>
 		</template>
 	</div>

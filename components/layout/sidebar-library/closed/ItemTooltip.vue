@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	// name type owner
 	const props = defineProps<{
-		playlistName: string;
+		name: string;
 		type: string;
 		owner: string;
 	}>();
@@ -11,7 +11,7 @@
 	<div
 		class="absolute left-0 hidden max-w-28 translate-x-20 overflow-hidden text-ellipsis whitespace-nowrap rounded-md bg-[#dfdfdf] p-2 shadow-md shadow-gray-300 dark:bg-[#292929] dark:shadow-[#1a1a1a]"
 	>
-		<p>{{ props.playlistName }}</p>
+		<p>{{ props.name }}</p>
 
 		<div class="text-xs dark:text-gray-400">
 			{{ $t(`dictionary.${props.type}`) }} &#x2022; {{ props.owner }}
