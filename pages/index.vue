@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import LayoutPartTemplate from '~/components/organisms/LayoutPartTemplate.vue';
+	import LayoutPartTemplate from '~/components/templates/LayoutPartTemplate.vue';
 
 	definePageMeta({
 		title: '/.meta.title',
