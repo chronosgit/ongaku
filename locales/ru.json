@@ -53,6 +53,9 @@
 			"feedback-p1": "Вы должны ",
 			"feedback-p2": "аутентефицироваться ",
 			"feedback-p3": "чтобы продолжить"
+		},
+		"library-sidebar": {
+			"no-playlists": "Нет плейлистов"
 		}
 	}
 }

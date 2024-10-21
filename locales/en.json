@@ -53,6 +53,9 @@
 			"feedback-p1": "You have to ",
 			"feedback-p2": "authenticate ",
 			"feedback-p3": "in order to continue"
+		},
+		"library-sidebar": {
+			"no-playlists": "No playlists"
 		}
 	}
 }
