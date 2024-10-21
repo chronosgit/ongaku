@@ -4,8 +4,6 @@
 	import { useColorModeStore } from '~/store/useColorModeStore';
 
 	const colorModeStore = useColorModeStore();
-
-	onMounted(() => console.log(colorModeStore.isDarkMode));
 </script>
 
 <template>
