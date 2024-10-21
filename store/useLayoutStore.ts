@@ -7,9 +7,9 @@ export const useLayoutStore = defineStore('useLayoutStore', () => {
 
 	const toggleLeftSideVisibility = () => {
 		if (isLeftSideVisible.value) {
-			isLeftSideVisible.value = false;
-			isLeftSideOpen.value = false;
 			isLeftSidebarExtended.value = false;
+			isLeftSideOpen.value = false;
+			isLeftSideVisible.value = false;
 		} else {
 			isLeftSideVisible.value = true;
 		}
