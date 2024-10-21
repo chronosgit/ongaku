@@ -8,6 +8,7 @@
 		IconLibrary,
 		IconMagnifier,
 	} from '~/components/ui/icons';
+	import Tooltip from '~/components/utils/Tooltip.vue';
 	import MyHeaderDesktopRightSide from './DesktopRightSide.vue';
 	import { useLayoutStore } from '~/store/useLayoutStore';
 	import { useCurrentUserStore } from '~/store/useCurrentUserStore';
@@ -25,17 +26,16 @@
 <template>
 	<header class="flex items-center justify-between px-2 py-3 dark:bg-black">
 		<!-- Left side -->
-		<div v-if="curUserStore.isAuthenticated" class="flex items-center gap-3">
-			<WrapperIconRound
-				class="group cursor-pointer"
-				@click="layoutStore.toggleLeftSideVisibility()"
-			>
-				<IconLibrary
-					sizes="40"
-					class="scale-125 text-[#b3b3b3] transition-colors group-hover:text-white"
-				/>
-			</WrapperIconRound>
-		</div>
+		<WrapperIconRound
+			v-if="curUserStore.isAuthenticated"
+			class="group cursor-pointer"
+			@click="layoutStore.toggleLeftSideVisibility()"
+		>
+			<IconLibrary
+				sizes="40"
+				class="scale-125 text-[#b3b3b3] transition-colors group-hover:text-white"
+			/>
+		</WrapperIconRound>
 
 		<LogoOngaku v-else class="w-10 grayscale" />
 
