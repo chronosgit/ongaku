@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import Default from '~/layouts/default.vue';
 	import MyHeader from '~/components/layout/MyHeader/index.vue';
-	import SidebarLibrary from '~/components/layout/SidebarLibrary.vue';
+	import SidebarLibrary from '~/components/layout/SidebarLibrary/index.vue';
 	import MusicPlayer from '~/components/layout/MusicPlayer.vue';
 	import UnauthenticationGuard from '~/components/page/UnauthenticationGuard.vue';
 	import { useCurrentUserStore } from '~/store/useCurrentUserStore';
