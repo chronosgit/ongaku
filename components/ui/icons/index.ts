@@ -10,3 +10,4 @@ export { default as IconMagnifier } from './Magnifier.vue';
 export { default as IconMoon } from './Moon.vue';
 export { default as IconSun } from './Sun.vue';
 export { default as IconUser } from './User.vue';
+export { default as IconPlus } from './Plus.vue';
