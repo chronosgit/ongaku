@@ -1,12 +1,26 @@
 <script setup lang="ts">
-	import { useLayoutStore } from '~/store/useLayoutStore';
-	import type IPlaylist from '~/interfaces/IPlaylist';
+	import Tooltip from '~/components/utils/Tooltip.vue';
 	import { IconLibrary, IconPlus } from '~/components/ui/icons';
+	import Items from './Items.vue';
+	import Filters from './Filters.vue';
+	import { useLayoutStore } from '~/store/useLayoutStore';
+	import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
 
 	const props = defineProps<{
-		playlists: IPlaylist[] | null;
+		items: IMediaAlbumOrPlaylist[] | null;
+		filter: 'album' | 'playlist' | null;
+		isLoading: boolean;
 	}>();
+
+	const emit = defineEmits<{
+		(e: 'selectOnlyAlbums'): void;
+		(e: 'selectOnlyPlaylists'): void;
+		(e: 'deselectFilters'): void;
+	}>();
+
 	const layoutStore = useLayoutStore();
+
+	const { createNewPlaylist } = useMyPlaylists();
 </script>
 
 <template>
@@ -29,27 +43,35 @@
 				</p>
 			</div>
 
-			<IconPlus
-				class="scale-150 cursor-pointer text-gray-400 transition-colors hover:text-black dark:hover:text-white"
-				@click="console.log('Create playlist')"
-			/>
+			<div class="relative">
+				<IconPlus
+					class="peer scale-150 cursor-pointer text-gray-400 transition-colors hover:text-black dark:hover:text-white"
+					@click="createNewPlaylist('Dev1', 'Bumi')"
+				/>
+
+				<Tooltip
+					class="bottom-0 w-max -translate-y-7 opacity-0 transition-opacity peer-hover:opacity-100"
+				>
+					{{ $t('modules.sidebar-library.opened.add-playlist-tooltip') }}
+				</Tooltip>
+			</div>
 		</div>
 
-		<!-- Filters row -->
-		<div class="flex items-center gap-2">
-			<div
-				class="cursor-pointer rounded-full bg-gray-300 px-4 py-1 text-gray-700 transition-colors hover:bg-gray-400 hover:text-white"
-				@click="console.log('Fetch with playlists filter')"
-			>
-				Playlists
-			</div>
+		<!-- Second row -->
+		<Filters
+			v-if="!props.isLoading"
+			class="mb-4"
+			:filter="filter"
+			@select-only-albums="emit('selectOnlyAlbums')"
+			@select-only-playlists="emit('selectOnlyPlaylists')"
+			@deselect-filters="emit('deselectFilters')"
+		/>
 
-			<div
-				class="cursor-pointer rounded-full bg-gray-300 px-4 py-1 text-gray-700 transition-colors hover:bg-gray-400 hover:text-white"
-				@click="console.log('Fetch with albums filter')"
-			>
-				Albums
-			</div>
+		<div
+			class="max-h-[39rem] overflow-x-hidden scrollbar scrollbar-thumb-gray-300 scrollbar-thumb-rounded-lg scrollbar-w-1 dark:scrollbar-thumb-[#1d1d1d]"
+			:class="props.isLoading ? 'overflow-y-hidden' : 'overflow-y-auto'"
+		>
+			<Items :items="props.items" :is-loading="isLoading" />
 		</div>
 	</div>
 </template>

@@ -28,13 +28,10 @@
 		<!-- Left side -->
 		<WrapperIconRound
 			v-if="curUserStore.isAuthenticated"
-			class="group cursor-pointer"
+			class="group cursor-pointer p-3"
 			@click="layoutStore.toggleLeftSideVisibility()"
 		>
-			<IconLibrary
-				sizes="40"
-				class="scale-125 text-[#b3b3b3] transition-colors group-hover:text-white"
-			/>
+			<IconLibrary sizes="40" class="scale-125" />
 		</WrapperIconRound>
 
 		<LogoOngaku v-else class="w-10 grayscale" />
@@ -42,31 +39,28 @@
 		<!-- Middle side -->
 		<div class="flex items-center gap-3">
 			<WrapperIconRound
-				class="group cursor-pointer"
+				class="group cursor-pointer p-3"
 				@click="navigateTo(localePath('/'))"
 			>
-				<IconHouse
-					class="scale-150 text-[#b3b3b3] transition-colors group-hover:text-white"
-				/>
+				<IconHouse class="scale-150" />
 			</WrapperIconRound>
 
 			<!-- TODO: super-responsive searchbar with logic -->
 			<WrapperIconRound
 				v-if="curUserStore.isAuthenticated"
-				class="group cursor-pointer"
+				class="group cursor-pointer p-3"
 			>
-				<IconMagnifier
-					class="scale-150 text-[#b3b3b3] transition-colors group-hover:text-white"
-				/>
+				<IconMagnifier class="scale-150" />
 			</WrapperIconRound>
 		</div>
 
 		<!-- Right side -->
 		<!-- Mobile -->
-		<WrapperIconRound class="group cursor-pointer md:hidden" @click="open()">
-			<IconBurgerMenu
-				class="scale-150 text-[#b3b3b3] transition-colors group-hover:text-white"
-			/>
+		<WrapperIconRound
+			class="group cursor-pointer p-3 md:hidden"
+			@click="open()"
+		>
+			<IconBurgerMenu class="scale-150" />
 		</WrapperIconRound>
 
 		<Teleport to="body">

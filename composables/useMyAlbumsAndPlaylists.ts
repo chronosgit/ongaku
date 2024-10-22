@@ -1,20 +1,25 @@
+import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
 import type IMyAlbum from '~/interfaces/IMyAlbum';
 import type ISimplifiedPlaylist from '~/interfaces/ISimplifiedPlaylist';
 
-type CombinedMedia = ISimplifiedPlaylist | IMyAlbum;
-
 export default function () {
+	const items = ref<IMediaAlbumOrPlaylist[]>([]);
+
+	const filter = ref<'album' | 'playlist' | null>(null);
+
 	const offset = ref(0);
 	const limit = 10;
 
 	const {
-		data: items,
+		data: allItems,
 		status,
 		execute: fetch,
 	} = useLazyAsyncData(
 		'useMyAlbumsAndPlaylists',
 		async () => {
 			try {
+				await delay(3000);
+
 				// Getting my playlists
 				const r1 = await $fetch('/api/me/playlists', {
 					params: { limit, offset: offset.value },
@@ -27,10 +32,36 @@ export default function () {
 				const r2 = await $fetch('/api/me/albums', {
 					params: { limit, offset: offset.value },
 				});
-				const { items: myAlbums } = r2?.data as { items: IMyAlbum[] };
+				const { items: myAlbums } = r2?.data as { items: any[] };
 
-				// TODO: combine with a custom type and adapt UI
-				return [];
+				// Combining into one
+				const mediaItems: IMediaAlbumOrPlaylist[] = [];
+
+				myPlaylists.forEach((p) =>
+					mediaItems.push({
+						id: p.id,
+						name: p.name,
+						type: 'playlist',
+						owner: p.owner.display_name,
+						image: p.images[0],
+					})
+				);
+
+				myAlbums
+					.filter((a) => a != null)
+					.forEach((a) => {
+						const album = a.album as IMyAlbum;
+
+						mediaItems.push({
+							id: album.id,
+							name: album.name,
+							type: 'album',
+							owner: album.artists[0].name,
+							image: album.images[0],
+						});
+					});
+
+				return mediaItems;
 			} catch (err) {
 				console.error(err);
 
@@ -44,5 +75,34 @@ export default function () {
 
 	const isLoading = computed(() => status.value === 'pending');
 
-	return { items, isLoading, fetch };
+	const selectOnlyAlbums = () => (filter.value = 'album');
+	const selectOnlyPlaylists = () => (filter.value = 'playlist');
+	const deselectFilters = () => (filter.value = null);
+
+	watch([allItems, filter], (newValues) => {
+		const newAllItems = newValues[0];
+		const newFilter = newValues[1];
+
+		if (newAllItems == null) {
+			items.value = [];
+			return;
+		}
+
+		if (newFilter == null) {
+			items.value = newAllItems;
+			return;
+		}
+
+		items.value = newAllItems.filter((i) => i.type === newFilter);
+	});
+
+	return {
+		items,
+		isLoading,
+		filter,
+		fetch,
+		selectOnlyAlbums,
+		selectOnlyPlaylists,
+		deselectFilters,
+	};
 }
