@@ -22,7 +22,10 @@
 </script>
 
 <template>
-	<div class="h-full px-3">
+	<div
+		class="h-full overflow-x-hidden px-4 scrollbar scrollbar-thumb-gray-300 scrollbar-thumb-rounded-lg scrollbar-w-1 dark:scrollbar-thumb-[#1d1d1d]"
+		:class="props.isLoading ? 'overflow-y-hidden' : 'overflow-y-auto'"
+	>
 		<!-- First row -->
 		<div class="mb-4 flex items-center justify-between">
 			<!-- My library toggler -->
@@ -57,6 +60,7 @@
 
 		<!-- Second row -->
 		<Filters
+			v-if="!props.isLoading"
 			class="mb-4"
 			:filter="filter"
 			@select-only-albums="emit('selectOnlyAlbums')"

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+	import ItemsSkeleton from './ItemsSkeleton.vue';
 	import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
 
 	const props = defineProps<{
@@ -9,7 +10,7 @@
 
 <template>
 	<!-- Loading indicator -->
-	<p v-if="props.isLoading">Loading...</p>
+	<ItemsSkeleton v-if="props.isLoading" />
 
 	<!-- After loading -->
 	<template v-else>

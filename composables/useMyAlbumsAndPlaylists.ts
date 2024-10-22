@@ -18,7 +18,7 @@ export default function () {
 		'useMyAlbumsAndPlaylists',
 		async () => {
 			try {
-				await delay(2000);
+				await delay(3000);
 
 				// Getting my playlists
 				const r1 = await $fetch('/api/me/playlists', {
@@ -94,8 +94,6 @@ export default function () {
 		}
 
 		items.value = newAllItems.filter((i) => i.type === newFilter);
-
-		console.log(items.value);
 	});
 
 	return {
