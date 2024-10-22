@@ -19,6 +19,8 @@
 	}>();
 
 	const layoutStore = useLayoutStore();
+
+	const { createNewPlaylist } = useMyPlaylists();
 </script>
 
 <template>
@@ -44,7 +46,7 @@
 			<div class="relative">
 				<IconPlus
 					class="peer scale-150 cursor-pointer text-gray-400 transition-colors hover:text-black dark:hover:text-white"
-					@click="console.log('Create playlist')"
+					@click="createNewPlaylist('Dev1', 'Bumi')"
 				/>
 
 				<Tooltip
