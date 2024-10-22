@@ -24,10 +24,10 @@
 	>
 		<!-- <Opened v-if="layoutStore.isLeftSideOpen" :playlists="myPlaylists" /> -->
 
-		<!-- <Closed
+		<Closed
 			v-if="!layoutStore.isLeftSideOpen"
 			:items="items"
 			:is-loading="isLoading"
-		/> -->
+		/>
 	</aside>
 </template>

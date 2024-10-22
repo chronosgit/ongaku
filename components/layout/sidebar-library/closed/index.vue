@@ -3,11 +3,10 @@
 	import Items from './Items.vue';
 	import ItemsSkeleton from './ItemsSkeleton.vue';
 	import { useLayoutStore } from '~/store/useLayoutStore';
-	import type IMyAlbum from '~/interfaces/IMyAlbum';
-	import type ISimplifiedPlaylist from '~/interfaces/ISimplifiedPlaylist';
+	import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
 
 	const props = defineProps<{
-		items: (IMyAlbum | ISimplifiedPlaylist)[] | null;
+		items: IMediaAlbumOrPlaylist[] | null;
 		isLoading: boolean;
 	}>();
 
