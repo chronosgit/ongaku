@@ -60,12 +60,21 @@
 			},
 
 			"opened": {
-				"my-library": "My library"
+				"my-library": "My library",
+				"add-playlist-tooltip": "Create playlist",
+				"playlists": "Playlists",
+				"albums": "Albums"
 			}
 		}
 	},
 	"dictionary": {
-		"playlist": "Playlist",
-		"album": "Album"
+		"playlist": {
+			"one": "Playlist",
+			"many": "Playlists"
+		},
+		"album": {
+			"one": "Album",
+			"many": "Albums"
+		}
 	}
 }

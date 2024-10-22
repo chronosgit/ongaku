@@ -60,12 +60,21 @@
 			},
 
 			"opened": {
-				"my-library": "Моя библиотека"
+				"my-library": "Моя библиотека",
+				"add-playlist-tooltip": "Создать плейлист",
+				"playlists": "Плейлисты",
+				"albums": "Альбомы"
 			}
 		}
 	},
 	"dictionary": {
-		"playlist": "Плейлист",
-		"album": "Альбом"
+		"playlist": {
+			"one": "Плейлист",
+			"many": "Плейлисты"
+		},
+		"album": {
+			"one": "Альбом",
+			"many": "Альбомы"
+		}
 	}
 }
