@@ -1,10 +1,10 @@
 <script setup lang="ts">
-	import { useLayoutStore } from '~/store/useLayoutStore';
 	import Tooltip from '~/components/utils/Tooltip.vue';
 	import { IconLibrary, IconPlus } from '~/components/ui/icons';
 	import Items from './Items.vue';
-	import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
 	import Filters from './Filters.vue';
+	import { useLayoutStore } from '~/store/useLayoutStore';
+	import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
 
 	const props = defineProps<{
 		items: IMediaAlbumOrPlaylist[] | null;
@@ -15,6 +15,7 @@
 	const emit = defineEmits<{
 		(e: 'selectOnlyAlbums'): void;
 		(e: 'selectOnlyPlaylists'): void;
+		(e: 'deselectFilters'): void;
 	}>();
 
 	const layoutStore = useLayoutStore();
@@ -57,8 +58,10 @@
 		<!-- Second row -->
 		<Filters
 			class="mb-4"
+			:filter="filter"
 			@select-only-albums="emit('selectOnlyAlbums')"
 			@select-only-playlists="emit('selectOnlyPlaylists')"
+			@deselect-filters="emit('deselectFilters')"
 		/>
 
 		<Items :items="props.items" :is-loading="isLoading" />

@@ -12,6 +12,7 @@
 		fetch,
 		selectOnlyAlbums,
 		selectOnlyPlaylists,
+		deselectFilters,
 	} = useMyAlbumsAndPlaylists();
 
 	onMounted(() => fetch());
@@ -36,6 +37,7 @@
 			:filter="filter"
 			@select-only-albums="selectOnlyAlbums"
 			@select-only-playlists="selectOnlyPlaylists"
+			@deselect-filters="deselectFilters"
 		/>
 
 		<Closed

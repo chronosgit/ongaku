@@ -36,7 +36,7 @@
 		<!-- No items -->
 		<!-- TODO: update message if filters -->
 		<p v-else>
-			{{ $t('modules.sidebar-library.opened.no-items') }}
+			<span>{{ $t('modules.sidebar-library.opened.no-items') }}</span>
 		</p>
 	</template>
 </template>

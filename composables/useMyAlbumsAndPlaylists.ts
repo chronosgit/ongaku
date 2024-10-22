@@ -77,6 +77,7 @@ export default function () {
 
 	const selectOnlyAlbums = () => (filter.value = 'album');
 	const selectOnlyPlaylists = () => (filter.value = 'playlist');
+	const deselectFilters = () => (filter.value = null);
 
 	watch([allItems, filter], (newValues) => {
 		const newAllItems = newValues[0];
@@ -104,5 +105,6 @@ export default function () {
 		fetch,
 		selectOnlyAlbums,
 		selectOnlyPlaylists,
+		deselectFilters,
 	};
 }
