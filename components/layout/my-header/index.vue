@@ -28,7 +28,7 @@
 		<!-- Left side -->
 		<WrapperIconRound
 			v-if="curUserStore.isAuthenticated"
-			class="group cursor-pointer"
+			class="group cursor-pointer p-3"
 			@click="layoutStore.toggleLeftSideVisibility()"
 		>
 			<IconLibrary
@@ -42,7 +42,7 @@
 		<!-- Middle side -->
 		<div class="flex items-center gap-3">
 			<WrapperIconRound
-				class="group cursor-pointer"
+				class="group cursor-pointer p-3"
 				@click="navigateTo(localePath('/'))"
 			>
 				<IconHouse
@@ -53,7 +53,7 @@
 			<!-- TODO: super-responsive searchbar with logic -->
 			<WrapperIconRound
 				v-if="curUserStore.isAuthenticated"
-				class="group cursor-pointer"
+				class="group cursor-pointer p-3"
 			>
 				<IconMagnifier
 					class="scale-150 text-[#b3b3b3] transition-colors group-hover:text-white"
@@ -63,7 +63,10 @@
 
 		<!-- Right side -->
 		<!-- Mobile -->
-		<WrapperIconRound class="group cursor-pointer md:hidden" @click="open()">
+		<WrapperIconRound
+			class="group cursor-pointer p-3 md:hidden"
+			@click="open()"
+		>
 			<IconBurgerMenu
 				class="scale-150 text-[#b3b3b3] transition-colors group-hover:text-white"
 			/>

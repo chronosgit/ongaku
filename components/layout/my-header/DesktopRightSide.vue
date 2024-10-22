@@ -24,7 +24,7 @@
 				<div
 					class="flex h-8 w-8 items-center justify-center rounded-full bg-red-400"
 				>
-					{{ curUserStore.user?.display_name.slice(0, 1) }}
+					{{ curUserStore.user?.display_name?.slice(0, 1) }}
 				</div>
 			</div>
 		</template>
