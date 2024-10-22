@@ -22,10 +22,7 @@
 </script>
 
 <template>
-	<div
-		class="h-full overflow-x-hidden px-4 scrollbar scrollbar-thumb-gray-300 scrollbar-thumb-rounded-lg scrollbar-w-1 dark:scrollbar-thumb-[#1d1d1d]"
-		:class="props.isLoading ? 'overflow-y-hidden' : 'overflow-y-auto'"
-	>
+	<div class="h-full px-4">
 		<!-- First row -->
 		<div class="mb-4 flex items-center justify-between">
 			<!-- My library toggler -->
@@ -68,6 +65,11 @@
 			@deselect-filters="emit('deselectFilters')"
 		/>
 
-		<Items :items="props.items" :is-loading="isLoading" />
+		<div
+			class="max-h-[39rem] overflow-x-hidden scrollbar scrollbar-thumb-gray-300 scrollbar-thumb-rounded-lg scrollbar-w-1 dark:scrollbar-thumb-[#1d1d1d]"
+			:class="props.isLoading ? 'overflow-y-hidden' : 'overflow-y-auto'"
+		>
+			<Items :items="props.items" :is-loading="isLoading" />
+		</div>
 	</div>
 </template>
