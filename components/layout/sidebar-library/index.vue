@@ -5,7 +5,14 @@
 
 	const layoutStore = useLayoutStore();
 
-	const { items, isLoading, fetch } = useMyAlbumsAndPlaylists();
+	const {
+		items,
+		filter,
+		isLoading,
+		fetch,
+		selectOnlyAlbums,
+		selectOnlyPlaylists,
+	} = useMyAlbumsAndPlaylists();
 
 	onMounted(() => fetch());
 </script>
@@ -22,7 +29,14 @@
 			'max-w-20': !layoutStore.isLeftSideOpen,
 		}"
 	>
-		<Opened v-if="layoutStore.isLeftSideOpen" :items="items" />
+		<Opened
+			v-if="layoutStore.isLeftSideOpen"
+			:items="items"
+			:is-loading="isLoading"
+			:filter="filter"
+			@select-only-albums="selectOnlyAlbums"
+			@select-only-playlists="selectOnlyPlaylists"
+		/>
 
 		<Closed
 			v-if="!layoutStore.isLeftSideOpen"

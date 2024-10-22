@@ -1,17 +1,27 @@
 <script setup lang="ts">
 	import { useLayoutStore } from '~/store/useLayoutStore';
-	import { IconLibrary, IconPlus } from '~/components/ui/icons';
-	import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
 	import Tooltip from '~/components/utils/Tooltip.vue';
+	import { IconLibrary, IconPlus } from '~/components/ui/icons';
+	import Items from './Items.vue';
+	import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
+	import Filters from './Filters.vue';
 
 	const props = defineProps<{
 		items: IMediaAlbumOrPlaylist[] | null;
+		filter: 'album' | 'playlist' | null;
+		isLoading: boolean;
 	}>();
+
+	const emit = defineEmits<{
+		(e: 'selectOnlyAlbums'): void;
+		(e: 'selectOnlyPlaylists'): void;
+	}>();
+
 	const layoutStore = useLayoutStore();
 </script>
 
 <template>
-	<div class="h-full px-4">
+	<div class="h-full px-3">
 		<!-- First row -->
 		<div class="mb-4 flex items-center justify-between">
 			<!-- My library toggler -->
@@ -44,21 +54,13 @@
 			</div>
 		</div>
 
-		<!-- Filters row -->
-		<div class="flex items-center gap-2">
-			<div
-				class="cursor-pointer rounded-full bg-gray-800 px-4 py-1 text-gray-500 transition-colors hover:bg-gray-600 hover:text-white"
-				@click="console.log('Fetch with playlists filter')"
-			>
-				Playlists
-			</div>
+		<!-- Second row -->
+		<Filters
+			class="mb-4"
+			@select-only-albums="emit('selectOnlyAlbums')"
+			@select-only-playlists="emit('selectOnlyPlaylists')"
+		/>
 
-			<div
-				class="cursor-pointer rounded-full bg-gray-800 px-4 py-1 text-gray-500 transition-colors hover:bg-gray-600 hover:text-white"
-				@click="console.log('Fetch with albums filter')"
-			>
-				Albums
-			</div>
-		</div>
+		<Items :items="props.items" :is-loading="isLoading" />
 	</div>
 </template>

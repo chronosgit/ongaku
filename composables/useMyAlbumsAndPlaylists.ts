@@ -3,18 +3,22 @@ import type IMyAlbum from '~/interfaces/IMyAlbum';
 import type ISimplifiedPlaylist from '~/interfaces/ISimplifiedPlaylist';
 
 export default function () {
+	const items = ref<IMediaAlbumOrPlaylist[]>([]);
+
+	const filter = ref<'album' | 'playlist' | null>(null);
+
 	const offset = ref(0);
 	const limit = 10;
 
 	const {
-		data: items,
+		data: allItems,
 		status,
 		execute: fetch,
 	} = useLazyAsyncData(
 		'useMyAlbumsAndPlaylists',
 		async () => {
 			try {
-				await delay(3000);
+				await delay(2000);
 
 				// Getting my playlists
 				const r1 = await $fetch('/api/me/playlists', {
@@ -71,5 +75,34 @@ export default function () {
 
 	const isLoading = computed(() => status.value === 'pending');
 
-	return { items, isLoading, fetch };
+	const selectOnlyAlbums = () => (filter.value = 'album');
+	const selectOnlyPlaylists = () => (filter.value = 'playlist');
+
+	watch([allItems, filter], (newValues) => {
+		const newAllItems = newValues[0];
+		const newFilter = newValues[1];
+
+		if (newAllItems == null) {
+			items.value = [];
+			return;
+		}
+
+		if (newFilter == null) {
+			items.value = newAllItems;
+			return;
+		}
+
+		items.value = newAllItems.filter((i) => i.type === newFilter);
+
+		console.log(items.value);
+	});
+
+	return {
+		items,
+		isLoading,
+		filter,
+		fetch,
+		selectOnlyAlbums,
+		selectOnlyPlaylists,
+	};
 }
