@@ -65,6 +65,7 @@
 		}
 	},
 	"dictionary": {
-		"playlist": "Playlist"
+		"playlist": "Playlist",
+		"album": "Album"
 	}
 }
