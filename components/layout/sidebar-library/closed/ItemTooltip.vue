@@ -13,7 +13,7 @@
 		<p>{{ props.name }}</p>
 
 		<div class="text-xs dark:text-gray-400">
-			{{ $t(`dictionary.${props.type}`) }} &#x2022; {{ props.owner }}
+			{{ $t(`dictionary.${props.type}.one`) }} &#x2022; {{ props.owner }}
 		</div>
 	</div>
 </template>

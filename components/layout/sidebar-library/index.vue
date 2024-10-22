@@ -22,7 +22,7 @@
 			'max-w-20': !layoutStore.isLeftSideOpen,
 		}"
 	>
-		<!-- <Opened v-if="layoutStore.isLeftSideOpen" :playlists="myPlaylists" /> -->
+		<Opened v-if="layoutStore.isLeftSideOpen" :items="items" />
 
 		<Closed
 			v-if="!layoutStore.isLeftSideOpen"

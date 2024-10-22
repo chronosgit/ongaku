@@ -1,10 +1,11 @@
 <script setup lang="ts">
 	import { useLayoutStore } from '~/store/useLayoutStore';
-	import type IPlaylist from '~/interfaces/IPlaylist';
 	import { IconLibrary, IconPlus } from '~/components/ui/icons';
+	import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
+	import Tooltip from '~/components/utils/Tooltip.vue';
 
 	const props = defineProps<{
-		playlists: IPlaylist[] | null;
+		items: IMediaAlbumOrPlaylist[] | null;
 	}>();
 	const layoutStore = useLayoutStore();
 </script>
@@ -29,23 +30,31 @@
 				</p>
 			</div>
 
-			<IconPlus
-				class="scale-150 cursor-pointer text-gray-400 transition-colors hover:text-black dark:hover:text-white"
-				@click="console.log('Create playlist')"
-			/>
+			<div class="relative">
+				<IconPlus
+					class="peer scale-150 cursor-pointer text-gray-400 transition-colors hover:text-black dark:hover:text-white"
+					@click="console.log('Create playlist')"
+				/>
+
+				<Tooltip
+					class="bottom-0 w-max -translate-y-7 opacity-0 transition-opacity peer-hover:opacity-100"
+				>
+					{{ $t('modules.sidebar-library.opened.add-playlist-tooltip') }}
+				</Tooltip>
+			</div>
 		</div>
 
 		<!-- Filters row -->
 		<div class="flex items-center gap-2">
 			<div
-				class="cursor-pointer rounded-full bg-gray-300 px-4 py-1 text-gray-700 transition-colors hover:bg-gray-400 hover:text-white"
+				class="cursor-pointer rounded-full bg-gray-800 px-4 py-1 text-gray-500 transition-colors hover:bg-gray-600 hover:text-white"
 				@click="console.log('Fetch with playlists filter')"
 			>
 				Playlists
 			</div>
 
 			<div
-				class="cursor-pointer rounded-full bg-gray-300 px-4 py-1 text-gray-700 transition-colors hover:bg-gray-400 hover:text-white"
+				class="cursor-pointer rounded-full bg-gray-800 px-4 py-1 text-gray-500 transition-colors hover:bg-gray-600 hover:text-white"
 				@click="console.log('Fetch with albums filter')"
 			>
 				Albums
