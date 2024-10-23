@@ -58,7 +58,6 @@
 			"closed": {
 				"no-playlists": "Нет плейлистов"
 			},
-
 			"opened": {
 				"my-library": "Моя библиотека",
 				"add-playlist-tooltip": "Создать плейлист",
@@ -67,6 +66,11 @@
 				"no-items": "Нет плейлистов или альбомов",
 				"no-playlists": "Нет плейлистов",
 				"no-albums": "Нет альбомов"
+			},
+			"item-context-menu": {
+				"edit-playlist": "Изменить сведения",
+				"delete-playlist": "Удалить",
+				"delete-album": "Удалить из медиатеки"
 			}
 		}
 	},
