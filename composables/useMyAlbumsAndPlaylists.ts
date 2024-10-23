@@ -1,3 +1,4 @@
+import type IImage from '~/interfaces/IImage';
 import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
 import type IMyAlbum from '~/interfaces/IMyAlbum';
 import type ISimplifiedPlaylist from '~/interfaces/ISimplifiedPlaylist';
@@ -10,15 +11,18 @@ export default function () {
 	const offset = ref(0);
 	const limit = 10;
 
+	const noLoadingIndicatorFlag = ref(false);
+
 	const {
 		data: allItems,
 		status,
 		execute: fetch,
+		refresh,
 	} = useLazyAsyncData(
 		'useMyAlbumsAndPlaylists',
 		async () => {
 			try {
-				await delay(3000);
+				await delay(1000);
 
 				// Getting my playlists
 				const r1 = await $fetch('/api/me/playlists', {
@@ -43,7 +47,7 @@ export default function () {
 						name: p.name,
 						type: 'playlist',
 						owner: p.owner.display_name,
-						image: p.images[0],
+						image: p.images ? p.images[0] : ({} as IImage),
 					})
 				);
 
@@ -57,7 +61,7 @@ export default function () {
 							name: album.name,
 							type: 'album',
 							owner: album.artists[0].name,
-							image: album.images[0],
+							image: album.images ? album.images[0] : ({} as IImage),
 						});
 					});
 
@@ -73,11 +77,18 @@ export default function () {
 		}
 	);
 
-	const isLoading = computed(() => status.value === 'pending');
+	const isLoading = computed(
+		() => status.value === 'pending' && !noLoadingIndicatorFlag.value
+	);
 
 	const selectOnlyAlbums = () => (filter.value = 'album');
 	const selectOnlyPlaylists = () => (filter.value = 'playlist');
 	const deselectFilters = () => (filter.value = null);
+	const refetchMediaItems = () => {
+		noLoadingIndicatorFlag.value = true;
+
+		fetch().finally(() => (noLoadingIndicatorFlag.value = false));
+	};
 
 	watch([allItems, filter], (newValues) => {
 		const newAllItems = newValues[0];
@@ -100,6 +111,7 @@ export default function () {
 		items,
 		isLoading,
 		filter,
+		refetch: refetchMediaItems,
 		fetch,
 		selectOnlyAlbums,
 		selectOnlyPlaylists,

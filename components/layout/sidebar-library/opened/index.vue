@@ -16,6 +16,7 @@
 		(e: 'selectOnlyAlbums'): void;
 		(e: 'selectOnlyPlaylists'): void;
 		(e: 'deselectFilters'): void;
+		(e: 'refetchMediaItems'): void;
 	}>();
 
 	const layoutStore = useLayoutStore();
@@ -46,7 +47,7 @@
 			<div class="relative">
 				<IconPlus
 					class="peer scale-150 cursor-pointer text-gray-400 transition-colors hover:text-black dark:hover:text-white"
-					@click="createNewPlaylist('Dev1', 'Bumi')"
+					@click="createNewPlaylist().then(() => emit('refetchMediaItems'))"
 				/>
 
 				<Tooltip

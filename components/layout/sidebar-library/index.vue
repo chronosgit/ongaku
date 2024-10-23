@@ -10,6 +10,7 @@
 		filter,
 		isLoading,
 		fetch,
+		refetch,
 		selectOnlyAlbums,
 		selectOnlyPlaylists,
 		deselectFilters,
@@ -38,6 +39,7 @@
 			@select-only-albums="selectOnlyAlbums"
 			@select-only-playlists="selectOnlyPlaylists"
 			@deselect-filters="deselectFilters"
+			@refetch-media-items="refetch"
 		/>
 
 		<Closed

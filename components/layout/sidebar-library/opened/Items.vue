@@ -1,4 +1,5 @@
 <script setup lang="ts">
+	import { IconQuestionMark } from '~/components/ui/icons';
 	import ItemsSkeleton from './ItemsSkeleton.vue';
 	import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
 
@@ -21,7 +22,20 @@
 				class="cursor-pointer rounded-md p-1.5 transition-colors hover:bg-gray-200 dark:hover:bg-[#252525]"
 			>
 				<div class="flex items-center gap-2">
-					<NuxtImg :src="i.image.url" class="w-full max-w-12 rounded-md" />
+					<NuxtImg
+						v-if="i.image.url"
+						:src="i.image.url"
+						class="w-full max-w-12 rounded-md"
+					/>
+
+					<div
+						v-else
+						class="flex h-12 w-12 items-center justify-center rounded-md bg-zinc-300 dark:bg-zinc-700"
+					>
+						<IconQuestionMark
+							class="scale-150 text-zinc-400 dark:text-zinc-500"
+						/>
+					</div>
 
 					<div class="">
 						<p>{{ i.name }}</p>
