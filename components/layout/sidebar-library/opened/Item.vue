@@ -1,6 +1,5 @@
 <script setup lang="ts">
 	import ItemContextMenu from '../ItemContextMenu.vue';
-	import ItemTooltip from './ItemTooltip.vue';
 	import { IconQuestionMark } from '~/components/ui/icons';
 	import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
 
@@ -32,29 +31,34 @@
 
 <template>
 	<div
-		class="group relative flex h-16 w-16 cursor-pointer items-center justify-center rounded-md transition-colors hover:bg-gray-200 dark:hover:bg-[#252525]"
+		class="flex cursor-pointer items-center gap-2 rounded-md p-1.5 transition-colors hover:bg-gray-200 dark:hover:bg-[#252525]"
 		@contextmenu.prevent="onItemRightClick($event)"
 	>
+		<!-- Image -->
 		<NuxtImg
 			v-if="props.item.image.url"
 			:src="props.item.image.url"
-			class="h-4/5 w-4/5 rounded-md"
+			class="w-full max-w-12 rounded-md"
 		/>
 
 		<div
 			v-else
-			class="flex h-4/5 w-4/5 items-center justify-center rounded-md bg-zinc-300 dark:bg-zinc-700"
+			class="flex h-12 w-12 items-center justify-center rounded-md bg-zinc-300 dark:bg-zinc-700"
 		>
 			<IconQuestionMark class="scale-150 text-zinc-400 dark:text-zinc-500" />
 		</div>
 
-		<ItemTooltip
-			:name="props.item.name"
-			:type="props.item.type"
-			:owner="props.item.owner"
-			class="group-hover:block"
-		/>
+		<!-- Details -->
+		<div>
+			<p>{{ props.item.name }}</p>
 
+			<p class="text-xs text-gray-400">
+				{{ $t(`dictionary.${props.item.type}.one`) }} &#x2022;
+				{{ props.item.owner }}
+			</p>
+		</div>
+
+		<!-- Context menu -->
 		<Teleport to="body">
 			<ItemContextMenu
 				:ref="`sidebar-library-item-${props.item.id}`"

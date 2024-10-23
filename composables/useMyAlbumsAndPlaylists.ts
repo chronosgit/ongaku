@@ -22,7 +22,7 @@ export default function () {
 		'useMyAlbumsAndPlaylists',
 		async () => {
 			try {
-				await delay(1000);
+				await delay(500);
 
 				// Getting my playlists
 				const r1 = await $fetch('/api/me/playlists', {
