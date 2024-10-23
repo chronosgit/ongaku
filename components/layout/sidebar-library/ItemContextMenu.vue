@@ -14,13 +14,19 @@
 	const { deleteMyPlaylist } = useMyPlaylists();
 
 	const localRemoveItemById = inject('localRemoveItemById') as Function;
+	const openEditPlaylistForm = inject('openEditPlaylistForm') as Function;
 
-	const onPlaylistDelete = () => {
+	const onDeletePlaylistClick = () => {
 		deleteMyPlaylist(props.playlistId).then(() => {
 			emit('closeContextMenu');
 
 			localRemoveItemById(props.playlistId);
 		});
+	};
+
+	const onEditPlaylistClick = () => {
+		emit('closeContextMenu');
+		openEditPlaylistForm();
 	};
 </script>
 
@@ -34,7 +40,7 @@
 			<!-- Delete my playlist -->
 			<div
 				class="group flex cursor-pointer items-center gap-2 px-2 py-1 transition-colors hover:bg-zinc-300 dark:hover:bg-zinc-900"
-				@click="onPlaylistDelete"
+				@click="onDeletePlaylistClick()"
 			>
 				<IconDelete class="scale-125 text-zinc-600 dark:text-zinc-300" />
 
@@ -46,6 +52,7 @@
 			<!-- Edit my playlist -->
 			<div
 				class="flex cursor-pointer items-center gap-2 px-2 py-1 transition-colors hover:bg-zinc-300 dark:hover:bg-zinc-900"
+				@click="onEditPlaylistClick()"
 			>
 				<IconEdit class="scale-125 text-zinc-600 dark:text-zinc-300" />
 
