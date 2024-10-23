@@ -12,3 +12,4 @@ export { default as IconSun } from './Sun.vue';
 export { default as IconUser } from './User.vue';
 export { default as IconPlus } from './Plus.vue';
 export { default as IconClose } from './Close.vue';
+export { default as IconQuestionMark } from './QuestionMark.vue';
