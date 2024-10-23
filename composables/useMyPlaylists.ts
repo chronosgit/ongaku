@@ -36,5 +36,19 @@ export default function () {
 		}
 	};
 
-	return { createNewPlaylist };
+	const deleteMyPlaylist = async (playlistId: string) => {
+		try {
+			const res = await $fetch(`/api/playlists/${playlistId}/followers`, {
+				method: 'DELETE',
+			});
+
+			return res;
+		} catch (err) {
+			console.error(err);
+
+			throw err;
+		}
+	};
+
+	return { createNewPlaylist, deleteMyPlaylist };
 }

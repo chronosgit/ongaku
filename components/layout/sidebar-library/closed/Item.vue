@@ -6,7 +6,7 @@
 
 	const props = defineProps<{ item: IMediaAlbumOrPlaylist }>();
 
-	const { isActive, activate } = useClickawayClient(
+	const { isActive, activate, disactivate } = useClickawayClient(
 		`sidebar-library-item-${props.item.id}`
 	);
 
@@ -19,8 +19,6 @@
 		};
 
 		activate();
-
-		console.log(ctxMenuCoords.value);
 	};
 
 	// Change computed property to return an object for inline styles
@@ -61,9 +59,11 @@
 		<Teleport to="body">
 			<ItemContextMenu
 				:ref="`sidebar-library-item-${props.item.id}`"
-				:type="props.item.type"
+				:playlist-id="props.item.id"
+				:playlist-type="props.item.type"
 				:is-visible="isActive"
 				:style="ctxMenuStyle"
+				@close-context-menu="disactivate"
 			/>
 		</Teleport>
 	</div>

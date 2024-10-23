@@ -2,9 +2,26 @@
 	import { IconCheck, IconDelete, IconEdit } from '~/components/ui/icons';
 
 	const props = defineProps<{
-		type: 'playlist' | 'album';
+		playlistId: string;
+		playlistType: 'playlist' | 'album';
 		isVisible: boolean;
 	}>();
+
+	const emit = defineEmits<{
+		(e: 'closeContextMenu'): void;
+	}>();
+
+	const { deleteMyPlaylist } = useMyPlaylists();
+
+	const localRemoveItemById = inject('localRemoveItemById') as Function;
+
+	const onPlaylistDelete = () => {
+		deleteMyPlaylist(props.playlistId).then(() => {
+			emit('closeContextMenu');
+
+			localRemoveItemById(props.playlistId);
+		});
+	};
 </script>
 
 <template>
@@ -13,9 +30,11 @@
 		:class="{ block: props.isVisible, hidden: !props.isVisible }"
 	>
 		<!-- Playlist only feature -->
-		<template v-if="props.type === 'playlist'">
+		<template v-if="props.playlistType === 'playlist'">
+			<!-- Delete my playlist -->
 			<div
 				class="group flex cursor-pointer items-center gap-2 px-2 py-1 transition-colors hover:bg-zinc-300 dark:hover:bg-zinc-900"
+				@click="onPlaylistDelete"
 			>
 				<IconDelete class="scale-125 text-zinc-600 dark:text-zinc-300" />
 
@@ -24,6 +43,7 @@
 				</p>
 			</div>
 
+			<!-- Edit my playlist -->
 			<div
 				class="flex cursor-pointer items-center gap-2 px-2 py-1 transition-colors hover:bg-zinc-300 dark:hover:bg-zinc-900"
 			>
@@ -37,6 +57,7 @@
 
 		<!-- Album only feature -->
 		<template v-else>
+			<!-- Remove artist album from library -->
 			<div
 				class="group flex cursor-pointer items-center gap-2 px-2 py-1 transition-colors hover:bg-zinc-300 dark:hover:bg-zinc-900"
 			>

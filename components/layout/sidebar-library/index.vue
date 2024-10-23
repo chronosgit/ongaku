@@ -14,9 +14,12 @@
 		selectOnlyAlbums,
 		selectOnlyPlaylists,
 		deselectFilters,
+		localRemoveItemById,
 	} = useMyAlbumsAndPlaylists();
 
 	onMounted(() => fetch());
+
+	provide('localRemoveItemById', localRemoveItemById);
 </script>
 
 <template>

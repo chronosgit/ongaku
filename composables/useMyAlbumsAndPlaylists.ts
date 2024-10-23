@@ -84,10 +84,16 @@ export default function () {
 	const selectOnlyAlbums = () => (filter.value = 'album');
 	const selectOnlyPlaylists = () => (filter.value = 'playlist');
 	const deselectFilters = () => (filter.value = null);
+
 	const refetchMediaItems = () => {
 		noLoadingIndicatorFlag.value = true;
 
 		fetch().finally(() => (noLoadingIndicatorFlag.value = false));
+	};
+
+	const localRemoveItemById = (playlistId: string) => {
+		allItems.value = (allItems.value ?? []).filter((i) => i.id !== playlistId);
+		items.value = items.value.filter((i) => i.id !== playlistId);
 	};
 
 	watch([allItems, filter], (newValues) => {
@@ -116,5 +122,6 @@ export default function () {
 		selectOnlyAlbums,
 		selectOnlyPlaylists,
 		deselectFilters,
+		localRemoveItemById,
 	};
 }
