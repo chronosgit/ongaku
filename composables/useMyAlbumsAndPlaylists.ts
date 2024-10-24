@@ -22,6 +22,7 @@ export default function () {
 		'useMyAlbumsAndPlaylists',
 		async () => {
 			try {
+				// WARN: Artifical delay
 				await delay(500);
 
 				// Getting my playlists
@@ -45,6 +46,7 @@ export default function () {
 					mediaItems.push({
 						id: p.id,
 						name: p.name,
+						description: p.description,
 						type: 'playlist',
 						owner: p.owner.display_name,
 						image: p.images ? p.images[0] : ({} as IImage),

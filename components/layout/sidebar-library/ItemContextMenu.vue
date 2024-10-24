@@ -1,9 +1,9 @@
 <script setup lang="ts">
 	import { IconCheck, IconDelete, IconEdit } from '~/components/ui/icons';
+	import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
 
 	const props = defineProps<{
-		playlistId: string;
-		playlistType: 'playlist' | 'album';
+		playlist: IMediaAlbumOrPlaylist;
 		isVisible: boolean;
 	}>();
 
@@ -14,19 +14,19 @@
 	const { deleteMyPlaylist } = useMyPlaylists();
 
 	const localRemoveItemById = inject('localRemoveItemById') as Function;
-	const openEditPlaylistForm = inject('openEditPlaylistForm') as Function;
+	const editPlaylist = inject('editPlaylist') as Function;
 
 	const onDeletePlaylistClick = () => {
-		deleteMyPlaylist(props.playlistId).then(() => {
+		deleteMyPlaylist(props.playlist.id).then(() => {
 			emit('closeContextMenu');
 
-			localRemoveItemById(props.playlistId);
+			localRemoveItemById(props.playlist.id);
 		});
 	};
 
 	const onEditPlaylistClick = () => {
 		emit('closeContextMenu');
-		openEditPlaylistForm();
+		editPlaylist(props.playlist);
 	};
 </script>
 
@@ -36,7 +36,7 @@
 		:class="{ block: props.isVisible, hidden: !props.isVisible }"
 	>
 		<!-- Playlist only feature -->
-		<template v-if="props.playlistType === 'playlist'">
+		<template v-if="props.playlist.type === 'playlist'">
 			<!-- Delete my playlist -->
 			<div
 				class="group flex cursor-pointer items-center gap-2 px-2 py-1 transition-colors hover:bg-zinc-300 dark:hover:bg-zinc-900"

@@ -62,8 +62,7 @@
 		<Teleport to="body">
 			<ItemContextMenu
 				:ref="`sidebar-library-item-${props.item.id}`"
-				:playlist-id="props.item.id"
-				:playlist-type="props.item.type"
+				:playlist="props.item"
 				:is-visible="isActive"
 				:style="ctxMenuStyle"
 				@close-context-menu="disactivate"

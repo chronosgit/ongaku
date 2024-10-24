@@ -1,5 +1,10 @@
 import { useCurrentUserStore } from '~/store/useCurrentUserStore';
 
+interface UpdatePlaylistPayload {
+	name?: string;
+	descr?: string;
+}
+
 export default function () {
 	const createNewPlaylist = async (
 		isPublic: boolean = true,
@@ -34,6 +39,29 @@ export default function () {
 		}
 	};
 
+	const updateMyPlaylist = async (
+		playlistId: string,
+		payload: UpdatePlaylistPayload
+	) => {
+		try {
+			const res = await $fetch(`/api/playlists/${playlistId}`, {
+				method: 'PUT',
+				body: {
+					name: payload.name,
+					description: payload.descr,
+					public: true,
+					collaborative: false,
+				},
+			});
+
+			return res;
+		} catch (err) {
+			console.error(err);
+
+			throw err;
+		}
+	};
+
 	const deleteMyPlaylist = async (playlistId: string) => {
 		try {
 			const res = await $fetch(`/api/playlists/${playlistId}/followers`, {
@@ -48,5 +76,5 @@ export default function () {
 		}
 	};
 
-	return { createNewPlaylist, deleteMyPlaylist };
+	return { createNewPlaylist, updateMyPlaylist, deleteMyPlaylist };
 }
