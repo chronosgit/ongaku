@@ -75,7 +75,8 @@
 			"edit-playlist-form": {
 				"title": "Изменение сведений",
 				"input-name-placeholder": "Мой классный плейлист",
-				"input-descr-placeholder": "Добавить описание (необязательно)"
+				"input-descr-placeholder": "Добавить описание (необязательно)",
+				"image-choose": "Выберите фото"
 			}
 		}
 	},

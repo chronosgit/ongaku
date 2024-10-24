@@ -75,7 +75,8 @@
 			"edit-playlist-form": {
 				"title": "Editing details",
 				"input-name-placeholder": "My cool playlist",
-				"input-descr-placeholder": "Add description (not required)"
+				"input-descr-placeholder": "Add description (not required)",
+				"image-choose": "Choose image"
 			}
 		}
 	},
