@@ -76,7 +76,9 @@
 				"title": "Изменение сведений",
 				"input-name-placeholder": "Мой классный плейлист",
 				"input-descr-placeholder": "Добавить описание (необязательно)",
-				"image-choose": "Выберите фото"
+				"image-choose": "Выберите фото",
+				"image-change": "Сменить фото",
+				"image-delete": "Удалить фото"
 			}
 		}
 	},

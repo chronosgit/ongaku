@@ -76,7 +76,9 @@
 				"title": "Editing details",
 				"input-name-placeholder": "My cool playlist",
 				"input-descr-placeholder": "Add description (not required)",
-				"image-choose": "Choose image"
+				"image-choose": "Choose image",
+				"image-change": "Replace image",
+				"image-delete": "Delete image"
 			}
 		}
 	},
