@@ -71,6 +71,11 @@
 				"edit-playlist": "Edit details",
 				"delete-playlist": "Remove playlist",
 				"delete-album": "Remove from library"
+			},
+			"edit-playlist-form": {
+				"title": "Editing details",
+				"input-name-placeholder": "My cool playlist",
+				"input-descr-placeholder": "Add description (not required)"
 			}
 		}
 	},
@@ -82,6 +87,7 @@
 		"album": {
 			"one": "Album",
 			"many": "Albums"
-		}
+		},
+		"save": "Save"
 	}
 }
