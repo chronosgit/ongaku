@@ -10,6 +10,7 @@
 
 	const emit = defineEmits<{
 		(e: 'closeEditPlaylistForm'): void;
+		(e: 'onUpdatePlaylist'): void;
 	}>();
 
 	const name = ref('');
@@ -83,9 +84,10 @@
 			<button
 				class="ml-auto block rounded-full bg-black px-4 py-2 text-sm font-bold text-white dark:bg-white dark:text-black"
 				@click="
-					updateMyPlaylist(props.playlist.id, { name, descr }).then(() =>
-						emit('closeEditPlaylistForm')
-					)
+					updateMyPlaylist(props.playlist.id, { name, descr }).then(() => {
+						emit('onUpdatePlaylist');
+						emit('closeEditPlaylistForm');
+					})
 				"
 			>
 				{{ $t('dictionary.save') }}

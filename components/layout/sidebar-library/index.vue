@@ -86,6 +86,7 @@
 				:playlist="editablePlaylist"
 				:is-visible="isOpenEditForm"
 				@close-edit-playlist-form="closeEditForm()"
+				@on-update-playlist="refetch()"
 			/>
 		</Teleport>
 	</aside>
