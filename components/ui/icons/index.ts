@@ -16,3 +16,4 @@ export { default as IconQuestionMark } from './QuestionMark.vue';
 export { default as IconEdit } from './Edit.vue';
 export { default as IconDelete } from './Delete.vue';
 export { default as IconCheck } from './Check.vue';
+export { default as IconBuild } from './Build.vue';
