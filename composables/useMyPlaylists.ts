@@ -1,9 +1,7 @@
 import { useCurrentUserStore } from '~/store/useCurrentUserStore';
 
 export default function () {
-	const createNewPlaylist = (
-		name: string,
-		descr?: string,
+	const createNewPlaylist = async (
 		isPublic: boolean = true,
 		collaborative: boolean = false
 	) => {
@@ -14,36 +12,41 @@ export default function () {
 			return;
 		}
 
-		const { execute } = useAsyncData(
-			'createNewPlaylist',
-			async () => {
-				try {
-					const res = await $fetch(`/api/users/${user.id}/playlists`, {
-						method: 'POST',
-						body: {
-							name,
-							public: isPublic,
-							collaborative,
-							description: descr,
-						},
-					});
+		try {
+			const now = new Date();
+			const dt = `${now.getDate().toString().padStart(2, '0')}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getFullYear()}.${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
 
-					console.log(res);
+			const res = await $fetch(`/api/users/${user.id}/playlists`, {
+				method: 'POST',
+				body: {
+					name: `Playlist_${dt}`,
+					public: isPublic,
+					collaborative,
+					description: '',
+				},
+			});
 
-					return res;
-				} catch (err) {
-					console.error(err);
+			return res;
+		} catch (err) {
+			console.error(err);
 
-					return err;
-				}
-			},
-			{
-				immediate: false,
-			}
-		);
-
-		execute();
+			return err;
+		}
 	};
 
-	return { createNewPlaylist };
+	const deleteMyPlaylist = async (playlistId: string) => {
+		try {
+			const res = await $fetch(`/api/playlists/${playlistId}/followers`, {
+				method: 'DELETE',
+			});
+
+			return res;
+		} catch (err) {
+			console.error(err);
+
+			throw err;
+		}
+	};
+
+	return { createNewPlaylist, deleteMyPlaylist };
 }

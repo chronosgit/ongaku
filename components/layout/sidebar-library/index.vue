@@ -2,6 +2,7 @@
 	import { useLayoutStore } from '~/store/useLayoutStore';
 	import Closed from './closed/index.vue';
 	import Opened from './opened/index.vue';
+	import EditPlaylistForm from './EditPlaylistForm.vue';
 
 	const layoutStore = useLayoutStore();
 
@@ -10,12 +11,23 @@
 		filter,
 		isLoading,
 		fetch,
+		refetch,
 		selectOnlyAlbums,
 		selectOnlyPlaylists,
 		deselectFilters,
+		localRemoveItemById,
 	} = useMyAlbumsAndPlaylists();
 
+	const {
+		isActive: isOpenEditForm,
+		activate: openEditForm,
+		disactivate: closeEditForm,
+	} = useClickawayClient('sidebar-library-edit-playlist-form');
+
 	onMounted(() => fetch());
+
+	provide('localRemoveItemById', localRemoveItemById);
+	provide('openEditPlaylistForm', openEditForm);
 </script>
 
 <template>
@@ -38,6 +50,7 @@
 			@select-only-albums="selectOnlyAlbums"
 			@select-only-playlists="selectOnlyPlaylists"
 			@deselect-filters="deselectFilters"
+			@refetch-media-items="refetch"
 		/>
 
 		<Closed
@@ -45,5 +58,13 @@
 			:items="items"
 			:is-loading="isLoading"
 		/>
+
+		<Teleport to="body">
+			<EditPlaylistForm
+				ref="sidebar-library-edit-playlist-form"
+				:is-visible="isOpenEditForm"
+				@close-edit-playlist-form="closeEditForm()"
+			/>
+		</Teleport>
 	</aside>
 </template>
