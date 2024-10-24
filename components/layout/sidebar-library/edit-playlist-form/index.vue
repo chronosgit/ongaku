@@ -51,7 +51,7 @@
 			<!-- Main box -->
 			<div class="mb-2 flex w-full items-center justify-between gap-3">
 				<!-- Add playlist image -->
-				<ImagePrompt />
+				<ImagePrompt :image="props.playlist.image" />
 
 				<!-- Inputs -->
 				<div class="h-full w-full space-y-4">
