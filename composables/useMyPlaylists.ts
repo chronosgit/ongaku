@@ -1,4 +1,5 @@
 import { useCurrentUserStore } from '~/store/useCurrentUserStore';
+import type { FCreateToast } from './useToasts';
 
 interface UpdatePlaylistPayload {
 	name?: string;
@@ -6,6 +7,10 @@ interface UpdatePlaylistPayload {
 }
 
 export default function () {
+	const createToast = inject('createToast') as FCreateToast;
+
+	const { t } = useI18n();
+
 	const { imageBase64, updateImage, deleteImage } = useAddImageClient();
 
 	const createNewPlaylist = async (
@@ -31,6 +36,13 @@ export default function () {
 					collaborative,
 					description: '',
 				},
+			});
+
+			createToast({
+				id: generateRandomString(),
+				message: t('modules.sidebar-library.toasts.success-create-playlist'),
+				type: 'success',
+				lifespan: 3000,
 			});
 
 			return res;
