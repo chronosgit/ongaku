@@ -81,7 +81,9 @@
 				"image-delete": "Удалить фото"
 			},
 			"toasts": {
-				"success-create-playlist": "Плейлист создан!"
+				"success-create-playlist": "Плейлист создан!",
+				"success-update-playlist": "Плейлист обновлён!",
+				"success-delete-playlist": "Плейлист удалён!"
 			}
 		}
 	},

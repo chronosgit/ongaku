@@ -81,7 +81,9 @@
 				"image-delete": "Delete image"
 			},
 			"toasts": {
-				"success-create-playlist": "Playlist is created!"
+				"success-create-playlist": "Playlist is created!",
+				"success-update-playlist": "Playlist is updated!",
+				"success-delete-playlist": "Playlist is deleted!"
 			}
 		}
 	},
