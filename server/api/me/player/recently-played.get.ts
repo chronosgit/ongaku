@@ -8,7 +8,7 @@ export default defineEventHandler(async (e) => {
 			params: { limit, after, before },
 		});
 
-		return getSuccessResponse(200, 'Received recently played tracks', { res });
+		return getSuccessResponse(200, 'Received recently played tracks', res);
 	} catch (err) {
 		handleErrorResponse(err);
 	}

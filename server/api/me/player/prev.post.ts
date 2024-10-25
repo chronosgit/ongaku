@@ -9,7 +9,7 @@ export default defineEventHandler(async (e) => {
 			body: { device_id: deviceId },
 		});
 
-		return getSuccessResponse(200, 'Track was skipped to previous', { res });
+		return getSuccessResponse(200, 'Track was skipped to previous', res);
 	} catch (err) {
 		handleErrorResponse(err);
 	}

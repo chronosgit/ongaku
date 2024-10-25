@@ -9,7 +9,7 @@ export default defineEventHandler(async (e) => {
 			body: { device_id: deviceId, state },
 		});
 
-		return getSuccessResponse(200, 'Playback shuffle was toggled', { res });
+		return getSuccessResponse(200, 'Playback shuffle was toggled', res);
 	} catch (err) {
 		handleErrorResponse(err);
 	}

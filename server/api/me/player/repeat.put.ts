@@ -22,7 +22,7 @@ export default defineEventHandler(async (e) => {
 			body: { device_id: deviceId, state },
 		});
 
-		return getSuccessResponse(200, 'Repeat mode was set', { res });
+		return getSuccessResponse(200, 'Repeat mode was set', res);
 	} catch (err) {
 		handleErrorResponse(err);
 	}

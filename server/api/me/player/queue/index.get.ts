@@ -5,7 +5,7 @@ export default defineEventHandler(async (e) => {
 
 		const res = await $spotify('/me/player/queue');
 
-		return getSuccessResponse(200, 'Received my playback queue', { res });
+		return getSuccessResponse(200, 'Received my playback queue', res);
 	} catch (err) {
 		handleErrorResponse(err);
 	}

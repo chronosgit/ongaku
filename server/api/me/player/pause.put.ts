@@ -9,7 +9,7 @@ export default defineEventHandler(async (e) => {
 			body: { device_id: deviceId },
 		});
 
-		return getSuccessResponse(200, 'Playback was paused', { res });
+		return getSuccessResponse(200, 'Playback was paused', res);
 	} catch (err) {
 		handleErrorResponse(err);
 	}

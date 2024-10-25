@@ -9,7 +9,7 @@ export default defineEventHandler(async (e) => {
 			body: { uri, device_id: deviceId },
 		});
 
-		return getSuccessResponse(200, 'Updated my playback queue', { res });
+		return getSuccessResponse(200, 'Updated my playback queue', res);
 	} catch (err) {
 		handleErrorResponse(err);
 	}

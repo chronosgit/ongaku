@@ -25,7 +25,7 @@ export default defineEventHandler(async (e) => {
 			body: { device_id: deviceId, volume_percent: volumePercent },
 		});
 
-		return getSuccessResponse(200, 'Playback volume was set', { res });
+		return getSuccessResponse(200, 'Playback volume was set', res);
 	} catch (err) {
 		handleErrorResponse(err);
 	}
