@@ -61,7 +61,9 @@
 		<!-- Message -->
 		<div class="flex items-center gap-3">
 			<div class="flex items-center justify-center rounded-full bg-white p-0.5">
-				<component :is="icon"></component>
+				<ClientOnly>
+					<component :is="icon"></component>
+				</ClientOnly>
 			</div>
 
 			<p class="w-full text-white">{{ props.toast.message }}</p>
