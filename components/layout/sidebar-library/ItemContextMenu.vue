@@ -2,6 +2,10 @@
 	import { IconCheck, IconDelete, IconEdit } from '~/components/ui/icons';
 	import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
 
+	const localRemoveItemById = inject('localRemoveItemById') as Function;
+	const editPlaylist = inject('editPlaylist') as Function;
+	const refetchMediaItems = inject('refetchMediaItems') as Function;
+
 	const props = defineProps<{
 		playlist: IMediaAlbumOrPlaylist;
 		isVisible: boolean;
@@ -13,8 +17,7 @@
 
 	const { deleteMyPlaylist } = useMyPlaylists();
 
-	const localRemoveItemById = inject('localRemoveItemById') as Function;
-	const editPlaylist = inject('editPlaylist') as Function;
+	const { removeAlbumFromLibrary } = useMyAlbums();
 
 	const onDeletePlaylistClick = () => {
 		deleteMyPlaylist(props.playlist.id).then(() => {
@@ -24,9 +27,12 @@
 		});
 	};
 
-	const onEditPlaylistClick = () => {
-		emit('closeContextMenu');
-		editPlaylist(props.playlist);
+	const onRemoveAlbumClick = () => {
+		removeAlbumFromLibrary(props.playlist.id).then(() => {
+			localRemoveItemById(props.playlist.id);
+
+			refetchMediaItems();
+		});
 	};
 </script>
 
@@ -40,7 +46,9 @@
 			<!-- Edit my playlist -->
 			<div
 				class="flex cursor-pointer items-center gap-2 px-2 py-1 transition-colors hover:bg-zinc-300 dark:hover:bg-zinc-900"
-				@click="onEditPlaylistClick()"
+				@click="
+					editPlaylist(props.playlist).then(() => emit('closeContextMenu'))
+				"
 			>
 				<IconEdit class="scale-125 text-zinc-600 dark:text-zinc-300" />
 
@@ -67,6 +75,7 @@
 			<!-- Remove artist album from library -->
 			<div
 				class="group flex cursor-pointer items-center gap-2 px-2 py-1 transition-colors hover:bg-zinc-300 dark:hover:bg-zinc-900"
+				@click="onRemoveAlbumClick()"
 			>
 				<div
 					class="flex items-center justify-center rounded-full bg-green-500 p-0.5"

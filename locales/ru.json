@@ -83,7 +83,8 @@
 			"toasts": {
 				"success-create-playlist": "Плейлист создан!",
 				"success-update-playlist": "Плейлист обновлён!",
-				"success-delete-playlist": "Плейлист удалён!"
+				"success-delete-playlist": "Плейлист удалён!",
+				"success-remove-album": "Альбом удалён!"
 			}
 		}
 	},

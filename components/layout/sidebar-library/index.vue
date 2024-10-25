@@ -47,6 +47,7 @@
 
 	onMounted(() => fetch());
 
+	provide('refetchMediaItems', refetch);
 	provide('localRemoveItemById', localRemoveItemById);
 	provide('editPlaylist', editPlaylist);
 </script>
