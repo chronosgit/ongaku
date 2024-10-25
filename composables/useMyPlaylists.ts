@@ -68,6 +68,13 @@ export default function () {
 				},
 			});
 
+			createToast({
+				id: generateRandomString(),
+				message: t('modules.sidebar-library.toasts.success-update-playlist'),
+				type: 'success',
+				lifespan: 3000,
+			});
+
 			if (imageBase64.value === '') return res;
 			else if (getStringSizeInKBClient(imageBase64.value) > 256) {
 				console.error('Base64 image size must not exceed 256 KB');
@@ -95,6 +102,13 @@ export default function () {
 		try {
 			const res = await $fetch(`/api/playlists/${playlistId}/followers`, {
 				method: 'DELETE',
+			});
+
+			createToast({
+				id: generateRandomString(),
+				message: t('modules.sidebar-library.toasts.success-delete-playlist'),
+				type: 'success',
+				lifespan: 3000,
 			});
 
 			return res;
