@@ -7,6 +7,6 @@
 
 <template>
 	<div class="flex flex-col items-center gap-1">
-		<Item v-for="i in props.items" :item="i" />
+		<Item v-for="i in props.items" :key="i.id" :item="i" />
 	</div>
 </template>
