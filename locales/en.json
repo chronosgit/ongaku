@@ -79,6 +79,9 @@
 				"image-choose": "Choose image",
 				"image-change": "Replace image",
 				"image-delete": "Delete image"
+			},
+			"toasts": {
+				"success-create-playlist": "Playlist is created!"
 			}
 		}
 	},

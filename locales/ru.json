@@ -79,6 +79,9 @@
 				"image-choose": "Выберите фото",
 				"image-change": "Сменить фото",
 				"image-delete": "Удалить фото"
+			},
+			"toasts": {
+				"success-create-playlist": "Плейлист создан!"
 			}
 		}
 	},
