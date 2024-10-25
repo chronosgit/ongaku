@@ -13,9 +13,8 @@
 		(e: 'onUpdatePlaylist'): void;
 	}>();
 
-	const { imageBase64, updateMyPlaylist, updateImage, deleteImage } =
+	const { updateMyPlaylist, imageBase64, updateImage, deleteImage } =
 		useMyPlaylists();
-
 	const name = ref('');
 	const descr = ref('');
 
@@ -30,7 +29,7 @@
 
 <template>
 	<div
-		class="fixed inset-0 z-[999] items-center justify-center bg-black bg-opacity-70"
+		class="fixed inset-0 z-50 items-center justify-center bg-black bg-opacity-70"
 		:class="{ flex: props.isVisible, hidden: !props.isVisible }"
 		@click.self="emit('closeEditPlaylistForm')"
 	>
