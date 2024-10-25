@@ -18,3 +18,6 @@ export { default as IconDelete } from './Delete.vue';
 export { default as IconCheck } from './Check.vue';
 export { default as IconBuild } from './Build.vue';
 export { default as IconAddPhoto } from './AddPhoto.vue';
+export { default as IconInfo } from './Info.vue';
+export { default as IconExclamation } from './Exclamation.vue';
+export { default as IconFeedback } from './Feedback.vue';
