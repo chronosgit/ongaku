@@ -8,7 +8,12 @@
 	} from '~/components/ui/icons';
 	import type IImage from '~/interfaces/IImage';
 
-	const props = defineProps<{ image: IImage }>();
+	const props = defineProps<{ image: IImage; userImageBase64: string }>();
+
+	const emit = defineEmits<{
+		(e: 'updateImage'): void;
+		(e: 'deleteImage'): void;
+	}>();
 
 	const { isActive: isImgOpts, toggle: toggleImgOpts } = useClickawayClient(
 		'sidebar-library.edit-playlist-form.image'
@@ -18,10 +23,13 @@
 <template>
 	<div class="shrink-0 basis-1/4">
 		<div
-			class="group relative flex aspect-square max-h-full min-h-20 w-full min-w-20 cursor-pointer items-center justify-center rounded-md bg-zinc-200 dark:bg-zinc-800"
+			class="group relative flex aspect-square max-h-full min-h-24 w-full min-w-24 cursor-pointer items-center justify-center rounded-md bg-zinc-200 dark:bg-zinc-800"
 		>
+			<!-- User added avatar (new) -->
+			<NuxtImg v-if="props.userImageBase64" :src="props.userImageBase64" />
+
 			<!-- Existing avatar -->
-			<NuxtImg v-if="props.image?.url" :src="props.image?.url" />
+			<NuxtImg v-else-if="props.image?.url" :src="props.image?.url" />
 
 			<!-- No avatar -->
 			<div v-else class="scale-150">
@@ -40,19 +48,22 @@
 				<!-- Trigger -->
 				<ClientOnly>
 					<IconBuild
-						class="scale-150 text-white sm:scale-[200%]"
-						@click.stop="toggleImgOpts()"
+						class="text- scale-150 text-zinc-500 sm:scale-[200%] dark:text-white"
+						@mousedown.stop="toggleImgOpts()"
 					/>
 				</ClientOnly>
 
 				<!-- Image options dropdown -->
 				<div
 					ref="sidebar-library.edit-playlist-form.image"
-					class="absolute right-0 top-0 z-40 translate-x-16 translate-y-9 space-y-3 rounded-sm p-3 dark:bg-zinc-700"
+					class="absolute right-0 top-0 z-40 translate-x-16 translate-y-9 space-y-3 rounded-sm bg-zinc-300 p-3 dark:bg-zinc-700"
 					:class="{ block: isImgOpts, hidden: !isImgOpts }"
 				>
 					<!-- Change image -->
-					<div class="flex items-center gap-2 dark:text-white">
+					<div
+						class="flex items-center gap-2 dark:text-white"
+						@click="emit('updateImage')"
+					>
 						<ClientOnly>
 							<IconAddPhoto />
 						</ClientOnly>
@@ -65,7 +76,10 @@
 					</div>
 
 					<!-- Delete image -->
-					<div class="flex items-center gap-2 dark:text-white">
+					<div
+						class="flex items-center gap-2 dark:text-white"
+						@click="emit('deleteImage')"
+					>
 						<ClientOnly>
 							<IconDelete />
 						</ClientOnly>
@@ -81,14 +95,21 @@
 
 			<!-- On-hover 'choose image' overlay -->
 			<div
-				class="absolute z-20 hidden h-full w-full flex-col items-center justify-center gap-4 text-white group-hover:flex peer-hover:hidden"
-				:class="{ 'bg-black bg-opacity-50': props.image.url }"
+				class="absolute z-20 hidden h-full w-full flex-col items-center justify-center gap-4 group-hover:flex peer-hover:hidden"
+				:class="{
+					'bg-black bg-opacity-50': props.image.url || props.userImageBase64,
+				}"
+				@click="emit('updateImage')"
 			>
 				<ClientOnly>
-					<IconEdit class="scale-150 sm:scale-[250%]" />
+					<IconEdit
+						class="scale-150 text-zinc-500 sm:scale-[250%] dark:text-white"
+					/>
 				</ClientOnly>
 
-				<p class="text-center text-sm font-medium sm:text-base">
+				<p
+					class="text-center text-sm font-medium text-zinc-500 sm:text-base dark:text-white"
+				>
 					{{ $t('modules.sidebar-library.edit-playlist-form.image-choose') }}
 				</p>
 			</div>

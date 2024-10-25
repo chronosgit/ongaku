@@ -13,10 +13,11 @@
 		(e: 'onUpdatePlaylist'): void;
 	}>();
 
+	const { imageBase64, updateMyPlaylist, updateImage, deleteImage } =
+		useMyPlaylists();
+
 	const name = ref('');
 	const descr = ref('');
-
-	const { updateMyPlaylist } = useMyPlaylists();
 
 	watch(
 		() => props.playlist,
@@ -51,7 +52,12 @@
 			<!-- Main box -->
 			<div class="mb-2 flex w-full items-center justify-between gap-3">
 				<!-- Add playlist image -->
-				<ImagePrompt :image="props.playlist.image" />
+				<ImagePrompt
+					:image="props.playlist.image"
+					:user-image-base64="imageBase64"
+					@update-image="updateImage"
+					@delete-image="deleteImage"
+				/>
 
 				<!-- Inputs -->
 				<div class="h-full w-full space-y-4">

@@ -6,6 +6,8 @@ interface UpdatePlaylistPayload {
 }
 
 export default function () {
+	const { imageBase64, updateImage, deleteImage } = useAddImageClient();
+
 	const createNewPlaylist = async (
 		isPublic: boolean = true,
 		collaborative: boolean = false
@@ -13,7 +15,7 @@ export default function () {
 		const { user } = useCurrentUserStore();
 
 		if (!user) {
-			console.error('Curren user is not defined');
+			console.error('Current user is not defined');
 			return;
 		}
 
@@ -54,6 +56,21 @@ export default function () {
 				},
 			});
 
+			if (imageBase64.value === '') return res;
+			else if (getStringSizeInKBClient(imageBase64.value) > 256) {
+				console.error('Base64 image size must not exceed 256 KB');
+				return res;
+			}
+
+			$fetch(`/api/playlists/${playlistId}/images`, {
+				method: 'PUT',
+				body: {
+					image: imageBase64.value.slice(imageBase64.value.indexOf(',') + 1),
+				},
+			});
+
+			deleteImage();
+
 			return res;
 		} catch (err) {
 			console.error(err);
@@ -76,5 +93,12 @@ export default function () {
 		}
 	};
 
-	return { createNewPlaylist, updateMyPlaylist, deleteMyPlaylist };
+	return {
+		imageBase64,
+		updateImage,
+		deleteImage,
+		createNewPlaylist,
+		updateMyPlaylist,
+		deleteMyPlaylist,
+	};
 }
