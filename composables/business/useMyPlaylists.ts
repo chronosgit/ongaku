@@ -1,5 +1,5 @@
 import { useCurrentUserStore } from '~/store/useCurrentUserStore';
-import type { FCreateToast } from './useToasts';
+import type { FCreateToast } from '../useToasts';
 
 interface UpdatePlaylistPayload {
 	name?: string;

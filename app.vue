@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	useColorModeHotKeyClient();
+	useGlobalHotKeys();
 </script>
 
 <template>

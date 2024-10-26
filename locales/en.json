@@ -2,6 +2,14 @@
 	"/": {
 		"meta": {
 			"title": "Ongaku - Web Player: Music for everyone"
+		},
+		"playlists-recent": {
+			"your-recent-playlists": "Your recent playlists"
+		},
+		"my-top-artists": {
+			"title": "Favourite artists",
+			"link-show-all": "Show all",
+			"artists-404": "No artists were found"
 		}
 	},
 	"/not-found": {
@@ -29,6 +37,11 @@
 			"home": "Go home"
 		}
 	},
+	"/me/artists/top": {
+		"meta": {
+			"title": "My favourite artists"
+		}
+	},
 	"modules": {
 		"header": {
 			"buttons": {
@@ -43,6 +56,7 @@
 			},
 			"buttons": {
 				"profile": "Visit profile",
+				"logout": "Logout from account",
 				"auth": "Authenticate",
 				"translate": "Translate",
 				"theme": "Toggle theme"
@@ -97,6 +111,10 @@
 			"one": "Album",
 			"many": "Albums"
 		},
-		"save": "Save"
+		"save": "Save",
+		"artist": {
+			"one": "Artist",
+			"many": "Artists"
+		}
 	}
 }

@@ -19,7 +19,7 @@
 		<template v-if="curUserStore.isAuthenticated">
 			<div
 				class="cursor-pointer rounded-full bg-red-100 p-1.5 transition-transform hover:scale-105 dark:bg-[#1f1f1f]"
-				@click="navigateTo(localePath('/users/me'))"
+				@click="navigateTo(localePath('/me'))"
 			>
 				<div
 					class="flex h-8 w-8 items-center justify-center rounded-full bg-red-400"

@@ -7,12 +7,17 @@ export default defineNuxtConfig({
 	components: false,
 	alias: {
 		components: './components',
+		interfaces: './interfaces',
 		layouts: './layouts',
 		services: './services',
 		store: './store',
 	},
 
-	plugins: ['~/plugins/01.manage-color-mode.client.ts'],
+	imports: {
+		dirs: ['composables', 'composables/**'],
+	},
+
+	plugins: ['~/plugins/01.manage-color-mode.client.ts', '~/plugins/02.i18n.ts'],
 	runtimeConfig: {
 		public: {
 			spotifyAuthClientId: import.meta.env?.SPOTIFY_AUTH_CLIENT_ID,
