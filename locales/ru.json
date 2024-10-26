@@ -2,6 +2,13 @@
 	"/": {
 		"meta": {
 			"title": "Онгаку - Веб-плеер: Музыка для всех"
+		},
+		"playlists-recent": {
+			"your-recent-playlists": "Ваши недавние плейлисты"
+		},
+		"my-top-artists": {
+			"title": "Любимые исполнители",
+			"artists-404": "Артисты не найдены"
 		}
 	},
 	"/not-found": {

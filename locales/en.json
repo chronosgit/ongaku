@@ -2,6 +2,13 @@
 	"/": {
 		"meta": {
 			"title": "Ongaku - Web Player: Music for everyone"
+		},
+		"playlists-recent": {
+			"your-recent-playlists": "Your recent playlists"
+		},
+		"my-top-artists": {
+			"title": "Favourite artists",
+			"artists-404": "No artists were found"
 		}
 	},
 	"/not-found": {
