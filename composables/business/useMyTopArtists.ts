@@ -1,6 +1,4 @@
 import type IArtist from '~/interfaces/IArtist';
-import type IExternalUrls from '~/interfaces/IExternalUrls';
-import type IImage from '~/interfaces/IImage';
 
 export default function () {
 	const limit = ref(8);
@@ -14,6 +12,9 @@ export default function () {
 		'useMyTopArtists',
 		async () => {
 			try {
+				// WARN: artificial delay
+				await delay(2000);
+
 				const res = await $fetch(`/api/me/top/artists`, {
 					params: {
 						artistType: 'artist',

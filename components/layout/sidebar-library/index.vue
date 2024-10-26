@@ -55,7 +55,7 @@
 <template>
 	<aside
 		ref="library-sidebar-red"
-		class="absolute z-20 m-4 w-full rounded-lg border-[1px] border-[#d3d2d2] bg-gray-100 py-4 shadow-lg transition-transform dark:border-[#252525] dark:bg-[#121212] dark:text-white"
+		class="absolute z-10 m-2 w-full rounded-lg border-[1px] border-[#d3d2d2] bg-gray-100 py-4 shadow-lg transition-transform dark:border-[#252525] dark:bg-[#121212] dark:text-white"
 		:class="{
 			'translate-x-0': layoutStore.isLeftSideVisible,
 			'-translate-x-32': !layoutStore.isLeftSideVisible,

@@ -12,7 +12,7 @@
 </script>
 
 <template>
-	<TemplateLayoutPart class="h-full px-3">
+	<TemplateLayoutPart class="h-full overflow-hidden px-3">
 		<div class="mt-2">
 			<PlaylistsRecent />
 		</div>
