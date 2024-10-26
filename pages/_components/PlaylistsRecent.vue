@@ -10,7 +10,7 @@
 <template>
 	<div class="py-4">
 		<p class="text-lg font-medium text-black dark:text-white">
-			Your recent playlists
+			{{ $t('/.playlists-recent.your-recent-playlists') }}
 		</p>
 
 		<div class="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4">
