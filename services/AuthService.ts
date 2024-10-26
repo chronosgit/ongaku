@@ -106,5 +106,9 @@ class AuthService {
 	static async refreshTokens() {
 		$fetch('/api/auth/refresh', { method: 'POST' });
 	}
+
+	static async logout() {
+		return $fetch('/api/auth/logout', { method: 'DELETE' });
+	}
 }
 export default AuthService;

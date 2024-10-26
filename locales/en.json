@@ -56,6 +56,7 @@
 			},
 			"buttons": {
 				"profile": "Visit profile",
+				"logout": "Logout from account",
 				"auth": "Authenticate",
 				"translate": "Translate",
 				"theme": "Toggle theme"

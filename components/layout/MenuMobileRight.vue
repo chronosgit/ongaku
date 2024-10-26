@@ -12,6 +12,7 @@
 	} from '~/components/ui/icons';
 	import { useColorModeStore } from '~/store/useColorModeStore';
 	import { useCurrentUserStore } from '~/store/useCurrentUserStore';
+	import AuthService from '~/services/AuthService';
 
 	const props = defineProps<{ isOpen: boolean }>();
 
@@ -19,10 +20,14 @@
 	const localePath = useLocalePath();
 
 	const colorModeStore = useColorModeStore();
-	const useCurUserStore = useCurrentUserStore();
+	const curUserStore = useCurrentUserStore();
 
 	const { isActive: isLocaleDropdown, toggle: toggleLocaleDropdown } =
 		useClickawayClient('localization-ref');
+
+	const logout = async () => {
+		AuthService.logout().then(() => curUserStore.disauthenticate());
+	};
 </script>
 
 <template>
@@ -35,7 +40,7 @@
 	>
 		<!-- User is authenticated -->
 		<!-- Profile section -->
-		<template v-if="useCurUserStore.isAuthenticated">
+		<template v-if="curUserStore.isAuthenticated">
 			<FlexTextSectionDivider
 				text-class="text-gray-500"
 				line-class="border-gray-500"
@@ -45,7 +50,8 @@
 			</FlexTextSectionDivider>
 
 			<div
-				class="flex cursor-pointer items-center gap-2 p-4 text-gray-400 transition-all hover:scale-105 hover:text-black dark:hover:text-white"
+				class="flex cursor-pointer items-center gap-2 p-4 pb-0 text-gray-400 transition-all hover:scale-105 hover:text-black dark:hover:text-white"
+				@click="navigateTo(localePath('/me'))"
 			>
 				<ClientOnly>
 					<div class="scale-125">
@@ -53,9 +59,24 @@
 					</div>
 				</ClientOnly>
 
-				<NuxtLink :to="localePath('/me')" class="font-bold">
+				<p class="font-bold">
 					{{ $t('modules.menu-mobile-right.buttons.profile') }}
-				</NuxtLink>
+				</p>
+			</div>
+
+			<div
+				class="flex cursor-pointer items-center gap-2 p-4 text-gray-400 transition-all hover:scale-105 hover:text-black dark:hover:text-white"
+				@click="logout()"
+			>
+				<ClientOnly>
+					<div class="scale-125">
+						<IconDoorOpen />
+					</div>
+				</ClientOnly>
+
+				<p class="font-bold">
+					{{ $t('modules.menu-mobile-right.buttons.logout') }}
+				</p>
 			</div>
 		</template>
 
