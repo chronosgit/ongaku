@@ -37,6 +37,11 @@
 			"home": "Домой"
 		}
 	},
+	"/me/artists/top": {
+		"meta": {
+			"title": "Мои любимые артисты"
+		}
+	},
 	"modules": {
 		"header": {
 			"buttons": {

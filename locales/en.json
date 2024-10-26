@@ -37,6 +37,11 @@
 			"home": "Go home"
 		}
 	},
+	"/me/artists/top": {
+		"meta": {
+			"title": "My favourite artists"
+		}
+	},
 	"modules": {
 		"header": {
 			"buttons": {
