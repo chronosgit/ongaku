@@ -97,6 +97,7 @@ class AuthService {
 			'user-follow-modify',
 			'user-read-playback-state',
 			'user-modify-playback-state',
+			'user-read-recently-played',
 		];
 
 		return scopes.join(' ');

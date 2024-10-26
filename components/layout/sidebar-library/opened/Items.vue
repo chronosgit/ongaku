@@ -17,7 +17,7 @@
 	<template v-else>
 		<!-- Items -->
 		<div v-if="props.items" class="flex flex-col gap-1">
-			<Item v-for="i in props.items" :item="i" />
+			<Item v-for="i in props.items" :key="i.id" :item="i" />
 		</div>
 
 		<!-- No items -->

@@ -2,7 +2,8 @@
 	import { useLayoutStore } from '~/store/useLayoutStore';
 	import Closed from './closed/index.vue';
 	import Opened from './opened/index.vue';
-	import EditPlaylistForm from './EditPlaylistForm.vue';
+	import EditPlaylistForm from './edit-playlist-form/index.vue';
+	import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
 
 	const layoutStore = useLayoutStore();
 
@@ -24,10 +25,31 @@
 		disactivate: closeEditForm,
 	} = useClickawayClient('sidebar-library-edit-playlist-form');
 
+	const editablePlaylist = ref<IMediaAlbumOrPlaylist>({
+		id: '',
+		name: '',
+		image: {
+			height: 0,
+			width: 0,
+			url: '',
+		},
+		owner: '',
+		type: 'playlist',
+	});
+
+	const editPlaylist = (playlist: IMediaAlbumOrPlaylist) => {
+		if (playlist == null) return;
+
+		editablePlaylist.value = playlist;
+
+		openEditForm();
+	};
+
 	onMounted(() => fetch());
 
+	provide('refetchMediaItems', refetch);
 	provide('localRemoveItemById', localRemoveItemById);
-	provide('openEditPlaylistForm', openEditForm);
+	provide('editPlaylist', editPlaylist);
 </script>
 
 <template>
@@ -62,8 +84,10 @@
 		<Teleport to="body">
 			<EditPlaylistForm
 				ref="sidebar-library-edit-playlist-form"
+				:playlist="editablePlaylist"
 				:is-visible="isOpenEditForm"
 				@close-edit-playlist-form="closeEditForm()"
+				@on-update-playlist="refetch()"
 			/>
 		</Teleport>
 	</aside>

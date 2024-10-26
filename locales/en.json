@@ -71,6 +71,20 @@
 				"edit-playlist": "Edit details",
 				"delete-playlist": "Remove playlist",
 				"delete-album": "Remove from library"
+			},
+			"edit-playlist-form": {
+				"title": "Editing details",
+				"input-name-placeholder": "My cool playlist",
+				"input-descr-placeholder": "Add description (not required)",
+				"image-choose": "Choose image",
+				"image-change": "Replace image",
+				"image-delete": "Delete image"
+			},
+			"toasts": {
+				"success-create-playlist": "Playlist is created!",
+				"success-update-playlist": "Playlist is updated!",
+				"success-delete-playlist": "Playlist is deleted!",
+				"success-remove-album": "Album is removed!"
 			}
 		}
 	},
@@ -82,6 +96,7 @@
 		"album": {
 			"one": "Album",
 			"many": "Albums"
-		}
+		},
+		"save": "Save"
 	}
 }

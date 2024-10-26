@@ -32,7 +32,7 @@
 
 <template>
 	<div
-		class="group relative flex h-16 w-16 cursor-pointer items-center justify-center rounded-md transition-colors hover:bg-gray-200 dark:hover:bg-[#252525]"
+		class="group flex h-16 w-16 cursor-pointer items-center justify-center rounded-md transition-colors hover:bg-gray-200 dark:hover:bg-[#252525]"
 		@contextmenu.prevent="onItemRightClick($event)"
 	>
 		<NuxtImg
@@ -58,8 +58,7 @@
 		<Teleport to="body">
 			<ItemContextMenu
 				:ref="`sidebar-library-item-${props.item.id}`"
-				:playlist-id="props.item.id"
-				:playlist-type="props.item.type"
+				:playlist="props.item"
 				:is-visible="isActive"
 				:style="ctxMenuStyle"
 				@close-context-menu="disactivate"

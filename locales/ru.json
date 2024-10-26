@@ -71,6 +71,20 @@
 				"edit-playlist": "Изменить сведения",
 				"delete-playlist": "Удалить",
 				"delete-album": "Удалить из медиатеки"
+			},
+			"edit-playlist-form": {
+				"title": "Изменение сведений",
+				"input-name-placeholder": "Мой классный плейлист",
+				"input-descr-placeholder": "Добавить описание (необязательно)",
+				"image-choose": "Выберите фото",
+				"image-change": "Сменить фото",
+				"image-delete": "Удалить фото"
+			},
+			"toasts": {
+				"success-create-playlist": "Плейлист создан!",
+				"success-update-playlist": "Плейлист обновлён!",
+				"success-delete-playlist": "Плейлист удалён!",
+				"success-remove-album": "Альбом удалён!"
 			}
 		}
 	},
@@ -82,6 +96,7 @@
 		"album": {
 			"one": "Альбом",
 			"many": "Альбомы"
-		}
+		},
+		"save": "Сохранить"
 	}
 }

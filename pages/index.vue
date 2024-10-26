@@ -1,4 +1,5 @@
 <script setup lang="ts">
+	import PlaylistsRecent from './_components/PlaylistsRecent.vue';
 	import TemplateLayoutPart from '~/components/utils/TemplateLayoutPart.vue';
 
 	definePageMeta({
@@ -11,6 +12,8 @@
 
 <template>
 	<TemplateLayoutPart class="h-full">
-		<div class="p-2 dark:text-white">Home</div>
+		<div class="p-2">
+			<PlaylistsRecent />
+		</div>
 	</TemplateLayoutPart>
 </template>

@@ -1,6 +1,18 @@
 import { useCurrentUserStore } from '~/store/useCurrentUserStore';
+import type { FCreateToast } from './useToasts';
+
+interface UpdatePlaylistPayload {
+	name?: string;
+	descr?: string;
+}
 
 export default function () {
+	const createToast = inject('createToast') as FCreateToast;
+
+	const { t } = useI18n();
+
+	const { imageBase64, updateImage, deleteImage } = useAddImageClient();
+
 	const createNewPlaylist = async (
 		isPublic: boolean = true,
 		collaborative: boolean = false
@@ -8,7 +20,7 @@ export default function () {
 		const { user } = useCurrentUserStore();
 
 		if (!user) {
-			console.error('Curren user is not defined');
+			console.error('Current user is not defined');
 			return;
 		}
 
@@ -26,6 +38,13 @@ export default function () {
 				},
 			});
 
+			createToast({
+				id: generateRandomString(),
+				message: t('modules.sidebar-library.toasts.success-create-playlist'),
+				type: 'success',
+				lifespan: 3000,
+			});
+
 			return res;
 		} catch (err) {
 			console.error(err);
@@ -34,10 +53,62 @@ export default function () {
 		}
 	};
 
+	const updateMyPlaylist = async (
+		playlistId: string,
+		payload: UpdatePlaylistPayload
+	) => {
+		try {
+			const res = await $fetch(`/api/playlists/${playlistId}`, {
+				method: 'PUT',
+				body: {
+					name: payload.name,
+					description: payload.descr,
+					public: true,
+					collaborative: false,
+				},
+			});
+
+			createToast({
+				id: generateRandomString(),
+				message: t('modules.sidebar-library.toasts.success-update-playlist'),
+				type: 'success',
+				lifespan: 3000,
+			});
+
+			if (imageBase64.value === '') return res;
+			else if (getStringSizeInKBClient(imageBase64.value) > 256) {
+				console.error('Base64 image size must not exceed 256 KB');
+				return res;
+			}
+
+			$fetch(`/api/playlists/${playlistId}/images`, {
+				method: 'PUT',
+				body: {
+					image: imageBase64.value.slice(imageBase64.value.indexOf(',') + 1),
+				},
+			});
+
+			deleteImage();
+
+			return res;
+		} catch (err) {
+			console.error(err);
+
+			throw err;
+		}
+	};
+
 	const deleteMyPlaylist = async (playlistId: string) => {
 		try {
 			const res = await $fetch(`/api/playlists/${playlistId}/followers`, {
 				method: 'DELETE',
+			});
+
+			createToast({
+				id: generateRandomString(),
+				message: t('modules.sidebar-library.toasts.success-delete-playlist'),
+				type: 'success',
+				lifespan: 3000,
 			});
 
 			return res;
@@ -48,5 +119,12 @@ export default function () {
 		}
 	};
 
-	return { createNewPlaylist, deleteMyPlaylist };
+	return {
+		imageBase64,
+		updateImage,
+		deleteImage,
+		createNewPlaylist,
+		updateMyPlaylist,
+		deleteMyPlaylist,
+	};
 }
