@@ -7,9 +7,14 @@ export default defineNuxtConfig({
 	components: false,
 	alias: {
 		components: './components',
+		interfaces: './interfaces',
 		layouts: './layouts',
 		services: './services',
 		store: './store',
+	},
+
+	imports: {
+		dirs: ['composables', 'composables/**'],
 	},
 
 	plugins: ['~/plugins/01.manage-color-mode.client.ts'],
