@@ -8,7 +8,7 @@
 
 <template>
 	<div
-		class="absolute left-0 hidden max-w-max translate-x-20 overflow-hidden text-ellipsis whitespace-nowrap rounded-md bg-[#dfdfdf] p-2 shadow-md shadow-gray-300 dark:bg-[#292929] dark:shadow-[#1a1a1a]"
+		class="absolute left-0 hidden max-w-max translate-x-20 overflow-hidden text-ellipsis whitespace-nowrap rounded-md bg-[#dfdfdf] p-2 shadow-lg shadow-zinc-400 dark:bg-[#292929] dark:shadow-[#1a1a1a]"
 	>
 		<p>{{ props.name }}</p>
 
