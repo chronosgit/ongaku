@@ -18,7 +18,7 @@
 
 		<!-- TODO: update link -->
 		<NuxtLink
-			:to="localePath('/')"
+			:to="localePath('/me/artists/top')"
 			class="text-sm underline-offset-2 hover:underline dark:text-white"
 		>
 			{{ $t('/.my-top-artists.link-show-all') }}
@@ -27,7 +27,8 @@
 
 	<!-- Container -->
 	<div
-		class="mt-4 flex w-full shrink-0 items-center gap-8 overflow-y-auto pb-4 transition-transform scrollbar scrollbar-thumb-zinc-300 scrollbar-thumb-rounded-md scrollbar-h-2 dark:scrollbar-thumb-zinc-800"
+		class="mt-4 flex w-full shrink-0 items-center gap-8 pb-4 transition-transform scrollbar scrollbar-thumb-zinc-300 scrollbar-thumb-rounded-md scrollbar-h-2 dark:scrollbar-thumb-zinc-800"
+		:class="{ 'overflow-hidden': isLoading, 'overflow-x-auto': !isLoading }"
 	>
 		<!-- Skeletons -->
 		<SkeletonArtistPreviewCard v-if="isLoading" v-for="i in 8" :key="i" />

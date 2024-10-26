@@ -53,7 +53,7 @@
 					</div>
 				</ClientOnly>
 
-				<NuxtLink :to="localePath('/users/me')" class="font-bold">
+				<NuxtLink :to="localePath('/me')" class="font-bold">
 					{{ $t('modules.menu-mobile-right.buttons.profile') }}
 				</NuxtLink>
 			</div>
