@@ -1,4 +1,4 @@
-import type { FCreateToast } from './useToasts';
+import type { FCreateToast } from '../useToasts';
 
 export default function () {
 	const { t } = useI18n();
