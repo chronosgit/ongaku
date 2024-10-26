@@ -8,6 +8,7 @@
 		},
 		"my-top-artists": {
 			"title": "Favourite artists",
+			"link-show-all": "Show all",
 			"artists-404": "No artists were found"
 		}
 	},
@@ -104,6 +105,10 @@
 			"one": "Album",
 			"many": "Albums"
 		},
-		"save": "Save"
+		"save": "Save",
+		"artist": {
+			"one": "Artist",
+			"many": "Artists"
+		}
 	}
 }
