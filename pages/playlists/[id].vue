@@ -2,6 +2,9 @@
 	import TemplateLayoutPart from '~/components/utils/TemplateLayoutPart.vue';
 	import PlaylistHeader from './_components/PlaylistHeader.vue';
 	import SkeletonPlaylistHeader from './_components/SkeletonPlaylistHeader.vue';
+	import PlaylistFeatures from './_components/PlaylistFeatures.vue';
+
+	useMyProfile();
 
 	const { t } = useI18n();
 
@@ -36,15 +39,22 @@
 
 <template>
 	<TemplateLayoutPart class="h-full">
-		<!-- Playlist header -->
-		<SkeletonPlaylistHeader v-if="isPlaylistLoading" />
-		<PlaylistHeader
-			v-else
-			:playlist="playlist"
-			:playlist-owner-avatar="playlistOwnerAvatarUrl"
-			:playlist-length-ms="playlistLengthMs"
-		/>
+		<div
+			class="bg-gradient-to-b from-cyan-100 via-cyan-100 to-[#f3f4f6] dark:from-indigo-950 dark:via-indigo-950 dark:to-[#121212]"
+		>
+			<!-- Playlist header -->
+			<SkeletonPlaylistHeader v-if="isPlaylistLoading" />
+			<PlaylistHeader
+				v-else
+				:playlist="playlist"
+				:playlist-owner-avatar="playlistOwnerAvatarUrl"
+				:playlist-length-ms="playlistLengthMs"
+			/>
 
-		<!-- Etc -->
+			<!-- Play and edit (if own) button -->
+			<PlaylistFeatures :playlist="playlist" />
+
+			<!-- Etc -->
+		</div>
 	</TemplateLayoutPart>
 </template>

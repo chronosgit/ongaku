@@ -18,6 +18,7 @@
 			</p>
 
 			<NuxtLink
+				v-if="!isLoading"
 				:to="localePath('/me/artists/top')"
 				class="text-sm underline-offset-2 hover:underline dark:text-white"
 			>

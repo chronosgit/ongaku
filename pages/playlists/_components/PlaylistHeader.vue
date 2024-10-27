@@ -27,28 +27,30 @@
 
 <template>
 	<section
-		class="rounded-inherit bg-zinc-200 p-4 dark:bg-zinc-700"
+		class="rounded-inherit bg-opacity-50 p-4"
 		:style="{
 			'border-top-left-radius': 'inherit',
 			'border-top-right-radius': 'inherit',
 		}"
 	>
-		<p v-if="props.playlist == null" class="text-4xl font-bold dark:text-white">
+		<p v-if="props.playlist == null" class="text-3xl font-bold dark:text-white">
 			Not found
 		</p>
 
 		<!-- Existing playlist -->
 		<div
 			v-else
-			class="xs:flex-row xs:items-end flex flex-col items-center gap-4"
+			class="flex flex-col items-center gap-4 xs:flex-row xs:items-end"
 		>
 			<PlaylistCover :avatars="props.playlist.images" />
 
 			<div class="space-y-3">
+				<!-- Type -->
 				<p class="text-sm dark:text-white">
 					{{ $t(`dictionary.${props.playlist.type}.one`) || 'Media' }}
 				</p>
 
+				<!-- Playlist name -->
 				<h2
 					class="break-words break-all font-extrabold dark:text-white"
 					:class="playlistNameSize"
@@ -62,7 +64,7 @@
 				</p>
 
 				<!-- Owner and tracks info -->
-				<div class="flex items-center gap-1 text-sm font-medium">
+				<div class="flex items-center gap-0.5 text-sm font-medium">
 					<!-- Owner avatar  -->
 					<NuxtImg
 						v-if="props.playlistOwnerAvatar"
@@ -80,11 +82,12 @@
 						{{ props.playlist.owner.display_name }}
 					</NuxtLink>
 
+					<span v-if="!props.playlist.followers.total">&bull;</span>
+
 					<p
 						v-if="!props.playlist.followers.total"
 						class="text-zinc-600 dark:text-zinc-400"
 					>
-						<span>&bull;</span>
 						{{ t('dictionary.follower', props.playlist.followers.total) }}
 					</p>
 

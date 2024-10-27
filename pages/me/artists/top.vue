@@ -3,6 +3,8 @@
 	import SkeletonArtistPreviewCard from '~/components/business/skeletons/SkeletonArtistPreviewCard.vue';
 	import TemplateLayoutPart from '~/components/utils/TemplateLayoutPart.vue';
 
+	useMyProfile();
+
 	definePageMeta({
 		title: '/me/artists/top.meta.title',
 		layout: 'main',
