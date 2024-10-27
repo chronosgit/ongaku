@@ -1,8 +1,9 @@
 <script setup lang="ts">
-	import { useLayoutStore } from '~/store/useLayoutStore';
+	import EditPlaylistForm from '~/components/business/edit-playlist-form/index.vue';
 	import Closed from './closed/index.vue';
 	import Opened from './opened/index.vue';
-	import EditPlaylistForm from './edit-playlist-form/index.vue';
+	import { useLayoutStore } from '~/store/useLayoutStore';
+
 	import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
 
 	const layoutStore = useLayoutStore();

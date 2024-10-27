@@ -1,33 +1,10 @@
 import type IImage from '~/interfaces/IImage';
-import type IPlaylistTrack from '~/interfaces/IPlaylistTrack';
-
-interface IPlaylist {
-	id: string;
-	name: string;
-	description?: string | null;
-	href: string;
-	uri: string;
-	images: IImage[];
-	owner: {
-		id: string;
-		type: string;
-		display_name: string;
-		uri: string;
-		href: string;
-	};
-	tracks: {
-		href: string;
-		limit: number;
-		next?: string | null;
-		offset: number;
-		previous?: string | null;
-		total: number;
-		items: IPlaylistTrack[];
-	};
-	type: string;
-}
+import type IPlaylist from '~/pages/playlists/interfaces/IPlaylist';
 
 export default function (playlistId: string) {
+	const playlistOwnerAvatarUrl = ref<string | null>(null);
+	const playlistLengthMs = ref<number | null>(null);
+
 	const {
 		data: playlist,
 		status,
@@ -36,15 +13,32 @@ export default function (playlistId: string) {
 		'usePlaylist',
 		async () => {
 			try {
-				const res = await $fetch<IPlaylist>(`/api/playlists/${playlistId}`, {
+				const res = await $fetch(`/api/playlists/${playlistId}`, {
 					params: {
-						fields: 'description,href,id,images,name,owner,tracks,type,uri',
+						fields:
+							'description,href,id,images,followers,name,owner,tracks,type,uri',
 					},
 				});
+				const playlist = res?.data as IPlaylist;
 
-				console.log(res);
+				// Calculate playlist length
+				const lengthMs = playlist.tracks.items.reduce((acc, cur) => {
+					const { duration_ms } = cur.track as { duration_ms: number };
 
-				return res;
+					return acc + duration_ms;
+				}, 0);
+				playlistLengthMs.value = lengthMs;
+
+				// Get owner avatar async
+				$fetch(`/api/users/${playlist.owner.id}`).then((owner) => {
+					const { images } = (owner?.data as { images: IImage[] }) || [];
+
+					if (images.length === 0) return;
+
+					playlistOwnerAvatarUrl.value = images[images.length - 1].url;
+				});
+
+				return playlist;
 			} catch (err) {
 				console.error(err);
 
@@ -56,5 +50,11 @@ export default function (playlistId: string) {
 
 	const isLoading = computed(() => status.value === 'pending');
 
-	return { playlist, isLoading, fetchPlaylist };
+	return {
+		playlist,
+		playlistOwnerAvatarUrl,
+		playlistLengthMs,
+		isLoading,
+		fetchPlaylist,
+	};
 }

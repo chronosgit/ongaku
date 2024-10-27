@@ -1,20 +1,50 @@
 <script setup lang="ts">
 	import TemplateLayoutPart from '~/components/utils/TemplateLayoutPart.vue';
+	import PlaylistHeader from './_components/PlaylistHeader.vue';
+	import SkeletonPlaylistHeader from './_components/SkeletonPlaylistHeader.vue';
 
-	definePageMeta({
-		title: 'Playlsit apge',
-		layout: 'main',
+	const { t } = useI18n();
+
+	definePageMeta({ layout: 'main' });
+	useHead({
+		title: t('dictionary.playlist.one'),
 	});
 
 	const { params } = useRoute();
 
-	const { playlist, isLoading, fetchPlaylist } = usePlaylist(
-		params.id as string
-	);
+	const {
+		playlist,
+		playlistOwnerAvatarUrl,
+		playlistLengthMs,
+		isLoading: isPlaylistLoading,
+		fetchPlaylist,
+	} = usePlaylist(params.id as string);
+
+	// Construct page title
+	watch(playlist, (p) => {
+		if (p == null) return;
+
+		const part1 = p.name;
+		const part2 = t('/playlists/:id.meta.title.playlist-by');
+		const part3 = p.owner.display_name;
+
+		useHead({ title: `${part1} - ${part2} ${part3}` });
+	});
 
 	onMounted(() => fetchPlaylist());
 </script>
 
 <template>
-	<TemplateLayoutPart class="h-full p-3"> Palysits </TemplateLayoutPart>
+	<TemplateLayoutPart class="h-full">
+		<!-- Playlist header -->
+		<SkeletonPlaylistHeader v-if="isPlaylistLoading" />
+		<PlaylistHeader
+			v-else
+			:playlist="playlist"
+			:playlist-owner-avatar="playlistOwnerAvatarUrl"
+			:playlist-length-ms="playlistLengthMs"
+		/>
+
+		<!-- Etc -->
+	</TemplateLayoutPart>
 </template>
