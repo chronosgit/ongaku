@@ -11,7 +11,7 @@ export default function () {
 			if (typeof $toggleMode === 'function') $toggleMode();
 		}
 
-		if (isCtrlPressed && secondKey === 'h') {
+		if (isCtrlPressed && secondKey === 'b') {
 			if (typeof $switchLocale === 'function') $switchLocale();
 		}
 	};
