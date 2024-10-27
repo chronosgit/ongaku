@@ -123,6 +123,13 @@
 			"one": "Artist",
 			"many": "Artists"
 		},
-		"follower": "No saves | One save | {n} saves | {n}"
+		"track": "No tracks | {n} track | {n} tracks",
+		"follower": "No saves | One save | {n} saves | {n}",
+		"abbreviatures": {
+			"day": "DAY",
+			"hour": "HR",
+			"minute": "MIN",
+			"second": "SEC"
+		}
 	}
 }
