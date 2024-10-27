@@ -10,38 +10,40 @@
 </script>
 
 <template>
-	<!-- Section name -->
-	<div class="flex items-center justify-between gap-1">
-		<p class="text-lg font-medium dark:text-white">
-			{{ $t('/.my-top-artists.title') }}
-		</p>
+	<section class="group/section">
+		<!-- Section name -->
+		<div class="flex items-center justify-between gap-1">
+			<p class="text-lg font-medium dark:text-white">
+				{{ $t('/.my-top-artists.title') }}
+			</p>
 
-		<NuxtLink
-			:to="localePath('/me/artists/top')"
-			class="text-sm underline-offset-2 hover:underline dark:text-white"
+			<NuxtLink
+				:to="localePath('/me/artists/top')"
+				class="text-sm underline-offset-2 hover:underline dark:text-white"
+			>
+				{{ $t('/.my-top-artists.link-show-all') }}
+			</NuxtLink>
+		</div>
+
+		<!-- Container -->
+		<div
+			class="mt-4 flex w-full shrink-0 items-center gap-8 pb-4 transition-colors scrollbar scrollbar-thumb-rounded-md scrollbar-h-2 group-hover/section:scrollbar-thumb-zinc-300 dark:group-hover/section:scrollbar-thumb-zinc-800"
+			:class="{ 'overflow-hidden': isLoading, 'overflow-x-auto': !isLoading }"
 		>
-			{{ $t('/.my-top-artists.link-show-all') }}
-		</NuxtLink>
-	</div>
+			<!-- Skeletons -->
+			<SkeletonArtistPreviewCard v-if="isLoading" v-for="i in 8" :key="i" />
 
-	<!-- Container -->
-	<div
-		class="mt-4 flex w-full shrink-0 items-center gap-8 pb-4 transition-transform scrollbar scrollbar-thumb-zinc-300 scrollbar-thumb-rounded-md scrollbar-h-2 dark:scrollbar-thumb-zinc-800"
-		:class="{ 'overflow-hidden': isLoading, 'overflow-x-auto': !isLoading }"
-	>
-		<!-- Skeletons -->
-		<SkeletonArtistPreviewCard v-if="isLoading" v-for="i in 8" :key="i" />
+			<!-- After loading -->
+			<ArtistPreviewCard
+				v-else-if="Array.isArray(myTopArtists) && myTopArtists.length"
+				v-for="a in myTopArtists"
+				:artist="a"
+			/>
 
-		<!-- After loading -->
-		<ArtistPreviewCard
-			v-else-if="Array.isArray(myTopArtists) && myTopArtists.length"
-			v-for="a in myTopArtists"
-			:artist="a"
-		/>
-
-		<!--Artists not found -->
-		<p v-else class="pt-2 font-medium dark:text-white">
-			{{ $t('/.my-top-artists.artists-404') }}
-		</p>
-	</div>
+			<!--Artists not found -->
+			<p v-else class="pt-2 font-medium dark:text-white">
+				{{ $t('/.my-top-artists.artists-404') }}
+			</p>
+		</div>
+	</section>
 </template>
