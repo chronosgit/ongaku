@@ -38,8 +38,11 @@
 		</p>
 
 		<!-- Existing playlist -->
-		<div v-else class="flex items-end gap-4">
-			<PlaylistCover />
+		<div
+			v-else
+			class="xs:flex-row xs:items-end flex flex-col items-center gap-4"
+		>
+			<PlaylistCover :avatars="props.playlist.images" />
 
 			<div class="space-y-3">
 				<p class="text-sm dark:text-white">

@@ -37,7 +37,7 @@
 <template>
 	<TemplateLayoutPart class="h-full">
 		<!-- Playlist header -->
-		<SkeletonPlaylistHeader v-if="!isPlaylistLoading" />
+		<SkeletonPlaylistHeader v-if="isPlaylistLoading" />
 		<PlaylistHeader
 			v-else
 			:playlist="playlist"
