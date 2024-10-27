@@ -47,7 +47,8 @@
 
 				<!-- Play icon -->
 				<div
-					class="absolute right-0 mr-2 hidden items-center justify-center rounded-full bg-green-400 p-2 shadow-md group-hover:flex"
+					class="absolute right-0 mr-2 hidden items-center justify-center rounded-full bg-green-400 p-2 shadow-md transition-all group-hover:flex hover:scale-105 hover:bg-green-300"
+					@click="console.log('Play ', p.name)"
 				>
 					<IconPlay class="scale-150" />
 				</div>
