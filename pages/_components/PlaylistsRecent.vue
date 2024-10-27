@@ -4,7 +4,11 @@
 	const { recentPlaylists, isLoading, fetchRecentPlaylists } =
 		useRecentPlaylists();
 
+	const localePath = useLocalePath();
+
 	onMounted(() => fetchRecentPlaylists());
+
+	// TODO: update the links and the play button
 </script>
 
 <template>
@@ -30,6 +34,7 @@
 				v-else
 				v-for="p in recentPlaylists"
 				class="transition-custom group relative flex cursor-pointer items-center justify-between gap-2 overflow-hidden rounded-md bg-zinc-300 bg-opacity-50 hover:bg-opacity-80 dark:bg-zinc-700"
+				@click="navigateTo(localePath(`/playlists/${p.id}`))"
 			>
 				<div class="flex w-full items-center gap-2">
 					<NuxtImg
@@ -47,7 +52,8 @@
 
 				<!-- Play icon -->
 				<div
-					class="absolute right-0 mr-2 hidden items-center justify-center rounded-full bg-green-400 p-2 shadow-md group-hover:flex"
+					class="absolute right-0 mr-2 hidden items-center justify-center rounded-full bg-green-400 p-2 shadow-md transition-all group-hover:flex hover:scale-105 hover:bg-green-300"
+					@click.stop="console.log('Play ', p.name)"
 				>
 					<IconPlay class="scale-150" />
 				</div>

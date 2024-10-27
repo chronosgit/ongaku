@@ -5,12 +5,19 @@
 	const props = defineProps<{
 		artist: IArtist;
 	}>();
+
+	const localePath = useLocalePath();
+
+	// TODO: update links to artist and the play button
 </script>
 
 <template>
-	<article class="group rounded-md">
+	<article
+		class="group min-h-20 min-w-20 cursor-pointer rounded-md p-3 transition-colors hover:bg-zinc-200 dark:hover:bg-zinc-800"
+		@click="navigateTo(localePath('/'))"
+	>
 		<!-- Image container -->
-		<div class="relative w-44 md:w-56">
+		<div class="relative">
 			<!-- Cover image -->
 			<NuxtImg
 				v-if="Array.isArray(props.artist?.images) && props.artist.images[0]"
@@ -21,7 +28,7 @@
 			<!-- Cover image placeholder -->
 			<div
 				v-else
-				class="flex h-44 w-44 items-center justify-center rounded-full bg-zinc-300 md:h-56 md:w-56 dark:bg-zinc-700"
+				class="flex h-full w-full items-center justify-center rounded-full bg-zinc-300 dark:bg-zinc-700"
 			>
 				<ClientOnly>
 					<IconQuestionMark
@@ -31,7 +38,6 @@
 			</div>
 
 			<!-- On-hover play button -->
-			<!-- TODO: player -->
 			<div
 				class="absolute bottom-0 right-0 flex -translate-y-2 cursor-pointer items-center justify-center rounded-full bg-green-400 p-3 opacity-0 shadow-lg transition-all group-hover:-translate-y-4 group-hover:opacity-100 hover:scale-105 hover:bg-green-300"
 				@click="console.log(`Play ${props.artist.name}`)"
@@ -42,7 +48,12 @@
 			</div>
 		</div>
 
-		<p class="mt-3 dark:text-white">{{ props.artist.name }}</p>
+		<NuxtLink
+			:to="localePath('/')"
+			class="mt-2 block font-medium underline-offset-2 hover:underline dark:text-white"
+		>
+			{{ props.artist.name }}
+		</NuxtLink>
 
 		<p class="mt-1 text-sm dark:text-zinc-400">
 			{{ $t('dictionary.artist.one') || 'Artist' }}

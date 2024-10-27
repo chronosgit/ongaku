@@ -5,6 +5,8 @@
 
 	const props = defineProps<{ item: IMediaAlbumOrPlaylist }>();
 
+	const localePath = useLocalePath();
+
 	const { isActive, activate, disactivate } = useClickawayClient(
 		`sidebar-library-item-${props.item.id}`
 	);
@@ -27,11 +29,18 @@
 			left: `${ctxMenuCoords.value.x}px`,
 		};
 	});
+
+	const onItemClick = () => {
+		if (props.item.type === 'playlist') {
+			navigateTo(localePath(`/playlists/${props.item.id}`));
+		}
+	};
 </script>
 
 <template>
 	<div
 		class="group flex cursor-pointer items-center gap-2 rounded-md p-1.5 transition-colors hover:bg-gray-200 dark:hover:bg-[#252525]"
+		@click="onItemClick()"
 		@contextmenu.prevent="onItemRightClick($event)"
 	>
 		<!-- Cover image -->
@@ -54,7 +63,8 @@
 			<!-- On-hover play icon and darkening overlay -->
 			<div class="hidden transition-all group-hover:block">
 				<IconPlay
-					class="absolute bottom-1/2 left-1/2 z-30 -translate-x-1/2 translate-y-1/2 scale-150 text-white dark:text-white"
+					class="absolute bottom-1/2 left-1/2 z-30 -translate-x-1/2 translate-y-1/2 scale-150 text-white transition-transform hover:scale-[200%] dark:text-white"
+					@click="console.log('Play', props.item.name)"
 				/>
 
 				<div class="absolute inset-0 bg-black bg-opacity-25"></div>

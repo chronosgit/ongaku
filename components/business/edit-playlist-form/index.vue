@@ -15,8 +15,8 @@
 
 	const { updateMyPlaylist, imageBase64, updateImage, deleteImage } =
 		useMyPlaylists();
-	const name = ref('');
-	const descr = ref('');
+	const name = ref(props.playlist.name || '');
+	const descr = ref(props.playlist.description || '');
 
 	watch(
 		() => props.playlist,

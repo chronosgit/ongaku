@@ -6,6 +6,8 @@
 
 	const props = defineProps<{ item: IMediaAlbumOrPlaylist }>();
 
+	const localePath = useLocalePath();
+
 	const { isActive, activate, disactivate } = useClickawayClient(
 		`sidebar-library-item-${props.item.id}`
 	);
@@ -28,11 +30,18 @@
 			left: `${ctxMenuCoords.value.x}px`,
 		};
 	});
+
+	const onItemClick = () => {
+		if (props.item.type === 'playlist') {
+			navigateTo(localePath(`/playlists/${props.item.id}`));
+		}
+	};
 </script>
 
 <template>
 	<div
 		class="group flex h-16 w-16 cursor-pointer items-center justify-center rounded-md transition-colors hover:bg-gray-200 dark:hover:bg-[#252525]"
+		@click="onItemClick()"
 		@contextmenu.prevent="onItemRightClick($event)"
 	>
 		<NuxtImg

@@ -42,6 +42,13 @@
 			"title": "My favourite artists"
 		}
 	},
+	"/playlists/:id": {
+		"meta": {
+			"title": {
+				"playlist-by": "playlist by"
+			}
+		}
+	},
 	"modules": {
 		"header": {
 			"buttons": {
@@ -115,6 +122,14 @@
 		"artist": {
 			"one": "Artist",
 			"many": "Artists"
+		},
+		"track": "No tracks | {n} track | {n} tracks",
+		"follower": "No saves | One save | {n} saves | {n}",
+		"abbreviatures": {
+			"day": "DAY",
+			"hour": "HR",
+			"minute": "MIN",
+			"second": "SEC"
 		}
 	}
 }
