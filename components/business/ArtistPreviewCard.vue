@@ -5,10 +5,17 @@
 	const props = defineProps<{
 		artist: IArtist;
 	}>();
+
+	const localePath = useLocalePath();
+
+	// TODO: update links to artist and the play button
 </script>
 
 <template>
-	<article class="group min-h-20 min-w-20 rounded-md">
+	<article
+		class="group min-h-20 min-w-20 cursor-pointer rounded-md p-3 transition-colors hover:bg-zinc-200 dark:hover:bg-zinc-800"
+		@click="navigateTo(localePath('/'))"
+	>
 		<!-- Image container -->
 		<div class="relative">
 			<!-- Cover image -->
@@ -41,7 +48,12 @@
 			</div>
 		</div>
 
-		<p class="mt-3 dark:text-white">{{ props.artist.name }}</p>
+		<NuxtLink
+			:to="localePath('/')"
+			class="mt-2 block font-medium underline-offset-2 hover:underline dark:text-white"
+		>
+			{{ props.artist.name }}
+		</NuxtLink>
 
 		<p class="mt-1 text-sm dark:text-zinc-400">
 			{{ $t('dictionary.artist.one') || 'Artist' }}
