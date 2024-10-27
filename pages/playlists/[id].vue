@@ -3,14 +3,18 @@
 
 	definePageMeta({
 		title: 'Playlsit apge',
+		layout: 'main',
 	});
 
-	const playlistId = ref<string | null>(null);
 	const { params } = useRoute();
 
-	console.log(params);
+	const { playlist, isLoading, fetchPlaylist } = usePlaylist(
+		params.id as string
+	);
+
+	onMounted(() => fetchPlaylist());
 </script>
 
 <template>
-	<TemplateLayoutPart> Palysits </TemplateLayoutPart>
+	<TemplateLayoutPart class="h-full p-3"> Palysits </TemplateLayoutPart>
 </template>
