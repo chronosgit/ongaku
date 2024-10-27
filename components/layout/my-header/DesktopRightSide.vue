@@ -6,6 +6,14 @@
 	const localePath = useLocalePath();
 
 	const curUserStore = useCurrentUserStore();
+
+	const avatar = computed(() => {
+		const avatars = curUserStore.user?.images;
+
+		if (!Array.isArray(avatars) || avatars.length === 0) return null;
+
+		return avatars[avatars.length - 1];
+	});
 </script>
 
 <template>
@@ -21,7 +29,10 @@
 				class="cursor-pointer rounded-full bg-red-100 p-1.5 transition-transform hover:scale-105 dark:bg-[#1f1f1f]"
 				@click="navigateTo(localePath('/me'))"
 			>
+				<NuxtImg v-if="avatar" :src="avatar.url" class="h-8 w-8 rounded-full" />
+
 				<div
+					v-else
 					class="flex h-8 w-8 items-center justify-center rounded-full bg-red-400"
 				>
 					{{ curUserStore.user?.display_name?.slice(0, 1) }}

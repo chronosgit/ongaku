@@ -8,7 +8,6 @@
 		IconLibrary,
 		IconMagnifier,
 	} from '~/components/ui/icons';
-	import Tooltip from '~/components/utils/Tooltip.vue';
 	import MyHeaderDesktopRightSide from './DesktopRightSide.vue';
 	import { useLayoutStore } from '~/store/useLayoutStore';
 	import { useCurrentUserStore } from '~/store/useCurrentUserStore';
