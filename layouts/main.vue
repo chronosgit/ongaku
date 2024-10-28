@@ -1,9 +1,16 @@
 <script setup lang="ts">
 	import Default from '~/layouts/default.vue';
-	import MyHeader from '~/components/layout/my-header/index.vue';
-	import SidebarLibrary from '~/components/layout/sidebar-library/index.vue';
-	import MusicPlayer from '~/_migration/layout/music-player/index.vue';
 	import { useCurrentUserStore } from '~/store/useCurrentUserStore';
+
+	const MyHeader = defineAsyncComponent(
+		() => import('~/components/layout/my-header/index.vue')
+	);
+	const SidebarLibrary = defineAsyncComponent(
+		() => import('~/components/layout/sidebar-library/index.vue')
+	);
+	const MusicPlayer = defineAsyncComponent(
+		() => import('~/components/layout/music-player/index.vue')
+	);
 
 	const localePath = useLocalePath();
 
