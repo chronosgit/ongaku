@@ -1,0 +1,30 @@
+<script setup lang="ts">
+	import { IconHouse, IconMagnifier } from '~/components/ui/icons';
+	import WrapperIconRound from '~/components/ui/WrapperIconRound.vue';
+	import { useCurrentUserStore } from '~/store/useCurrentUserStore';
+
+	const localePath = useLocalePath();
+
+	const curUserStore = useCurrentUserStore();
+</script>
+
+<template>
+	<section class="flex items-center gap-3">
+		<!-- To / page -->
+		<WrapperIconRound
+			class="group cursor-pointer p-3"
+			@click="navigateTo(localePath('/'))"
+		>
+			<ClientOnly><IconHouse class="scale-150" /></ClientOnly>
+		</WrapperIconRound>
+
+		<!-- TODO: super-responsive searchbar with logic -->
+		<!-- Search -->
+		<WrapperIconRound
+			v-if="curUserStore.isAuthenticated"
+			class="group cursor-pointer p-3"
+		>
+			<ClientOnly><IconMagnifier class="scale-150" /></ClientOnly>
+		</WrapperIconRound>
+	</section>
+</template>

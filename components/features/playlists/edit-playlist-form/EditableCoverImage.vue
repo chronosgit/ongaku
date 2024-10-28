@@ -8,7 +8,10 @@
 	} from '~/components/ui/icons';
 	import type IImage from '~/interfaces/IImage';
 
-	const props = defineProps<{ image: IImage; userImageBase64: string }>();
+	const props = defineProps<{
+		image: IImage | null;
+		userImageBase64: string;
+	}>();
 
 	const emit = defineEmits<{
 		(e: 'updateImage'): void;

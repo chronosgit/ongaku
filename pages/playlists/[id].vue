@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import TemplateLayoutPart from '~/components/utils/TemplateLayoutPart.vue';
+	import TemplateLayoutPart from '~/_migration/shared/LayoutPartContainer.vue';
 	import PlaylistHeader from './_components/PlaylistHeader.vue';
 	import SkeletonPlaylistHeader from './_components/SkeletonPlaylistHeader.vue';
 	import PlaylistFeatures from './_components/PlaylistFeatures.vue';

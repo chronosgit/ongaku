@@ -1,12 +1,12 @@
 <script setup lang="ts">
-	import type IToast from '~/interfaces/IToast';
 	import {
 		IconCheck,
 		IconClose,
 		IconExclamation,
 		IconFeedback,
 		IconInfo,
-	} from './icons';
+	} from '~/components/ui/icons';
+	import type IToast from '~/interfaces/IToast';
 
 	const props = defineProps<{ toast: IToast }>();
 	const emit = defineEmits<{ (e: 'removeToast', toastId: string): void }>();
@@ -69,9 +69,11 @@
 			<p class="w-full text-white">{{ props.toast.message }}</p>
 		</div>
 
-		<IconClose
-			class="scale-150 cursor-pointer text-white"
-			@click="emit('removeToast', props.toast.id)"
-		/>
+		<ClientOnly>
+			<IconClose
+				class="scale-150 cursor-pointer text-white"
+				@click="emit('removeToast', props.toast.id)"
+			/>
+		</ClientOnly>
 	</div>
 </template>

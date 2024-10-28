@@ -17,9 +17,11 @@
 				'translate-x-6': !colorModeStore.isDarkMode,
 			}"
 		>
-			<IconMoon v-show="colorModeStore.isDarkMode" />
+			<ClientOnly>
+				<IconMoon v-show="colorModeStore.isDarkMode" />
 
-			<IconSun v-show="!colorModeStore.isDarkMode" />
+				<IconSun v-show="!colorModeStore.isDarkMode" />
+			</ClientOnly>
 		</div>
 	</div>
 </template>

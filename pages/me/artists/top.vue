@@ -1,7 +1,7 @@
 <script setup lang="ts">
-	import ArtistPreviewCard from '~/components/business/ArtistPreviewCard.vue';
-	import SkeletonArtistPreviewCard from '~/components/business/skeletons/SkeletonArtistPreviewCard.vue';
-	import TemplateLayoutPart from '~/components/utils/TemplateLayoutPart.vue';
+	import ArtistPreviewCard from '~/_migration/features/artists/ArtistPreviewCard.vue';
+	import SkeletonArtistPreviewCard from '~/_migration/features/artists/skeletons/SkeletonArtistPreviewCard.vue';
+	import TemplateLayoutPart from '~/_migration/shared/LayoutPartContainer.vue';
 
 	useMyProfile();
 

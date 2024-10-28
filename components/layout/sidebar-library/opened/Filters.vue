@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import { IconClose } from '~/components/ui/icons';
-	import WrapperIconRound from '~/components/utils/WrapperIconRound.vue';
+	import WrapperIconRound from '~/components/ui/WrapperIconRound.vue';
 
 	const props = defineProps<{ filter: 'album' | 'playlist' | null }>();
 
@@ -36,7 +36,9 @@
 				class="group cursor-pointer"
 				@click="emit('deselectFilters')"
 			>
-				<IconClose class="scale-125" />
+				<ClientOnly>
+					<IconClose class="scale-125" />
+				</ClientOnly>
 			</WrapperIconRound>
 
 			<div
@@ -47,13 +49,15 @@
 			</div>
 		</template>
 
-		<!-- Album filter -->
+		<!-- Playlist filter -->
 		<template v-if="props.filter === 'playlist'">
 			<WrapperIconRound
 				class="group cursor-pointer"
 				@click="emit('deselectFilters')"
 			>
-				<IconClose class="scale-125" />
+				<ClientOnly>
+					<IconClose class="scale-125" />
+				</ClientOnly>
 			</WrapperIconRound>
 
 			<div

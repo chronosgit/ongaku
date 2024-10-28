@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { IconPlay, IconQuestionMark } from '~/components/ui/icons';
+	import { IconQuestionMark, IconPlay } from '~/components/ui/icons';
 	import type IArtist from '~/interfaces/IArtist';
 
 	const props = defineProps<{
@@ -7,8 +7,6 @@
 	}>();
 
 	const localePath = useLocalePath();
-
-	// TODO: update links to artist and the play button
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import TemplateLayoutPart from '~/components/utils/TemplateLayoutPart.vue';
+	import TemplateLayoutPart from '~/_migration/shared/LayoutPartContainer.vue';
 
 	definePageMeta({
 		title: 'My profile',

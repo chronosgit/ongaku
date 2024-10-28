@@ -1,13 +1,12 @@
 <script setup lang="ts">
-	import { IconClose } from '~/components/ui/icons';
-	import ImagePrompt from './ImagePrompt.vue';
+	import Header from './Header.vue';
+	import EditableCoverImage from './EditableCoverImage.vue';
 	import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
 
 	const props = defineProps<{
 		playlist: IMediaAlbumOrPlaylist;
 		isVisible: boolean;
 	}>();
-
 	const emit = defineEmits<{
 		(e: 'closeEditPlaylistForm'): void;
 		(e: 'onUpdatePlaylist'): void;
@@ -15,8 +14,19 @@
 
 	const { updateMyPlaylist, imageBase64, updateImage, deleteImage } =
 		useMyPlaylists();
+
 	const name = ref(props.playlist.name || '');
 	const descr = ref(props.playlist.description || '');
+
+	const onEditPlaylist = () => {
+		updateMyPlaylist(props.playlist.id, {
+			name: name.value,
+			descr: descr.value,
+		}).then(() => {
+			emit('onUpdatePlaylist');
+			emit('closeEditPlaylistForm');
+		});
+	};
 
 	watch(
 		() => props.playlist,
@@ -34,24 +44,12 @@
 		@click.self="emit('closeEditPlaylistForm')"
 	>
 		<div class="mx-4 w-full max-w-3xl rounded-md bg-white p-4 dark:bg-zinc-900">
-			<!-- First row -->
-			<div class="mb-4 flex items-center justify-between gap-1">
-				<p class="text-lg font-bold dark:text-white">
-					{{ $t('modules.sidebar-library.edit-playlist-form.title') }}
-				</p>
-
-				<ClientOnly>
-					<IconClose
-						class="scale-125 cursor-pointer text-zinc-500 transition-colors hover:text-black dark:hover:text-white"
-						@click="emit('closeEditPlaylistForm')"
-					/>
-				</ClientOnly>
-			</div>
+			<Header />
 
 			<!-- Main box -->
 			<div class="mb-2 flex w-full items-center justify-between gap-3">
 				<!-- Add playlist image -->
-				<ImagePrompt
+				<EditableCoverImage
 					:image="props.playlist.image"
 					:user-image-base64="imageBase64"
 					@update-image="updateImage"
@@ -88,12 +86,7 @@
 
 			<button
 				class="ml-auto block rounded-full bg-black px-4 py-2 text-sm font-bold text-white dark:bg-white dark:text-black"
-				@click="
-					updateMyPlaylist(props.playlist.id, { name, descr }).then(() => {
-						emit('onUpdatePlaylist');
-						emit('closeEditPlaylistForm');
-					})
-				"
+				@click="onEditPlaylist()"
 			>
 				{{ $t('dictionary.save') }}
 			</button>
