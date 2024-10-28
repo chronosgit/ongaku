@@ -14,6 +14,7 @@ export default function () {
 
 		if (idOfThisToast === -1) {
 			console.warn(`Toast with id ${toastId} doesn't exist`);
+			return;
 		}
 
 		toasts.value.splice(idOfThisToast, 1);
