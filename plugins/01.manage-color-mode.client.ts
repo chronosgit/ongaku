@@ -16,11 +16,8 @@ export default defineNuxtPlugin((nuxt) => {
 	};
 
 	const toggleMode = () => {
-		if (isDarkMode.value) {
-			setLightMode();
-		} else {
-			setDarkMode();
-		}
+		if (isDarkMode.value) setLightMode();
+		else setDarkMode();
 	};
 
 	const respectOSPreference = () => {
