@@ -6,5 +6,5 @@ export default interface IMediaAlbumOrPlaylist {
 	name: string;
 	description?: string;
 	owner: string;
-	image: IImage;
+	image: IImage | null;
 }
