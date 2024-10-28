@@ -1,5 +1,5 @@
 <script setup>
-	import Toast from '~/components/ui/Toast.vue';
+	import Toast from '~/_migration/shared/Toast.vue';
 
 	const route = useRoute();
 	const { t, te } = useI18n();
