@@ -52,7 +52,7 @@
 
 					<NuxtLink
 						:to="localePath('/auth')"
-						class="text-blue-500 transition-colors hover:text-blue-700"
+						class="transition-color text-teal-400 hover:text-teal-500"
 					>
 						{{ $t('modules.unauthentication-guard.feedback-p2') }}
 					</NuxtLink>
