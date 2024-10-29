@@ -10,10 +10,10 @@
 	const {
 		followedPlaylistsAndAlbums,
 		areLoading,
-		fetchFollowedPlaylistsAndAlbums,
 		refetchFollowedPlaylistsAndAlbums,
-		removePlaylistLocally,
+		extendMediaItems,
 		editPlaylistLocally,
+		removePlaylistLocally,
 	} = useFollowedPlaylistsAndAlbums();
 
 	const mediaItems = computed(() => {
@@ -25,8 +25,9 @@
 	provide('mediaItems', mediaItems);
 	provide('areMediaItemsLoading', areLoading);
 	provide('fetchMediaItems', refetchFollowedPlaylistsAndAlbums);
-	provide('removePlaylistLocally', removePlaylistLocally);
+	provide('extendMediaItems', extendMediaItems);
 	provide('editPlaylistLocally', editPlaylistLocally);
+	provide('removePlaylistLocally', removePlaylistLocally);
 </script>
 
 <template>
@@ -41,17 +42,8 @@
 			'max-w-20': !layoutStore.isLeftSideOpen,
 		}"
 	>
-		<!-- <Opened
-			v-if="layoutStore.isLeftSideOpen"
-			:items="items"
-			:is-loading="isLoading"
-			:filter="filter"
-			@select-only-albums="selectOnlyAlbums"
-			@select-only-playlists="selectOnlyPlaylists"
-			@deselect-filters="deselectFilters"
-		/> -->
+		<Opened v-if="layoutStore.isLeftSideOpen" />
 
-		<!-- v-if="!layoutStore.isLeftSideOpen" -->
-		<Closed />
+		<Closed v-else />
 	</aside>
 </template>
