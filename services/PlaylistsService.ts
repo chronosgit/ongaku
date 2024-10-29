@@ -40,7 +40,7 @@ export default class PlaylistsService {
 				data: { total },
 			} = await $fetch<IFetchFollowedPlaylists>('/api/me/playlists');
 
-			const name = `${namePrefix}${total}`;
+			const name = `${namePrefix}${Number(total) + 1}`;
 
 			const res = await $fetch<ICreateNewPlaylistForUser>(
 				`/api/users/${userId}/playlists`,
