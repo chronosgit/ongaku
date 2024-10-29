@@ -86,7 +86,8 @@
 				"albums": "Альбомы",
 				"no-items": "Нет плейлистов или альбомов",
 				"no-playlists": "Нет плейлистов",
-				"no-albums": "Нет альбомов"
+				"no-albums": "Нет альбомов",
+				"new-playlist-#": "Мой плейлист #"
 			},
 			"item-context-menu": {
 				"edit-playlist": "Изменить сведения",
