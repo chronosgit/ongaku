@@ -1,8 +1,9 @@
 import AlbumsService from '~/services/AlbumsService';
 import PlaylistsService from '~/services/PlaylistsService';
+import isPlaylist from '~/components/layout/sidebar-library/utils/isPlaylist';
 import type ISavedAlbumObject from '~/interfaces/business/albums/ISavedAlbumObject';
 import type ISimplifiedPlaylistObject from '~/interfaces/business/playlists/ISimplifiedPlaylistObject';
-import isPlaylist from '~/components/layout/sidebar-library/utils/isPlaylist';
+import type IPlaylistObject from '~/interfaces/business/playlists/IPlaylistObject';
 
 export default function () {
 	const { t } = useI18n();
@@ -15,7 +16,6 @@ export default function () {
 	const {
 		data: followedPlaylistsAndAlbums,
 		status,
-		execute: fetchFollowedPlaylistsAndAlbums,
 		refresh: refetchFollowedPlaylistsAndAlbums,
 	} = useLazyAsyncData('useFollowedPlaylistsAndAlbums', async () => {
 		try {
@@ -46,28 +46,10 @@ export default function () {
 		}
 	});
 
-	const removePlaylistLocally = (playlistId: string) => {
+	const extendMediaItems = async (item: IPlaylistObject) => {
 		if (followedPlaylistsAndAlbums.value == null) return;
 
-		const targetId = followedPlaylistsAndAlbums.value.findIndex((i) => {
-			if (!isPlaylist(i)) return false;
-
-			return i.id === playlistId;
-		});
-
-		if (targetId === -1) {
-			console.error(`Couldn't remove playlist with id ${playlistId} locally`);
-			return;
-		}
-
-		createToast({
-			id: playlistId,
-			type: 'success',
-			message: t('modules.sidebar-library.toasts.success-delete-playlist'),
-			lifespan: 3000,
-		});
-
-		followedPlaylistsAndAlbums.value.splice(targetId, 1);
+		followedPlaylistsAndAlbums.value.push(item);
 	};
 
 	const editPlaylistLocally = async (
@@ -107,14 +89,38 @@ export default function () {
 		}
 	};
 
+	const removePlaylistLocally = (playlistId: string) => {
+		if (followedPlaylistsAndAlbums.value == null) return;
+
+		const targetId = followedPlaylistsAndAlbums.value.findIndex((i) => {
+			if (!isPlaylist(i)) return false;
+
+			return i.id === playlistId;
+		});
+
+		if (targetId === -1) {
+			console.error(`Couldn't remove playlist with id ${playlistId} locally`);
+			return;
+		}
+
+		createToast({
+			id: playlistId,
+			type: 'success',
+			message: t('modules.sidebar-library.toasts.success-delete-playlist'),
+			lifespan: 3000,
+		});
+
+		followedPlaylistsAndAlbums.value.splice(targetId, 1);
+	};
+
 	const areLoading = computed(() => status.value === 'pending');
 
 	return {
 		followedPlaylistsAndAlbums,
 		areLoading,
-		fetchFollowedPlaylistsAndAlbums,
 		refetchFollowedPlaylistsAndAlbums,
-		removePlaylistLocally,
+		extendMediaItems,
 		editPlaylistLocally,
+		removePlaylistLocally,
 	};
 }
