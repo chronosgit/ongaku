@@ -1,5 +1,5 @@
 import type IServerApiSuccessResponse from '~/interfaces/IServerApiSuccessResponse';
-import type ISimplifiedInterfaceObject from '~/interfaces/ISimplifiedPlaylistObject';
+import type ISimplifiedPlaylistObject from '~/interfaces/ISimplifiedPlaylistObject';
 
 interface IFetchFollowedPlaylist extends IServerApiSuccessResponse {
 	data: {
@@ -9,7 +9,7 @@ interface IFetchFollowedPlaylist extends IServerApiSuccessResponse {
 		offset: number;
 		previous?: string | null;
 		total: number;
-		items: ISimplifiedInterfaceObject[];
+		items: ISimplifiedPlaylistObject[];
 	};
 }
 
