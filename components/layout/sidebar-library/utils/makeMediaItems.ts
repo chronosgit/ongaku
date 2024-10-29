@@ -7,8 +7,6 @@ export default function (
 	items: (ISimplifiedPlaylistObject | ISavedAlbumObject)[]
 ) {
 	return items.map((i) => {
-		console.log(i);
-
 		if (isPlaylist(i)) {
 			return {
 				id: i.id,
