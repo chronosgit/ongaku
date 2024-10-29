@@ -1,4 +1,4 @@
-import type ICurrentUser from '~/interfaces/ICurrentUser';
+import type ICurrentUser from '~/interfaces/business/users/ICurrentUser';
 
 export const useCurrentUserStore = defineStore(
 	'currentUserStore',
