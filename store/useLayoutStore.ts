@@ -1,4 +1,4 @@
-export const useLayoutStore = defineStore('useLayoutStore', () => {
+export const useLayoutStore = defineStore('layoutStore', () => {
 	const isLeftSideVisible = ref(false);
 	const isLeftSideOpen = ref(false);
 	const isRightSideOpen = ref(false);

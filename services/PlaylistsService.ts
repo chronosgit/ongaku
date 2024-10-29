@@ -14,11 +14,25 @@ interface IFetchFollowedPlaylists extends IServerApiSuccessResponse {
 	};
 }
 
+interface IFetchPlaylist extends IServerApiSuccessResponse {
+	data: IPlaylistObject;
+}
+
 interface ICreateNewPlaylistForUser extends IServerApiSuccessResponse {
 	data: IPlaylistObject;
 }
 
 export default class PlaylistsService {
+	static async fetchPlaylist(playlistId: string) {
+		try {
+			const res = await $fetch<IFetchPlaylist>(`/api/playlists/${playlistId}`);
+
+			return res;
+		} catch (err) {
+			throw err;
+		}
+	}
+
 	static async fetchFollowedPlaylists(limit?: number, offset?: number) {
 		try {
 			const res = await $fetch<IFetchFollowedPlaylists>('/api/me/playlists', {

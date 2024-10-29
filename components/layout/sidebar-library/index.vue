@@ -1,7 +1,6 @@
 <script setup lang="ts">
 	import Closed from './components/closed/index.vue';
 	import { useLayoutStore } from '~/store/useLayoutStore';
-	import makeMediaItems from './utils/makeMediaItems';
 	import useMediaItems from './composables/useMediaItems';
 
 	const Opened = defineAsyncComponent(

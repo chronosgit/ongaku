@@ -1,4 +1,4 @@
-export const useColorModeStore = defineStore('colorMode', () => {
+export const useColorModeStore = defineStore('colorModeStore', () => {
 	const { $toggleMode } = useNuxtApp();
 
 	const theme = useCookie('theme');

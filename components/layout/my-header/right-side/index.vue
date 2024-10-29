@@ -1,6 +1,10 @@
 <script setup lang="ts">
-	import DesktopVersion from './desktop/index.vue';
-	import MobileVersion from './mobile/index.vue';
+	const DesktopVersion = defineAsyncComponent(
+		() => import('./desktop/index.vue')
+	);
+	const MobileVersion = defineAsyncComponent(
+		() => import('./mobile/index.vue')
+	);
 </script>
 
 <template>
