@@ -14,11 +14,11 @@ export default interface ISavedAlbumObject {
 		href: string;
 		id: string;
 		images: IImageObject[];
-		nmae: string;
+		name: string;
 		release_date: string;
 		release_date_precision: string;
 		restrictions?: { reason: string };
-		type: string | 'album';
+		type: 'album';
 		uri: string;
 		artists: ISimplifiedArtistObject[];
 		tracks: {
