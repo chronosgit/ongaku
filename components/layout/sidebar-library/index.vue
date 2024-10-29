@@ -1,9 +1,12 @@
 <script setup lang="ts">
-	import Closed from './closed/index.vue';
+	import Closed from './components/closed/index.vue';
 	import { useLayoutStore } from '~/store/useLayoutStore';
 	import makeMediaItems from './utils/makeMediaItems';
+	import useMediaItems from './composables/useMediaItems';
 
-	const Opened = defineAsyncComponent(() => import('./opened/index.vue'));
+	const Opened = defineAsyncComponent(
+		() => import('./components/opened/index.vue')
+	);
 
 	const layoutStore = useLayoutStore();
 
@@ -16,18 +19,20 @@
 		removePlaylistLocally,
 	} = useFollowedPlaylistsAndAlbums();
 
-	const mediaItems = computed(() => {
-		if (followedPlaylistsAndAlbums.value == null) return [];
+	const { items, filter, filterByAlbums, filterByPlaylists, deselectFilter } =
+		useMediaItems(followedPlaylistsAndAlbums);
 
-		return makeMediaItems(followedPlaylistsAndAlbums.value);
-	});
-
-	provide('mediaItems', mediaItems);
+	provide('mediaItems', items);
 	provide('areMediaItemsLoading', areLoading);
 	provide('fetchMediaItems', refetchFollowedPlaylistsAndAlbums);
 	provide('extendMediaItems', extendMediaItems);
 	provide('editPlaylistLocally', editPlaylistLocally);
 	provide('removePlaylistLocally', removePlaylistLocally);
+
+	provide('filter', filter);
+	provide('filterByAlbums', filterByAlbums);
+	provide('filterByPlaylists', filterByPlaylists);
+	provide('deselectFilter', deselectFilter);
 </script>
 
 <template>

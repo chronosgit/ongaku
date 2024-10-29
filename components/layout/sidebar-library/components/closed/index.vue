@@ -1,9 +1,9 @@
 <script setup lang="ts">
 	import { IconDoubleArrowRight } from '~/components/ui/icons';
-	import Items from './Items.vue';
 	import ItemsSkeleton from './ItemsSkeleton.vue';
+	import Items from './Items.vue';
 	import { useLayoutStore } from '~/store/useLayoutStore';
-	import type IMediaItem from '../interfaces/IMediaItem';
+	import type IMediaItem from '../../interfaces/IMediaItem';
 
 	const mediaItems = inject('mediaItems') as IMediaItem[];
 	const areMediaItemsLoading = inject('areMediaItemsLoading') as boolean;

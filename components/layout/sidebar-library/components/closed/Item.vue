@@ -1,10 +1,13 @@
 <script setup lang="ts">
-	import ItemTooltip from './ItemTooltip.vue';
 	import CoverImage from '../cover-image/index.vue';
-	import type IMediaItem from '../interfaces/IMediaItem';
+	import ItemTooltip from './ItemTooltip.vue';
+	import type IMediaItem from '../../interfaces/IMediaItem';
 
 	const ItemContextMenu = defineAsyncComponent(
-		() => import('../item-context-menu/index.vue')
+		() =>
+			import(
+				'~/components/layout/sidebar-library/components/item-context-menu/index.vue'
+			)
 	);
 
 	const removePlaylistLocally = inject<(playlistId: string) => void>(

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import Item from './Item.vue';
-	import type IMediaItem from '../interfaces/IMediaItem';
+	import type IMediaItem from '../../interfaces/IMediaItem';
 
 	const mediaItems = inject('mediaItems') as IMediaItem[];
 </script>

@@ -1,14 +1,28 @@
 <script setup lang="ts">
 	import { IconPlay, IconQuestionMark } from '~/components/ui/icons';
-	import ItemContextMenu from '../item-context-menu/index.vue';
-	import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
+	import type IMediaItem from '../../interfaces/IMediaItem';
 
-	const props = defineProps<{ item: IMediaAlbumOrPlaylist }>();
+	const ItemContextMenu = defineAsyncComponent(
+		() =>
+			import(
+				'~/components/layout/sidebar-library/components/item-context-menu/index.vue'
+			)
+	);
+
+	const removePlaylistLocally = inject<(playlistId: string) => void>(
+		'removePlaylistLocally',
+		() => {}
+	);
+	const editPlaylistLocally = inject<
+		(playlistId: string, newName: string, newDescr: string) => void
+	>('editPlaylistLocally', () => {});
+
+	const props = defineProps<{ item: IMediaItem }>();
 
 	const localePath = useLocalePath();
 
 	const { isActive, activate, disactivate } = useClickawayClient(
-		`sidebar-library-item-${props.item.id}`
+		`sidebar-library-item-ctx-menu-${props.item.id}`
 	);
 
 	const ctxMenuCoords = ref({ x: 0, y: 0 });
@@ -47,7 +61,7 @@
 		<div class="relative">
 			<!-- Cover image -->
 			<NuxtImg
-				v-if="props.item.image?.url"
+				v-if="props.item.image"
 				:src="props.item.image.url"
 				class="w-full max-w-12 rounded-md"
 			/>
@@ -81,18 +95,20 @@
 
 			<p class="text-xs text-gray-400">
 				{{ $t(`dictionary.${props.item.type}.one`) }} &#x2022;
-				{{ props.item.owner }}
+				{{ props.item.owners[0].name }}
 			</p>
 		</div>
 
 		<!-- Context menu -->
 		<Teleport to="body">
 			<ItemContextMenu
-				:ref="`sidebar-library-item-${props.item.id}`"
-				:playlist="props.item"
+				:ref="`sidebar-library-item-ctx-menu-${props.item.id}`"
+				:item="props.item"
 				:is-visible="isActive"
 				:style="ctxMenuStyle"
 				@close-context-menu="disactivate"
+				@remove-playlist-locally="removePlaylistLocally"
+				@edit-playlist-locally="editPlaylistLocally"
 			/>
 		</Teleport>
 	</div>
