@@ -7,7 +7,7 @@
 
 <template>
 	<div
-		class="flex cursor-pointer items-center gap-2 text-gray-400 transition-all hover:scale-105 hover:text-black dark:hover:text-white"
+		class="flex cursor-pointer items-center gap-2 text-zinc-400 transition-all hover:scale-105 hover:text-indigo-500"
 		@click="colorModeStore.toggleMode()"
 	>
 		<ClientOnly>

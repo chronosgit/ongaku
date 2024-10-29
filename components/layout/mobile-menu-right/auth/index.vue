@@ -24,7 +24,7 @@
 
 	<!-- Visit my profile -->
 	<div
-		class="flex cursor-pointer items-center gap-2 p-4 pb-0 text-gray-400 transition-all hover:scale-105 hover:text-black dark:hover:text-white"
+		class="flex cursor-pointer items-center gap-2 p-4 pb-0 text-zinc-400 transition-all hover:scale-105 hover:text-indigo-500"
 		@click="navigateTo(localePath('/me'))"
 	>
 		<ClientOnly>
@@ -38,7 +38,7 @@
 
 	<!-- Logout -->
 	<div
-		class="flex cursor-pointer items-center gap-2 p-4 text-gray-400 transition-all hover:scale-105 hover:text-black dark:hover:text-white"
+		class="flex cursor-pointer items-center gap-2 p-4 text-zinc-400 transition-all hover:scale-105 hover:text-indigo-500"
 		@click="logout()"
 	>
 		<ClientOnly>

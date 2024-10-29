@@ -13,7 +13,7 @@
 
 <template>
 	<aside
-		class="fixed right-0 top-0 z-50 h-screen min-w-64 bg-gradient-to-b from-gray-200 to-blue-100 py-2 transition-transform dark:bg-zinc-950 dark:bg-none dark:text-white"
+		class="fixed right-0 top-0 z-50 h-screen min-w-64 bg-white py-2 shadow-lg transition-transform dark:bg-zinc-950 dark:text-white"
 		:class="{
 			'translate-x-0': props.isOpen,
 			'translate-x-72': !props.isOpen,
@@ -43,7 +43,7 @@
 		<!-- Footer -->
 		<NuxtLink
 			to="https://github.com/chronosgit/ongaku"
-			class="absolute bottom-0 left-1/2 mb-1 -translate-x-1/2 text-xs text-gray-400 transition-colors hover:text-gray-600 dark:hover:text-white"
+			class="absolute bottom-0 left-1/2 mb-1 -translate-x-1/2 text-xs text-black transition-colors hover:text-teal-500"
 		>
 			@chronosgit
 		</NuxtLink>
