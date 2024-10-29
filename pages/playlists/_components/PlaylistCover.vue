@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { IconQuestionMark } from '~/components/ui/icons';
+	import { IconQuestionMark } from '~/_migration/ui/icons';
 	import type IImage from '~/interfaces/IImage';
 
 	const props = defineProps<{

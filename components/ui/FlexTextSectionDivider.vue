@@ -15,9 +15,9 @@
 	<div class="flex items-center">
 		<div class="flex-grow border-t" :class="props.lineClass"></div>
 
-		<span class="mx-2 text-xs uppercase" :class="props.textClass">
+		<p class="mx-2 text-xs uppercase" :class="props.textClass">
 			<slot></slot>
-		</span>
+		</p>
 
 		<div class="flex-grow border-t" :class="props.lineClass"></div>
 	</div>

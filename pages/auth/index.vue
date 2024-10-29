@@ -1,6 +1,4 @@
 <script setup lang="ts">
-	import LogoOngaku from '~/components/ui/LogoOngaku.vue';
-
 	definePageMeta({ title: '/auth.meta.title' });
 
 	const { locale } = useI18n();
@@ -13,8 +11,6 @@
 		class="flex min-h-screen flex-col items-center justify-center px-4 dark:bg-[#121212]"
 	>
 		<div class="max-w-80 space-y-16 md:max-w-lg">
-			<LogoOngaku sizes="50" class="mx-auto my-0 grayscale dark:grayscale-0" />
-
 			<h1 class="break-words text-center text-5xl font-bold dark:text-white">
 				{{ $t('/auth.form.title') }}
 			</h1>
@@ -38,7 +34,7 @@
 			</button>
 		</div>
 
-		<p class="my-2 font-bold uppercase text-[#5f5f5f]">
+		<p class="my-2 font-bold uppercase text-gray-500">
 			{{ $t('/auth.form.or') }}
 		</p>
 

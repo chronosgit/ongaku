@@ -1,40 +1,29 @@
 <script setup lang="ts">
-	import ItemContextMenu from '../ItemContextMenu.vue';
 	import ItemTooltip from './ItemTooltip.vue';
-	import { IconQuestionMark } from '~/components/ui/icons';
+	import ItemContextMenu from '../item-context-menu/index.vue';
+	import CoverImage from '../cover-image/index.vue';
 	import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
-
-	const props = defineProps<{ item: IMediaAlbumOrPlaylist }>();
 
 	const localePath = useLocalePath();
 
-	const { isActive, activate, disactivate } = useClickawayClient(
-		`sidebar-library-item-${props.item.id}`
+	const props = defineProps<{ item: IMediaAlbumOrPlaylist }>();
+
+	const { coords, isOpened, openCtxMenu, closeCtxMenu } = useBaseContextMenu(
+		`sidebar-library-item-ctx-menu-${props.item.id}`
 	);
-
-	const ctxMenuCoords = ref({ x: 0, y: 0 });
-
-	const onItemRightClick = (e: MouseEvent) => {
-		ctxMenuCoords.value = {
-			x: e.clientX,
-			y: e.clientY,
-		};
-
-		activate();
-	};
 
 	const ctxMenuStyle = computed(() => {
 		return {
 			position: 'absolute',
-			top: `${ctxMenuCoords.value.y}px`,
-			left: `${ctxMenuCoords.value.x}px`,
+			top: `${coords.value.y}px`,
+			left: `${coords.value.x}px`,
 		};
 	});
 
 	const onItemClick = () => {
-		if (props.item.type === 'playlist') {
-			navigateTo(localePath(`/playlists/${props.item.id}`));
-		}
+		if (props.item.type !== 'playlist') return;
+
+		navigateTo(localePath(`/playlists/${props.item.id}`));
 	};
 </script>
 
@@ -42,20 +31,9 @@
 	<div
 		class="group flex h-16 w-16 cursor-pointer items-center justify-center rounded-md transition-colors hover:bg-gray-200 dark:hover:bg-[#252525]"
 		@click="onItemClick()"
-		@contextmenu.prevent="onItemRightClick($event)"
+		@contextmenu.prevent="openCtxMenu($event)"
 	>
-		<NuxtImg
-			v-if="props.item.image.url"
-			:src="props.item.image.url"
-			class="h-4/5 w-4/5 rounded-md"
-		/>
-
-		<div
-			v-else
-			class="flex h-4/5 w-4/5 items-center justify-center rounded-md bg-zinc-300 dark:bg-zinc-700"
-		>
-			<IconQuestionMark class="scale-150 text-zinc-400 dark:text-zinc-500" />
-		</div>
+		<CoverImage :image="props.item.image" />
 
 		<ItemTooltip
 			:name="props.item.name"
@@ -66,11 +44,11 @@
 
 		<Teleport to="body">
 			<ItemContextMenu
-				:ref="`sidebar-library-item-${props.item.id}`"
+				:ref="`sidebar-library-item-ctx-menu-${props.item.id}`"
 				:playlist="props.item"
-				:is-visible="isActive"
+				:is-visible="isOpened"
 				:style="ctxMenuStyle"
-				@close-context-menu="disactivate"
+				@close-context-menu="closeCtxMenu"
 			/>
 		</Teleport>
 	</div>

@@ -7,16 +7,16 @@
 	const localePath = useLocalePath();
 
 	onMounted(() => fetchRecentPlaylists());
-
-	// TODO: update the links and the play button
 </script>
 
 <template>
-	<div class="py-4">
+	<section class="py-4">
+		<!-- Heading -->
 		<p class="text-lg font-medium text-black dark:text-white">
 			{{ $t('/.playlists-recent.your-recent-playlists') }}
 		</p>
 
+		<!-- Container -->
 		<div class="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4">
 			<!-- Skeletons -->
 			<div
@@ -36,6 +36,7 @@
 				class="transition-custom group relative flex cursor-pointer items-center justify-between gap-2 overflow-hidden rounded-md bg-zinc-300 bg-opacity-50 hover:bg-opacity-80 dark:bg-zinc-700"
 				@click="navigateTo(localePath(`/playlists/${p.id}`))"
 			>
+				<!-- Playlist cover image -->
 				<div class="flex w-full items-center gap-2">
 					<NuxtImg
 						v-if="Array.isArray(p.images) && p.images[0]?.url"
@@ -55,11 +56,13 @@
 					class="absolute right-0 mr-2 hidden items-center justify-center rounded-full bg-green-400 p-2 shadow-md transition-all group-hover:flex hover:scale-105 hover:bg-green-300"
 					@click.stop="console.log('Play ', p.name)"
 				>
-					<IconPlay class="scale-150" />
+					<ClientOnly>
+						<IconPlay class="scale-150" />
+					</ClientOnly>
 				</div>
 			</div>
 		</div>
-	</div>
+	</section>
 </template>
 
 <style scoped>

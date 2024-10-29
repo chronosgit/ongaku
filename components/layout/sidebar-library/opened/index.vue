@@ -1,6 +1,6 @@
 <script setup lang="ts">
-	import Tooltip from '~/components/utils/Tooltip.vue';
 	import { IconLibrary, IconPlus } from '~/components/ui/icons';
+	import Tooltip from '~/components/ui/Tooltip.vue';
 	import Items from './Items.vue';
 	import Filters from './Filters.vue';
 	import { useLayoutStore } from '~/store/useLayoutStore';
@@ -33,9 +33,11 @@
 				class="group flex cursor-pointer items-center gap-2 text-[#8d8c8c] dark:text-[#b3b3b3]"
 				@click="layoutStore.closeLeftSide"
 			>
-				<IconLibrary
-					class="scale-150 transition-colors group-hover:text-black dark:group-hover:text-white"
-				/>
+				<ClientOnly>
+					<IconLibrary
+						class="scale-150 transition-colors group-hover:text-black dark:group-hover:text-white"
+					/>
+				</ClientOnly>
 
 				<p
 					class="text-lg font-semibold transition-colors group-hover:text-black dark:group-hover:text-white"

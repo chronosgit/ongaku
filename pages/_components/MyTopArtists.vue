@@ -1,6 +1,6 @@
 <script setup lang="ts">
-	import ArtistPreviewCard from '~/components/business/ArtistPreviewCard.vue';
-	import SkeletonArtistPreviewCard from '~/components/business/skeletons/SkeletonArtistPreviewCard.vue';
+	import ArtistPreviewCard from '~/components/features/artists/ArtistPreviewCard.vue';
+	import SkeletonArtistPreviewCard from '~/components/features/artists/skeletons/SkeletonArtistPreviewCard.vue';
 
 	const localePath = useLocalePath();
 
@@ -11,7 +11,7 @@
 
 <template>
 	<section class="group/section">
-		<!-- Section name -->
+		<!-- Section heading -->
 		<div class="flex items-center justify-between gap-1">
 			<p class="text-lg font-medium dark:text-white">
 				{{ $t('/.my-top-artists.title') }}

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-	import ItemContextMenu from '../ItemContextMenu.vue';
 	import { IconPlay, IconQuestionMark } from '~/components/ui/icons';
+	import ItemContextMenu from '../item-context-menu/index.vue';
 	import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
 
 	const props = defineProps<{ item: IMediaAlbumOrPlaylist }>();
@@ -47,7 +47,7 @@
 		<div class="relative">
 			<!-- Cover image -->
 			<NuxtImg
-				v-if="props.item.image.url"
+				v-if="props.item.image?.url"
 				:src="props.item.image.url"
 				class="w-full max-w-12 rounded-md"
 			/>
@@ -57,7 +57,11 @@
 				v-else
 				class="flex h-12 w-12 items-center justify-center rounded-md bg-zinc-300 dark:bg-zinc-700"
 			>
-				<IconQuestionMark class="scale-150 text-zinc-400 dark:text-zinc-500" />
+				<ClientOnly>
+					<IconQuestionMark
+						class="scale-150 text-zinc-400 dark:text-zinc-500"
+					/>
+				</ClientOnly>
 			</div>
 
 			<!-- On-hover play icon and darkening overlay -->

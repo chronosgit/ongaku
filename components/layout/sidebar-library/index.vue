@@ -1,10 +1,10 @@
 <script setup lang="ts">
-	import EditPlaylistForm from '~/components/business/edit-playlist-form/index.vue';
+	import EditForm from '~/components/features/playlists/edit-playlist-form/index.vue';
 	import Closed from './closed/index.vue';
-	import Opened from './opened/index.vue';
 	import { useLayoutStore } from '~/store/useLayoutStore';
-
 	import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
+
+	const Opened = defineAsyncComponent(() => import('./opened/index.vue'));
 
 	const layoutStore = useLayoutStore();
 
@@ -73,17 +73,13 @@
 			@select-only-albums="selectOnlyAlbums"
 			@select-only-playlists="selectOnlyPlaylists"
 			@deselect-filters="deselectFilters"
-			@refetch-media-items="refetch"
 		/>
 
-		<Closed
-			v-if="!layoutStore.isLeftSideOpen"
-			:items="items"
-			:is-loading="isLoading"
-		/>
+		<!-- v-if="!layoutStore.isLeftSideOpen" -->
+		<Closed :items="items" :is-loading="isLoading" />
 
 		<Teleport to="body">
-			<EditPlaylistForm
+			<EditForm
 				ref="sidebar-library-edit-playlist-form"
 				:playlist="editablePlaylist"
 				:is-visible="isOpenEditForm"

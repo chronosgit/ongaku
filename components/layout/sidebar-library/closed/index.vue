@@ -18,17 +18,18 @@
 		class="h-full space-y-4 overflow-x-hidden scrollbar scrollbar-thumb-gray-300 scrollbar-thumb-rounded-lg scrollbar-w-1 dark:scrollbar-thumb-[#1d1d1d]"
 		:class="props.isLoading ? 'overflow-y-hidden' : 'overflow-y-auto'"
 	>
-		<IconDoubleArrowRight
-			class="mx-auto my-0 block scale-150 cursor-pointer text-gray-400 transition-colors hover:text-black dark:hover:text-white"
-			@click="layoutStore.openLeftSide"
-		/>
+		<!-- Extend sidebar -->
+		<ClientOnly>
+			<IconDoubleArrowRight
+				class="mx-auto my-0 block scale-150 cursor-pointer text-gray-400 transition-colors hover:text-black dark:hover:text-white"
+				@click="layoutStore.openLeftSide"
+			/>
+		</ClientOnly>
 
 		<!-- Loading indicator -->
-		<template v-if="props.isLoading">
-			<ItemsSkeleton />
-		</template>
+		<ItemsSkeleton v-if="props.isLoading" />
 
-		<!-- Already loaded -->
+		<!-- After loading -->
 		<template v-else>
 			<!-- My playlists -->
 			<Items v-if="props.items" :items="props.items" />

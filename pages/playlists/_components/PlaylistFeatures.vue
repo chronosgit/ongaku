@@ -1,23 +1,20 @@
 <script setup lang="ts">
-	import EditPlaylistForm from '~/components/business/edit-playlist-form/index.vue';
+	import EditPlaylistForm from '~/_migration/features/playlists/EditForm.vue';
 	import {
 		IconDelete,
 		IconEdit,
 		IconPlay,
 		IconSettings,
-	} from '~/components/ui/icons';
+	} from '~/_migration/ui/icons';
 	import { useCurrentUserStore } from '~/store/useCurrentUserStore';
-	import type IPlaylist from '../interfaces/IPlaylist';
+	import type IPlaylist from '../_interfaces/IPlaylist';
 	import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
-	import Dropdown from '~/components/utils/Dropdown.vue';
 
 	const localePath = useLocalePath();
 
 	const curUserStore = useCurrentUserStore();
 
 	const props = defineProps<{ playlist: IPlaylist | null }>();
-
-	const { deleteMyPlaylist } = useMyPlaylists();
 
 	const {
 		isActive: isEditForm,
@@ -26,6 +23,16 @@
 	} = useClickawayClient('/playlists/:id.edit-playlist-form');
 	const { isActive: isSettingsDropdown, toggle: toggleSettingsDropdown } =
 		useClickawayClient('/playlist/:id.dropdown-settings');
+
+	const { deleteMyPlaylist } = useMyPlaylists();
+
+	const onDeletePlaylist = () => {
+		if (props.playlist == null) return;
+
+		deleteMyPlaylist(props.playlist.id).then(() => {
+			navigateTo(localePath('/'));
+		});
+	};
 
 	const playlistAsMediaItemForEditing = computed<IMediaAlbumOrPlaylist>(() => {
 		const item = <IMediaAlbumOrPlaylist>{
@@ -45,14 +52,6 @@
 
 		return curUserStore.user.id === props.playlist?.owner?.id;
 	});
-
-	const onDeletePlaylist = () => {
-		if (props.playlist == null) return;
-
-		deleteMyPlaylist(props.playlist.id).then(() => {
-			navigateTo(localePath('/'));
-		});
-	};
 </script>
 
 <template>
@@ -78,9 +77,10 @@
 				@mousedown.stop="toggleSettingsDropdown()"
 			/>
 
-			<Dropdown
+			<!-- Settings dropdown -->
+			<div
 				ref="/playlist/:id.dropdown-settings"
-				class="top-0 -translate-x-6 translate-y-8 rounded-md bg-zinc-100 p-2 shadow-lg transition-all dark:bg-zinc-800"
+				class="absolute top-0 -translate-x-6 translate-y-8 rounded-md bg-zinc-100 p-2 shadow-lg transition-all dark:bg-zinc-800"
 				:class="{
 					'scale-100 opacity-100': isSettingsDropdown,
 					'scale-0 opacity-0': !isSettingsDropdown,
@@ -115,7 +115,7 @@
 						}}
 					</p>
 				</div>
-			</Dropdown>
+			</div>
 		</div>
 
 		<!-- Absolute form -->
