@@ -8,7 +8,7 @@
 
 <template>
 	<div
-		class="flex min-h-screen flex-col items-center justify-center px-4 dark:bg-[#121212]"
+		class="flex min-h-screen flex-col items-center justify-center px-4 dark:bg-zinc-900"
 	>
 		<div class="max-w-80 space-y-16 md:max-w-lg">
 			<h1 class="break-words text-center text-5xl font-bold dark:text-white">
@@ -16,7 +16,7 @@
 			</h1>
 
 			<button
-				class="group mx-auto my-0 block space-x-4 rounded-full border-[1px] border-black px-5 py-2 transition-colors hover:bg-black dark:border-[#7c7c7c] dark:hover:bg-white"
+				class="group mx-auto my-0 block space-x-4 rounded-full px-5 py-2 transition-colors hover:bg-indigo-600"
 				@click="authenticate()"
 			>
 				<NuxtImg
@@ -27,7 +27,7 @@
 				/>
 
 				<p
-					class="inline-block font-bold transition-colors group-hover:text-white dark:text-white dark:group-hover:text-black"
+					class="inline-block font-bold transition-colors group-hover:text-white dark:text-white"
 				>
 					{{ $t('/auth.buttons.auth') }}
 				</p>
@@ -40,7 +40,7 @@
 
 		<NuxtLink
 			:to="`/${locale}`"
-			class="text-md rounded-full px-4 py-1 font-bold transition-colors hover:bg-black hover:text-white dark:text-white dark:hover:bg-black"
+			class="text-md rounded-full px-4 py-1 font-bold transition-colors hover:bg-indigo-600 hover:text-white dark:text-white"
 		>
 			{{ $t('/auth.buttons.home') }}
 		</NuxtLink>
