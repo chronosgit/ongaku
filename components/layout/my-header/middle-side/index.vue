@@ -12,19 +12,19 @@
 	<section class="flex items-center gap-3">
 		<!-- To / page -->
 		<WrapperIconRound
-			class="group cursor-pointer p-3"
+			class="cursor-pointer p-2"
 			@click="navigateTo(localePath('/'))"
 		>
-			<ClientOnly><IconHouse class="scale-150" /></ClientOnly>
+			<ClientOnly><IconHouse class="scale-125" /></ClientOnly>
 		</WrapperIconRound>
 
 		<!-- TODO: super-responsive searchbar with logic -->
 		<!-- Search -->
 		<WrapperIconRound
 			v-if="curUserStore.isAuthenticated"
-			class="group cursor-pointer p-3"
+			class="cursor-pointer p-2"
 		>
-			<ClientOnly><IconMagnifier class="scale-150" /></ClientOnly>
+			<ClientOnly><IconMagnifier class="scale-125" /></ClientOnly>
 		</WrapperIconRound>
 	</section>
 </template>

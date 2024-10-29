@@ -11,7 +11,7 @@
 <template>
 	<WrapperIconRound
 		v-if="curUserStore.isAuthenticated"
-		class="group cursor-pointer p-3"
+		class="cursor-pointer p-2"
 		@click="layoutStore.toggleLeftSideVisibility()"
 	>
 		<ClientOnly><IconLibrary sizes="40" class="scale-125" /></ClientOnly>
