@@ -1,6 +1,7 @@
 <script setup lang="ts">
 	import Default from '~/layouts/default.vue';
 	import { useCurrentUserStore } from '~/store/useCurrentUserStore';
+	import { useLayoutStore } from '~/store/useLayoutStore';
 
 	const MyHeader = defineAsyncComponent(
 		() => import('~/components/layout/my-header/index.vue')
@@ -15,6 +16,7 @@
 	const localePath = useLocalePath();
 
 	const curUserStore = useCurrentUserStore();
+	const layoutStore = useLayoutStore();
 </script>
 
 <template>
@@ -25,7 +27,10 @@
 				<main class="relative h-[90%]">
 					<MyHeader class="h-[8%]" />
 
-					<SidebarLibrary class="h-[90%]" />
+					<SidebarLibrary
+						v-if="layoutStore.isLeftSideVisible"
+						class="h-[90%]"
+					/>
 
 					<div class="h-[92%] p-2 dark:bg-black">
 						<slot></slot>

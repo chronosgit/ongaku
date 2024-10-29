@@ -1,56 +1,25 @@
 <script setup lang="ts">
-	import EditForm from '~/components/features/playlists/edit-playlist-form/index.vue';
 	import Closed from './closed/index.vue';
 	import { useLayoutStore } from '~/store/useLayoutStore';
-	import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
 
 	const Opened = defineAsyncComponent(() => import('./opened/index.vue'));
+	const EditForm = defineAsyncComponent(
+		() => import('~/components/features/playlists/edit-playlist-form/index.vue')
+	);
 
 	const layoutStore = useLayoutStore();
 
 	const {
-		items,
-		filter,
-		isLoading,
-		fetch,
-		refetch,
-		selectOnlyAlbums,
-		selectOnlyPlaylists,
-		deselectFilters,
-		localRemoveItemById,
-	} = useMyAlbumsAndPlaylists();
+		followedPlaylistsAndAlbums,
+		areLoading,
+		fetchFollowedPlaylistsAndAlbums,
+	} = useFollowedPlaylistsAndAlbums();
 
 	const {
 		isActive: isOpenEditForm,
 		activate: openEditForm,
 		disactivate: closeEditForm,
 	} = useClickawayClient('sidebar-library-edit-playlist-form');
-
-	const editablePlaylist = ref<IMediaAlbumOrPlaylist>({
-		id: '',
-		name: '',
-		image: {
-			height: 0,
-			width: 0,
-			url: '',
-		},
-		owner: '',
-		type: 'playlist',
-	});
-
-	const editPlaylist = (playlist: IMediaAlbumOrPlaylist) => {
-		if (playlist == null) return;
-
-		editablePlaylist.value = playlist;
-
-		openEditForm();
-	};
-
-	onMounted(() => fetch());
-
-	provide('refetchMediaItems', refetch);
-	provide('localRemoveItemById', localRemoveItemById);
-	provide('editPlaylist', editPlaylist);
 </script>
 
 <template>
@@ -65,7 +34,10 @@
 			'max-w-20': !layoutStore.isLeftSideOpen,
 		}"
 	>
-		<Opened
+		<div class="" v-if="followedPlaylistsAndAlbums">Yes</div>
+		<div class="" v-else>No</div>
+
+		<!-- <Opened
 			v-if="layoutStore.isLeftSideOpen"
 			:items="items"
 			:is-loading="isLoading"
@@ -73,12 +45,12 @@
 			@select-only-albums="selectOnlyAlbums"
 			@select-only-playlists="selectOnlyPlaylists"
 			@deselect-filters="deselectFilters"
-		/>
+		/> -->
 
 		<!-- v-if="!layoutStore.isLeftSideOpen" -->
-		<Closed :items="items" :is-loading="isLoading" />
+		<!-- <Closed :items="items" :is-loading="isLoading" /> -->
 
-		<Teleport to="body">
+		<!-- <Teleport to="body">
 			<EditForm
 				ref="sidebar-library-edit-playlist-form"
 				:playlist="editablePlaylist"
@@ -86,6 +58,6 @@
 				@close-edit-playlist-form="closeEditForm()"
 				@on-update-playlist="refetch()"
 			/>
-		</Teleport>
+		</Teleport> -->
 	</aside>
 </template>
