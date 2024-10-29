@@ -1,6 +1,7 @@
 <script setup lang="ts">
 	import Default from '~/layouts/default.vue';
 	import { useCurrentUserStore } from '~/store/useCurrentUserStore';
+	import { useLayoutStore } from '~/store/useLayoutStore';
 
 	const MyHeader = defineAsyncComponent(
 		() => import('~/components/layout/my-header/index.vue')
@@ -15,6 +16,7 @@
 	const localePath = useLocalePath();
 
 	const curUserStore = useCurrentUserStore();
+	const layoutStore = useLayoutStore();
 </script>
 
 <template>
@@ -25,7 +27,10 @@
 				<main class="relative h-[90%]">
 					<MyHeader class="h-[8%]" />
 
-					<SidebarLibrary class="h-[90%]" />
+					<SidebarLibrary
+						v-if="layoutStore.isLeftSideVisible"
+						class="h-[90%]"
+					/>
 
 					<div class="h-[92%] p-2 dark:bg-black">
 						<slot></slot>
@@ -52,7 +57,7 @@
 
 					<NuxtLink
 						:to="localePath('/auth')"
-						class="text-blue-500 transition-colors hover:text-blue-700"
+						class="transition-color font-medium text-indigo-500 hover:text-indigo-700"
 					>
 						{{ $t('modules.unauthentication-guard.feedback-p2') }}
 					</NuxtLink>
