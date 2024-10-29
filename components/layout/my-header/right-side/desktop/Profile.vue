@@ -16,7 +16,7 @@
 	const avatar = computed(() => {
 		const avatars = curUserStore.user?.images;
 
-		if (!Array.isArray(avatars) || !avatars.length) return '';
+		if (!Array.isArray(avatars) || !avatars.length) return null;
 
 		return avatars[avatars.length - 1];
 	});
@@ -26,7 +26,7 @@
 		navigateTo(localePath('/me'));
 	};
 
-	const logout = async () => {
+	const logout = () => {
 		AuthService.logout().then(() => {
 			curUserStore.disauthenticate();
 			closeDropdown();
