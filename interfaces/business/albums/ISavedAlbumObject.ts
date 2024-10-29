@@ -1,13 +1,16 @@
-import type IImageObject from '~/interfaces/IImageObject';
-import type ICopyrightObject from '~/interfaces/ICopyrightObject';
+import type ISimplifiedArtistObject from '~/interfaces/business/artists/ISimplifiedArtistObject';
+import type ISimplifiedTrackObject from '~/interfaces/business/tracks/ISimplifiedTrackObject';
+import type ICopyrightObject from '~/interfaces/business/ICopyrightObject';
+import type IExternalUrlsObject from '~/interfaces/business/IExternalUrlsObject';
+import type IImageObject from '~/interfaces/business/IImageObject';
 
-export default interface ISavedAlbumsObject {
+export default interface ISavedAlbumObject {
 	added_at: string; // date-time string
 	album: {
 		album_type: string;
 		total_tracks: number;
 		available_markets: string[];
-		external_urls: { spotify: string };
+		external_urls: IExternalUrlsObject;
 		href: string;
 		id: string;
 		images: IImageObject[];
@@ -17,7 +20,7 @@ export default interface ISavedAlbumsObject {
 		restrictions?: { reason: string };
 		type: string | 'album';
 		uri: string;
-		artists: {}; // TODO: finish
+		artists: ISimplifiedArtistObject[];
 		tracks: {
 			href: string;
 			limit: number;
@@ -25,7 +28,7 @@ export default interface ISavedAlbumsObject {
 			offset: number;
 			previous?: string | null;
 			total: number;
-			items: {}; // TODO: finish
+			items: ISimplifiedTrackObject[];
 		};
 		copyrights: ICopyrightObject[];
 		external_ids: { isrc: string; ean: string; upc: string };

@@ -1,5 +1,5 @@
-import type IExternalUrls from '~/interfaces/IExternalUrls';
-import type IImage from '~/interfaces/IImage';
+import type IExternalUrlsObject from '~/interfaces/business/IExternalUrlsObject';
+import type IImageObject from '~/interfaces/business/IImageObject';
 
 export default interface ICurrentUser {
 	id: string;
@@ -7,13 +7,13 @@ export default interface ICurrentUser {
 	email: string;
 	display_name?: string | null;
 	country: string;
-	images: IImage[];
+	images: IImageObject[];
 	followers: {
 		href?: string | null;
 		total: number;
 	};
 	explicit_content: Object;
-	external_urls: IExternalUrls;
+	external_urls: IExternalUrlsObject;
 	product: string;
 	href: string;
 	uri: string;

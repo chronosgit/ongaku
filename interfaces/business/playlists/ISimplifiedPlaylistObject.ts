@@ -1,15 +1,16 @@
-import type IImageObject from '~/interfaces/IImageObject';
+import type IExternalUrlsObject from '~/interfaces/business/IExternalUrlsObject';
+import type IImageObject from '~/interfaces/business/IImageObject';
 
-export default interface ISimplifiedInterfaceObject {
+export default interface ISimplifiedPlaylistObject {
 	collaborative: boolean;
-	description: string;
-	external_urls: { spotify: string };
+	description?: string | null;
+	external_urls: IExternalUrlsObject;
 	href: string;
 	id: string;
-	images: IImageObject[];
+	images?: IImageObject[] | null;
 	name: string;
 	owner: {
-		external_urls: { spotify: string };
+		external_urls: IExternalUrlsObject;
 		followers: { href?: string | null; total: number };
 		href: string;
 		id: string;
