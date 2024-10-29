@@ -7,7 +7,7 @@
 
 <template>
 	<div
-		class="w-12 cursor-pointer rounded-full border-[1px] bg-[#eff0f3] py-0.5 transition-colors hover:border-red-300 dark:border-[#717272] dark:bg-[#2b2b2b]"
+		class="w-12 cursor-pointer rounded-full border-[1px] bg-zinc-200 py-0.5 transition-colors hover:border-indigo-600 dark:border-[#717272] dark:bg-[#2b2b2b]"
 		@click="colorModeStore.toggleMode"
 	>
 		<div
