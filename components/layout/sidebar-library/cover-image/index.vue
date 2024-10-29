@@ -1,8 +1,8 @@
 <script setup lang="ts">
 	import { IconQuestionMark } from '~/components/ui/icons';
-	import type IImage from '~/interfaces/IImage';
+	import type IImageObject from '~/interfaces/business/IImageObject';
 
-	const props = defineProps<{ image: IImage | null }>();
+	const props = defineProps<{ image: IImageObject | null }>();
 </script>
 
 <template>

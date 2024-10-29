@@ -1,9 +1,7 @@
 <script setup lang="ts">
 	import { IconClose } from '~/components/ui/icons';
 
-	const emit = defineEmits<{
-		(e: 'closeEditPlaylistForm'): void;
-	}>();
+	const closeForm = inject<Function>('closeForm', () => {});
 </script>
 
 <template>
@@ -15,7 +13,7 @@
 		<ClientOnly>
 			<IconClose
 				class="scale-125 cursor-pointer text-zinc-500 transition-colors hover:text-black dark:hover:text-white"
-				@click="emit('closeEditPlaylistForm')"
+				@click="closeForm()"
 			/>
 		</ClientOnly>
 	</div>

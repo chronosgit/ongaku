@@ -60,7 +60,9 @@
 	>
 		<!-- Message -->
 		<div class="flex items-center gap-3">
-			<div class="flex items-center justify-center rounded-full bg-white p-0.5">
+			<div
+				class="flex scale-150 items-center justify-center rounded-full p-0.5"
+			>
 				<ClientOnly>
 					<component :is="icon"></component>
 				</ClientOnly>

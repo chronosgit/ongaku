@@ -1,17 +1,32 @@
 <script setup lang="ts">
 	import PlaylistOnlyFeatures from './playlist-features/index.vue';
-	import AlbumOnlyFeatures from './album-features/index.vue';
-	import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
+	import type IMediaItem from '../interfaces/IMediaItem';
 
 	const props = defineProps<{
-		playlist: IMediaAlbumOrPlaylist;
+		item: IMediaItem;
 		isVisible: boolean;
 	}>();
 	const emit = defineEmits<{
 		(e: 'closeContextMenu'): void;
+		(e: 'removePlaylistLocally', playlistId: string): void;
+		(
+			e: 'editPlaylistLocally',
+			playlistId: string,
+			newName: string,
+			newDescr: string
+		): void;
 	}>();
 
-	provide('closeContextMenu', emit('closeContextMenu'));
+	provide('item', props.item);
+	provide('closeCtxMenu', () => emit('closeContextMenu'));
+	provide('removePlaylistLocally', () =>
+		emit('removePlaylistLocally', props.item.id)
+	);
+	provide(
+		'editPlaylistLocally',
+		(playlistId: string, newName: string, newDescr: string) =>
+			emit('editPlaylistLocally', playlistId, newName, newDescr)
+	);
 </script>
 
 <template>
@@ -19,11 +34,8 @@
 		class="absolute z-10 flex min-w-14 flex-col gap-0.5 rounded-sm bg-zinc-200 p-1 shadow-lg dark:bg-zinc-800"
 		:class="{ block: props.isVisible, hidden: !props.isVisible }"
 	>
-		<PlaylistOnlyFeatures
-			v-if="props.playlist.type === 'playlist'"
-			:playlist="props.playlist"
-		/>
+		<PlaylistOnlyFeatures v-if="props.item.type === 'playlist'" />
 
-		<AlbumOnlyFeatures v-else :playlist="props.playlist" />
+		<!-- <AlbumOnlyFeatures v-else /> -->
 	</div>
 </template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import { IconLibrary, IconPlus } from '~/components/ui/icons';
-	import Tooltip from '~/components/ui/Tooltip.vue';
+	import Tooltip from '~/components/shared/Tooltip.vue';
 	import Items from './Items.vue';
 	import Filters from './Filters.vue';
 	import { useLayoutStore } from '~/store/useLayoutStore';

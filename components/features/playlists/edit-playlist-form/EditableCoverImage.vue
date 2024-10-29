@@ -6,11 +6,10 @@
 		IconEdit,
 		IconQuestionMark,
 	} from '~/components/ui/icons';
-	import type IImage from '~/interfaces/IImage';
+	import type IImageObject from '~/interfaces/business/IImageObject';
 
 	const props = defineProps<{
-		image: IImage | null;
-		userImageBase64: string;
+		image: IImageObject | null;
 	}>();
 
 	const emit = defineEmits<{
@@ -29,27 +28,27 @@
 			class="group relative flex aspect-square max-h-full min-h-24 w-full min-w-24 cursor-pointer items-center justify-center rounded-md bg-zinc-200 dark:bg-zinc-800"
 		>
 			<!-- User added avatar (new) -->
-			<NuxtImg
+			<!-- <NuxtImg
 				v-if="props.userImageBase64"
 				:src="props.userImageBase64"
 				class="rounded-md"
-			/>
+			/> -->
 
 			<!-- Existing avatar -->
-			<NuxtImg
+			<!-- <NuxtImg
 				v-else-if="props.image?.url"
 				:src="props.image?.url"
 				class="rounded-md"
-			/>
+			/> -->
 
 			<!-- No avatar -->
-			<div v-else class="scale-150 rounded-md">
+			<!-- <div v-else class="scale-150 rounded-md">
 				<ClientOnly>
 					<IconQuestionMark
 						class="scale-150 text-zinc-400 group-hover:opacity-0 dark:text-zinc-500"
 					/>
 				</ClientOnly>
-			</div>
+			</div> -->
 
 			<!-- Absolute on-hover options dropdown -->
 			<div
@@ -105,7 +104,7 @@
 			</div>
 
 			<!-- On-hover 'choose image' overlay -->
-			<div
+			<!-- <div
 				class="absolute z-20 hidden h-full w-full flex-col items-center justify-center gap-4 group-hover:flex peer-hover:hidden"
 				:class="{
 					'bg-black bg-opacity-50': props.image?.url || props.userImageBase64,
@@ -123,7 +122,7 @@
 				>
 					{{ $t('modules.sidebar-library.edit-playlist-form.image-choose') }}
 				</p>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </template>

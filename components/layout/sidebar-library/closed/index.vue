@@ -3,12 +3,10 @@
 	import Items from './Items.vue';
 	import ItemsSkeleton from './ItemsSkeleton.vue';
 	import { useLayoutStore } from '~/store/useLayoutStore';
-	import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
+	import type IMediaItem from '../interfaces/IMediaItem';
 
-	const props = defineProps<{
-		items: IMediaAlbumOrPlaylist[] | null;
-		isLoading: boolean;
-	}>();
+	const mediaItems = inject('mediaItems') as IMediaItem[];
+	const areMediaItemsLoading = inject('areMediaItemsLoading') as boolean;
 
 	const layoutStore = useLayoutStore();
 </script>
@@ -16,28 +14,25 @@
 <template>
 	<div
 		class="h-full space-y-4 overflow-x-hidden scrollbar scrollbar-thumb-gray-300 scrollbar-thumb-rounded-lg scrollbar-w-1 dark:scrollbar-thumb-[#1d1d1d]"
-		:class="props.isLoading ? 'overflow-y-hidden' : 'overflow-y-auto'"
+		:class="areMediaItemsLoading ? 'overflow-y-hidden' : 'overflow-y-auto'"
 	>
 		<!-- Extend sidebar -->
 		<ClientOnly>
 			<IconDoubleArrowRight
-				class="mx-auto my-0 block scale-150 cursor-pointer text-gray-400 transition-colors hover:text-black dark:hover:text-white"
+				class="mx-auto my-0 block scale-150 cursor-pointer text-gray-400 transition-colors hover:text-indigo-600"
 				@click="layoutStore.openLeftSide"
 			/>
 		</ClientOnly>
 
 		<!-- Loading indicator -->
-		<ItemsSkeleton v-if="props.isLoading" />
+		<ItemsSkeleton v-if="areMediaItemsLoading" />
 
-		<!-- After loading -->
-		<template v-else>
-			<!-- My playlists -->
-			<Items v-if="props.items" :items="props.items" />
+		<!-- My playlists -->
+		<Items v-else-if="mediaItems" />
 
-			<!-- No playlists found -->
-			<p v-else class="text-center text-xs text-gray-500">
-				{{ $t('modules.sidebar-library.closed.no-playlists') }}
-			</p>
-		</template>
+		<!-- No playlists found -->
+		<p v-else class="text-center text-xs text-gray-500">
+			{{ $t('modules.sidebar-library.closed.no-playlists') }}
+		</p>
 	</div>
 </template>

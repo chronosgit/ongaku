@@ -1,15 +1,21 @@
 <script setup lang="ts">
 	import Delete from './delete.vue';
 	import Edit from './edit.vue';
-	import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
+	import type IMediaItem from '../../interfaces/IMediaItem';
 
-	const props = defineProps<{
-		playlist: IMediaAlbumOrPlaylist;
-	}>();
+	const closeCtxMenu = inject<Function>('closeCtxMenu', () => {});
+
+	const playlist = inject<IMediaItem>('item');
+
+	if (playlist == null) {
+		throw createError('Invalid playlist in ItemContextMenu');
+	}
+
+	provide('closeCtxMenu', closeCtxMenu);
 </script>
 
 <template>
-	<Edit :playlist="props.playlist" />
+	<Edit :playlist="playlist" />
 
-	<Delete :playlist="props.playlist" />
+	<Delete :playlist="playlist" />
 </template>

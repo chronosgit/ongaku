@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import { IconLibrary } from '~/components/ui/icons';
-	import WrapperIconRound from '~/components/ui/WrapperIconRound.vue';
+	import WrapperIconRound from '~/components/shared/WrapperIconRound.vue';
 	import { useCurrentUserStore } from '~/store/useCurrentUserStore';
 	import { useLayoutStore } from '~/store/useLayoutStore';
 

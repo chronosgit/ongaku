@@ -1,29 +1,34 @@
 <script setup lang="ts">
 	import { IconDelete } from '~/components/ui/icons';
-	import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
+	import type IMediaItem from '../../interfaces/IMediaItem';
+	import PlaylistsService from '~/services/PlaylistsService';
 
-	const localRemoveItemById = inject('localRemoveItemById') as Function;
-	const closeContextMenu = inject('closeContextMenu') as Function;
+	const closeCtxMenu = inject<Function>('closeCtxMenu', () => {});
+	const removePlaylistLocally = inject<Function>(
+		'removePlaylistLocally',
+		() => {}
+	);
 
 	const props = defineProps<{
-		playlist: IMediaAlbumOrPlaylist;
+		playlist: IMediaItem;
 	}>();
 
-	const { deleteMyPlaylist } = useMyPlaylists();
+	const deletePlaylist = async () => {
+		try {
+			await PlaylistsService.deletePlaylist(props.playlist.id);
 
-	const onDeletePlaylistClick = () => {
-		deleteMyPlaylist(props.playlist.id).then(() => {
-			closeContextMenu();
-
-			localRemoveItemById(props.playlist.id);
-		});
+			removePlaylistLocally();
+			closeCtxMenu();
+		} catch (err) {
+			console.error(err);
+		}
 	};
 </script>
 
 <template>
 	<div
 		class="group flex cursor-pointer items-center gap-2 px-2 py-1 transition-colors hover:bg-zinc-300 dark:hover:bg-zinc-900"
-		@click="onDeletePlaylistClick()"
+		@click="deletePlaylist"
 	>
 		<ClientOnly>
 			<IconDelete class="scale-125 text-zinc-600 dark:text-zinc-300" />

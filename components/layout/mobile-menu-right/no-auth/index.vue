@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import FlexTextSectionDivider from '~/components/ui/FlexTextSectionDivider.vue';
+	import FlexTextSectionDivider from '~/components/shared/FlexTextSectionDivider.vue';
 	import { IconDoorOpen } from '~/components/ui/icons';
 
 	const localePath = useLocalePath();

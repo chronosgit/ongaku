@@ -8,11 +8,11 @@
 
 <template>
 	<div
-		class="absolute left-0 hidden max-w-max translate-x-20 overflow-hidden text-ellipsis whitespace-nowrap rounded-md bg-[#dfdfdf] p-2 shadow-lg shadow-zinc-400 dark:bg-[#292929] dark:shadow-[#1a1a1a]"
+		class="absolute left-0 hidden max-w-max translate-x-20 overflow-hidden rounded-md bg-zinc-300 p-2 dark:bg-zinc-800"
 	>
 		<p>{{ props.name }}</p>
 
-		<div class="text-xs dark:text-gray-400">
+		<div class="text-ellipsis whitespace-nowrap text-xs dark:text-gray-400">
 			{{ $t(`dictionary.${props.type}.one`) }} &#x2022; {{ props.owner }}
 		</div>
 	</div>

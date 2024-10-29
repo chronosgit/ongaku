@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import { IconDoorOpen, IconUser } from '~/components/ui/icons';
-	import FlexTextSectionDivider from '~/components/ui/FlexTextSectionDivider.vue';
+	import FlexTextSectionDivider from '~/components/shared/FlexTextSectionDivider.vue';
 	import { useCurrentUserStore } from '~/store/useCurrentUserStore';
 	import AuthService from '~/services/AuthService';
 

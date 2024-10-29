@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import { IconClose } from '~/components/ui/icons';
-	import WrapperIconRound from '~/components/ui/WrapperIconRound.vue';
+	import WrapperIconRound from '~/components/shared/WrapperIconRound.vue';
 
 	const props = defineProps<{ filter: 'album' | 'playlist' | null }>();
 

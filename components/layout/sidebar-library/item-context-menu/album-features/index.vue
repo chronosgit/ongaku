@@ -1,29 +1,16 @@
 <script setup lang="ts">
 	import { IconCheck } from '~/components/ui/icons';
-	import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
-
-	const localRemoveItemById = inject('localRemoveItemById') as Function;
-	const refetchMediaItems = inject('refetchMediaItems') as Function;
+	import type IMediaItem from '../../interfaces/IMediaItem';
 
 	const props = defineProps<{
-		playlist: IMediaAlbumOrPlaylist;
+		playlist: IMediaItem;
 	}>();
-
-	const { removeAlbumFromLibrary } = useMyAlbums();
-
-	const onRemoveAlbumClick = () => {
-		removeAlbumFromLibrary(props.playlist.id).then(() => {
-			localRemoveItemById(props.playlist.id);
-
-			refetchMediaItems();
-		});
-	};
 </script>
 
 <template>
 	<div
 		class="group flex cursor-pointer items-center gap-2 px-2 py-1 transition-colors hover:bg-zinc-300 dark:hover:bg-zinc-900"
-		@click="onRemoveAlbumClick()"
+		@click=""
 	>
 		<div
 			class="flex items-center justify-center rounded-full bg-green-500 p-0.5"

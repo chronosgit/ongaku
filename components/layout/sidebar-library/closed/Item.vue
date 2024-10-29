@@ -1,12 +1,25 @@
 <script setup lang="ts">
 	import ItemTooltip from './ItemTooltip.vue';
-	import ItemContextMenu from '../item-context-menu/index.vue';
 	import CoverImage from '../cover-image/index.vue';
-	import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
+	import type IMediaItem from '../interfaces/IMediaItem';
+
+	const ItemContextMenu = defineAsyncComponent(
+		() => import('../item-context-menu/index.vue')
+	);
+
+	const removePlaylistLocally = inject<(playlistId: string) => void>(
+		'removePlaylistLocally',
+		() => {}
+	);
+	const editPlaylistLocally = inject<
+		(playlistId: string, newName: string, newDescr: string) => void
+	>('editPlaylistLocally', () => {});
 
 	const localePath = useLocalePath();
 
-	const props = defineProps<{ item: IMediaAlbumOrPlaylist }>();
+	const props = defineProps<{
+		item: IMediaItem;
+	}>();
 
 	const { coords, isOpened, openCtxMenu, closeCtxMenu } = useBaseContextMenu(
 		`sidebar-library-item-ctx-menu-${props.item.id}`
@@ -21,9 +34,11 @@
 	});
 
 	const onItemClick = () => {
-		if (props.item.type !== 'playlist') return;
-
-		navigateTo(localePath(`/playlists/${props.item.id}`));
+		if (props.item.type === 'playlist') {
+			navigateTo(localePath(`/playlists/${props.item.id}`));
+		} else {
+			navigateTo(localePath(`/albums/${props.item.id}`));
+		}
 	};
 </script>
 
@@ -38,17 +53,19 @@
 		<ItemTooltip
 			:name="props.item.name"
 			:type="props.item.type"
-			:owner="props.item.owner"
+			:owner="props.item.owners[0].name"
 			class="group-hover:block"
 		/>
 
 		<Teleport to="body">
 			<ItemContextMenu
 				:ref="`sidebar-library-item-ctx-menu-${props.item.id}`"
-				:playlist="props.item"
+				:item="props.item"
 				:is-visible="isOpened"
 				:style="ctxMenuStyle"
 				@close-context-menu="closeCtxMenu"
+				@remove-playlist-locally="removePlaylistLocally"
+				@edit-playlist-locally="editPlaylistLocally"
 			/>
 		</Teleport>
 	</div>

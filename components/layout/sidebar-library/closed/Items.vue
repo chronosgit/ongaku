@@ -1,12 +1,12 @@
 <script setup lang="ts">
-	import type IMediaAlbumOrPlaylist from '~/interfaces/IMediaAlbumOrPlaylist';
 	import Item from './Item.vue';
+	import type IMediaItem from '../interfaces/IMediaItem';
 
-	const props = defineProps<{ items: IMediaAlbumOrPlaylist[] }>();
+	const mediaItems = inject('mediaItems') as IMediaItem[];
 </script>
 
 <template>
 	<div class="flex flex-col items-center gap-1">
-		<Item v-for="i in props.items" :key="i.id" :item="i" />
+		<Item v-for="i in mediaItems" :key="i.id" :item="i" />
 	</div>
 </template>
