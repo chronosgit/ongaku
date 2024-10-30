@@ -1,7 +1,7 @@
 <script setup lang="ts">
+	import type IMediaItem from '../../../interfaces/IMediaItem';
 	import Delete from './delete.vue';
 	import Edit from './edit.vue';
-	import type IMediaItem from '../../interfaces/IMediaItem';
 
 	const closeCtxMenu = inject<Function>('closeCtxMenu', () => {});
 

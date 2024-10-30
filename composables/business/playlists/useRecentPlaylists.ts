@@ -27,7 +27,7 @@ export default function () {
 						return dateB - dateA;
 					})
 					.map(({ context }) => {
-						return context.type === 'playlist'
+						return context?.type === 'playlist'
 							? context.href.split('/playlists/')[1]
 							: undefined;
 					})

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import { IconEdit } from '~/components/ui/icons';
-	import type IMediaItem from '../../interfaces/IMediaItem';
+	import type IMediaItem from '../../../interfaces/IMediaItem';
 
 	const EditPlaylistForm = defineAsyncComponent(
 		() => import('~/components/features/playlists/edit-playlist-form/index.vue')
@@ -29,6 +29,7 @@
 		newDescr: string
 	) => {
 		editPlaylistLocally(playlistId, newName, newDescr);
+
 		closeCtxMenu();
 	};
 </script>

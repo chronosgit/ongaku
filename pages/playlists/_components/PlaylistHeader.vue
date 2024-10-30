@@ -9,7 +9,6 @@
 		playlistDurationMs: number | null;
 	}>();
 
-	const localePath = useLocalePath();
 	const { t } = useI18n();
 
 	const playlistNameSize = computed(() => {
@@ -33,13 +32,9 @@
 			'border-top-right-radius': 'inherit',
 		}"
 	>
-		<p v-if="props.playlist == null" class="text-3xl font-bold dark:text-white">
-			404
-		</p>
-
 		<!-- Existing playlist -->
 		<div
-			v-else
+			v-if="props.playlist"
 			class="flex flex-col items-center gap-4 xs:flex-row xs:items-end"
 		>
 			<PlaylistCover :avatars="props.playlist.images" />

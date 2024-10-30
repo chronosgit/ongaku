@@ -133,5 +133,19 @@
 			"minute": "МИН",
 			"second": "СЕК"
 		}
+	},
+	"toasts": {
+		"playlists": {
+			"create": {
+				"success": "Плейлист создан!"
+			},
+			"update": {
+				"success": "Плейлист обновлён!"
+			},
+			"delete": {
+				"success": "Плейлист удалён!"
+			}
+		},
+		"albums": {}
 	}
 }

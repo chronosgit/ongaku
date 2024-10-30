@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import PlaylistOnlyFeatures from './playlist-features/index.vue';
-	import type IMediaItem from '../interfaces/IMediaItem';
+	import type IMediaItem from '../../interfaces/IMediaItem';
 
 	const props = defineProps<{
 		item: IMediaItem;

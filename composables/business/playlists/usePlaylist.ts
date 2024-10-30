@@ -30,9 +30,10 @@ export default function (playlistId: string) {
 				});
 
 				// Calculating the playlist's duration in milliseconds
-				const itsDurationInMs = thePlaylist.tracks.items.reduce((acc, i) => {
-					return acc + Number(i.track.duration_ms);
-				}, 0);
+				const itsDurationInMs =
+					thePlaylist.tracks.items?.reduce((acc, i) => {
+						return acc + Number(i.track.duration_ms);
+					}, 0) || 0;
 				playlistDurationMs.value = itsDurationInMs;
 
 				return thePlaylist;

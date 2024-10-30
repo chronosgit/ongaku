@@ -87,6 +87,19 @@ export default class PlaylistsService {
 		}
 	}
 
+	static async addCustomPlaylistCoverImage(playlistId: string, base64: string) {
+		try {
+			const res = await $fetch(`/api/playlists/${playlistId}/images`, {
+				method: 'PUT',
+				body: { image: JSON.stringify(base64) },
+			});
+
+			return res;
+		} catch (err) {
+			throw err;
+		}
+	}
+
 	static async deletePlaylist(playlistId: string) {
 		try {
 			const res = await $fetch(`/api/playlists/${playlistId}/followers`, {

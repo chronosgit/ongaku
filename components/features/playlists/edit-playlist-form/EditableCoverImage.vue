@@ -9,7 +9,8 @@
 	import type IImageObject from '~/interfaces/business/IImageObject';
 
 	const props = defineProps<{
-		image: IImageObject | null;
+		originalImage: IImageObject | null;
+		localImgBase64: string | null;
 	}>();
 
 	const emit = defineEmits<{
@@ -28,27 +29,27 @@
 			class="group relative flex aspect-square max-h-full min-h-24 w-full min-w-24 cursor-pointer items-center justify-center rounded-md bg-zinc-200 dark:bg-zinc-800"
 		>
 			<!-- User added avatar (new) -->
-			<!-- <NuxtImg
-				v-if="props.userImageBase64"
-				:src="props.userImageBase64"
+			<NuxtImg
+				v-if="props.localImgBase64"
+				:src="props.localImgBase64"
 				class="rounded-md"
-			/> -->
+			/>
 
 			<!-- Existing avatar -->
-			<!-- <NuxtImg
-				v-else-if="props.image?.url"
-				:src="props.image?.url"
+			<NuxtImg
+				v-else-if="props.originalImage"
+				:src="props.originalImage.url"
 				class="rounded-md"
-			/> -->
+			/>
 
 			<!-- No avatar -->
-			<!-- <div v-else class="scale-150 rounded-md">
+			<div v-else class="scale-150 rounded-md">
 				<ClientOnly>
 					<IconQuestionMark
 						class="scale-150 text-zinc-400 group-hover:opacity-0 dark:text-zinc-500"
 					/>
 				</ClientOnly>
-			</div> -->
+			</div>
 
 			<!-- Absolute on-hover options dropdown -->
 			<div
@@ -104,25 +105,21 @@
 			</div>
 
 			<!-- On-hover 'choose image' overlay -->
-			<!-- <div
+			<div
 				class="absolute z-20 hidden h-full w-full flex-col items-center justify-center gap-4 group-hover:flex peer-hover:hidden"
 				:class="{
-					'bg-black bg-opacity-50': props.image?.url || props.userImageBase64,
+					'bg-black bg-opacity-50': props.originalImage || props.localImgBase64,
 				}"
 				@click="emit('updateImage')"
 			>
 				<ClientOnly>
-					<IconEdit
-						class="scale-150 text-zinc-500 sm:scale-[250%] dark:text-white"
-					/>
+					<IconEdit class="scale-150 text-white sm:scale-[250%]" />
 				</ClientOnly>
 
-				<p
-					class="text-center text-sm font-medium text-zinc-500 sm:text-base dark:text-white"
-				>
+				<p class="text-center text-sm font-medium text-white sm:text-base">
 					{{ $t('modules.sidebar-library.edit-playlist-form.image-choose') }}
 				</p>
-			</div> -->
+			</div>
 		</div>
 	</div>
 </template>

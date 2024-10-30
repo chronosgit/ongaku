@@ -13,12 +13,14 @@
 		() => import('~/components/features/playlists/edit-playlist-form/index.vue')
 	);
 
+	const { t } = useI18n();
 	const localePath = useLocalePath();
 	const curUserStore = useCurrentUserStore();
 
 	const editPlaylistLocally = inject<
 		(playlistId: string, newName: string, newDescr: string) => void
 	>('editPlaylistLocally', () => {});
+	const createToast = inject<FCreateToast>('createToast', () => {});
 
 	const props = defineProps<{ playlist: IPlaylistObject | null }>();
 
@@ -49,6 +51,13 @@
 			if (props.playlist == null) return;
 
 			await PlaylistsService.deletePlaylist(props.playlist.id);
+
+			createToast({
+				id: props.playlist.id,
+				type: 'success',
+				message: t('toasts.playlists.delete.success'),
+				lifespan: 3000,
+			});
 
 			navigateTo(localePath('/'));
 		} catch (err) {

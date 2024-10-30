@@ -29,7 +29,7 @@
 			createToast({
 				id: generateRandomString(10),
 				type: 'success',
-				message: t('modules.sidebar-library.toasts.success-create-playlist'),
+				message: t('toasts.playlists.create.success'),
 				lifespan: 3000,
 			});
 			extendMediaItems(createdPlaylist);

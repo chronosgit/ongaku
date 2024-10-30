@@ -39,9 +39,7 @@
 
 <template>
 	<LayoutPartContainer class="h-full">
-		<div
-			class="bg-gradient-to-b dark:from-indigo-950 dark:via-indigo-950 dark:to-zinc-950"
-		>
+		<div class="bg-gradient-to-b dark:from-indigo-950 dark:to-zinc-950">
 			<!-- Playlist header -->
 			<SkeletonPlaylistHeader v-if="isLoading" />
 
