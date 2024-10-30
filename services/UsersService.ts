@@ -1,5 +1,6 @@
 import type IArtistObject from '~/interfaces/business/artists/IArtistObject';
 import type ITrackObject from '~/interfaces/business/tracks/ITrackObject';
+import type IUserProfile from '~/interfaces/business/users/IUserProfile';
 import type IServerApiSuccessResponse from '~/interfaces/IServerApiSuccessResponse';
 
 interface IFetchMyTopItems<T> extends IServerApiSuccessResponse {
@@ -14,7 +15,21 @@ interface IFetchMyTopItems<T> extends IServerApiSuccessResponse {
 	};
 }
 
+interface IFetchUserProfile extends IServerApiSuccessResponse {
+	data: IUserProfile;
+}
+
 export default class UsersService {
+	static async fetchUserProfile(userId: string) {
+		try {
+			const res = await $fetch<IFetchUserProfile>(`/api/users/${userId}`);
+
+			return res;
+		} catch (err) {
+			throw err;
+		}
+	}
+
 	static async fetchMyTopItems<T extends 'artists' | 'tracks'>(
 		type: T,
 		time_range?: string,

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-	import TemplateLayoutPart from '~/_migration/shared/LayoutPartContainer.vue';
-	import PlaylistHeader from './_components/PlaylistHeader.vue';
-	import SkeletonPlaylistHeader from './_components/SkeletonPlaylistHeader.vue';
+	import LayoutPartContainer from '~/components/layout/LayoutPartContainer.vue';
 	import PlaylistFeatures from './_components/PlaylistFeatures.vue';
+	import SkeletonPlaylistHeader from './_components/SkeletonPlaylistHeader.vue';
+	import PlaylistHeader from './_components/PlaylistHeader.vue';
 
 	useMyProfile();
 
@@ -15,13 +15,8 @@
 
 	const { params } = useRoute();
 
-	const {
-		playlist,
-		playlistOwnerAvatarUrl,
-		playlistLengthMs,
-		isLoading: isPlaylistLoading,
-		fetchPlaylist,
-	} = usePlaylist(params.id as string);
+	const { playlist, playlistOwnerAvatar, playlistDurationMs, isLoading } =
+		usePlaylist(params.id as string);
 
 	// Construct page title
 	watch(playlist, (p) => {
@@ -33,22 +28,21 @@
 
 		useHead({ title: `${part1} - ${part2} ${part3}` });
 	});
-
-	onMounted(() => fetchPlaylist());
 </script>
 
 <template>
-	<TemplateLayoutPart class="h-full">
+	<LayoutPartContainer class="h-full">
 		<div
-			class="bg-gradient-to-b from-cyan-100 via-cyan-100 to-[#f3f4f6] dark:from-indigo-950 dark:via-indigo-950 dark:to-[#121212]"
+			class="bg-gradient-to-b from-cyan-100 via-cyan-100 to-[#f3f4f6] pb-4 dark:from-indigo-950 dark:via-indigo-950 dark:to-[#121212]"
 		>
 			<!-- Playlist header -->
-			<SkeletonPlaylistHeader v-if="isPlaylistLoading" />
+			<SkeletonPlaylistHeader v-if="isLoading" />
+
 			<PlaylistHeader
 				v-else
 				:playlist="playlist"
-				:playlist-owner-avatar="playlistOwnerAvatarUrl"
-				:playlist-length-ms="playlistLengthMs"
+				:playlist-owner-avatar="playlistOwnerAvatar"
+				:playlist-duration-ms="playlistDurationMs"
 			/>
 
 			<!-- Play and edit (if own) button -->
@@ -56,5 +50,5 @@
 
 			<!-- Etc -->
 		</div>
-	</TemplateLayoutPart>
+	</LayoutPartContainer>
 </template>

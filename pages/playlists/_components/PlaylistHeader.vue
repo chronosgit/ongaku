@@ -1,12 +1,12 @@
 <script setup lang="ts">
+	import type IPlaylistObject from '~/interfaces/business/playlists/IPlaylistObject';
 	import PlaylistCover from './PlaylistCover.vue';
 	import PlaylistTracksInfo from './PlaylistTracksInfo.vue';
-	import type IPlaylist from '../interfaces/IPlaylist';
 
 	const props = defineProps<{
-		playlist: IPlaylist | null;
+		playlist: IPlaylistObject | null;
 		playlistOwnerAvatar: string | null;
-		playlistLengthMs: number | null;
+		playlistDurationMs: number | null;
 	}>();
 
 	const localePath = useLocalePath();
@@ -27,14 +27,14 @@
 
 <template>
 	<section
-		class="rounded-inherit bg-opacity-50 p-4"
+		class="bg-opacity-50 p-4"
 		:style="{
 			'border-top-left-radius': 'inherit',
 			'border-top-right-radius': 'inherit',
 		}"
 	>
 		<p v-if="props.playlist == null" class="text-3xl font-bold dark:text-white">
-			Not found
+			404
 		</p>
 
 		<!-- Existing playlist -->
@@ -64,7 +64,7 @@
 				</p>
 
 				<!-- Owner and tracks info -->
-				<div class="flex items-center gap-0.5 text-sm font-medium">
+				<div class="flex items-center gap-1.5 text-sm font-medium">
 					<!-- Owner avatar  -->
 					<NuxtImg
 						v-if="props.playlistOwnerAvatar"
@@ -72,17 +72,23 @@
 						alt="avatar"
 						class="max-w-6 rounded-full"
 					/>
+
+					<!-- Avatar placeholder -->
 					<div v-else class="h-6 w-6 rounded-full bg-zinc-500" />
 
-					<!-- TODO: update link -->
 					<NuxtLink
-						:to="localePath(`/me`)"
 						class="underline-offset-2 hover:underline dark:text-white"
+						@click="console.log('Redirect to playlist owner page')"
 					>
 						{{ props.playlist.owner.display_name }}
 					</NuxtLink>
 
-					<span v-if="!props.playlist.followers.total">&bull;</span>
+					<span
+						v-if="!props.playlist.followers.total"
+						class="text-zinc-600 dark:text-zinc-400"
+					>
+						&bull;
+					</span>
 
 					<p
 						v-if="!props.playlist.followers.total"
@@ -95,7 +101,7 @@
 
 					<PlaylistTracksInfo
 						:playlist-tracks-quantity="props.playlist.tracks.total"
-						:playlist-length-ms="props.playlistLengthMs"
+						:playlist-length-ms="props.playlistDurationMs"
 					/>
 				</div>
 			</div>

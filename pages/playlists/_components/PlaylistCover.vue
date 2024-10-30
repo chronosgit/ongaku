@@ -1,9 +1,9 @@
 <script setup lang="ts">
-	import { IconQuestionMark } from '~/_migration/ui/icons';
-	import type IImage from '~/interfaces/IImage';
+	import { IconQuestionMark } from '~/components/ui/icons';
+	import type IImageObject from '~/interfaces/business/IImageObject';
 
 	const props = defineProps<{
-		avatars: IImage[] | null;
+		avatars: IImageObject[] | null | undefined;
 	}>();
 
 	const avatar = computed(() => {
