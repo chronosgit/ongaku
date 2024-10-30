@@ -3,7 +3,7 @@
 	import PlaylistFeatures from './_components/PlaylistFeatures.vue';
 	import SkeletonPlaylistHeader from './_components/SkeletonPlaylistHeader.vue';
 	import PlaylistHeader from './_components/PlaylistHeader.vue';
-	import PlaylistTracks from './_components/PlaylistTracks.vue';
+	import PlaylistTracksFeed from './_components/PlaylistTracksFeed.vue';
 
 	useMyProfile();
 
@@ -55,7 +55,7 @@
 			<!-- Play and edit buttons -->
 			<PlaylistFeatures :playlist="playlist" />
 
-			<PlaylistTracks />
+			<PlaylistTracksFeed />
 		</div>
 	</LayoutPartContainer>
 </template>
