@@ -3,7 +3,7 @@
 	import PlaylistFeatures from './_components/PlaylistFeatures.vue';
 	import SkeletonPlaylistHeader from './_components/SkeletonPlaylistHeader.vue';
 	import PlaylistHeader from './_components/PlaylistHeader.vue';
-	import PlaylistTracks from './_components/PlaylistTracks.vue';
+	import PlaylistTracksFeed from './_components/PlaylistTracksFeed.vue';
 
 	useMyProfile();
 
@@ -41,7 +41,8 @@
 
 <template>
 	<LayoutPartContainer class="h-full">
-		<div class="bg-gradient-to-b dark:from-indigo-950 dark:to-zinc-950">
+		<!-- WARN: Ugly ass height percentage -->
+		<div class="h-[60%] bg-gradient-to-b dark:from-indigo-950 dark:to-zinc-950">
 			<!-- Playlist header -->
 			<SkeletonPlaylistHeader v-if="isLoading" />
 
@@ -55,7 +56,7 @@
 			<!-- Play and edit buttons -->
 			<PlaylistFeatures :playlist="playlist" />
 
-			<PlaylistTracks />
+			<PlaylistTracksFeed />
 		</div>
 	</LayoutPartContainer>
 </template>
