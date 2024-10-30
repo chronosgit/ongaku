@@ -78,7 +78,7 @@
 <template>
 	<div
 		v-if="props.playlist"
-		class="relative flex items-center justify-start gap-4 px-4"
+		class="relative flex items-center justify-between gap-4 px-4"
 	>
 		<!-- Play button -->
 		<div
@@ -96,7 +96,7 @@
 				<IconSettings
 					v-if="isMyPlaylist"
 					role="button"
-					class="scale-150 cursor-pointer text-zinc-400 transition-all hover:scale-[160%] hover:text-black dark:text-zinc-500 dark:hover:text-white"
+					class="scale-150 cursor-pointer text-zinc-400 transition-all hover:scale-[160%] hover:text-indigo-500 dark:text-zinc-500"
 					@mousedown.stop="toggleSettingsDropdown()"
 				/>
 			</ClientOnly>
@@ -104,7 +104,7 @@
 			<!--Dropdown with settings -->
 			<div
 				ref="/playlist/:id.dropdown-settings"
-				class="absolute top-0 -translate-x-6 translate-y-8 rounded-md bg-zinc-100 p-2 shadow-lg transition-all dark:bg-zinc-800"
+				class="absolute right-0 top-0 translate-x-0 translate-y-8 rounded-md bg-zinc-100 p-2 shadow-lg transition-all dark:bg-zinc-800"
 				:class="{
 					'scale-y-100 opacity-100': isSettingsDropdown,
 					'scale-y-0 opacity-0': !isSettingsDropdown,

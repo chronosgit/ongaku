@@ -3,6 +3,7 @@
 	import PlaylistFeatures from './_components/PlaylistFeatures.vue';
 	import SkeletonPlaylistHeader from './_components/SkeletonPlaylistHeader.vue';
 	import PlaylistHeader from './_components/PlaylistHeader.vue';
+	import PlaylistTracks from './_components/PlaylistTracks.vue';
 
 	useMyProfile();
 
@@ -35,6 +36,7 @@
 	});
 
 	provide('editPlaylistLocally', editPlaylistLocally);
+	provide('playlistId', params.id as string);
 </script>
 
 <template>
@@ -50,10 +52,10 @@
 				:playlist-duration-ms="playlistDurationMs"
 			/>
 
-			<!-- Play and edit (if own) button -->
+			<!-- Play and edit buttons -->
 			<PlaylistFeatures :playlist="playlist" />
 
-			<!-- Etc -->
+			<PlaylistTracks />
 		</div>
 	</LayoutPartContainer>
 </template>
