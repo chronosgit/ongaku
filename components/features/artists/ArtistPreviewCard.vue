@@ -1,9 +1,9 @@
 <script setup lang="ts">
 	import { IconQuestionMark, IconPlay } from '~/components/ui/icons';
-	import type IArtist from '~/interfaces/IArtist';
+	import type IArtistObject from '~/interfaces/business/artists/IArtistObject';
 
 	const props = defineProps<{
-		artist: IArtist;
+		artist: IArtistObject;
 	}>();
 
 	const localePath = useLocalePath();
@@ -20,7 +20,7 @@
 			<NuxtImg
 				v-if="Array.isArray(props.artist?.images) && props.artist.images[0]"
 				:src="props.artist.images[0].url"
-				class="rounded-full"
+				class="h-full max-h-64 w-full max-w-64 rounded-full"
 			/>
 
 			<!-- Cover image placeholder -->

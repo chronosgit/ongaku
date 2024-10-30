@@ -13,7 +13,7 @@ export default function () {
 		async () => {
 			try {
 				// WARN: artifical delay
-				await delay(700);
+				await delay(3000);
 
 				const {
 					data: { items: recentlyPlayedTracks },
