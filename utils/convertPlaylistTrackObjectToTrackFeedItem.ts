@@ -10,6 +10,11 @@ export default function (
 	return {
 		id: playlistItem.track.id,
 		name: playlistItem.track.name,
+		album: {
+			id: playlistItemTrack.album.id,
+			name: playlistItemTrack.album.name,
+			uri: playlistItemTrack.album.uri,
+		},
 		artists: playlistItemTrack.artists,
 		images: playlistItemTrack.album.images,
 		track_number: playlistItemTrack.track_number,

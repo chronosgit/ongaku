@@ -41,7 +41,8 @@
 
 <template>
 	<LayoutPartContainer class="h-full">
-		<div class="bg-gradient-to-b dark:from-indigo-950 dark:to-zinc-950">
+		<!-- WARN: Ugly ass height percentage -->
+		<div class="h-[60%] bg-gradient-to-b dark:from-indigo-950 dark:to-zinc-950">
 			<!-- Playlist header -->
 			<SkeletonPlaylistHeader v-if="isLoading" />
 

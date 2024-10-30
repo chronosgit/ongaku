@@ -104,7 +104,7 @@
 			<!--Dropdown with settings -->
 			<div
 				ref="/playlist/:id.dropdown-settings"
-				class="absolute right-0 top-0 translate-x-0 translate-y-8 rounded-md bg-zinc-100 p-2 shadow-lg transition-all dark:bg-zinc-800"
+				class="absolute right-0 top-0 z-20 translate-x-0 translate-y-8 rounded-md bg-zinc-100 p-2 shadow-lg transition-all dark:bg-zinc-800"
 				:class="{
 					'scale-y-100 opacity-100': isSettingsDropdown,
 					'scale-y-0 opacity-0': !isSettingsDropdown,

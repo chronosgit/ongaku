@@ -4,6 +4,11 @@ import type IImageObject from '~/interfaces/business/IImageObject';
 export default interface ITrackFeedItem {
 	id: string;
 	name: string;
+	album: {
+		id: string;
+		uri: string;
+		name: string;
+	};
 	artists: {
 		id: string;
 		name: string;
