@@ -40,7 +40,8 @@
 	"/me/artists/top": {
 		"meta": {
 			"title": "My favourite artists"
-		}
+		},
+		"favourite-artists": "Favourite artists"
 	},
 	"/playlists/:id": {
 		"meta": {

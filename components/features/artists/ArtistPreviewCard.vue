@@ -12,7 +12,7 @@
 <template>
 	<article
 		class="group min-h-20 min-w-20 cursor-pointer rounded-md p-3 transition-colors hover:bg-zinc-200 dark:hover:bg-zinc-800"
-		@click="navigateTo(localePath('/'))"
+		@click="console.log('Navigate to artist page')"
 	>
 		<!-- Image container -->
 		<div class="relative">
@@ -47,8 +47,8 @@
 		</div>
 
 		<NuxtLink
-			:to="localePath('/')"
 			class="mt-2 block font-medium underline-offset-2 hover:underline dark:text-white"
+			@click.stop="console.log('Link navigate to artist page')"
 		>
 			{{ props.artist.name }}
 		</NuxtLink>

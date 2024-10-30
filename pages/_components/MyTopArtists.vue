@@ -15,13 +15,13 @@
 				{{ $t('/.my-top-artists.title') }}
 			</p>
 
-			<!-- <NuxtLink
+			<NuxtLink
 				v-if="!areLoading"
 				:to="localePath('/me/artists/top')"
 				class="text-sm underline-offset-2 hover:underline dark:text-white"
 			>
 				{{ $t('/.my-top-artists.link-show-all') }}
-			</NuxtLink> -->
+			</NuxtLink>
 		</div>
 
 		<!-- Container -->
