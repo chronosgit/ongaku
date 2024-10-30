@@ -1,8 +1,9 @@
 <script setup lang="ts">
-	import TemplateLayoutPart from '~/_migration/shared/LayoutPartContainer.vue';
-	import PlaylistHeader from './_components/PlaylistHeader.vue';
-	import SkeletonPlaylistHeader from './_components/SkeletonPlaylistHeader.vue';
+	import LayoutPartContainer from '~/components/layout/LayoutPartContainer.vue';
 	import PlaylistFeatures from './_components/PlaylistFeatures.vue';
+	import SkeletonPlaylistHeader from './_components/SkeletonPlaylistHeader.vue';
+	import PlaylistHeader from './_components/PlaylistHeader.vue';
+	import PlaylistTracks from './_components/PlaylistTracks.vue';
 
 	useMyProfile();
 
@@ -17,10 +18,10 @@
 
 	const {
 		playlist,
-		playlistOwnerAvatarUrl,
-		playlistLengthMs,
-		isLoading: isPlaylistLoading,
-		fetchPlaylist,
+		playlistOwnerAvatar,
+		playlistDurationMs,
+		isLoading,
+		editPlaylistLocally,
 	} = usePlaylist(params.id as string);
 
 	// Construct page title
@@ -34,27 +35,27 @@
 		useHead({ title: `${part1} - ${part2} ${part3}` });
 	});
 
-	onMounted(() => fetchPlaylist());
+	provide('editPlaylistLocally', editPlaylistLocally);
+	provide('playlistId', params.id as string);
 </script>
 
 <template>
-	<TemplateLayoutPart class="h-full">
-		<div
-			class="bg-gradient-to-b from-cyan-100 via-cyan-100 to-[#f3f4f6] dark:from-indigo-950 dark:via-indigo-950 dark:to-[#121212]"
-		>
+	<LayoutPartContainer class="h-full">
+		<div class="bg-gradient-to-b dark:from-indigo-950 dark:to-zinc-950">
 			<!-- Playlist header -->
-			<SkeletonPlaylistHeader v-if="isPlaylistLoading" />
+			<SkeletonPlaylistHeader v-if="isLoading" />
+
 			<PlaylistHeader
 				v-else
 				:playlist="playlist"
-				:playlist-owner-avatar="playlistOwnerAvatarUrl"
-				:playlist-length-ms="playlistLengthMs"
+				:playlist-owner-avatar="playlistOwnerAvatar"
+				:playlist-duration-ms="playlistDurationMs"
 			/>
 
-			<!-- Play and edit (if own) button -->
+			<!-- Play and edit buttons -->
 			<PlaylistFeatures :playlist="playlist" />
 
-			<!-- Etc -->
+			<PlaylistTracks />
 		</div>
-	</TemplateLayoutPart>
+	</LayoutPartContainer>
 </template>

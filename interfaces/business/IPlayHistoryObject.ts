@@ -41,10 +41,10 @@ export default interface IPlayHistoryObject {
 		is_local: boolean;
 	};
 	played_at: string; // date-time
-	context: {
+	context?: {
 		type: string;
 		href: string;
 		external_urls: IExternalUrlsObject;
 		uri: string;
-	};
+	} | null;
 }

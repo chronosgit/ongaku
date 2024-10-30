@@ -1,8 +1,13 @@
 <script setup lang="ts">
 	import Header from './Header.vue';
 	import EditableCoverImage from './EditableCoverImage.vue';
+	import useCoverImageClient from './composables/useCoverImage.client';
 	import type IImageObject from '~/interfaces/business/IImageObject';
 	import PlaylistsService from '~/services/PlaylistsService';
+
+	const { t } = useI18n();
+
+	const createToast = inject<FCreateToast>('createToast', () => {});
 
 	const props = defineProps<{
 		id: string;
@@ -24,6 +29,13 @@
 	const name = ref(props.name || '');
 	const descr = ref(props.descr || '');
 
+	const {
+		existingImage,
+		localImageBase64,
+		updateLocalImage,
+		removeLocalImage,
+	} = useCoverImageClient(props.image);
+
 	const editPlaylist = async () => {
 		try {
 			await PlaylistsService.updatePlaylistNameOrDescr(
@@ -31,6 +43,20 @@
 				name.value,
 				descr.value
 			);
+
+			if (localImageBase64.value) {
+				PlaylistsService.addCustomPlaylistCoverImage(
+					props.id,
+					localImageBase64.value
+				);
+			}
+
+			createToast({
+				id: props.id,
+				type: 'success',
+				message: t('toasts.playlists.update.success'),
+				lifespan: 3000,
+			});
 
 			emit('onEditSuccess', props.id, name.value, descr.value);
 		} catch (err) {
@@ -53,12 +79,12 @@
 			<!-- Main box -->
 			<div class="mb-2 flex w-full items-center justify-between gap-3">
 				<!-- Add playlist image -->
-				<!-- <EditableCoverImage
-					:image="props.playlist.image"
-					:user-image-base64="imageBase64"
-					@update-image="updateImage"
-					@delete-image="deleteImage"
-				/> -->
+				<EditableCoverImage
+					:original-image="existingImage"
+					:local-img-base64="localImageBase64"
+					@update-image="updateLocalImage"
+					@delete-image="removeLocalImage"
+				/>
 
 				<!-- Inputs -->
 				<div class="h-full w-full space-y-4">

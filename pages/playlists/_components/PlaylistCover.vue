@@ -1,9 +1,9 @@
 <script setup lang="ts">
-	import { IconQuestionMark } from '~/_migration/ui/icons';
-	import type IImage from '~/interfaces/IImage';
+	import { IconQuestionMark } from '~/components/ui/icons';
+	import type IImageObject from '~/interfaces/business/IImageObject';
 
 	const props = defineProps<{
-		avatars: IImage[] | null;
+		avatars: IImageObject[] | null | undefined;
 	}>();
 
 	const avatar = computed(() => {
@@ -23,7 +23,7 @@
 
 	<div
 		v-else
-		class="flex h-72 w-72 shrink-0 items-center justify-center rounded-md bg-cyan-50 xs:h-44 xs:w-44 sm:h-56 sm:w-56 dark:bg-zinc-800"
+		class="flex h-72 w-72 shrink-0 items-center justify-center rounded-md bg-zinc-300 xs:h-44 xs:w-44 sm:h-56 sm:w-56 dark:bg-zinc-800"
 	>
 		<ClientOnly>
 			<IconQuestionMark class="scale-[300%] dark:text-zinc-400" />

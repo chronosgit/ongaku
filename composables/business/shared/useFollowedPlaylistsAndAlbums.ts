@@ -77,13 +77,6 @@ export default function () {
 			} else {
 				target.album.name = newName ?? target.album.name;
 			}
-
-			createToast({
-				id: playlistId,
-				type: 'success',
-				message: t('modules.sidebar-library.toasts.success-update-playlist'),
-				lifespan: 3000,
-			});
 		} catch (err) {
 			console.error(err);
 		}
@@ -106,7 +99,7 @@ export default function () {
 		createToast({
 			id: playlistId,
 			type: 'success',
-			message: t('modules.sidebar-library.toasts.success-delete-playlist'),
+			message: t('toasts.playlists.delete.success'),
 			lifespan: 3000,
 		});
 

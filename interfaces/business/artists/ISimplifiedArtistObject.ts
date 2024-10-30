@@ -5,6 +5,6 @@ export default interface ISimplifiedArtistObject {
 	href: string;
 	id: string;
 	name: string;
-	type: string | 'artist';
+	type: 'artist';
 	uri: string;
 }

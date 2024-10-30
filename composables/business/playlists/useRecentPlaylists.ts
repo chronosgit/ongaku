@@ -13,7 +13,7 @@ export default function () {
 		async () => {
 			try {
 				// WARN: artifical delay
-				await delay(700);
+				await delay(1000);
 
 				const {
 					data: { items: recentlyPlayedTracks },
@@ -27,7 +27,7 @@ export default function () {
 						return dateB - dateA;
 					})
 					.map(({ context }) => {
-						return context.type === 'playlist'
+						return context?.type === 'playlist'
 							? context.href.split('/playlists/')[1]
 							: undefined;
 					})

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 	import { IconQuestionMark, IconPlay } from '~/components/ui/icons';
-	import type IArtist from '~/interfaces/IArtist';
+	import type IArtistObject from '~/interfaces/business/artists/IArtistObject';
 
 	const props = defineProps<{
-		artist: IArtist;
+		artist: IArtistObject;
 	}>();
 
 	const localePath = useLocalePath();
@@ -12,7 +12,7 @@
 <template>
 	<article
 		class="group min-h-20 min-w-20 cursor-pointer rounded-md p-3 transition-colors hover:bg-zinc-200 dark:hover:bg-zinc-800"
-		@click="navigateTo(localePath('/'))"
+		@click="console.log('Navigate to artist page')"
 	>
 		<!-- Image container -->
 		<div class="relative">
@@ -20,7 +20,7 @@
 			<NuxtImg
 				v-if="Array.isArray(props.artist?.images) && props.artist.images[0]"
 				:src="props.artist.images[0].url"
-				class="rounded-full"
+				class="h-full max-h-64 w-full max-w-64 rounded-full"
 			/>
 
 			<!-- Cover image placeholder -->
@@ -47,8 +47,8 @@
 		</div>
 
 		<NuxtLink
-			:to="localePath('/')"
 			class="mt-2 block font-medium underline-offset-2 hover:underline dark:text-white"
+			@click.stop="console.log('Link navigate to artist page')"
 		>
 			{{ props.artist.name }}
 		</NuxtLink>

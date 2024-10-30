@@ -7,7 +7,7 @@
 </script>
 
 <template>
-	<section class="py-4">
+	<section v-if="recentPlaylists" class="py-4">
 		<!-- Heading -->
 		<p class="text-lg font-medium text-black dark:text-white">
 			{{ $t('/.playlists-recent.your-recent-playlists') }}
@@ -26,7 +26,7 @@
 			</div>
 
 			<!-- Display recent playlists -->
-			<!-- <div
+			<div
 				v-else
 				v-for="p in recentPlaylists"
 				class="transition-custom group relative flex cursor-pointer items-center justify-between gap-2 overflow-hidden rounded-md bg-zinc-300 bg-opacity-50 hover:bg-opacity-80 dark:bg-zinc-700"
@@ -53,7 +53,7 @@
 						<IconPlay class="scale-150" />
 					</ClientOnly>
 				</div>
-			</div> -->
+			</div>
 		</div>
 	</section>
 </template>

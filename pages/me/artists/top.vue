@@ -1,7 +1,7 @@
 <script setup lang="ts">
-	import ArtistPreviewCard from '~/_migration/features/artists/ArtistPreviewCard.vue';
-	import SkeletonArtistPreviewCard from '~/_migration/features/artists/skeletons/SkeletonArtistPreviewCard.vue';
-	import TemplateLayoutPart from '~/_migration/shared/LayoutPartContainer.vue';
+	import LayoutPartContainer from '~/components/layout/LayoutPartContainer.vue';
+	import SkeletonArtistPreviewCard from '~/components/features/artists/skeletons/SkeletonArtistPreviewCard.vue';
+	import ArtistPreviewCard from '~/components/features/artists/ArtistPreviewCard.vue';
 
 	useMyProfile();
 
@@ -10,24 +10,24 @@
 		layout: 'main',
 	});
 
-	const { myTopArtists, isLoading, fetchMyTopArtists } = useMyTopArtists();
-
-	onMounted(() => fetchMyTopArtists());
+	const { myTopArtists, areLoading } = useMyTopArtists();
 </script>
 
 <template>
-	<TemplateLayoutPart
+	<LayoutPartContainer
 		class="h-full px-3 pt-8 scrollbar scrollbar-thumb-zinc-300 scrollbar-thumb-rounded-md scrollbar-w-2 dark:scrollbar-thumb-zinc-800"
-		:class="{ 'overflow-hidden': isLoading, 'overflow-y-auto': !isLoading }"
+		:class="{ 'overflow-hidden': areLoading, 'overflow-y-auto': !areLoading }"
 	>
-		<p class="text-3xl font-medium dark:text-white">Favourite artists</p>
+		<p class="text-2xl font-medium dark:text-white">
+			{{ $t('/me/artists/top.favourite-artists') }}
+		</p>
 
 		<!-- Artists container -->
 		<div
 			class="mt-8 grid grid-cols-1 place-items-center gap-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5"
 		>
 			<SkeletonArtistPreviewCard
-				v-if="isLoading"
+				v-if="areLoading"
 				v-for="i in 12"
 				:key="i"
 				class="h-64 w-64 md:h-52 md:w-52 lg:h-40 lg:w-40"
@@ -41,5 +41,5 @@
 				class="w-72 shrink-0 sm:w-64 md:w-56 lg:w-44"
 			/>
 		</div>
-	</TemplateLayoutPart>
+	</LayoutPartContainer>
 </template>

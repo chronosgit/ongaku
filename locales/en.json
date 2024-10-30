@@ -40,7 +40,8 @@
 	"/me/artists/top": {
 		"meta": {
 			"title": "My favourite artists"
-		}
+		},
+		"favourite-artists": "Favourite artists"
 	},
 	"/playlists/:id": {
 		"meta": {
@@ -132,5 +133,19 @@
 			"minute": "MIN",
 			"second": "SEC"
 		}
+	},
+	"toasts": {
+		"playlists": {
+			"create": {
+				"success": "Playlist is created!"
+			},
+			"update": {
+				"success": "Playlist is updated!"
+			},
+			"delete": {
+				"success": "Playlist is deleted!"
+			}
+		},
+		"albums": {}
 	}
 }
