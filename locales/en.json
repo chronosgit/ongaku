@@ -86,7 +86,8 @@
 				"albums": "Albums",
 				"no-items": "No playlists or albums",
 				"no-playlists": "No playlists",
-				"no-albums": "No albums"
+				"no-albums": "No albums",
+				"new-playlist-#": "My playlist #"
 			},
 			"item-context-menu": {
 				"edit-playlist": "Edit details",

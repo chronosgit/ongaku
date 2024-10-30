@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import FlexTextSectionDivider from '~/components/ui/FlexTextSectionDivider.vue';
+	import FlexTextSectionDivider from '~/components/shared/FlexTextSectionDivider.vue';
 	import AuthModeFeatures from './auth/index.vue';
 	import NoAuthModeFeatures from './no-auth/index.vue';
 	import LocalizationFeature from './localization/index.vue';

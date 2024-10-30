@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import { IconBurgerMenu } from '~/components/ui/icons';
-	import WrapperIconRound from '~/components/ui/WrapperIconRound.vue';
+	import WrapperIconRound from '~/components/shared/WrapperIconRound.vue';
 
 	const MobileMenuRight = defineAsyncComponent(
 		() => import('~/components/layout/mobile-menu-right/index.vue')
@@ -13,8 +13,8 @@
 
 <template>
 	<section>
-		<WrapperIconRound class="group cursor-pointer p-3" @click="open()">
-			<ClientOnly><IconBurgerMenu class="scale-150" /></ClientOnly>
+		<WrapperIconRound class="cursor-pointer p-2" @click="open()">
+			<ClientOnly><IconBurgerMenu class="scale-125" /></ClientOnly>
 		</WrapperIconRound>
 
 		<MobileMenuRight

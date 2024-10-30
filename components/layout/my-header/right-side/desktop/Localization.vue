@@ -10,7 +10,7 @@
 <template>
 	<div ref="localization-ref" class="relative max-w-6 translate-y-0.5">
 		<div
-			class="max-w-6 cursor-pointer text-gray-500 transition-all hover:scale-105 hover:text-black dark:text-[#b3b3b3] dark:hover:text-white"
+			class="max-w-6 cursor-pointer text-gray-500 transition-all hover:scale-105 hover:text-indigo-400 dark:text-zinc-400"
 			@click.stop="toggleLocaleDropdown()"
 		>
 			<ClientOnly>

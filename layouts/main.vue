@@ -46,7 +46,7 @@
 			<MyHeader />
 
 			<div
-				class="flex h-screen flex-col items-center justify-center gap-4 dark:bg-black"
+				class="flex h-screen flex-col items-center justify-center gap-4 text-center dark:bg-black"
 			>
 				<h1 class="text-3xl font-bold dark:text-white">
 					{{ $t('modules.unauthentication-guard.oops') }}

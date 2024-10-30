@@ -21,7 +21,7 @@
 		<!-- Not authenticated -->
 		<template v-else>
 			<button
-				class="rounded-full bg-zinc-950 px-3 py-1 font-bold text-white transition-all hover:scale-105 dark:bg-white dark:text-black"
+				class="rounded-full bg-indigo-600 px-3 py-1 font-medium text-white transition-all hover:scale-105"
 				@click="navigateTo(localePath('/auth'))"
 			>
 				{{ $t('modules.header.buttons.auth') }}
