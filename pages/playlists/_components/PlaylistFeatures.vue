@@ -7,10 +7,18 @@
 		IconPlay,
 		IconSettings,
 	} from '~/components/ui/icons';
+	import PlaylistsService from '~/services/PlaylistsService';
+
+	const EditPlaylistForm = defineAsyncComponent(
+		() => import('~/components/features/playlists/edit-playlist-form/index.vue')
+	);
 
 	const localePath = useLocalePath();
-
 	const curUserStore = useCurrentUserStore();
+
+	const editPlaylistLocally = inject<
+		(playlistId: string, newName: string, newDescr: string) => void
+	>('editPlaylistLocally', () => {});
 
 	const props = defineProps<{ playlist: IPlaylistObject | null }>();
 
@@ -18,7 +26,8 @@
 		isActive: isEditForm,
 		activate: openEditForm,
 		disactivate: closeEditForm,
-	} = useClickawayClient('/playlists/:id.edit-playlist-form');
+	} = useClickawayClient(`/playlists/${props.playlist?.id}.edit-playlist-form`);
+
 	const { isActive: isSettingsDropdown, toggle: toggleSettingsDropdown } =
 		useClickawayClient('/playlist/:id.dropdown-settings');
 
@@ -27,6 +36,34 @@
 
 		return curUserStore.user.id === props.playlist?.owner?.id;
 	});
+
+	const playlistCoverImage = computed(() => {
+		if (!Array.isArray(props.playlist?.images) || !props.playlist.images.length)
+			return null;
+
+		return props.playlist.images[0];
+	});
+
+	const deleteThisPlaylist = async () => {
+		try {
+			if (props.playlist == null) return;
+
+			await PlaylistsService.deletePlaylist(props.playlist.id);
+
+			navigateTo(localePath('/'));
+		} catch (err) {
+			console.error(err);
+		}
+	};
+
+	const onEditSuccess = (
+		playlistId: string,
+		newName: string,
+		newDescr: string
+	) => {
+		editPlaylistLocally(playlistId, newName, newDescr);
+		closeEditForm();
+	};
 </script>
 
 <template>
@@ -38,6 +75,7 @@
 		<div
 			role="button"
 			class="flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-4 transition-all hover:scale-105 hover:bg-green-400"
+			@click="console.log(`Play ${props.playlist.name}`)"
 		>
 			<ClientOnly><IconPlay class="scale-[200%]" /></ClientOnly>
 		</div>
@@ -80,7 +118,7 @@
 				<!-- Delete my playlist -->
 				<div
 					class="group flex cursor-pointer items-center gap-2 px-2 py-1 transition-colors hover:bg-zinc-300 dark:hover:bg-zinc-900"
-					@click="console.log('Delete')"
+					@click="deleteThisPlaylist"
 				>
 					<ClientOnly>
 						<IconDelete class="scale-125 text-zinc-600 dark:text-zinc-300" />
@@ -96,12 +134,15 @@
 		</div>
 
 		<!-- Absolute form -->
-		<!-- <EditPlaylistForm
-			ref="/playlists/:id.edit-playlist-form"
+		<EditPlaylistForm
+			:ref="`/playlists/${props.playlist?.id}.edit-playlist-form`"
 			:is-visible="isEditForm"
-			:playlist="playlistAsMediaItemForEditing"
-			@close-edit-playlist-form="closeEditForm()"
-			@on-update-playlist="closeEditForm()"
-		/> -->
+			:id="props.playlist.id"
+			:name="props.playlist.name"
+			:descr="props.playlist.description"
+			:image="playlistCoverImage"
+			@close-form="closeEditForm"
+			@on-edit-success="onEditSuccess"
+		/>
 	</div>
 </template>

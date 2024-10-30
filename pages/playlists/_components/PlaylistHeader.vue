@@ -77,7 +77,7 @@
 					<div v-else class="h-6 w-6 rounded-full bg-zinc-500" />
 
 					<NuxtLink
-						class="underline-offset-2 hover:underline dark:text-white"
+						class="cursor-pointer underline-offset-2 hover:underline dark:text-white"
 						@click="console.log('Redirect to playlist owner page')"
 					>
 						{{ props.playlist.owner.display_name }}

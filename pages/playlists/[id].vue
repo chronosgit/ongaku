@@ -15,8 +15,13 @@
 
 	const { params } = useRoute();
 
-	const { playlist, playlistOwnerAvatar, playlistDurationMs, isLoading } =
-		usePlaylist(params.id as string);
+	const {
+		playlist,
+		playlistOwnerAvatar,
+		playlistDurationMs,
+		isLoading,
+		editPlaylistLocally,
+	} = usePlaylist(params.id as string);
 
 	// Construct page title
 	watch(playlist, (p) => {
@@ -28,12 +33,14 @@
 
 		useHead({ title: `${part1} - ${part2} ${part3}` });
 	});
+
+	provide('editPlaylistLocally', editPlaylistLocally);
 </script>
 
 <template>
 	<LayoutPartContainer class="h-full">
 		<div
-			class="bg-gradient-to-b from-cyan-100 via-cyan-100 to-[#f3f4f6] pb-4 dark:from-indigo-950 dark:via-indigo-950 dark:to-[#121212]"
+			class="bg-gradient-to-b dark:from-indigo-950 dark:via-indigo-950 dark:to-zinc-950"
 		>
 			<!-- Playlist header -->
 			<SkeletonPlaylistHeader v-if="isLoading" />

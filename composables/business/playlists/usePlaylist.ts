@@ -47,6 +47,17 @@ export default function (playlistId: string) {
 
 	const isLoading = computed(() => status.value === 'pending');
 
+	const editPlaylistLocally = (
+		playlistId: string,
+		newName: string,
+		newDescr: string
+	) => {
+		if (playlist.value == null) return;
+
+		playlist.value.name = newName;
+		playlist.value.description = newDescr;
+	};
+
 	onMounted(() => fetchPlaylist());
 
 	return {
@@ -55,5 +66,6 @@ export default function (playlistId: string) {
 		playlistDurationMs,
 		isLoading,
 		refetchPlaylist,
+		editPlaylistLocally,
 	};
 }
