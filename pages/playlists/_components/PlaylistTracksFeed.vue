@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import TrackFeed from '~/components/features/tracks/tracks-feed/index.vue';
+	import TracksFeed from '~/components/features/tracks/tracks-feed/index.vue';
 	import type ITrackFeedItem from '~/interfaces/business/tracks/ITrackFeedItem';
 
 	const playlistId = inject<string>('playlistId', '');
@@ -28,8 +28,8 @@
 </script>
 
 <template>
-	<div class="mt-8 h-full overflow-hidden px-4">
-		<TrackFeed
+	<div class="mt-8 h-full max-h-[20%] px-4 sm:max-h-[60%]">
+		<TracksFeed
 			:tracks="trackFeedItems"
 			:are-tracks-loading="areLoading"
 			:skeleton-items-total="8"

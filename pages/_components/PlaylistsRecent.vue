@@ -7,7 +7,7 @@
 </script>
 
 <template>
-	<section v-if="recentPlaylists" class="py-4">
+	<section class="py-4">
 		<!-- Heading -->
 		<p class="text-lg font-medium text-black dark:text-white">
 			{{ $t('/.playlists-recent.your-recent-playlists') }}

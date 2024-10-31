@@ -35,7 +35,7 @@
 		<!-- Existing playlist -->
 		<div
 			v-if="props.playlist"
-			class="flex flex-col items-center gap-4 xs:flex-row xs:items-end"
+			class="flex flex-col items-stretch gap-4 sm:flex-row sm:items-end"
 		>
 			<PlaylistCover :avatars="props.playlist.images" />
 
@@ -59,7 +59,9 @@
 				</p>
 
 				<!-- Owner and tracks info -->
-				<div class="flex items-center gap-1.5 text-sm font-medium">
+				<div
+					class="flex items-center justify-between gap-1.5 text-sm font-medium"
+				>
 					<!-- Owner avatar  -->
 					<NuxtImg
 						v-if="props.playlistOwnerAvatar"

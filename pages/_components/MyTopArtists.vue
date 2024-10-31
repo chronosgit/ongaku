@@ -8,7 +8,7 @@
 </script>
 
 <template>
-	<section v-if="myTopArtists" class="group/section">
+	<section class="group/section">
 		<!-- Section heading -->
 		<div class="flex items-center justify-between gap-1">
 			<p class="text-lg font-medium dark:text-white">

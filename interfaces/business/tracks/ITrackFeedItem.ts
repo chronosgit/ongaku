@@ -8,6 +8,7 @@ export default interface ITrackFeedItem {
 		id: string;
 		uri: string;
 		name: string;
+		external_urls: IExternalUrlsObject;
 	};
 	artists: {
 		id: string;

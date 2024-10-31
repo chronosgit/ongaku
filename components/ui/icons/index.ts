@@ -23,3 +23,4 @@ export { default as IconExclamation } from './Exclamation.vue';
 export { default as IconFeedback } from './Feedback.vue';
 export { default as IconPlay } from './Play.vue';
 export { default as IconSettings } from './Settings.vue';
+export { default as IconClock } from './Clock.vue';
