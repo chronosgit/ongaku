@@ -109,6 +109,11 @@
 				"success-delete-playlist": "Playlist is deleted!",
 				"success-remove-album": "Album is removed!"
 			}
+		},
+		"tracks-feed": {
+			"name": "Name",
+			"album": "Album",
+			"added_at": "Added at"
 		}
 	},
 	"dictionary": {
@@ -145,7 +150,6 @@
 			"delete": {
 				"success": "Playlist is deleted!"
 			}
-		},
-		"albums": {}
+		}
 	}
 }

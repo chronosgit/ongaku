@@ -20,5 +20,18 @@ export default function (baseCtxMenuTemplateRef: string) {
 		disactivate();
 	};
 
-	return { isOpened: isActive, coords, openCtxMenu, closeCtxMenu };
+	const toggleCtxMenu = (e: MouseEvent) => {
+		console.log(e);
+
+		if (isActive.value) closeCtxMenu();
+		else openCtxMenu(e);
+	};
+
+	return {
+		isOpened: isActive,
+		coords,
+		openCtxMenu,
+		closeCtxMenu,
+		toggleCtxMenu,
+	};
 }

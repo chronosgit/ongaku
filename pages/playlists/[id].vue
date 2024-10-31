@@ -42,7 +42,9 @@
 <template>
 	<LayoutPartContainer class="h-full">
 		<!-- WARN: Ugly ass height percentage -->
-		<div class="h-[60%] bg-gradient-to-b dark:from-indigo-950 dark:to-zinc-950">
+		<div
+			class="h-full overflow-y-auto rounded-lg bg-gradient-to-b scrollbar-thin scrollbar-thumb-zinc-300 scrollbar-w-4 hover:scrollbar-thumb-zinc-400 dark:from-indigo-950 dark:to-zinc-950 dark:scrollbar-thumb-zinc-700 dark:hover:scrollbar-thumb-zinc-600"
+		>
 			<!-- Playlist header -->
 			<SkeletonPlaylistHeader v-if="isLoading" />
 

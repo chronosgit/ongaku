@@ -109,6 +109,11 @@
 				"success-delete-playlist": "Плейлист удалён!",
 				"success-remove-album": "Альбом удалён!"
 			}
+		},
+		"tracks-feed": {
+			"name": "Название",
+			"album": "Альбом",
+			"added_at": "Дата добавления"
 		}
 	},
 	"dictionary": {
@@ -145,7 +150,6 @@
 			"delete": {
 				"success": "Плейлист удалён!"
 			}
-		},
-		"albums": {}
+		}
 	}
 }

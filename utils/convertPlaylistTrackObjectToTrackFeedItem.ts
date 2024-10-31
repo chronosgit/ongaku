@@ -14,6 +14,7 @@ export default function (
 			id: playlistItemTrack.album.id,
 			name: playlistItemTrack.album.name,
 			uri: playlistItemTrack.album.uri,
+			external_urls: playlistItemTrack.album.external_urls,
 		},
 		artists: playlistItemTrack.artists,
 		images: playlistItemTrack.album.images,

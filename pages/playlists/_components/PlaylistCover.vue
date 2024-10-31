@@ -18,12 +18,12 @@
 		v-if="avatar"
 		:src="avatar"
 		alt="avatar"
-		class="h-72 w-72 shrink-0 rounded-md xs:h-44 xs:w-44 sm:h-56 sm:w-56"
+		class="h-72 w-72 shrink-0 self-center rounded-md sm:h-44 sm:w-44"
 	/>
 
 	<div
 		v-else
-		class="flex h-72 w-72 shrink-0 items-center justify-center rounded-md bg-zinc-300 xs:h-44 xs:w-44 sm:h-56 sm:w-56 dark:bg-zinc-800"
+		class="flex h-72 w-72 shrink-0 items-center justify-center rounded-md bg-zinc-300 sm:h-44 sm:w-44 dark:bg-zinc-800"
 	>
 		<ClientOnly>
 			<IconQuestionMark class="scale-[300%] dark:text-zinc-400" />
