@@ -27,7 +27,7 @@
 
 <template>
 	<div
-		class="group/tracks flex items-center justify-between gap-3 overflow-x-hidden rounded-md p-2 text-sm font-medium transition-colors hover:bg-zinc-300 dark:text-white dark:hover:bg-zinc-800"
+		class="group/tracks flex items-center justify-between gap-1 overflow-x-hidden rounded-md p-2 text-sm font-medium transition-colors hover:bg-zinc-300 hover:bg-opacity-50 dark:text-white dark:hover:bg-zinc-800"
 	>
 		<div class="flex w-10 grow-0 items-center justify-center">
 			<p class="block group-hover/tracks:hidden">{{ props.order }}</p>
