@@ -31,4 +31,20 @@ export default class TracksService {
 			throw err;
 		}
 	}
+
+	static async removeTrackFromPlaylist(
+		playlistId: string,
+		tracks: { uri: string }[]
+	) {
+		try {
+			const res = await $fetch(`/api/playlists/${playlistId}/tracks`, {
+				method: 'DELETE',
+				body: { tracks },
+			});
+
+			return res;
+		} catch (err) {
+			throw err;
+		}
+	}
 }

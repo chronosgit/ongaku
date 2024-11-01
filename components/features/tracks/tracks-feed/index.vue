@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import SkeletonTrackFeed from '~/components/features/tracks/skeletons/SkeletonTrackFeed.vue';
-	import TracksFeedItem from './TracksFeedItem.vue';
-	import TracksFeedHeader from './TracksFeedHeader.vue';
+	import FeedHeader from './components/header.vue';
+	import FeedItem from './components/item/index.vue';
 	import type ITrackFeedItem from '~/interfaces/business/tracks/ITrackFeedItem';
 
 	const props = defineProps<{
@@ -9,6 +9,25 @@
 		areTracksLoading: boolean;
 		skeletonItemsTotal?: number;
 	}>();
+
+	watch(
+		() => props.tracks,
+		(n) => (tracks.value = n)
+	);
+
+	const tracks = ref(props.tracks);
+
+	const locallyDeleteTrackFromFeed = (trackId: string) => {
+		if (!tracks.value) return;
+
+		const targetArrId = tracks.value.findIndex((t) => t.id === trackId);
+
+		if (targetArrId == -1) return;
+
+		tracks.value.splice(targetArrId, 1);
+	};
+
+	provide('locallyDeleteTrackFromFeed', locallyDeleteTrackFromFeed);
 </script>
 
 <template>
@@ -20,12 +39,13 @@
 
 		<!-- TODO: track feed item component -->
 		<template v-else>
-			<TracksFeedHeader />
+			<FeedHeader v-if="Array.isArray(tracks) && tracks.length" />
 
 			<!-- Tracks -->
 			<div class="mt-4 grid gap-1.5">
-				<TracksFeedItem
-					v-for="(t, i) in props.tracks"
+				<FeedItem
+					v-for="(t, i) in tracks"
+					:key="t.id"
 					:item="t"
 					:order="i + 1"
 				/>

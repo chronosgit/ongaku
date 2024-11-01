@@ -24,3 +24,5 @@ export { default as IconFeedback } from './Feedback.vue';
 export { default as IconPlay } from './Play.vue';
 export { default as IconSettings } from './Settings.vue';
 export { default as IconClock } from './Clock.vue';
+export { default as IconAlbum } from './Album.vue';
+export { default as IconError } from './Error.vue';

@@ -113,7 +113,12 @@
 		"tracks-feed": {
 			"name": "Название",
 			"album": "Альбом",
-			"added_at": "Дата добавления"
+			"added_at": "Дата добавления",
+			"context-menu": {
+				"add-to-playlist": "Добавить в плейлист",
+				"delete-from-this-playlist": "Удалить из этого плейлиста",
+				"navigate-to-album": "К альбому"
+			}
 		}
 	},
 	"dictionary": {
@@ -149,6 +154,12 @@
 			},
 			"delete": {
 				"success": "Плейлист удалён!"
+			}
+		},
+		"tracks": {
+			"delete-from-playlist": {
+				"success": "Трек удалён!",
+				"error": "Ошибка произошла во время удаления"
 			}
 		}
 	}

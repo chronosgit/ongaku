@@ -2,6 +2,7 @@
 	import {
 		IconCheck,
 		IconClose,
+		IconError,
 		IconExclamation,
 		IconFeedback,
 		IconInfo,
@@ -45,7 +46,7 @@
 			case 'info':
 				return IconInfo;
 			case 'error':
-				return IconClose;
+				return IconError;
 			default:
 				return IconFeedback;
 		}

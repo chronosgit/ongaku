@@ -3,9 +3,12 @@
 	import type ITrackFeedItem from '~/interfaces/business/tracks/ITrackFeedItem';
 
 	const playlistId = inject<string>('playlistId', '');
+	const isPlaylistMine = inject<ComputedRef<boolean>>(
+		'isPlaylistMine',
+		computed(() => false)
+	);
 
-	const { playlistTracks, areLoading, refetchPlaylistTracks, isTrack } =
-		usePlaylistTracks(playlistId);
+	const { playlistTracks, areLoading, isTrack } = usePlaylistTracks(playlistId);
 
 	const trackFeedItems = computed(() => {
 		if (playlistTracks.value == null) return null;
@@ -18,7 +21,8 @@
 				return convertPlaylistTrackObjectToTrackFeedItem(
 					playlistId,
 					i,
-					i.track
+					i.track,
+					isPlaylistMine.value
 				);
 			})
 			.filter((i) => i != null);

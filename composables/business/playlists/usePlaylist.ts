@@ -2,6 +2,8 @@ import PlaylistsService from '~/services/PlaylistsService';
 import UsersService from '~/services/UsersService';
 
 export default function (playlistId: string) {
+	const localePath = useLocalePath();
+
 	const playlistOwnerAvatar = ref<string | null>(null);
 	const playlistDurationMs = ref<number | null>(null);
 
@@ -39,6 +41,9 @@ export default function (playlistId: string) {
 				return thePlaylist;
 			} catch (err) {
 				console.error(err);
+
+				// HELP: maybe go back in history?
+				navigateTo(localePath('/'));
 
 				return null;
 			}
