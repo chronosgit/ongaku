@@ -82,6 +82,23 @@ export default function () {
 		}
 	};
 
+	const removeAlbumLocally = (albumId: string) => {
+		if (followedPlaylistsAndAlbums?.value == null) return;
+
+		const targetId = followedPlaylistsAndAlbums.value.findIndex((i) => {
+			if (isPlaylist(i)) return false;
+
+			return i.album.id === albumId;
+		});
+
+		if (targetId === -1) {
+			console.error(`Couldn't remove album with id ${albumId} locally`);
+			return;
+		}
+
+		followedPlaylistsAndAlbums.value.splice(targetId, 1);
+	};
+
 	const removePlaylistLocally = (playlistId: string) => {
 		if (followedPlaylistsAndAlbums.value == null) return;
 
@@ -115,5 +132,6 @@ export default function () {
 		extendMediaItems,
 		editPlaylistLocally,
 		removePlaylistLocally,
+		removeAlbumLocally,
 	};
 }

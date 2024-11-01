@@ -4,7 +4,6 @@
 	import Edit from './edit.vue';
 
 	const closeCtxMenu = inject<Function>('closeCtxMenu', () => {});
-
 	const playlist = inject<IMediaItem>('item');
 
 	if (playlist == null) {

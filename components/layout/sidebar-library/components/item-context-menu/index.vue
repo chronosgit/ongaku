@@ -1,4 +1,5 @@
 <script setup lang="ts">
+	import AlbumOnlyFeatures from './album-features/index.vue';
 	import PlaylistOnlyFeatures from './playlist-features/index.vue';
 	import type IMediaItem from '../../interfaces/IMediaItem';
 
@@ -36,6 +37,6 @@
 	>
 		<PlaylistOnlyFeatures v-if="props.item.type === 'playlist'" />
 
-		<!-- <AlbumOnlyFeatures v-else /> -->
+		<AlbumOnlyFeatures v-else />
 	</div>
 </template>

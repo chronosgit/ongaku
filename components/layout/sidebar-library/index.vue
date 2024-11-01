@@ -16,6 +16,7 @@
 		extendMediaItems,
 		editPlaylistLocally,
 		removePlaylistLocally,
+		removeAlbumLocally,
 	} = useFollowedPlaylistsAndAlbums();
 
 	const { items, filter, filterByAlbums, filterByPlaylists, deselectFilter } =
@@ -27,6 +28,7 @@
 	provide('extendMediaItems', extendMediaItems);
 	provide('editPlaylistLocally', editPlaylistLocally);
 	provide('removePlaylistLocally', removePlaylistLocally);
+	provide('removeAlbumLocally', removeAlbumLocally);
 
 	provide('filter', filter);
 	provide('filterByAlbums', filterByAlbums);

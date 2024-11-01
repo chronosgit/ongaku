@@ -161,6 +161,12 @@
 				"success": "Track is deleted!",
 				"error": "Track isn't deleted due to an error"
 			}
+		},
+		"albums": {
+			"delete": {
+				"success": "Album is deleted!",
+				"error": "Albums wasn't deleted due to an error"
+			}
 		}
 	}
 }

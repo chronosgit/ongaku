@@ -1,4 +1,4 @@
-import type ISavedAlbumObject from '~/interfaces/ISavedAlbumObject';
+import type ISavedAlbumObject from '~/interfaces/business/albums/ISavedAlbumObject';
 import type IServerApiSuccessResponse from '~/interfaces/IServerApiSuccessResponse';
 
 interface IFetchSavedAlbums extends IServerApiSuccessResponse {
@@ -21,6 +21,17 @@ export default class AlbumsService {
 			});
 
 			return res;
+		} catch (err) {
+			throw err;
+		}
+	}
+
+	static async removeMySavedAlbums(albumsIds: string[]) {
+		try {
+			const res = await $fetch('/api/me/albums', {
+				method: 'DELETE',
+				body: { albumsIds },
+			});
 		} catch (err) {
 			throw err;
 		}
