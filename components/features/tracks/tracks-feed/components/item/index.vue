@@ -1,11 +1,11 @@
 <script setup lang="ts">
 	import { IconPlay } from '~/components/ui/icons';
-	import TrackFeedItemContext from './TrackFeedItemContext.vue';
+	import ContextMenu from './context-menu/index.vue';
 	import type ITrackFeedItem from '~/interfaces/business/tracks/ITrackFeedItem';
 
 	const props = defineProps<{ item: ITrackFeedItem; order: number }>();
 
-	const { coords, isOpened, toggleCtxMenu } = useBaseContextMenu(
+	const { coords, isOpened, toggleCtxMenu, closeCtxMenu } = useBaseContextMenu(
 		`tracks-feed-item-${props.item.id}`
 	);
 
@@ -37,7 +37,13 @@
 		@contextmenu.prevent="toggleCtxMenu($event)"
 	>
 		<!-- Right-click absolute toggleable context menu -->
-		<TrackFeedItemContext :is-visible="isOpened" :coords="coords" />
+		<!-- TODO: revert -->
+		<ContextMenu
+			:item="props.item"
+			:is-visible="isOpened"
+			:coords="coords"
+			@close-context-menu="closeCtxMenu"
+		/>
 
 		<!-- Order number or play button -->
 		<div class="flex w-10 grow-0 items-center justify-center">

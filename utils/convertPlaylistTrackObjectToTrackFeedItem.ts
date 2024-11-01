@@ -5,7 +5,8 @@ import type ITrackObject from '~/interfaces/business/tracks/ITrackObject';
 export default function (
 	playlistId: string,
 	playlistItem: IPlaylistTrackObject,
-	playlistItemTrack: ITrackObject
+	playlistItemTrack: ITrackObject,
+	isContextOwnership = false
 ): ITrackFeedItem {
 	return {
 		id: playlistItem.track.id,
@@ -24,9 +25,11 @@ export default function (
 		uri: playlistItem.track.uri,
 		type: 'track',
 		context: {
+			id: playlistId,
 			uri: `spotify:playlist:${playlistId}`,
 			type: 'playlist',
 			offset: { uri: playlistItem.track.uri },
+			is_ownership: isContextOwnership,
 		},
 	};
 }

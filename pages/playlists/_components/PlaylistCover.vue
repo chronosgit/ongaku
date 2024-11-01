@@ -23,7 +23,7 @@
 
 	<div
 		v-else
-		class="flex h-72 w-72 shrink-0 items-center justify-center rounded-md bg-zinc-300 sm:h-44 sm:w-44 dark:bg-zinc-800"
+		class="flex h-72 w-72 shrink-0 items-center justify-center self-center rounded-md bg-zinc-300 sm:h-44 sm:w-44 dark:bg-zinc-800"
 	>
 		<ClientOnly>
 			<IconQuestionMark class="scale-[300%] dark:text-zinc-400" />

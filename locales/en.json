@@ -113,7 +113,12 @@
 		"tracks-feed": {
 			"name": "Name",
 			"album": "Album",
-			"added_at": "Added at"
+			"added_at": "Added at",
+			"context-menu": {
+				"add-to-playlist": "Add to playlist",
+				"delete-from-this-playlist": "Delete from this playlist",
+				"navigate-to-album": "To album"
+			}
 		}
 	},
 	"dictionary": {
@@ -149,6 +154,12 @@
 			},
 			"delete": {
 				"success": "Playlist is deleted!"
+			}
+		},
+		"tracks": {
+			"delete-from-playlist": {
+				"success": "Track is deleted!",
+				"error": "Track isn't deleted due to an error"
 			}
 		}
 	}

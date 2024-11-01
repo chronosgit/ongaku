@@ -4,18 +4,21 @@
 	import SkeletonPlaylistHeader from './_components/SkeletonPlaylistHeader.vue';
 	import PlaylistHeader from './_components/PlaylistHeader.vue';
 	import PlaylistTracksFeed from './_components/PlaylistTracksFeed.vue';
+	import { useCurrentUserStore } from '~/store/useCurrentUserStore';
 
 	useMyProfile();
 
 	const { t } = useI18n();
+	const { params } = useRoute();
+
+	const curUserStore = useCurrentUserStore();
 
 	definePageMeta({ layout: 'main' });
 	useHead({
 		title: t('dictionary.playlist.one'),
 	});
 
-	const { params } = useRoute();
-
+	// Playlist
 	const {
 		playlist,
 		playlistOwnerAvatar,
@@ -23,6 +26,15 @@
 		isLoading,
 		editPlaylistLocally,
 	} = usePlaylist(params.id as string);
+
+	// Check playlist ownership
+	const isThisPlaylistMine = computed(() => {
+		if (playlist.value?.owner?.id == null || curUserStore.user?.id == null) {
+			return false;
+		}
+
+		return playlist.value.owner.id === curUserStore.user?.id;
+	});
 
 	// Construct page title
 	watch(playlist, (p) => {
@@ -37,11 +49,11 @@
 
 	provide('editPlaylistLocally', editPlaylistLocally);
 	provide('playlistId', params.id as string);
+	provide('isPlaylistMine', isThisPlaylistMine);
 </script>
 
 <template>
 	<LayoutPartContainer class="h-full">
-		<!-- WARN: Ugly ass height percentage -->
 		<div
 			class="h-full overflow-y-auto rounded-lg bg-gradient-to-b scrollbar-thin scrollbar-thumb-zinc-300 scrollbar-w-4 hover:scrollbar-thumb-zinc-400 dark:from-indigo-950 dark:to-zinc-950 dark:scrollbar-thumb-zinc-700 dark:hover:scrollbar-thumb-zinc-600"
 		>

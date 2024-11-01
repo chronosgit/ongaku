@@ -1,4 +1,4 @@
-// https://open.spotify.com/playlist/3ZmhKwo2M7Piy7L88mgyWf
+// https://developer.spotify.com/documentation/web-api/reference/remove-tracks-playlist
 // Clones are deleted too
 export default defineEventHandler(async (e) => {
 	try {

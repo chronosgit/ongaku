@@ -21,8 +21,6 @@ export default function (baseCtxMenuTemplateRef: string) {
 	};
 
 	const toggleCtxMenu = (e: MouseEvent) => {
-		console.log(e);
-
 		if (isActive.value) closeCtxMenu();
 		else openCtxMenu(e);
 	};

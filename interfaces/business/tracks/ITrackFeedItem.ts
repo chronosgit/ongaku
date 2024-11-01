@@ -23,12 +23,13 @@ export default interface ITrackFeedItem {
 	uri: string;
 	type: 'track';
 	context: {
-		// ?
+		id: string;
 		uri: string;
 		type: 'album' | 'artist' | 'playlist';
 		offset?: {
 			position?: number;
 			uri?: string;
 		};
+		is_ownership?: boolean;
 	};
 }
