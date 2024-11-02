@@ -32,5 +32,5 @@ export default function (templateRefKey: string, initValue: boolean = false) {
 
 	onUnmounted(() => document.removeEventListener('mousedown', onDocumentClick));
 
-	return { isActive, activate, disactivate, toggle };
+	return { templateRef, isActive, activate, disactivate, toggle };
 }

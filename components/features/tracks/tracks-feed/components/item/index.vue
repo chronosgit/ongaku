@@ -37,13 +37,14 @@
 		@contextmenu.prevent="toggleCtxMenu($event)"
 	>
 		<!-- Right-click absolute toggleable context menu -->
-		<!-- TODO: revert -->
-		<ContextMenu
-			:item="props.item"
-			:is-visible="isOpened"
-			:coords="coords"
-			@close-context-menu="closeCtxMenu"
-		/>
+		<Teleport to="body">
+			<ContextMenu
+				:item="props.item"
+				:is-visible="isOpened"
+				:coords="coords"
+				@close-context-menu="closeCtxMenu"
+			/>
+		</Teleport>
 
 		<!-- Order number or play button -->
 		<div class="flex w-10 grow-0 items-center justify-center">

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import SkeletonTrackFeed from '~/components/features/tracks/skeletons/SkeletonTrackFeed.vue';
-	import FeedHeader from './components/header.vue';
+	import FeedHeader from './components/Header.vue';
 	import FeedItem from './components/item/index.vue';
 	import type ITrackFeedItem from '~/interfaces/business/tracks/ITrackFeedItem';
 

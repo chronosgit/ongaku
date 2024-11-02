@@ -1,11 +1,15 @@
-export default function (baseCtxMenuTemplateRef: string) {
-	const { isActive, activate, disactivate } = useClickawayClient(
-		baseCtxMenuTemplateRef
-	);
+export default function (parentKey: string) {
+	const { templateRef, isActive, activate, disactivate } =
+		useClickawayClient(parentKey);
 
 	const coords = ref<{ x: number | null; y: number | null }>({
 		x: null,
 		y: null,
+	});
+
+	const dims = ref<{ width: number | null; height: null }>({
+		width: null,
+		height: null,
 	});
 
 	const openCtxMenu = (e: MouseEvent) => {
