@@ -9,12 +9,6 @@
 		`tracks-feed-item-${props.item.id}`
 	);
 
-	const artistsNames = computed(() => {
-		const a = props.item.artists;
-
-		return a.reduce((acc, a) => acc + ' ' + a.name, '').trim();
-	});
-
 	const formatDuration = (ms: number) => {
 		const seconds = Math.floor(ms / 1000) % 60;
 		const minutes = Math.floor(ms / (1000 * 60)) % 60;
@@ -37,13 +31,14 @@
 		@contextmenu.prevent="toggleCtxMenu($event)"
 	>
 		<!-- Right-click absolute toggleable context menu -->
-		<!-- TODO: revert -->
-		<ContextMenu
-			:item="props.item"
-			:is-visible="isOpened"
-			:coords="coords"
-			@close-context-menu="closeCtxMenu"
-		/>
+		<Teleport to="body">
+			<ContextMenu
+				:item="props.item"
+				:is-visible="isOpened"
+				:coords="coords"
+				@close-context-menu="closeCtxMenu"
+			/>
+		</Teleport>
 
 		<!-- Order number or play button -->
 		<div class="flex w-10 grow-0 items-center justify-center">
@@ -72,9 +67,15 @@
 			<div class="overflow-hidden truncate whitespace-nowrap">
 				<p class="text-base">{{ props.item.name }}</p>
 
-				<p class="text-zinc-500 dark:text-zinc-400">
-					{{ artistsNames }}
-				</p>
+				<div class="flex items-center gap-0.5">
+					<NuxtLink
+						v-for="a in props.item.artists"
+						class="hover:undeline cursor-pointer text-zinc-500 underline-offset-2 transition-all hover:text-indigo-500 dark:text-zinc-400"
+						@click.stop="console.log('Navigated to artist', a.name)"
+					>
+						{{ a.name }}
+					</NuxtLink>
+				</div>
 			</div>
 		</div>
 

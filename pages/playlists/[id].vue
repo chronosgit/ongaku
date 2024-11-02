@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import LayoutPartContainer from '~/components/layout/LayoutPartContainer.vue';
-	import PlaylistFeatures from './_components/PlaylistFeatures.vue';
+	import PlaylistFeatures from './_components/playlists-features/index.vue';
 	import SkeletonPlaylistHeader from './_components/SkeletonPlaylistHeader.vue';
 	import PlaylistHeader from './_components/PlaylistHeader.vue';
 	import PlaylistTracksFeed from './_components/PlaylistTracksFeed.vue';
@@ -28,7 +28,7 @@
 	} = usePlaylist(params.id as string);
 
 	// Check playlist ownership
-	const isThisPlaylistMine = computed(() => {
+	const isPlaylistMine = computed(() => {
 		if (playlist.value?.owner?.id == null || curUserStore.user?.id == null) {
 			return false;
 		}
@@ -47,14 +47,16 @@
 		useHead({ title: `${part1} - ${part2} ${part3}` });
 	});
 
+	provide('playlist', playlist);
+	provide('playlistId', params.id); // instant
+	provide('isPlaylistMine', isPlaylistMine);
 	provide('editPlaylistLocally', editPlaylistLocally);
-	provide('playlistId', params.id as string);
-	provide('isPlaylistMine', isThisPlaylistMine);
 </script>
 
 <template>
-	<LayoutPartContainer class="h-full">
+	<LayoutPartContainer>
 		<div
+			id="/playlists/:id.layout-part-container"
 			class="h-full overflow-y-auto rounded-lg bg-gradient-to-b scrollbar-thin scrollbar-thumb-zinc-300 scrollbar-w-4 hover:scrollbar-thumb-zinc-400 dark:from-indigo-950 dark:to-zinc-950 dark:scrollbar-thumb-zinc-700 dark:hover:scrollbar-thumb-zinc-600"
 		>
 			<!-- Playlist header -->

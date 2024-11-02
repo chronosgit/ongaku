@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import SkeletonTrackFeed from '~/components/features/tracks/skeletons/SkeletonTrackFeed.vue';
-	import FeedHeader from './components/header.vue';
+	import FeedHeader from './components/Header.vue';
 	import FeedItem from './components/item/index.vue';
 	import type ITrackFeedItem from '~/interfaces/business/tracks/ITrackFeedItem';
 
@@ -31,7 +31,7 @@
 </script>
 
 <template>
-	<section>
+	<section class="h-full overflow-y-auto">
 		<SkeletonTrackFeed
 			v-if="props.areTracksLoading"
 			:skeleton-items-total="props.skeletonItemsTotal"

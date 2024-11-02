@@ -1,14 +1,17 @@
 <script setup lang="ts">
 	import TracksFeed from '~/components/features/tracks/tracks-feed/index.vue';
+	import type IPlaylistObject from '~/interfaces/business/playlists/IPlaylistObject';
 	import type ITrackFeedItem from '~/interfaces/business/tracks/ITrackFeedItem';
 
-	const playlistId = inject<string>('playlistId', '');
+	const playlistId = inject<string | undefined>('playlistId', undefined);
 	const isPlaylistMine = inject<ComputedRef<boolean>>(
 		'isPlaylistMine',
 		computed(() => false)
 	);
 
-	const { playlistTracks, areLoading, isTrack } = usePlaylistTracks(playlistId);
+	const { playlistTracks, areLoading, isTrack } = usePlaylistTracks(
+		playlistId || ''
+	);
 
 	const trackFeedItems = computed(() => {
 		if (playlistTracks.value == null) return null;
@@ -16,10 +19,10 @@
 		const items = playlistTracks.value
 			.map<ITrackFeedItem | null>((i) => {
 				// Denying episodes
-				if (!isTrack(i.track)) return null;
+				if (i == null || !isTrack(i.track)) return null;
 
 				return convertPlaylistTrackObjectToTrackFeedItem(
-					playlistId,
+					playlistId || '',
 					i,
 					i.track,
 					isPlaylistMine.value
@@ -32,7 +35,7 @@
 </script>
 
 <template>
-	<div class="mt-8 h-full max-h-[20%] px-4 sm:max-h-[60%]">
+	<div class="mt-8 overflow-y-auto px-4">
 		<TracksFeed
 			:tracks="trackFeedItems"
 			:are-tracks-loading="areLoading"

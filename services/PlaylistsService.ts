@@ -69,6 +69,18 @@ export default class PlaylistsService {
 		}
 	}
 
+	static async checkIfCurUserFollowsPlaylist(playlistId: string) {
+		try {
+			const res = await $fetch(
+				`/api/playlists/${playlistId}/followers/contains`
+			);
+
+			return res;
+		} catch (err) {
+			throw err;
+		}
+	}
+
 	static async createNewPlaylistForUser(
 		userId: string,
 		namePrefix = 'Playlist_'
