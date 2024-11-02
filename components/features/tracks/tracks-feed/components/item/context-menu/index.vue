@@ -12,7 +12,7 @@
 	const createToast = inject<FCreateToast>('createToast', () => {});
 	const locallyDeleteTrackFromFeed = inject<(trackId: string) => void>(
 		'locallyDeleteTrackFromFeed',
-		(trackId: string) => {}
+		() => {}
 	);
 
 	const { t } = useI18n();
@@ -57,6 +57,24 @@
 			emit('closeContextMenu');
 		}
 	};
+
+	// Disable scrolling when a context menu is opened
+	watch(
+		() => props.isVisible,
+		(v) => {
+			if (import.meta.server) return;
+
+			const box = document.getElementById(
+				'/playlists/:id.layout-part-container'
+			);
+
+			if (box == null) return;
+
+			console.log(box);
+
+			box.style.pointerEvents = v ? 'none' : '';
+		}
+	);
 </script>
 
 <template>

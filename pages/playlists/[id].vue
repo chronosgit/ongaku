@@ -53,8 +53,9 @@
 </script>
 
 <template>
-	<LayoutPartContainer class="h-full">
+	<LayoutPartContainer>
 		<div
+			id="/playlists/:id.layout-part-container"
 			class="h-full overflow-y-auto rounded-lg bg-gradient-to-b scrollbar-thin scrollbar-thumb-zinc-300 scrollbar-w-4 hover:scrollbar-thumb-zinc-400 dark:from-indigo-950 dark:to-zinc-950 dark:scrollbar-thumb-zinc-700 dark:hover:scrollbar-thumb-zinc-600"
 		>
 			<!-- Playlist header -->

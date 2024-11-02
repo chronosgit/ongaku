@@ -31,7 +31,7 @@
 </script>
 
 <template>
-	<section>
+	<section class="h-full overflow-y-auto">
 		<SkeletonTrackFeed
 			v-if="props.areTracksLoading"
 			:skeleton-items-total="props.skeletonItemsTotal"

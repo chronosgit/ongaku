@@ -32,7 +32,7 @@
 </script>
 
 <template>
-	<div class="mt-8 h-full max-h-[20%] px-4 sm:max-h-[60%]">
+	<div class="mt-8 overflow-y-auto px-4">
 		<TracksFeed
 			:tracks="trackFeedItems"
 			:are-tracks-loading="areLoading"
