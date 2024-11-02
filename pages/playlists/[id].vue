@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import LayoutPartContainer from '~/components/layout/LayoutPartContainer.vue';
-	import PlaylistFeatures from './_components/playlists-features/index.vue';
+	import PlaylistFeatures from './_components/playlist-features/index.vue';
 	import SkeletonPlaylistHeader from './_components/SkeletonPlaylistHeader.vue';
 	import PlaylistHeader from './_components/PlaylistHeader.vue';
 	import PlaylistTracksFeed from './_components/PlaylistTracksFeed.vue';
