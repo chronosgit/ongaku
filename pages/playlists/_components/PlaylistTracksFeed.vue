@@ -3,14 +3,15 @@
 	import type IPlaylistObject from '~/interfaces/business/playlists/IPlaylistObject';
 	import type ITrackFeedItem from '~/interfaces/business/tracks/ITrackFeedItem';
 
-	const playlistId = inject<string | undefined>('playlistId', undefined);
+	const { params } = useRoute();
+
 	const isPlaylistMine = inject<ComputedRef<boolean>>(
 		'isPlaylistMine',
 		computed(() => false)
 	);
 
 	const { playlistTracks, areLoading, isTrack } = usePlaylistTracks(
-		playlistId || ''
+		params.id as string
 	);
 
 	const trackFeedItems = computed(() => {
@@ -22,7 +23,7 @@
 				if (i == null || !isTrack(i.track)) return null;
 
 				return convertPlaylistTrackObjectToTrackFeedItem(
-					playlistId || '',
+					params.id as string,
 					i,
 					i.track,
 					isPlaylistMine.value

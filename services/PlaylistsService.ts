@@ -3,30 +3,12 @@ import type IPlaylistObject from '~/interfaces/business/playlists/IPlaylistObjec
 import type IPlaylistTrackObject from '~/interfaces/business/playlists/IPlaylistTrackObject';
 import type ISimplifiedPlaylistObject from '~/interfaces/business/playlists/ISimplifiedPlaylistObject';
 
-interface IFetchItems<T> extends IServerApiSuccessResponse {
-	data: {
-		href: string;
-		limit: number;
-		next?: string | null;
-		offset: number;
-		previous?: string | null;
-		total: number;
-		items: T[];
-	};
-}
-
-interface IFetchPlaylist extends IServerApiSuccessResponse {
-	data: IPlaylistObject;
-}
-
-interface ICreateNewPlaylistForUser extends IServerApiSuccessResponse {
-	data: IPlaylistObject;
-}
-
 export default class PlaylistsService {
 	static async fetchPlaylist(playlistId: string) {
 		try {
-			const res = await $fetch<IFetchPlaylist>(`/api/playlists/${playlistId}`);
+			const res = await $fetch<IServerApiSuccessResponse<IPlaylistObject>>(
+				`/api/playlists/${playlistId}`
+			);
 
 			return res;
 		} catch (err) {
@@ -41,12 +23,11 @@ export default class PlaylistsService {
 		offset?: number
 	) {
 		try {
-			const res = await $fetch<IFetchItems<IPlaylistTrackObject>>(
-				`/api/playlists/${playlistId}/tracks`,
-				{
-					params: { fields, limit, offset },
-				}
-			);
+			const res = await $fetch<
+				IServerApiSuccessResponse<IPlaylistTrackObject[]>
+			>(`/api/playlists/${playlistId}/tracks`, {
+				params: { fields, limit, offset },
+			});
 
 			return res;
 		} catch (err) {
@@ -56,12 +37,11 @@ export default class PlaylistsService {
 
 	static async fetchFollowedPlaylists(limit?: number, offset?: number) {
 		try {
-			const res = await $fetch<IFetchItems<ISimplifiedPlaylistObject>>(
-				'/api/me/playlists',
-				{
-					params: { limit, offset },
-				}
-			);
+			const res = await $fetch<
+				IServerApiSuccessResponse<ISimplifiedPlaylistObject[]>
+			>('/api/me/playlists', {
+				params: { limit, offset },
+			});
 
 			return res;
 		} catch (err) {
@@ -71,7 +51,7 @@ export default class PlaylistsService {
 
 	static async checkIfCurUserFollowsPlaylist(playlistId: string) {
 		try {
-			const res = await $fetch(
+			const res = await $fetch<IServerApiSuccessResponse<boolean[]>>(
 				`/api/playlists/${playlistId}/followers/contains`
 			);
 
@@ -88,14 +68,21 @@ export default class PlaylistsService {
 		try {
 			const {
 				data: { total },
-			} =
-				await $fetch<IFetchItems<ISimplifiedPlaylistObject>>(
-					'/api/me/playlists'
-				);
+			} = await $fetch<
+				IServerApiSuccessResponse<{
+					href: string;
+					limit: number;
+					next?: string | null;
+					offset: number;
+					previous?: string | null;
+					total: number;
+					items: ISimplifiedPlaylistObject[];
+				}>
+			>('/api/me/playlists');
 
 			const name = `${namePrefix}${Number(total) + 1}`;
 
-			const res = await $fetch<ICreateNewPlaylistForUser>(
+			const res = await $fetch<IServerApiSuccessResponse<IPlaylistObject>>(
 				`/api/users/${userId}/playlists`,
 				{
 					method: 'POST',

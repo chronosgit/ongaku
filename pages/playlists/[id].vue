@@ -48,7 +48,6 @@
 	});
 
 	provide('playlist', playlist);
-	provide('playlistId', params.id); // instant
 	provide('isPlaylistMine', isPlaylistMine);
 	provide('editPlaylistLocally', editPlaylistLocally);
 </script>
