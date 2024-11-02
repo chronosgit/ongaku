@@ -70,8 +70,6 @@
 
 			if (box == null) return;
 
-			console.log(box);
-
 			box.style.pointerEvents = v ? 'none' : '';
 		}
 	);
