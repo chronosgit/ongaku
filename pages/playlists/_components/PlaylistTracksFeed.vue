@@ -19,7 +19,7 @@
 		const items = playlistTracks.value
 			.map<ITrackFeedItem | null>((i) => {
 				// Denying episodes
-				if (!isTrack(i.track)) return null;
+				if (i == null || !isTrack(i.track)) return null;
 
 				return convertPlaylistTrackObjectToTrackFeedItem(
 					playlistId || '',
