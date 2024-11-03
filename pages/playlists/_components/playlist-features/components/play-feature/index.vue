@@ -8,7 +8,7 @@
 <template>
 	<div
 		role="button"
-		class="flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-4 transition-all hover:scale-105 hover:bg-green-400"
+		class="flex cursor-pointer items-center justify-center rounded-full bg-indigo-400 p-4 transition-all hover:scale-105 hover:bg-indigo-500"
 		@click="console.log(`Play ${playlist?.name}`)"
 	>
 		<ClientOnly><IconPlay class="scale-[200%]" /></ClientOnly>

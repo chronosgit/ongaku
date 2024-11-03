@@ -142,7 +142,9 @@
 			"hour": "HR",
 			"minute": "MIN",
 			"second": "SEC"
-		}
+		},
+		"follow": "Follow",
+		"unfollow": "Unfollow"
 	},
 	"toasts": {
 		"playlists": {
@@ -154,6 +156,14 @@
 			},
 			"delete": {
 				"success": "Playlist is deleted!"
+			},
+			"follow": {
+				"success": "Playlist is followed!",
+				"error": "Playlist wasn't followed due to an error"
+			},
+			"unfollow": {
+				"success": "Playlist is unfollowed!",
+				"error": "Playlist wasn't unfollowed due to an error"
 			}
 		},
 		"tracks": {

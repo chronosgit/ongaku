@@ -113,6 +113,31 @@ export default class PlaylistsService {
 		}
 	}
 
+	static async followPlaylist(playlistId: string, isPublic = true) {
+		try {
+			const res = await $fetch(`/api/playlists/${playlistId}/followers`, {
+				method: 'PUT',
+				body: { public: isPublic },
+			});
+
+			return res;
+		} catch (err) {
+			throw err;
+		}
+	}
+
+	static async unfollowPlaylist(playlistId: string) {
+		try {
+			const res = await $fetch(`/api/playlists/${playlistId}/followers`, {
+				method: 'DELETE',
+			});
+
+			return res;
+		} catch (err) {
+			throw err;
+		}
+	}
+
 	static async addCustomPlaylistCoverImage(playlistId: string, base64: string) {
 		try {
 			const res = await $fetch(`/api/playlists/${playlistId}/images`, {
