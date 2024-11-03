@@ -1,4 +1,5 @@
 <script setup lang="ts">
+	import AddToPlaylistOverlay from '~/components/features/tracks/add-to-playlist-overlay/index.vue';
 	import SkeletonTrackFeed from '~/components/features/tracks/skeletons/SkeletonTrackFeed.vue';
 	import FeedHeader from './components/Header.vue';
 	import FeedItem from './components/item/index.vue';
@@ -10,12 +11,11 @@
 		skeletonItemsTotal?: number;
 	}>();
 
-	watch(
-		() => props.tracks,
-		(n) => (tracks.value = n)
-	);
-
 	const tracks = ref(props.tracks);
+
+	const { isActive, activate, disactivate } = useClickawayClient(
+		`add-to-playlist-overlay-${useId()}`
+	);
 
 	const locallyDeleteTrackFromFeed = (trackId: string) => {
 		if (!tracks.value) return;
@@ -27,6 +27,13 @@
 		tracks.value.splice(targetArrId, 1);
 	};
 
+	watch(
+		() => props.tracks,
+		(n) => (tracks.value = n)
+	);
+
+	provide('openAddPlaylistOverlay', activate);
+	provide('closeAddPlaylistOverlay', disactivate);
 	provide('locallyDeleteTrackFromFeed', locallyDeleteTrackFromFeed);
 </script>
 
@@ -50,6 +57,14 @@
 					:order="i + 1"
 				/>
 			</div>
+
+			<!-- Absolute -->
+			<AddToPlaylistOverlay
+				:ref="`add-to-playlist-overlay-${useId()}`"
+				:is-opened="isActive"
+				@open-overlay="activate"
+				@close-overlay="disactivate"
+			/>
 		</template>
 	</section>
 </template>

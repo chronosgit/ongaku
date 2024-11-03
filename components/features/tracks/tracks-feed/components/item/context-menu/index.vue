@@ -9,13 +9,17 @@
 	import TracksService from '~/services/TracksService';
 	import type ITrackFeedItem from '~/interfaces/business/tracks/ITrackFeedItem';
 
+	const { t } = useI18n();
+
 	const createToast = inject<FCreateToast>('createToast', () => {});
+	const openAddPlaylistOverlay = inject<() => void>(
+		'openAddPlaylistOverlay',
+		() => {}
+	);
 	const locallyDeleteTrackFromFeed = inject<(trackId: string) => void>(
 		'locallyDeleteTrackFromFeed',
 		() => {}
 	);
-
-	const { t } = useI18n();
 
 	const props = defineProps<{
 		item: ITrackFeedItem;
@@ -86,7 +90,7 @@
 	>
 		<!-- Add to playlist -->
 		<ContextMenuItem>
-			<div class="flex items-center gap-1.5">
+			<div class="flex items-center gap-1.5" @click="openAddPlaylistOverlay">
 				<LazyClientOnly>
 					<IconPlus class="scale-125" />
 				</LazyClientOnly>
