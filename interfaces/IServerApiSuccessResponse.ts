@@ -1,6 +1,6 @@
-export default interface IServerApiSuccessResponse {
+export default interface IServerApiSuccessResponse<T> {
 	success?: boolean;
 	statusCode?: number;
 	message?: string;
-	data: Object;
+	data: T;
 }

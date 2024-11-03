@@ -1,6 +1,6 @@
 <script setup lang="ts">
-	import FollowFeature from './components/FollowFeature.vue';
-	import PlayPlaylist from './components/Play.vue';
+	import FollowFeature from './components/follow-feature/index.vue';
+	import PlayPlaylist from './components/play-feature/index.vue';
 	import MyPlaylistFeatures from './components/my-playlist-features/index.vue';
 	import type IPlaylistObject from '~/interfaces/business/playlists/IPlaylistObject';
 

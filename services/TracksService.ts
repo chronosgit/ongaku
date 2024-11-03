@@ -1,17 +1,6 @@
 import type IPlayHistoryObject from '~/interfaces/business/IPlayHistoryObject';
 import type IServerApiSuccessResponse from '~/interfaces/IServerApiSuccessResponse';
 
-interface IFetchRecentlyPlayedTracks extends IServerApiSuccessResponse {
-	data: {
-		href: string;
-		limit: number;
-		next: number;
-		cursors: { after: string; before: string };
-		total: number;
-		items: IPlayHistoryObject[];
-	};
-}
-
 export default class TracksService {
 	static async fetchRecentlyPlayedTracks(
 		limit?: number,
@@ -19,12 +8,18 @@ export default class TracksService {
 		before?: number
 	) {
 		try {
-			const res = await $fetch<IFetchRecentlyPlayedTracks>(
-				'/api/me/player/recently-played',
-				{
-					params: { limit, after, before },
-				}
-			);
+			const res = await $fetch<
+				IServerApiSuccessResponse<{
+					href: string;
+					limit: number;
+					next: number;
+					cursors: { after: string; before: string };
+					total: number;
+					items: IPlayHistoryObject[];
+				}>
+			>('/api/me/player/recently-played', {
+				params: { limit, after, before },
+			});
 
 			return res;
 		} catch (err) {
