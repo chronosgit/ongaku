@@ -8,7 +8,6 @@
 	import ContextMenuItem from './Item.vue';
 	import TracksService from '~/services/TracksService';
 	import type ITrackFeedItem from '~/interfaces/business/tracks/ITrackFeedItem';
-	import AddPlaylistDropdown from './AddPlaylistDropdown.vue';
 
 	const createToast = inject<FCreateToast>('createToast', () => {});
 	const locallyDeleteTrackFromFeed = inject<(trackId: string) => void>(
@@ -86,7 +85,7 @@
 		:style="{ top: props.coords.y + 'px', left: props.coords.x + 'px' }"
 	>
 		<!-- Add to playlist -->
-		<ContextMenuItem class="relative">
+		<ContextMenuItem>
 			<div class="flex items-center gap-1.5">
 				<LazyClientOnly>
 					<IconPlus class="scale-125" />
@@ -100,9 +99,6 @@
 			<LazyClientOnly>
 				<IconArrowDown class="-rotate-90 opacity-0 group-hover:opacity-100" />
 			</LazyClientOnly>
-
-			<!-- Dropdown -->
-			<AddPlaylistDropdown />
 		</ContextMenuItem>
 
 		<!-- Delete from this playlist (if own, I guess) -->
