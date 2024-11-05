@@ -8,7 +8,7 @@ export default function () {
 		data: playlists,
 		status,
 		execute,
-	} = useLazyAsyncData('useMyFollowedPlaylists', async () => {
+	} = useAsyncData('useMyFollowedPlaylists', async () => {
 		try {
 			const {
 				data: { items },

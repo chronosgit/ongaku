@@ -3,10 +3,19 @@
 	import ContextMenu from './context-menu/index.vue';
 	import type ITrackFeedItem from '~/interfaces/business/tracks/ITrackFeedItem';
 
+	const AddToPlaylistOverlay = defineAsyncComponent(
+		() =>
+			import(`~/components/features/tracks/add-to-playlist-overlay/index.vue`)
+	);
+
 	const props = defineProps<{ item: ITrackFeedItem; order: number }>();
 
 	const { coords, isOpened, toggleCtxMenu, closeCtxMenu } = useBaseContextMenu(
 		`tracks-feed-item-${props.item.id}`
+	);
+
+	const { isActive, activate, disactivate } = useClickawayClient(
+		`add-to-playlist-overlay`
 	);
 
 	const formatDuration = (ms: number) => {
@@ -22,6 +31,8 @@
 			return `${seconds} sec`;
 		}
 	};
+
+	provide('openAddPlaylistOverlay', activate);
 </script>
 
 <template>
@@ -96,5 +107,14 @@
 		<p class="w-20 grow-0 text-center text-zinc-500 dark:text-zinc-400">
 			{{ formatDuration(props.item.duration_ms) }}
 		</p>
+
+		<!-- Absolute -->
+		<AddToPlaylistOverlay
+			v-if="isActive"
+			ref="add-to-playlist-overlay"
+			:track-id="props.item.id"
+			@open-overlay="activate"
+			@close-overlay="disactivate"
+		/>
 	</div>
 </template>
