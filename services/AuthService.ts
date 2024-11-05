@@ -98,6 +98,9 @@ class AuthService {
 			'user-read-playback-state',
 			'user-modify-playback-state',
 			'user-read-recently-played',
+			'app-remote-control', // ?
+			'streaming', // ?
+			'user-read-playback-position', // ?
 		];
 
 		return scopes.join(' ');
