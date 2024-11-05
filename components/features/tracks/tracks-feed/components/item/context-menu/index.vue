@@ -8,15 +8,18 @@
 	import ContextMenuItem from './Item.vue';
 	import TracksService from '~/services/TracksService';
 	import type ITrackFeedItem from '~/interfaces/business/tracks/ITrackFeedItem';
-	import AddPlaylistDropdown from './AddPlaylistDropdown.vue';
+
+	const { t } = useI18n();
 
 	const createToast = inject<FCreateToast>('createToast', () => {});
+	const openAddPlaylistOverlay = inject<() => void>(
+		'openAddPlaylistOverlay',
+		() => {}
+	);
 	const locallyDeleteTrackFromFeed = inject<(trackId: string) => void>(
 		'locallyDeleteTrackFromFeed',
 		() => {}
 	);
-
-	const { t } = useI18n();
 
 	const props = defineProps<{
 		item: ITrackFeedItem;
@@ -86,8 +89,8 @@
 		:style="{ top: props.coords.y + 'px', left: props.coords.x + 'px' }"
 	>
 		<!-- Add to playlist -->
-		<ContextMenuItem class="relative">
-			<div class="flex items-center gap-1.5">
+		<ContextMenuItem>
+			<div class="flex items-center gap-1.5" @click="openAddPlaylistOverlay">
 				<LazyClientOnly>
 					<IconPlus class="scale-125" />
 				</LazyClientOnly>
@@ -100,9 +103,6 @@
 			<LazyClientOnly>
 				<IconArrowDown class="-rotate-90 opacity-0 group-hover:opacity-100" />
 			</LazyClientOnly>
-
-			<!-- Dropdown -->
-			<AddPlaylistDropdown />
 		</ContextMenuItem>
 
 		<!-- Delete from this playlist (if own, I guess) -->

@@ -38,7 +38,7 @@ export default class PlaylistsService {
 	static async fetchFollowedPlaylists(limit?: number, offset?: number) {
 		try {
 			const res = await $fetch<
-				IServerApiSuccessResponse<ISimplifiedPlaylistObject[]>
+				IServerApiSuccessResponse<{ items: ISimplifiedPlaylistObject[] }>
 			>('/api/me/playlists', {
 				params: { limit, offset },
 			});
@@ -105,6 +105,31 @@ export default class PlaylistsService {
 			const res = await $fetch(`/api/playlists/${playlistId}`, {
 				method: 'PUT',
 				body: { name, description: descr },
+			});
+
+			return res;
+		} catch (err) {
+			throw err;
+		}
+	}
+
+	static async followPlaylist(playlistId: string, isPublic = true) {
+		try {
+			const res = await $fetch(`/api/playlists/${playlistId}/followers`, {
+				method: 'PUT',
+				body: { public: isPublic },
+			});
+
+			return res;
+		} catch (err) {
+			throw err;
+		}
+	}
+
+	static async unfollowPlaylist(playlistId: string) {
+		try {
+			const res = await $fetch(`/api/playlists/${playlistId}/followers`, {
+				method: 'DELETE',
 			});
 
 			return res;
