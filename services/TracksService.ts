@@ -42,4 +42,15 @@ export default class TracksService {
 			throw err;
 		}
 	}
+
+	static async addTrackToPlaylist(
+		playlistId: string,
+		uris: string[],
+		position?: number
+	) {
+		return $fetch(`/api/playlists/${playlistId}/tracks`, {
+			method: 'POST',
+			body: { playlist_id: playlistId, uris, position },
+		});
+	}
 }

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 	import TracksFeed from '~/components/features/tracks/tracks-feed/index.vue';
-	import type IPlaylistObject from '~/interfaces/business/playlists/IPlaylistObject';
 	import type ITrackFeedItem from '~/interfaces/business/tracks/ITrackFeedItem';
 
 	const { params } = useRoute();
