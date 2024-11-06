@@ -1,7 +1,9 @@
 <script setup lang="ts">
+	import LayoutPartContainer from '~/components/layout/LayoutPartContainer.vue';
+
 	definePageMeta({ layout: 'main' });
 </script>
 
 <template>
-	<p>Search</p>
+	<LayoutPartContainer> TODO: recommended </LayoutPartContainer>
 </template>
