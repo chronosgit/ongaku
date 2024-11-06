@@ -4,6 +4,7 @@
 	import NoAuthModeFeatures from './no-auth/index.vue';
 	import LocalizationFeature from './localization/index.vue';
 	import ColorThemeFeature from './theme/index.vue';
+	import SearchFesture from './search/index.vue';
 	import { useCurrentUserStore } from '~/store/useCurrentUserStore';
 
 	const props = defineProps<{ isOpen: boolean }>();
@@ -39,6 +40,9 @@
 
 			<ColorThemeFeature />
 		</div>
+
+		<!-- Searchbar -->
+		<SearchFesture />
 
 		<!-- Footer -->
 		<NuxtLink

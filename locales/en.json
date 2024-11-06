@@ -60,7 +60,8 @@
 			"dividers": {
 				"profile": "Profile",
 				"auth": "Authentication",
-				"accessibility": "Accessibility"
+				"accessibility": "Accessibility",
+				"search": "Search"
 			},
 			"buttons": {
 				"profile": "Visit profile",

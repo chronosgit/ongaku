@@ -22,7 +22,7 @@
 		<!-- Search -->
 		<WrapperIconRound
 			v-if="curUserStore.isAuthenticated"
-			class="cursor-pointer p-2"
+			class="hidden cursor-pointer p-2 sm:flex"
 		>
 			<ClientOnly><IconMagnifier class="scale-125" /></ClientOnly>
 		</WrapperIconRound>
