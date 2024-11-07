@@ -24,7 +24,7 @@
 		<!-- Authenticated layout -->
 		<template v-if="curUserStore.isAuthenticated">
 			<div class="relative h-screen max-h-screen">
-				<main class="relative h-[90%]">
+				<main class="relative h-[92%]">
 					<MyHeader class="h-[8%]" />
 
 					<SidebarLibrary
@@ -37,7 +37,7 @@
 					</div>
 				</main>
 
-				<MusicPlayer class="h-[10%]" />
+				<MusicPlayer class="h-[8%]" />
 			</div>
 		</template>
 

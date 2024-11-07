@@ -16,17 +16,36 @@ export default defineEventHandler(async (e) => {
 			'audiobook',
 		];
 
-		if (!allowedTypes.includes(type as string)) {
-			throw createError({
-				name: ErrorNames.PARAM,
-				statusCode: 400,
-				statusMessage: 'Invalid type',
-				message: 'Provided type is invalid',
+		if (Array.isArray(type)) {
+			type.forEach((t) => {
+				if (!allowedTypes.includes(t)) {
+					throw createError({
+						name: ErrorNames.PARAM,
+						statusCode: 400,
+						statusMessage: 'Invalid type',
+						message: `Provided type '${t}' is invalid`,
+					});
+				}
 			});
+		} else {
+			if (!type || !allowedTypes.includes(type.toString())) {
+				throw createError({
+					name: ErrorNames.PARAM,
+					statusCode: 400,
+					statusMessage: 'Invalid type',
+					message: `Provided type '${type}' is invalid`,
+				});
+			}
 		}
 
 		const res = await $spotify('/search', {
-			params: { q, type, limit, offset, include_external: includeExternal },
+			params: {
+				q,
+				type: Array.isArray(type) ? type.join(',') : type,
+				limit,
+				offset,
+				include_external: includeExternal,
+			},
 		});
 
 		return getSuccessResponse(200, 'Search results received', res);
