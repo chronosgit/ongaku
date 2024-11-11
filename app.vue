@@ -4,6 +4,8 @@
 
 <template>
 	<div>
+		<NuxtLoadingIndicator />
+
 		<NuxtLayout>
 			<NuxtRouteAnnouncer />
 
