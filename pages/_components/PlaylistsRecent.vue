@@ -5,6 +5,12 @@
 	const localePath = useLocalePath();
 
 	const { recentPlaylists, areLoading } = useRecentPlaylists();
+
+	const playRecentPlaylist = (playlistId: string) => {
+		if (!playlistId) return;
+
+		PlayerService.startOrResumePlayback(`spotify:playlist:${playlistId}`);
+	};
 </script>
 
 <template>
@@ -48,7 +54,7 @@
 
 				<div
 					class="absolute right-0 mr-2 hidden items-center justify-center rounded-full bg-green-400 p-2 shadow-md transition-all group-hover:flex hover:scale-105 hover:bg-green-300"
-					@click.stop="console.log('play')"
+					@click.stop="playRecentPlaylist(p.id)"
 				>
 					<ClientOnly>
 						<IconPlay class="scale-150" />
