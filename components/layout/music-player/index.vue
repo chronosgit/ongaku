@@ -2,8 +2,6 @@
 	import Cover from './components/Cover.vue';
 
 	const props = defineProps<{ track?: any }>();
-
-	watchEffect(() => console.log(props.track));
 </script>
 
 <template>

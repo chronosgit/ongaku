@@ -2,11 +2,11 @@
 export default defineEventHandler(async (e) => {
 	try {
 		const $spotify = e.context.spotify;
-		const { deviceId } = await readBody(e);
+		const body = await readBody(e);
 
 		const res = await $spotify('/me/player/next', {
 			method: 'POST',
-			body: { device_id: deviceId },
+			body: { device_id: body.deviceId },
 		});
 
 		return getSuccessResponse(200, 'Track was skipped to next', res);

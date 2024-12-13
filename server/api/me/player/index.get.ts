@@ -4,7 +4,9 @@ export default defineEventHandler(async (e) => {
 		const $spotify = e.context.spotify;
 		const { additionalTypes } = getQuery(e);
 
+		// Returns undefined if playback is inactive
 		const res = await $spotify('/me/player', {
+			method: 'GET',
 			params: { additional_types: additionalTypes },
 		});
 

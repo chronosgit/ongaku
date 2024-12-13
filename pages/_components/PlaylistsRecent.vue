@@ -1,10 +1,8 @@
 <script setup lang="ts">
 	import { IconPlay } from '~/components/ui/icons';
-	import { usePlayerStore } from '~/store/usePlayerStore';
+	import PlayerService from '~/services/PlayerService';
 
 	const localePath = useLocalePath();
-
-	const playerStore = usePlayerStore();
 
 	const { recentPlaylists, areLoading } = useRecentPlaylists();
 </script>
@@ -50,20 +48,10 @@
 
 				<div
 					class="absolute right-0 mr-2 hidden items-center justify-center rounded-full bg-green-400 p-2 shadow-md transition-all group-hover:flex hover:scale-105 hover:bg-green-300"
-					@click.stop="console.log('Play ', p.name)"
+					@click.stop="console.log('play')"
 				>
 					<ClientOnly>
-						<IconPlay
-							class="scale-150"
-							@click="
-								playerStore.startOrResumePlayback(
-									'spotify:album:123',
-									['spotify:track:1'],
-									{ position: 4 },
-									500
-								)
-							"
-						/>
+						<IconPlay class="scale-150" />
 					</ClientOnly>
 				</div>
 			</div>

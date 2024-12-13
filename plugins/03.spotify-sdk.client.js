@@ -1,14 +1,12 @@
 export default defineNuxtPlugin(async () => {
-	let playerReadyPromise;
+	const { data: accessToken } = await $fetch('/exp-token');
 
 	const script = document.createElement('script');
 	script.src = 'https://sdk.scdn.co/spotify-player.js';
-	script.async = true;
+	script.onload = true;
 	document.head.appendChild(script);
 
-	const { data: accessToken } = await $fetch('/exp-token');
-
-	playerReadyPromise = new Promise((resolve) => {
+	const playerReadyPromise = new Promise((resolve) => {
 		window.onSpotifyWebPlaybackSDKReady = () => {
 			const player = new window.Spotify.Player({
 				name: 'Nuxt Web Playback SDK',
