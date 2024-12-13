@@ -4,14 +4,14 @@ import type IPlaybackState from '~/interfaces/business/player/IPlaybackState';
 
 class PlayerService {
 	static getPlaybackState() {
-		return $fetch<IServerApiSuccessResponse<IPlaybackState | {}>>(
+		return $fetch<IServerApiSuccessResponse<IPlaybackState | undefined>>(
 			'/api/me/player',
 			{ method: 'GET' }
 		);
 	}
 
 	static getCurrentlyPlayingTrack() {
-		return $fetch<IServerApiSuccessResponse<IPlaybackState | {}>>(
+		return $fetch<IServerApiSuccessResponse<IPlaybackState | undefined>>(
 			'/api/me/player/currently-playing',
 			{ method: 'GET' }
 		);

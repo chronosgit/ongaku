@@ -1,3 +1,5 @@
 <script setup lang="ts"></script>
 
-<template>Cover</template>
+<template>
+	<p>Cover</p>
+</template>
