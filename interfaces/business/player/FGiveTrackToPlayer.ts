@@ -1,13 +1,13 @@
 type SpotifyUri =
 	| `spotify:album:${string}`
-	| `spotify:artists:${string}`
-	| `spotify:playlists:${string}`;
+	| `spotify:artist:${string}`
+	| `spotify:playlist:${string}`;
 
 type TrackUri = `spotify:track:${string}`;
 
 type OffsetType<Context extends SpotifyUri | undefined> = Context extends
 	| `spotify:album:${string}`
-	| `spotify:playlists:${string}`
+	| `spotify:playlist:${string}`
 	? { position?: number; uri?: TrackUri }
 	: never;
 
