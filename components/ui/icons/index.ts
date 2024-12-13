@@ -26,3 +26,7 @@ export { default as IconSettings } from './Settings.vue';
 export { default as IconClock } from './Clock.vue';
 export { default as IconAlbum } from './Album.vue';
 export { default as IconError } from './Error.vue';
+export { default as IconPause } from './Pause.vue';
+export { default as IconSkipToNext } from './SkipToNext.vue';
+export { default as IconSkipToPrev } from './SkipToPrev.vue';
+export { default as IconVolumeUp } from './VolumeUp.vue';

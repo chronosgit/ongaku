@@ -4,7 +4,18 @@ import ErrorNames from '~/server/enums/ErrorNames';
 export default defineEventHandler(async (e) => {
 	try {
 		const $spotify = e.context.spotify;
-		const { deviceId, volumePercent } = await readBody(e);
+		const body = await readBody(e);
+
+		if (body == null) {
+			throw createError({
+				name: ErrorNames.BODY,
+				statusCode: 400,
+				statusMessage: 'Bad request',
+				message: 'Invalid body',
+			});
+		}
+
+		const { deviceId, volumePercent } = body;
 
 		if (
 			typeof volumePercent !== 'number' ||
@@ -22,7 +33,8 @@ export default defineEventHandler(async (e) => {
 
 		const res = await $spotify('/me/player/volume', {
 			method: 'PUT',
-			body: { device_id: deviceId, volume_percent: volumePercent },
+			body: { device_id: deviceId },
+			params: { volume_percent: volumePercent },
 		});
 
 		return getSuccessResponse(200, 'Playback volume was set', res);

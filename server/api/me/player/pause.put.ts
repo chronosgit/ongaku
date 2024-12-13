@@ -2,11 +2,11 @@
 export default defineEventHandler(async (e) => {
 	try {
 		const $spotify = e.context.spotify;
-		const { deviceId } = await readBody(e);
+		const body = await readBody(e);
 
 		const res = await $spotify('/me/player/pause', {
 			method: 'PUT',
-			body: { device_id: deviceId },
+			body: { device_id: body?.deviceId },
 		});
 
 		return getSuccessResponse(200, 'Playback was paused', res);

@@ -4,7 +4,9 @@ export default defineEventHandler(async (e) => {
 		const $spotify = e.context.spotify;
 		const body = await readBody(e);
 
-		const { contextUri, uris, offset, positionMs } = body || {};
+		const { contextUri, uris, offset, positionMs } = body;
+
+		console.log(contextUri);
 
 		const res = await $spotify('/me/player/play', {
 			method: 'PUT',

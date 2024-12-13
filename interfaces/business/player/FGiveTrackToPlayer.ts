@@ -12,8 +12,8 @@ type OffsetType<Context extends SpotifyUri | undefined> = Context extends
 	: never;
 
 export type FStartOrResumePlayback = <Context extends SpotifyUri | undefined>(
-	context_uri?: Context,
+	contextUri?: Context,
 	uris?: `spotify:track:${string}`[],
 	offset?: OffsetType<Context>,
-	position_ms?: number
+	positionMs?: number
 ) => void;
