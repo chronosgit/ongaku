@@ -1,4 +1,4 @@
-export default function (code: number, message: string, data: any) {
+export default function (code: number, message: string, data = null) {
 	return {
 		success: true,
 		statusCode: code,

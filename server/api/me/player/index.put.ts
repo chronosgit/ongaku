@@ -3,11 +3,11 @@
 export default defineEventHandler(async (e) => {
 	try {
 		const $spotify = e.context.spotify;
-		const { deviceId, play } = await readBody(e);
+		const { deviceIds, play } = await readBody(e);
 
 		const res = await $spotify('/me/player', {
 			method: 'PUT',
-			body: { device_ids: deviceId, play },
+			body: { device_ids: deviceIds, play },
 		});
 
 		return getSuccessResponse(200, 'Playback state transferred', res);

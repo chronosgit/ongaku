@@ -20,7 +20,7 @@ export default defineNuxtPlugin(async () => {
 			player.addListener('ready', ({ device_id }) => {
 				console.log('Spotify Player is ready with Device ID:', device_id);
 
-				resolve(player);
+				resolve(device_id);
 			});
 
 			player.addListener('not_ready', ({ device_id }) => {

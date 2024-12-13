@@ -10,6 +10,14 @@ class PlayerService {
 		);
 	}
 
+	static transferPlayback(deviceIds: string[]) {
+		return $fetch('/api/me/player', { method: 'PUT', body: { deviceIds } });
+	}
+
+	static getAvailableDevices() {
+		return $fetch('/api/me/player/devices', { method: 'GET' });
+	}
+
 	static getCurrentlyPlayingTrack() {
 		return $fetch<IServerApiSuccessResponse<IPlaybackState | undefined>>(
 			'/api/me/player/currently-playing',

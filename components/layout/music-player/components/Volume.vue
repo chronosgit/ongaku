@@ -17,7 +17,7 @@
 		</label>
 
 		<Slider
-			v-model="playerStore.volume"
+			:value="playerStore.volume"
 			:min="0"
 			:max="100"
 			:step="1"

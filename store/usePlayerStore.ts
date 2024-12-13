@@ -2,36 +2,34 @@ import PlayerService from '~/services/PlayerService';
 
 const usePlayerStore = defineStore('playerStore', () => {
 	const isPlaying = ref(false);
-	const volume = ref<number | null>(null);
+	const volume = ref(0);
+	const progressMs = ref(0);
 
-	const setPlayingState = (state: boolean) => {
-		if (typeof state !== 'boolean') return;
-
-		isPlaying.value = state;
-	};
+	const curItemName = ref<string | null>(null);
+	const curItemDurationMs = ref<number | null>(null);
 
 	const skipToPrevTrack = async () => {
 		await PlayerService.skipToPrevious();
 
-		setPlayingState(true);
+		isPlaying.value = true;
 	};
 
 	const resumePlaying = async () => {
 		await PlayerService.startOrResumePlayback();
 
-		setPlayingState(true);
+		isPlaying.value = true;
 	};
 
 	const pausePlaying = async () => {
 		await PlayerService.pausePlayback();
 
-		setPlayingState(false);
+		isPlaying.value = false;
 	};
 
 	const skipToNextTrack = async () => {
 		await PlayerService.skipToNext();
 
-		setPlayingState(true);
+		isPlaying.value = true;
 	};
 
 	const changeVolume = async (newVolume: number) => {
@@ -46,7 +44,9 @@ const usePlayerStore = defineStore('playerStore', () => {
 	return {
 		isPlaying,
 		volume,
-		setPlayingState,
+		progressMs,
+		curItemName,
+		curItemDurationMs,
 		skipToPrevTrack,
 		resumePlaying,
 		pausePlaying,
