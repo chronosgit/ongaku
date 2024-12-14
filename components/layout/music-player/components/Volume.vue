@@ -24,7 +24,7 @@
 </script>
 
 <template>
-	<div class="flex items-center gap-4">
+	<div class="flex items-center justify-center gap-4">
 		<label for="range">
 			<p class="sr-only">Volume</p>
 
@@ -41,7 +41,7 @@
 			:handle-style="{
 				border: 'none',
 			}"
-			class="w-12 dark:bg-zinc-700"
+			class="w-1/2 dark:bg-zinc-700"
 			@change="changeVolume"
 		/>
 	</div>

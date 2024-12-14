@@ -37,6 +37,7 @@
 <template>
 	<div class="mt-8 overflow-y-auto px-4">
 		<TracksFeed
+			:context-uri="`spotify:playlist:${params.id as string}`"
 			:tracks="trackFeedItems"
 			:are-tracks-loading="areLoading"
 			:skeleton-items-total="8"

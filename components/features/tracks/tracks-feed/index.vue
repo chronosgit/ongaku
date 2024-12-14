@@ -5,6 +5,7 @@
 	import type ITrackFeedItem from '~/interfaces/business/tracks/ITrackFeedItem';
 
 	const props = defineProps<{
+		contextUri: string;
 		tracks: ITrackFeedItem[] | null;
 		areTracksLoading: boolean;
 		skeletonItemsTotal?: number;
@@ -22,11 +23,14 @@
 		tracks.value.splice(targetArrId, 1);
 	};
 
+	watchEffect(() => console.log(tracks));
+
 	watch(
 		() => props.tracks,
 		(n) => (tracks.value = n)
 	);
 
+	provide('contextUri', props.contextUri);
 	provide('locallyDeleteTrackFromFeed', locallyDeleteTrackFromFeed);
 </script>
 

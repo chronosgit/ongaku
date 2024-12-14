@@ -1,6 +1,7 @@
 <script setup lang="ts">
 	import { IconPlay, IconQuestionMark } from '~/components/ui/icons';
 	import type IMediaItem from '../../interfaces/IMediaItem';
+	import PlayerService from '~/services/PlayerService';
 
 	const ItemContextMenu = defineAsyncComponent(
 		() =>
@@ -49,6 +50,10 @@
 			navigateTo(localePath(`/playlists/${props.item.id}`));
 		}
 	};
+
+	const playPlaylist = () => {
+		PlayerService.startOrResumePlayback(`spotify:playlist:${props.item.id}`);
+	};
 </script>
 
 <template>
@@ -82,7 +87,7 @@
 			<div class="hidden transition-all group-hover:block">
 				<IconPlay
 					class="absolute bottom-1/2 left-1/2 z-30 -translate-x-1/2 translate-y-1/2 scale-150 text-white transition-transform hover:scale-[200%] dark:text-white"
-					@click="console.log('Play', props.item.name)"
+					@click="playPlaylist"
 				/>
 
 				<div class="absolute inset-0 bg-black bg-opacity-25"></div>

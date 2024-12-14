@@ -2,8 +2,6 @@
 	import { usePlayerStore } from '~/store/usePlayerStore';
 
 	const playerStore = usePlayerStore();
-
-	watchEffect(() => console.log(playerStore.curItem));
 </script>
 
 <template>

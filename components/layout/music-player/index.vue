@@ -72,7 +72,7 @@
 	>
 		<Cover class="w-[30%]" />
 
-		<div class="flex w-full flex-col items-center gap-2">
+		<div class="flex w-[40%] flex-col items-center gap-2">
 			<Controls class="flex-basis-1/2" />
 
 			<Progress />
