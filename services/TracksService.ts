@@ -1,4 +1,5 @@
 import type IPlayHistoryObject from '~/interfaces/business/IPlayHistoryObject';
+import type ITrackObject from '~/interfaces/business/tracks/ITrackObject';
 import type IServerApiSuccessResponse from '~/interfaces/IServerApiSuccessResponse';
 
 export default class TracksService {
@@ -52,5 +53,14 @@ export default class TracksService {
 			method: 'POST',
 			body: { playlist_id: playlistId, uris, position },
 		});
+	}
+
+	static async getTrack(trackId: string) {
+		if (trackId == null) return;
+
+		return $fetch<IServerApiSuccessResponse<ITrackObject>>(
+			`/api/tracks/${trackId}`,
+			{ method: 'GET' }
+		);
 	}
 }

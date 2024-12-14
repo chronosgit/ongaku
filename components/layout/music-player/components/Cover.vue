@@ -2,10 +2,28 @@
 	import { usePlayerStore } from '~/store/usePlayerStore';
 
 	const playerStore = usePlayerStore();
+
+	watchEffect(() => console.log(playerStore.curItem));
 </script>
 
 <template>
-	<p v-if="playerStore.curItemName == null">No current item</p>
+	<div v-if="playerStore.curItem != null" class="flex items-center gap-1">
+		<NuxtImg
+			:src="playerStore.curItem?.album?.images[0]?.url"
+			class="max-w-10 rounded-md"
+		/>
 
-	<p v-else>{{ playerStore.curItemName }}</p>
+		<div class="space-y-0 overflow-hidden">
+			<p class="truncate whitespace-nowrap">
+				{{ playerStore.curItem.name }}
+			</p>
+
+			<NuxtLink
+				v-if="playerStore.curItem.artists[0]"
+				:href="playerStore.curItem.artists[0].href"
+			>
+				{{ playerStore.curItem.artists[0].name }}
+			</NuxtLink>
+		</div>
+	</div>
 </template>
