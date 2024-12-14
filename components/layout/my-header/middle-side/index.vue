@@ -20,11 +20,11 @@
 
 		<!-- TODO: super-responsive searchbar with logic -->
 		<!-- Search -->
-		<WrapperIconRound
+		<!-- <WrapperIconRound
 			v-if="curUserStore.isAuthenticated"
 			class="hidden cursor-pointer p-2 sm:flex"
 		>
 			<ClientOnly><IconMagnifier class="scale-125" /></ClientOnly>
-		</WrapperIconRound>
+		</WrapperIconRound> -->
 	</section>
 </template>

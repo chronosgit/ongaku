@@ -6,11 +6,11 @@
 
 	definePageMeta({ layout: 'main' });
 
-	const { data, isLoading } = useSearch(q.value, ['album', 'track']);
+	const { data, isLoading } = useSearch(q.value, ['album']);
 </script>
 
 <template>
 	<LayoutPartContainer>
-		<p>{{ q }}</p>
+		<p>{{ data }}</p>
 	</LayoutPartContainer>
 </template>

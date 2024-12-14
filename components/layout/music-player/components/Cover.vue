@@ -24,4 +24,10 @@
 			</NuxtLink>
 		</div>
 	</div>
+
+	<div v-else class="flex h-10 w-full items-center gap-1">
+		<div class="h-8 w-8 rounded-md bg-zinc-300"></div>
+
+		<div class="h-4 w-1/2 rounded-sm bg-zinc-300"></div>
+	</div>
 </template>
