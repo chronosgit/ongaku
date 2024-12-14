@@ -1,12 +1,16 @@
 <script setup lang="ts">
 	import { IconPlay } from '~/components/ui/icons';
 	import ContextMenu from './context-menu/index.vue';
+	import PlayerService from '~/services/PlayerService';
 	import type ITrackFeedItem from '~/interfaces/business/tracks/ITrackFeedItem';
+	import type { SpotifyUri } from '~/interfaces/business/player/FGiveTrackToPlayer';
 
 	const AddToPlaylistOverlay = defineAsyncComponent(
 		() =>
 			import(`~/components/features/tracks/add-to-playlist-overlay/index.vue`)
 	);
+
+	const contextUri = inject<string | null>('contextUri', null);
 
 	const props = defineProps<{ item: ITrackFeedItem; order: number }>();
 
@@ -30,6 +34,18 @@
 		} else {
 			return `${seconds} sec`;
 		}
+	};
+
+	const play = () => {
+		const order = props.order;
+		if (contextUri == null || order == null) return;
+
+		const regex = /^(spotify:(album|artist|playlist|track):)/;
+		if (!regex.test(contextUri)) return;
+
+		PlayerService.startOrResumePlayback(contextUri as SpotifyUri, undefined, {
+			position: order - 1,
+		});
 	};
 
 	provide('openAddPlaylistOverlay', activate);
@@ -58,7 +74,7 @@
 			<ClientOnly>
 				<IconPlay
 					class="hidden scale-150 cursor-pointer group-hover/tracks:block"
-					@click.stop="console.log('Play track', props.item.name)"
+					@click.stop="play"
 				/>
 			</ClientOnly>
 		</div>

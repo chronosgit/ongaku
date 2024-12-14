@@ -1,38 +1,35 @@
 <script setup lang="ts">
 	import { Slider } from 'ant-design-vue';
-	import PlayerService from '~/services/PlayerService';
 	import { usePlayerStore } from '~/store/usePlayerStore';
 
 	const playerStore = usePlayerStore();
 
-	const curItemDurationSec = computed(() => {
-		return Math.floor(Number(playerStore.curItemDurationMs) / 1000);
+	const progressLabel = computed(() => {
+		if (Number.isNaN(playerStore.progressMs) || !playerStore.progressMs)
+			return '';
+
+		const progressSec = Math.floor(playerStore.progressMs / 1000);
+
+		return formatSeconds(progressSec);
 	});
 
-	// useInterval(() => console.log(playerStore.progressMs));
+	const curItemDurationLabel = computed(() => {
+		const sec = Math.floor(Number(playerStore.curItem?.duration_ms) / 1000);
 
-	watch(
-		() => playerStore.progressMs,
-		(ms) => {
-			const dur = playerStore.curItemDurationMs;
+		if (Number.isNaN(sec)) return '';
 
-			if (dur != null && ms >= dur) {
-				return;
-			}
-
-			PlayerService.skipToNext();
-		}
-	);
+		return formatSeconds(sec);
+	});
 </script>
 
 <template>
 	<div class="flex w-full items-center gap-2">
-		<p>0</p>
+		<p>{{ progressLabel }}</p>
 
 		<Slider
 			:value="playerStore.progressMs / 1000"
 			:min="0"
-			:max="curItemDurationSec"
+			:max="Math.floor(Number(playerStore.curItem?.duration_ms) / 1000)"
 			:step="1"
 			:handle-style="{
 				border: 'none',
@@ -40,6 +37,6 @@
 			class="w-full dark:bg-zinc-700"
 		/>
 
-		<p>{{ formatSeconds(curItemDurationSec) }}</p>
+		<p>{{ curItemDurationLabel }}</p>
 	</div>
 </template>

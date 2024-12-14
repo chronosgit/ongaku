@@ -1,12 +1,13 @@
 import PlayerService from '~/services/PlayerService';
+import type IEpisodeObject from '~/interfaces/business/episodes/IEpisodeObject';
+import type ITrackObject from '~/interfaces/business/tracks/ITrackObject';
 
 const usePlayerStore = defineStore('playerStore', () => {
 	const isPlaying = ref(false);
 	const volume = ref(0);
 	const progressMs = ref(0);
 
-	const curItemName = ref<string | null>(null);
-	const curItemDurationMs = ref<number | null>(null);
+	const curItem = ref<ITrackObject | null>(null);
 
 	const skipToPrevTrack = async () => {
 		await PlayerService.skipToPrevious();
@@ -45,8 +46,7 @@ const usePlayerStore = defineStore('playerStore', () => {
 		isPlaying,
 		volume,
 		progressMs,
-		curItemName,
-		curItemDurationMs,
+		curItem,
 		skipToPrevTrack,
 		resumePlaying,
 		pausePlaying,

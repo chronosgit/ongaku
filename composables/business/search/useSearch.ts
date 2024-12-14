@@ -2,19 +2,24 @@ import SearchService from '~/services/SearchService';
 import type { SearchType } from '~/interfaces/business/search/SearchType';
 
 export default function (q: string, type: SearchType[]) {
-	const { data, status } = useAsyncData('useSearch', async () => {
-		try {
-			const res = await SearchService.search(q, type);
+	const { data, status } = useAsyncData<{ id: string; nmae: string }[] | null>(
+		'useSearch',
+		async () => {
+			try {
+				const res = await SearchService.search(q, type);
+				if (res == null || res.data == null) return;
 
-			console.log(res);
+				// @ts-ignore
+				const albums = res.data.albums.items;
 
-			return res;
-		} catch (err) {
-			console.error(err);
+				return albums;
+			} catch (err) {
+				console.error(err);
 
-			return null;
+				return null;
+			}
 		}
-	});
+	);
 
 	const isLoading = computed(() => status.value === 'pending');
 

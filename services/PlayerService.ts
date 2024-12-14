@@ -36,7 +36,7 @@ class PlayerService {
 		if (contextUri) requestBody.contextUri = contextUri;
 		if (uris) requestBody.uris = uris;
 		if (offset) requestBody.offset = offset;
-		if (typeof positionMs === 'number') requestBody.position_ms = positionMs;
+		if (typeof positionMs === 'number') requestBody.positionMs = positionMs;
 
 		return $fetch(`/api/me/player/play`, {
 			method: 'PUT',

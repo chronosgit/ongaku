@@ -1,12 +1,15 @@
 <script setup lang="ts">
 	import { IconQuestionMark, IconPlay } from '~/components/ui/icons';
 	import type IArtistObject from '~/interfaces/business/artists/IArtistObject';
+	import PlayerService from '~/services/PlayerService';
 
 	const props = defineProps<{
 		artist: IArtistObject;
 	}>();
 
-	const localePath = useLocalePath();
+	const playTopArtist = () => {
+		PlayerService.startOrResumePlayback(`spotify:artist:${props.artist.id}`);
+	};
 </script>
 
 <template>
@@ -38,7 +41,7 @@
 			<!-- On-hover play button -->
 			<div
 				class="absolute bottom-0 right-0 flex -translate-y-2 cursor-pointer items-center justify-center rounded-full bg-green-400 p-3 opacity-0 shadow-lg transition-all group-hover:-translate-y-4 group-hover:opacity-100 hover:scale-105 hover:bg-green-300"
-				@click="console.log(`Play ${props.artist.name}`)"
+				@click="playTopArtist"
 			>
 				<ClientOnly>
 					<IconPlay class="scale-150" />

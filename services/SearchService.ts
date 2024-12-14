@@ -1,4 +1,5 @@
 import type { SearchType } from '~/interfaces/business/search/SearchType';
+import type IServerApiSuccessResponse from '~/interfaces/IServerApiSuccessResponse';
 
 class SearchService {
 	static search(
@@ -7,7 +8,7 @@ class SearchService {
 		limit?: number,
 		offset?: number
 	) {
-		return $fetch('/api/search', {
+		return $fetch<IServerApiSuccessResponse<unknown>>('/api/search', {
 			params: {
 				q: encodeURIComponent('a'),
 				type: 'album',
